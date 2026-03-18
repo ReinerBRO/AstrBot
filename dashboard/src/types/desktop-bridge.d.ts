@@ -1,7 +1,7 @@
 export {};
 
 declare global {
-  interface AstrBotDesktopAppUpdateCheckResult {
+  interface PersbotDesktopAppUpdateCheckResult {
     ok: boolean;
     reason?: string | null;
     currentVersion?: string;
@@ -9,19 +9,19 @@ declare global {
     hasUpdate: boolean;
   }
 
-  interface AstrBotDesktopAppUpdateResult {
+  interface PersbotDesktopAppUpdateResult {
     ok: boolean;
     reason?: string | null;
   }
 
-  interface AstrBotAppUpdaterBridge {
-    checkForAppUpdate: () => Promise<AstrBotDesktopAppUpdateCheckResult>;
-    installAppUpdate: () => Promise<AstrBotDesktopAppUpdateResult>;
+  interface PersbotAppUpdaterBridge {
+    checkForAppUpdate: () => Promise<PersbotDesktopAppUpdateCheckResult>;
+    installAppUpdate: () => Promise<PersbotDesktopAppUpdateResult>;
   }
 
   interface Window {
-    astrbotAppUpdater?: AstrBotAppUpdaterBridge;
-    astrbotDesktop?: {
+    persbotAppUpdater?: PersbotAppUpdaterBridge;
+    persbotDesktop?: {
       isDesktop: boolean;
       isDesktopRuntime: () => Promise<boolean>;
       getBackendState: () => Promise<{

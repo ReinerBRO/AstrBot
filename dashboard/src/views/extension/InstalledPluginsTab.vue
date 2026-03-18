@@ -161,7 +161,7 @@ const {
           <v-tab-item v-show="activeTab === 'installed'">
             <div class="mb-4 pt-4 pb-4">
               <div class="d-flex align-center flex-wrap" style="gap: 12px">
-                <h2 class="text-h2 mb-0">{{ tm("titles.installedAstrBotPlugins") }}</h2>
+                <h2 class="text-h2 mb-0">{{ tm("titles.installedPersbotPlugins") }}</h2>
 
                 <div class="d-flex align-center flex-wrap ml-auto" style="gap: 8px">
                   <v-text-field
@@ -444,11 +444,11 @@ const {
                           </v-chip>
                         </div>
                         <div
-                          v-if="item.astrbot_version"
+                          v-if="item.persbot_version"
                           class="d-flex align-center flex-wrap mt-1"
                         >
                           <span class="text-caption text-medium-emphasis mr-2">
-                            {{ tm("card.status.astrbotVersion") }}:
+                            {{ tm("card.status.persbotVersion") }}:
                           </span>
                           <v-chip
                             size="x-small"
@@ -456,7 +456,7 @@ const {
                             variant="outlined"
                             class="mr-1 mb-1"
                           >
-                            {{ item.astrbot_version }}
+                            {{ item.persbot_version }}
                           </v-chip>
                         </div>
                       </div>
@@ -671,7 +671,7 @@ const {
                 <button
                   v-bind="props"
                   type="button"
-                  class="v-btn v-btn--elevated v-btn--icon v-theme--PurpleThemeDark bg-darkprimary v-btn--density-default v-btn--size-x-large v-btn--variant-elevated fab-button"
+                  class="v-btn v-btn--elevated v-btn--icon bg-darkprimary v-btn--density-default v-btn--size-x-large v-btn--variant-elevated fab-button"
                   style="
                     position: fixed;
                     right: 52px;
@@ -685,7 +685,7 @@ const {
                   <span class="v-btn__underlay"></span>
                   <span class="v-btn__content" data-no-activator="">
                     <i
-                      class="mdi-plus mdi v-icon notranslate v-theme--PurpleThemeDark v-icon--size-default"
+                      class="mdi-plus mdi v-icon notranslate v-icon--size-default"
                       aria-hidden="true"
                       style="font-size: 32px"
                     ></i>

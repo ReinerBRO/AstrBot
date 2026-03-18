@@ -166,18 +166,18 @@ const handleInstall = (plugin) => {
         </div>
 
         <div
-          v-if="plugin.astrbot_version || platformDisplayList.length"
+          v-if="plugin.persbot_version || platformDisplayList.length"
           class="d-flex align-center flex-wrap"
           style="gap: 4px; margin-top: 4px; margin-bottom: 4px"
         >
           <v-chip
-            v-if="plugin.astrbot_version"
+            v-if="plugin.persbot_version"
             size="x-small"
             color="secondary"
             variant="outlined"
             style="height: 20px"
           >
-            AstrBot: {{ plugin.astrbot_version }}
+            Persbot: {{ plugin.persbot_version }}
           </v-chip>
           <PluginPlatformChip
             :platforms="plugin.support_platforms"

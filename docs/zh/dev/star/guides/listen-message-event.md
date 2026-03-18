@@ -3,29 +3,29 @@
 
 事件监听器可以收到平台下发的消息内容，可以实现指令、指令组、事件监听等功能。
 
-事件监听器的注册器在 `astrbot.api.event.filter` 下，需要先导入。请务必导入，否则会和 python 的高阶函数 filter 冲突。
+事件监听器的注册器在 `persbot.api.event.filter` 下，需要先导入。请务必导入，否则会和 python 的高阶函数 filter 冲突。
 
 ```py
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 ```
 
 ## 消息与事件
 
-AstrBot 接收消息平台下发的消息，并将其封装为 `AstrMessageEvent` 对象，传递给插件进行处理。
+Persbot 接收消息平台下发的消息，并将其封装为 `AstrMessageEvent` 对象，传递给插件进行处理。
 
-![message-event](https://files.astrbot.app/docs/zh/dev/star/guides/message-event.svg)
+![message-event](https://files.persbot.app/docs/zh/dev/star/guides/message-event.svg)
 
 ### 消息事件
 
-`AstrMessageEvent` 是 AstrBot 的消息事件对象，其中存储了消息发送者、消息内容等信息。
+`AstrMessageEvent` 是 Persbot 的消息事件对象，其中存储了消息发送者、消息内容等信息。
 
 ### 消息对象
 
-`AstrBotMessage` 是 AstrBot 的消息对象，其中存储了消息平台下发的消息具体内容，`AstrMessageEvent` 对象中包含一个 `message_obj` 属性用于获取该消息对象。
+`PersbotMessage` 是 Persbot 的消息对象，其中存储了消息平台下发的消息具体内容，`AstrMessageEvent` 对象中包含一个 `message_obj` 属性用于获取该消息对象。
 
 ```py{11}
-class AstrBotMessage:
-    '''AstrBot 的消息对象'''
+class PersbotMessage:
+    '''Persbot 的消息对象'''
     type: MessageType  # 消息类型
     self_id: str  # 机器人的识别id
     session_id: str  # 会话id。取决于 unique_session 的设置。
@@ -42,7 +42,7 @@ class AstrBotMessage:
 
 ### 消息链
 
-![message-chain](https://files.astrbot.app/docs/zh/dev/star/guides/message-chain.svg)
+![message-chain](https://files.persbot.app/docs/zh/dev/star/guides/message-chain.svg)
 
 `消息链`描述一个消息的结构，是一个有序列表，列表中每一个元素称为`消息段`。
 
@@ -64,21 +64,21 @@ class AstrBotMessage:
 - `Nodes`：合并转发消息中的多个节点
 - `Poke`：戳一戳消息段
 
-在 AstrBot 中，消息链表示为 `List[BaseMessageComponent]` 类型的列表。
+在 Persbot 中，消息链表示为 `List[BaseMessageComponent]` 类型的列表。
 
 ## 指令
 
-![message-event-simple-command](https://files.astrbot.app/docs/zh/dev/star/guides/message-event-simple-command.svg)
+![message-event-simple-command](https://files.persbot.app/docs/zh/dev/star/guides/message-event-simple-command.svg)
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.star import Context, Star
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.star import Context, Star
 
 class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
 
-    @filter.command("helloworld") # from astrbot.api.event.filter import command
+    @filter.command("helloworld") # from persbot.api.event.filter import command
     async def helloworld(self, event: AstrMessageEvent):
         '''这是 hello world 指令'''
         user_name = event.get_sender_name()
@@ -87,13 +87,13 @@ class MyPlugin(Star):
 ```
 
 > [!TIP]
-> 指令不能带空格，否则 AstrBot 会将其解析到第二个参数。可以使用下面的指令组功能，或者也使用监听器自己解析消息内容。
+> 指令不能带空格，否则 Persbot 会将其解析到第二个参数。可以使用下面的指令组功能，或者也使用监听器自己解析消息内容。
 
 ## 带参指令
 
-![command-with-param](https://files.astrbot.app/docs/zh/dev/star/guides/command-with-param.svg)
+![command-with-param](https://files.persbot.app/docs/zh/dev/star/guides/command-with-param.svg)
 
-AstrBot 会自动帮你解析指令的参数。
+Persbot 会自动帮你解析指令的参数。
 
 ```python
 @filter.command("add")
@@ -126,11 +126,11 @@ async def sub(self, event: AstrMessageEvent, a: int, b: int):
 
 当用户没有输入子指令时，会报错并，并渲染出该指令组的树形结构。
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-1.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-1.png)
 
-![image](https://files.astrbot.app/docs/source/images/plugin/898a169ae7ed0478f41c0a7d14cb4d64.png)
+![image](https://files.persbot.app/docs/source/images/plugin/898a169ae7ed0478f41c0a7d14cb4d64.png)
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-2.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-2.png)
 
 理论上，指令组可以无限嵌套！
 
@@ -243,22 +243,22 @@ async def helloworld(self, event: AstrMessageEvent):
 > v3.4.34 后
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
-@filter.on_astrbot_loaded()
-async def on_astrbot_loaded(self):
-    print("AstrBot 初始化完成")
+@filter.on_persbot_loaded()
+async def on_persbot_loaded(self):
+    print("Persbot 初始化完成")
 
 ```
 
 #### 等待 LLM 请求时
 
-在 AstrBot 准备调用 LLM 但还未获取会话锁时，会触发 `on_waiting_llm_request` 钩子。
+在 Persbot 准备调用 LLM 但还未获取会话锁时，会触发 `on_waiting_llm_request` 钩子。
 
 这个钩子适合用于发送"正在等待请求..."等用户反馈提示，亦或是在锁外及时获取LLM请求而不用等到锁被释放。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.on_waiting_llm_request()
 async def on_waiting_llm(self, event: AstrMessageEvent):
@@ -269,15 +269,15 @@ async def on_waiting_llm(self, event: AstrMessageEvent):
 
 #### LLM 请求时
 
-在 AstrBot 默认的执行流程中，在调用 LLM 前，会触发 `on_llm_request` 钩子。
+在 Persbot 默认的执行流程中，在调用 LLM 前，会触发 `on_llm_request` 钩子。
 
 可以获取到 `ProviderRequest` 对象，可以对其进行修改。
 
 ProviderRequest 对象包含了 LLM 请求的所有信息，包括请求的文本、系统提示等。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.provider import ProviderRequest
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.provider import ProviderRequest
 
 @filter.on_llm_request()
 async def my_custom_hook_1(self, event: AstrMessageEvent, req: ProviderRequest): # 请注意有三个参数
@@ -295,8 +295,8 @@ async def my_custom_hook_1(self, event: AstrMessageEvent, req: ProviderRequest):
 可以获取到 `ProviderResponse` 对象，可以对其进行修改。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.provider import LLMResponse
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.provider import LLMResponse
 
 @filter.on_llm_response()
 async def on_llm_resp(self, event: AstrMessageEvent, resp: LLMResponse): # 请注意有三个参数
@@ -312,7 +312,7 @@ async def on_llm_resp(self, event: AstrMessageEvent, resp: LLMResponse): # 请�
 可以在这里实现一些消息的装饰，比如转语音、转图片、加前缀等等
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.on_decorating_result()
 async def on_decorating_result(self, event: AstrMessageEvent):
@@ -329,7 +329,7 @@ async def on_decorating_result(self, event: AstrMessageEvent):
 在发送消息给消息平台后，会触发 `after_message_sent` 钩子。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.after_message_sent()
 async def after_message_sent(self, event: AstrMessageEvent):

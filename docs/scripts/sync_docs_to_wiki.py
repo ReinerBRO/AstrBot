@@ -12,21 +12,21 @@ FENCED_BLOCK_RE = re.compile(
     re.MULTILINE | re.DOTALL,
 )
 INLINE_CODE_RE = re.compile(r"(`[^`]*`)")
-MANIFEST_NAME = ".astrbot-wiki-sync-manifest"
+MANIFEST_NAME = ".persbot-wiki-sync-manifest"
 SOURCE_ALIASES = {
     "zh/config/providers/start.md": "zh/providers/start.md",
     "en/config/providers/start.md": "en/providers/start.md",
 }
 LANG_CONFIG = {
     "zh": {
-        "index_title": "# AstrBot 中文文档",
-        "index_intro": "该页面由 `AstrBot-docs` 自动同步到 GitHub Wiki。",
+        "index_title": "# Persbot 中文文档",
+        "index_intro": "该页面由 `Persbot-docs` 自动同步到 GitHub Wiki。",
         "index_links": [
-            ("关于 AstrBot", "zh-what-is-astrbot"),
+            ("关于 Persbot", "zh-what-is-persbot"),
             ("社区", "zh-community"),
             ("常见问题", "zh-faq"),
         ],
-        "home_intro": "该 Wiki 由 `AstrBot-docs` 自动同步生成。",
+        "home_intro": "该 Wiki 由 `Persbot-docs` 自动同步生成。",
         "home_links": [
             ("中文文档入口", "zh-index"),
             ("English Docs", "Home-en"),
@@ -37,14 +37,14 @@ LANG_CONFIG = {
         "sidebar_docs_entry_label": "文档入口",
     },
     "en": {
-        "index_title": "# AstrBot English Documentation",
-        "index_intro": "This page is synchronized automatically from `AstrBot-docs` to the GitHub wiki.",
+        "index_title": "# Persbot English Documentation",
+        "index_intro": "This page is synchronized automatically from `Persbot-docs` to the GitHub wiki.",
         "index_links": [
-            ("What is AstrBot", "en-what-is-astrbot"),
+            ("What is Persbot", "en-what-is-persbot"),
             ("Community", "en-community"),
             ("FAQ", "en-faq"),
         ],
-        "home_intro": "This wiki is synchronized automatically from `AstrBot-docs`.",
+        "home_intro": "This wiki is synchronized automatically from `Persbot-docs`.",
         "home_links": [
             ("English docs entry", "en-index"),
             ("中文文档入口", "Home"),
@@ -481,7 +481,7 @@ def build_language_index(language: str, page_names: set[str]) -> str:
 
 def build_home_page(language: str) -> str:
     config = LANG_CONFIG[language]
-    lines = ["# AstrBot Wiki", "", config["home_intro"], ""]
+    lines = ["# Persbot Wiki", "", config["home_intro"], ""]
     for label, target in config["home_links"]:
         lines.append(f"- [{label}]({target})")
     return normalize_content("\n".join(lines))
@@ -608,12 +608,12 @@ def sync_docs_to_wiki(source_root: Path, wiki_root: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Sync AstrBot docs content to GitHub wiki pages."
+        description="Sync Persbot docs content to GitHub wiki pages."
     )
     parser.add_argument(
         "--source-root",
         default=str(repo_root()),
-        help="Path to the AstrBot-docs repository root.",
+        help="Path to the Persbot-docs repository root.",
     )
     parser.add_argument(
         "--wiki-root",

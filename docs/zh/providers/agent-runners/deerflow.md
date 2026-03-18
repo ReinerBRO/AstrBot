@@ -1,6 +1,6 @@
 # 接入 DeerFlow
 
-在 v4.19.2 及之后，AstrBot 支持接入 [DeerFlow](https://github.com/bytedance/deer-flow) Agent Runner。
+在 v4.19.2 及之后，Persbot 支持接入 [DeerFlow](https://github.com/bytedance/deer-flow) Agent Runner。
 
 ## 预备工作：部署 DeerFlow
 
@@ -10,13 +10,13 @@
 - [DeerFlow 官方网站](https://deerflow.tech/)
 - [DeerFlow 配置文档](https://github.com/bytedance/deer-flow/blob/main/backend/docs/CONFIGURATION.md)
 
-请确认 DeerFlow 已正常启动，并且 AstrBot 可以访问 DeerFlow 的网关地址。默认情况下，DeerFlow 网关地址为 `http://127.0.0.1:2026`。
+请确认 DeerFlow 已正常启动，并且 Persbot 可以访问 DeerFlow 的网关地址。默认情况下，DeerFlow 网关地址为 `http://127.0.0.1:2026`。
 
 > [!TIP]
 > - `API Base URL` 必须以 `http://` 或 `https://` 开头。
-> - 如果 AstrBot 与 DeerFlow 运行在不同容器或主机上，请将 `127.0.0.1` 替换为 DeerFlow 实际可访问的内网地址、主机名或域名。
+> - 如果 Persbot 与 DeerFlow 运行在不同容器或主机上，请将 `127.0.0.1` 替换为 DeerFlow 实际可访问的内网地址、主机名或域名。
 
-## 在 AstrBot 中配置 DeerFlow
+## 在 Persbot 中配置 DeerFlow
 
 在 WebUI 中，点击「模型提供商」->「新增提供商」，选择「Agent 执行器」，选择「DeerFlow」，进入 DeerFlow 的配置页面。
 
@@ -48,6 +48,6 @@
 如果请求没有正常通过 DeerFlow 执行，请优先检查以下内容：
 
 - DeerFlow 服务是否已经正常启动
-- `API Base URL` 是否能从 AstrBot 所在环境访问
+- `API Base URL` 是否能从 Persbot 所在环境访问
 - 鉴权配置是否填写正确
 - `Assistant ID` 是否与 DeerFlow 中实际可用的 assistant 一致

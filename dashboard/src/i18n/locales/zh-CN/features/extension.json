@@ -2,14 +2,14 @@
   "title": "插件管理",
   "subtitle": "管理和配置系统插件",
   "tabs": {
-    "installedPlugins": "AstrBot 插件",
-    "market": "AstrBot 插件市场",
+    "installedPlugins": "Persbot 插件",
+    "market": "Persbot 插件市场",
     "installedMcpServers": "MCP",
     "skills": "Skills",
     "handlersOperation": "管理行为"
   },
   "titles": {
-    "installedAstrBotPlugins": "已安装的 AstrBot 插件"
+    "installedPersbotPlugins": "已安装的 Persbot 插件"
   },
   "failedPlugins": {
     "title": "加载失败插件（{count}）",
@@ -174,7 +174,7 @@
     },
     "versionCompatibility": {
       "title": "版本兼容性警告",
-      "message": "该插件声明的 AstrBot 版本范围与当前版本不匹配。你可以无视警告继续安装，但可能无法正常运行。",
+      "message": "该插件声明的 Persbot 版本范围与当前版本不匹配。你可以无视警告继续安装，但可能无法正常运行。",
       "confirm": "无视警告，继续安装",
       "cancel": "取消安装"
     },
@@ -311,7 +311,7 @@
     "neoPayloadTitle": "Neo Payload 详情",
     "neoPayloadFailed": "读取 Payload 失败",
     "runtimeNoneWarning": "Computer Use 运行环境为无，Skills 可能无法正确被 Agent 运行，因为没有启用运行环境。",
-    "runtimeHint": "需要在配置的 “使用电脑能力” 中将运行环境设置为 “local” 或 “sandbox” 才能让 AstrBot 正常使用你提供的 Skills。",
+    "runtimeHint": "需要在配置的 “使用电脑能力” 中将运行环境设置为 “local” 或 “sandbox” 才能让 Persbot 正常使用你提供的 Skills。",
     "neoRuntimeRequired": "Neo Skills 仅在运行环境为 sandbox 且沙箱驱动为 shipyard_neo 时可用。",
     "sourceLocalOnly": "本地 Skill",
     "sourceSandboxOnly": "Sandbox 预置 Skill",
@@ -335,7 +335,7 @@
       "handlersCount": "个行为",
       "supportPlatform": "支持平台",
       "supportPlatformsCount": "支持 {count} 个平台",
-      "astrbotVersion": "AstrBot 版本要求"
+      "persbotVersion": "Persbot 版本要求"
     },
     "alt": {
       "logo": "logo",

@@ -340,7 +340,7 @@ interface ReplyInfo {
 }
 const replyTo = ref<ReplyInfo | null>(null);
 
-const isDark = computed(() => useCustomizerStore().uiTheme === 'PurpleThemeDark');
+const isDark = computed(() => useCustomizerStore().uiTheme === 'PersbotDarkTheme');
 const sendShortcut = ref<SendShortcut>('shift_enter');
 
 function setSendShortcut(mode: SendShortcut) {
@@ -381,7 +381,7 @@ watch(() => customizer.chatSidebarOpen, (val) => {
 });
 
 function toggleTheme() {
-    const newTheme = customizer.uiTheme === 'PurpleTheme' ? 'PurpleThemeDark' : 'PurpleTheme';
+    const newTheme = customizer.uiTheme === 'PersbotLightTheme' ? 'PersbotDarkTheme' : 'PersbotLightTheme';
     customizer.SET_UI_THEME(newTheme);
     theme.global.name.value = newTheme;
 }

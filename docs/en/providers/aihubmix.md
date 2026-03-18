@@ -11,9 +11,9 @@ Fully compatible with the OpenAI API format — just change the API Base and Key
 
 ![Get an API Key](https://github.com/user-attachments/assets/d717f21b-2805-4aff-ac90-f5c98f17cb79)
 
-## Configure in AstrBot
+## Configure in Persbot
 
-Open the AstrBot dashboard , click **Providers → Add Provider → OpenAI**.
+Open the Persbot dashboard , click **Providers → Add Provider → OpenAI**.
 
 Fill in the following:
 
@@ -24,7 +24,7 @@ Fill in the following:
 
 After saving, click the provider card to add models.
 
-![Configure in AstrBot](https://github.com/user-attachments/assets/ee2fb8ba-652c-4e97-a781-42a9082ad7eb)
+![Configure in Persbot](https://github.com/user-attachments/assets/ee2fb8ba-652c-4e97-a781-42a9082ad7eb)
 
 ## Recommended Models
 
@@ -54,9 +54,9 @@ These models are completely free, great for development and testing:
 
 ## More Than Chat Models
 
-AIHubMix also supports the following capabilities, all configurable in AstrBot:
+AIHubMix also supports the following capabilities, all configurable in Persbot:
 
-| Capability | AstrBot Config Location |
+| Capability | Persbot Config Location |
 |------------|------------------------|
 | Speech-to-Text (STT) | Providers → Speech to Text |
 | Text-to-Speech (TTS) | Providers → Text to Speech |

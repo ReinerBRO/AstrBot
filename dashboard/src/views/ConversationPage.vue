@@ -499,7 +499,7 @@ export default {
         // 检测是否为暗色模式
         isDark() {
             console.log('isDark', this.customizerStore.uiTheme);
-            return this.customizerStore.uiTheme === 'PurpleThemeDark';
+            return this.customizerStore.uiTheme === 'PersbotDarkTheme';
         },
 
         // 将对话历史转换为 MessageList 组件期望的格式
@@ -622,7 +622,7 @@ export default {
                     }
 
                     // 添加排除条件
-                    params.exclude_ids = 'astrbot';
+                    params.exclude_ids = 'persbot';
                     params.exclude_platforms = 'webchat';
 
                     const response = await axios.get('/api/conversation/list', {

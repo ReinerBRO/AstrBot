@@ -1,9 +1,9 @@
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-from astrbot.api.platform import AstrBotMessage, MessageType, PlatformMetadata, Unknown
-from astrbot.api.event import MessageChain
-from astrbot.core.message.components import (
+from persbot.api.platform import PersbotMessage, MessageType, PlatformMetadata, Unknown
+from persbot.api.event import MessageChain
+from persbot.core.message.components import (
     File,
     Image,
     Plain,
@@ -17,8 +17,8 @@ from astrbot.core.message.components import (
 )
 
 
-from astrbot.core.platform.sources.kook.kook_event import KookEvent
-from astrbot.core.platform.sources.kook.kook_types import KookMessageType, OrderMessage
+from persbot.core.platform.sources.kook.kook_event import KookEvent
+from persbot.core.platform.sources.kook.kook_types import KookMessageType, OrderMessage
 
 
 async def mock_kook_client(upload_asset_return: str, send_text_return: str):
@@ -43,8 +43,8 @@ def mock_record_message(input: str):
     return message
 
 
-def mock_astrbot_message():
-    message = AstrBotMessage()
+def mock_persbot_message():
+    message = PersbotMessage()
     message.type = MessageType.OTHER_MESSAGE
     message.group_id = "test"
     message.session_id = "test"
@@ -168,7 +168,7 @@ async def test_kook_event_warp_message(
 
     event = KookEvent(
         "",
-        mock_astrbot_message(),
+        mock_persbot_message(),
         PlatformMetadata(
             name="test",
             id="test",

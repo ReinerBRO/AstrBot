@@ -48,7 +48,7 @@ def test_check_env(monkeypatch):
     monkeypatch.setattr(sys, "version_info", version_info_correct)
     with mock.patch("os.makedirs") as mock_makedirs:
         check_env()
-        # check_env uses get_astrbot_*_path() which returns absolute paths,
+        # check_env uses get_persbot_*_path() which returns absolute paths,
         # so just verify makedirs was called the expected number of times
         assert mock_makedirs.call_count >= 4
         # Verify all calls used exist_ok=True

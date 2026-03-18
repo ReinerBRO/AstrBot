@@ -131,7 +131,7 @@ export default {
         }
       },
       tooltip: {
-        theme: useCustomizerStore().uiTheme==='PurpleTheme' ? 'light' : 'dark',
+        theme: useCustomizerStore().uiTheme==='PersbotLightTheme' ? 'light' : 'dark',
         x: {
           format: 'yyyy-MM-dd HH:mm'
         },

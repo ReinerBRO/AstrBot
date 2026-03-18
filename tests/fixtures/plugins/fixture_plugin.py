@@ -4,11 +4,11 @@
 这是一个最小化的测试插件，用于验证插件系统的功能。
 """
 
-from astrbot.api import llm_tool, star
-from astrbot.api.event import AstrMessageEvent, MessageEventResult, filter
+from persbot.api import llm_tool, star
+from persbot.api.event import AstrMessageEvent, MessageEventResult, filter
 
 
-@star.register("test_plugin", "AstrBot Team", "测试插件 - 用于插件系统测试", "1.0.0")
+@star.register("test_plugin", "Persbot Team", "测试插件 - 用于插件系统测试", "1.0.0")
 class TestPlugin(star.Star):
     """测试插件类"""
 

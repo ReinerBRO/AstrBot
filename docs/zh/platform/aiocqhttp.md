@@ -2,7 +2,7 @@
 
 OneBot 是一个**聊天机器人应用接口标准**，旨在统一不同聊天平台上的机器人应用开发接口。
 
-AstrBot 支持接入所有适配了 OneBotv11 反向 Websockets（AstrBot 做服务器端）的机器人协议端。
+Persbot 支持接入所有适配了 OneBotv11 反向 Websockets（Persbot 做服务器端）的机器人协议端。
 
 下文给出一些常见的 OneBot v11 协议实现端项目。
 
@@ -16,7 +16,7 @@ AstrBot 支持接入所有适配了 OneBotv11 反向 Websockets（AstrBot 做服
 
 ## 1. 配置 OneBot v11
 
-1. 进入 AstrBot 的 WebUI
+1. 进入 Persbot 的 WebUI
 2. 点击左边栏 `机器人`
 3. 然后在右边的界面中，点击 `+ 创建机器人`
 4. 选择 `OneBot v11`
@@ -37,12 +37,12 @@ AstrBot 支持接入所有适配了 OneBotv11 反向 Websockets（AstrBot 做服
 
 一些注意点：
 
-1. 协议实现端需要支持 `反向 WebSocket` 实现，及 AstrBot 端作为服务端，实现端作为客户端。
+1. 协议实现端需要支持 `反向 WebSocket` 实现，及 Persbot 端作为服务端，实现端作为客户端。
 2. `反向 WebSocket` 的 URL 为 `ws(s)://<your-host>:6199/ws`。
 
 ## 3. 验证
 
-前往 AstrBot WebUI `控制台`，如果出现 ` aiocqhttp(OneBot v11) 适配器已连接。` 蓝色的日志，说明连接成功。如果没有，若干秒后出现` aiocqhttp 适配器已被关闭` 则为连接超时（失败），请检查配置是否正确。
+前往 Persbot WebUI `控制台`，如果出现 ` aiocqhttp(OneBot v11) 适配器已连接。` 蓝色的日志，说明连接成功。如果没有，若干秒后出现` aiocqhttp 适配器已被关闭` 则为连接超时（失败），请检查配置是否正确。
 
 ## 附录：部署 Napcat
 
@@ -68,16 +68,16 @@ AstrBot 支持接入所有适配了 OneBotv11 反向 Websockets（AstrBot 做服
 
 ## 通过 Docker Compose 部署
 
-1. 下载或复制 [astrbot.yml](https://github.com/NapNeko/NapCat-Docker/blob/main/compose/astrbot.yml) 内容
-2. 将刚刚下载的文件重命名为 `astrbot.yml`
-3. 编辑 `astrbot.yml`，将 `# - "6199:6199"` 修改为 `- "6199:6199"`，移除开头的 `#`
-4. 在 `astrbot.yml` 文件所在目录执行:
+1. 下载或复制 [persbot.yml](https://github.com/NapNeko/NapCat-Docker/blob/main/compose/persbot.yml) 内容
+2. 将刚刚下载的文件重命名为 `persbot.yml`
+3. 编辑 `persbot.yml`，将 `# - "6199:6199"` 修改为 `- "6199:6199"`，移除开头的 `#`
+4. 在 `persbot.yml` 文件所在目录执行:
 
 ```bash
-NAPCAT_UID=$(id -u) NAPCAT_GID=$(id -g) docker compose -f ./astrbot.yml up -d
+NAPCAT_UID=$(id -u) NAPCAT_GID=$(id -g) docker compose -f ./persbot.yml up -d
 ```
 
 部署完毕之后，可以去 Napcat 的 WebUI（默认端口 6099）中新增 OneBot 连接实例：点击`网络配置->新建->WebSockets客户端`，在新弹出的窗口中：勾选`启用`，
-URL 填写 `ws://宿主机IP:端口/ws`。如 `ws://127.0.0.1:6199/ws`。如果采用上面的 Docker Compose 部署，可以填写 `ws://astrbot:6199/ws`（参考本文档的 Docker 脚本）。心跳间隔和重连间隔可以改为 `1000`(1 秒)。点击保存，然后去 AstrBot WebUI 的控制台中检查是否连接成功，出现 `aiocqhttp(OneBot v11) 适配器已连接` 日志即代表成功。
+URL 填写 `ws://宿主机IP:端口/ws`。如 `ws://127.0.0.1:6199/ws`。如果采用上面的 Docker Compose 部署，可以填写 `ws://persbot:6199/ws`（参考本文档的 Docker 脚本）。心跳间隔和重连间隔可以改为 `1000`(1 秒)。点击保存，然后去 Persbot WebUI 的控制台中检查是否连接成功，出现 `aiocqhttp(OneBot v11) 适配器已连接` 日志即代表成功。
 
 如果您对部署、网络配置不了解，请千万不要在公网暴露 Napcat 的端口。

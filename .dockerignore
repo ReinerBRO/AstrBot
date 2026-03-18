@@ -19,5 +19,5 @@ dashboard/
 data/
 tests/
 .ruff_cache/
-.astrbot
-astrbot.lock
+.persbot
+persbot.lock
