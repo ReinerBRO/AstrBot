@@ -22,7 +22,7 @@ Active messages refer to the bot proactively pushing messages. Some platforms ma
 For scheduled tasks or when you don't want to send messages immediately, you can use `event.unified_msg_origin` to get a string and store it, then use `self.context.send_message(unified_msg_origin, chains)` to send messages when needed.
 
 ```python
-from astrbot.api.event import MessageChain
+from persbot.api.event import MessageChain
 
 @filter.command("helloworld")
 async def helloworld(self, event: AstrMessageEvent):
@@ -35,14 +35,14 @@ With this feature, you can store the `unified_msg_origin` and send messages when
 
 > [!TIP]
 > About unified_msg_origin.
-> `unified_msg_origin` is a string that records the unique ID of a session. AstrBot uses it to identify which messaging platform and which session it belongs to. This allows messages to be sent to the correct session when using `send_message`. For more about MessageChain, see the next section.
+> `unified_msg_origin` is a string that records the unique ID of a session. Persbot uses it to identify which messaging platform and which session it belongs to. This allows messages to be sent to the correct session when using `send_message`. For more about MessageChain, see the next section.
 
 ## Rich Media Messages
 
-AstrBot supports sending rich media messages such as images, audio, videos, etc. Use `MessageChain` to construct messages.
+Persbot supports sending rich media messages such as images, audio, videos, etc. Use `MessageChain` to construct messages.
 
 ```python
-import astrbot.api.message_components as Comp
+import persbot.api.message_components as Comp
 
 @filter.command("helloworld")
 async def helloworld(self, event: AstrMessageEvent):
@@ -87,11 +87,11 @@ Comp.Video.fromURL(url="https://example.com/video.mp4")
 ## Sending Video Messages
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test(self, event: AstrMessageEvent):
-    from astrbot.api.message_components import Video
+    from persbot.api.message_components import Video
     # fromFileSystem requires the user's protocol client and bot to be on the same system.
     music = Video.fromFileSystem(
         path="test.mp4"
@@ -103,7 +103,7 @@ async def test(self, event: AstrMessageEvent):
     yield event.chain_result([music])
 ```
 
-![Sending video messages](https://files.astrbot.app/docs/source/images/plugin/db93a2bb-671c-4332-b8ba-9a91c35623c2.png)
+![Sending video messages](https://files.persbot.app/docs/source/images/plugin/db93a2bb-671c-4332-b8ba-9a91c35623c2.png)
 
 ## Sending Group Forward Messages
 
@@ -112,11 +112,11 @@ async def test(self, event: AstrMessageEvent):
 You can send group forward messages as follows.
 
 ```py
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test(self, event: AstrMessageEvent):
-    from astrbot.api.message_components import Node, Plain, Image
+    from persbot.api.message_components import Node, Plain, Image
     node = Node(
         uin=905617992,
         name="Soulter",
@@ -128,4 +128,4 @@ async def test(self, event: AstrMessageEvent):
     yield event.chain_result([node])
 ```
 
-![Sending group forward messages](https://files.astrbot.app/docs/source/images/plugin/image-4.png)
+![Sending group forward messages](https://files.persbot.app/docs/source/images/plugin/image-4.png)

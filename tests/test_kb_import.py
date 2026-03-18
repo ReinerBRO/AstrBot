@@ -5,12 +5,12 @@ import pytest
 import pytest_asyncio
 from quart import Quart
 
-from astrbot.core import LogBroker
-from astrbot.core.core_lifecycle import AstrBotCoreLifecycle
-from astrbot.core.db.sqlite import SQLiteDatabase
-from astrbot.core.knowledge_base.kb_helper import KBHelper
-from astrbot.core.knowledge_base.models import KBDocument
-from astrbot.dashboard.server import AstrBotDashboard
+from persbot.core import LogBroker
+from persbot.core.core_lifecycle import PersbotCoreLifecycle
+from persbot.core.db.sqlite import SQLiteDatabase
+from persbot.core.knowledge_base.kb_helper import KBHelper
+from persbot.core.knowledge_base.models import KBDocument
+from persbot.dashboard.server import PersbotDashboard
 
 
 @pytest_asyncio.fixture(scope="module")
@@ -19,7 +19,7 @@ async def core_lifecycle_td(tmp_path_factory):
     tmp_db_path = tmp_path_factory.mktemp("data") / "test_data_kb.db"
     db = SQLiteDatabase(str(tmp_db_path))
     log_broker = LogBroker()
-    core_lifecycle = AstrBotCoreLifecycle(log_broker, db)
+    core_lifecycle = PersbotCoreLifecycle(log_broker, db)
     await core_lifecycle.initialize()
 
     # Mock kb_manager and kb_helper
@@ -57,22 +57,22 @@ async def core_lifecycle_td(tmp_path_factory):
 
 
 @pytest.fixture(scope="module")
-def app(core_lifecycle_td: AstrBotCoreLifecycle):
+def app(core_lifecycle_td: PersbotCoreLifecycle):
     """Creates a Quart app instance for testing."""
     shutdown_event = asyncio.Event()
-    server = AstrBotDashboard(core_lifecycle_td, core_lifecycle_td.db, shutdown_event)
+    server = PersbotDashboard(core_lifecycle_td, core_lifecycle_td.db, shutdown_event)
     return server.app
 
 
 @pytest_asyncio.fixture(scope="module")
-async def authenticated_header(app: Quart, core_lifecycle_td: AstrBotCoreLifecycle):
+async def authenticated_header(app: Quart, core_lifecycle_td: PersbotCoreLifecycle):
     """Handles login and returns an authenticated header."""
     test_client = app.test_client()
     response = await test_client.post(
         "/api/auth/login",
         json={
-            "username": core_lifecycle_td.astrbot_config["dashboard"]["username"],
-            "password": core_lifecycle_td.astrbot_config["dashboard"]["password"],
+            "username": core_lifecycle_td.persbot_config["dashboard"]["username"],
+            "password": core_lifecycle_td.persbot_config["dashboard"]["password"],
         },
     )
     data = await response.get_json()
@@ -83,7 +83,7 @@ async def authenticated_header(app: Quart, core_lifecycle_td: AstrBotCoreLifecyc
 
 @pytest.mark.asyncio
 async def test_import_documents(
-    app: Quart, authenticated_header: dict, core_lifecycle_td: AstrBotCoreLifecycle
+    app: Quart, authenticated_header: dict, core_lifecycle_td: PersbotCoreLifecycle
 ):
     """Tests the import documents functionality."""
     test_client = app.test_client()

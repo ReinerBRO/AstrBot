@@ -3,8 +3,8 @@ import { head } from "./config/head";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "AstrBot",
-  description: "AstrBot",
+  title: "Persbot",
+  description: "Persbot",
   head: head,
 
   rewrites: {
@@ -12,7 +12,7 @@ export default defineConfig({
   },
 
   sitemap: {
-    hostname: "https://docs.astrbot.app",
+    hostname: "https://docs.persbot.app",
   },
 
   lastUpdated: true,
@@ -24,16 +24,16 @@ export default defineConfig({
       lang: "zh-Hans",
       themeConfig: {
         nav: [
-          { text: "主页", link: "https://astrbot.app" },
-          { text: "博客", link: "https://blog.astrbot.app" },
-          { text: "路线图", link: "https://astrbot.featurebase.app/roadmap" },
-          { text: "HTTP API", link: "https://docs.astrbot.app/scalar.html" },
+          { text: "主页", link: "https://persbot.app" },
+          { text: "博客", link: "https://blog.persbot.app" },
+          { text: "路线图", link: "https://persbot.featurebase.app/roadmap" },
+          { text: "HTTP API", link: "https://docs.persbot.app/scalar.html" },
         ],
         sidebar: [
           {
             text: "简介",
             items: [
-              { text: "关于 AstrBot", link: "/what-is-astrbot" },
+              { text: "关于 Persbot", link: "/what-is-persbot" },
               { text: "社区", link: "/community" },
               { text: "常见问题", link: "/faq" },
             ],
@@ -43,23 +43,23 @@ export default defineConfig({
             base: "/deploy",
             collapsed: false,
             items: [
-              { text: "包管理器部署", link: "/astrbot/package" },
-              { text: "雨云一键云部署", link: "/astrbot/rainyun" },
-              { text: "桌面客户端部署", link: "/astrbot/desktop" },
-              { text: "启动器一键部署", link: "/astrbot/launcher" },
-              { text: "Docker 部署", link: "/astrbot/docker" },
-              { text: "Kubernetes 部署", link: "/astrbot/kubernetes" },
-              { text: "宝塔面板部署", link: "/astrbot/btpanel" },
-              { text: "1Panel 部署", link: "/astrbot/1panel" },
-              { text: "手动部署", link: "/astrbot/cli" },
+              { text: "包管理器部署", link: "/persbot/package" },
+              { text: "雨云一键云部署", link: "/persbot/rainyun" },
+              { text: "桌面客户端部署", link: "/persbot/desktop" },
+              { text: "启动器一键部署", link: "/persbot/launcher" },
+              { text: "Docker 部署", link: "/persbot/docker" },
+              { text: "Kubernetes 部署", link: "/persbot/kubernetes" },
+              { text: "宝塔面板部署", link: "/persbot/btpanel" },
+              { text: "1Panel 部署", link: "/persbot/1panel" },
+              { text: "手动部署", link: "/persbot/cli" },
               {
                 text: "其他部署方式",
-                link: "/astrbot/other-deployments",
+                link: "/persbot/other-deployments",
                 collapsed: true,
                 items: [
-                  { text: "CasaOS 部署", link: "/astrbot/casaos" },
-                  { text: "优云智算 GPU 部署", link: "/astrbot/compshare" },
-                  { text: "社区提供的部署方式", link: "/astrbot/community-deployment" },
+                  { text: "CasaOS 部署", link: "/persbot/casaos" },
+                  { text: "优云智算 GPU 部署", link: "/persbot/compshare" },
+                  { text: "社区提供的部署方式", link: "/persbot/community-deployment" },
                 ],
               },
               {
@@ -143,7 +143,7 @@ export default defineConfig({
                 link: "/agent-runners",
                 collapsed: false,
                 items: [
-                  { text: "内置 Agent 执行器", link: "/agent-runners/astrbot-agent-runner" },
+                  { text: "内置 Agent 执行器", link: "/agent-runners/persbot-agent-runner" },
                   { text: "Dify", link: "/agent-runners/dify" },
                   { text: "扣子 Coze", link: "/agent-runners/coze" },
                   { text: "阿里云百炼应用", link: "/agent-runners/dashscope" },
@@ -170,7 +170,7 @@ export default defineConfig({
               { text: "Agent 执行器", link: "/agent-runner" },
               { text: "统一 Webhook 模式", link: "/unified-webhook" },
               { text: "自动上下文压缩", link: "/context-compress" },
-              { text: "Agent 沙箱环境", link: "/astrbot-agent-sandbox" },
+              { text: "Agent 沙箱环境", link: "/persbot-agent-sandbox" },
             ],
           },
           {
@@ -202,12 +202,12 @@ export default defineConfig({
                 link: "/plugin-platform-adapter",
               },
               {
-                text: "AstrBot HTTP API",
+                text: "Persbot HTTP API",
                 link: "/openapi",
               },
               {
-                text: "AstrBot 配置文件",
-                link: "/astrbot-config",
+                text: "Persbot 配置文件",
+                link: "/persbot-config",
               },
             ],
           },
@@ -239,12 +239,12 @@ export default defineConfig({
           next: '下一篇'
         },
         editLink: {
-          pattern: 'https://github.com/AstrBotdevs/AstrBot/edit/master/docs/:path',
+          pattern: 'https://github.com/Persbotdevs/Persbot/edit/master/docs/:path',
           text: '发现文档有问题？在 GitHub 上编辑此页',
         },
         logo: '/logo_prod.png',
         socialLinks: [
-          { icon: "github", link: "https://github.com/AstrBotDevs/AstrBot" },
+          { icon: "github", link: "https://github.com/PersbotDevs/Persbot" },
         ],
         footer: {
           message: 'Deployed on&nbsp' +
@@ -259,16 +259,16 @@ export default defineConfig({
       lang: "en-US",
       themeConfig: {
         nav: [
-          { text: "Home", link: "https://astrbot.app" },
-          { text: "Blog", link: "https://blog.astrbot.app" },
-          { text: "Roadmap", link: "https://astrbot.featurebase.app/roadmap" },
-          { text: "HTTP API", link: "https://docs.astrbot.app/scalar.html" },
+          { text: "Home", link: "https://persbot.app" },
+          { text: "Blog", link: "https://blog.persbot.app" },
+          { text: "Roadmap", link: "https://persbot.featurebase.app/roadmap" },
+          { text: "HTTP API", link: "https://docs.persbot.app/scalar.html" },
         ],
         sidebar: [
           {
             text: "Introduction",
             items: [
-              { text: "What is AstrBot", link: "/en/what-is-astrbot" },
+              { text: "What is Persbot", link: "/en/what-is-persbot" },
               { text: "Community", link: "/en/community" },
               { text: "FAQ", link: "/en/faq" },
             ],
@@ -278,21 +278,21 @@ export default defineConfig({
             base: "/en/deploy",
             collapsed: false,
             items: [
-              { text: "Package Manager", link: "/astrbot/package" },
-              { text: "One-click Launcher", link: "/astrbot/launcher" },
-              { text: "Docker", link: "/astrbot/docker" },
-              { text: "Kubernetes", link: "/astrbot/kubernetes" },
-              { text: "BT Panel", link: "/astrbot/btpanel" },
-              { text: "1Panel", link: "/astrbot/1panel" },
-              { text: "Manual", link: "/astrbot/cli" },
+              { text: "Package Manager", link: "/persbot/package" },
+              { text: "One-click Launcher", link: "/persbot/launcher" },
+              { text: "Docker", link: "/persbot/docker" },
+              { text: "Kubernetes", link: "/persbot/kubernetes" },
+              { text: "BT Panel", link: "/persbot/btpanel" },
+              { text: "1Panel", link: "/persbot/1panel" },
+              { text: "Manual", link: "/persbot/cli" },
               {
                 text: "Other Deployments",
-                link: "/astrbot/other-deployments",
+                link: "/persbot/other-deployments",
                 collapsed: true,
                 items: [
-                  { text: "CasaOS", link: "/astrbot/casaos" },
-                  { text: "Compshare GPU", link: "/astrbot/compshare" },
-                  { text: "Community-provided Deployment", link: "/astrbot/community-deployment" },
+                  { text: "CasaOS", link: "/persbot/casaos" },
+                  { text: "Compshare GPU", link: "/persbot/compshare" },
+                  { text: "Community-provided Deployment", link: "/persbot/community-deployment" },
                 ],
               },
               {
@@ -378,7 +378,7 @@ export default defineConfig({
                 link: "/agent-runners",
                 collapsed: false,
                 items: [
-                  { text: "Built-in Agent Runner", link: "/agent-runners/astrbot-agent-runner" },
+                  { text: "Built-in Agent Runner", link: "/agent-runners/persbot-agent-runner" },
                   { text: "Dify", link: "/agent-runners/dify" },
                   { text: "Coze", link: "/agent-runners/coze" },
                   { text: "Alibaba Bailian", link: "/agent-runners/dashscope" },
@@ -406,7 +406,7 @@ export default defineConfig({
               { text: "Agent Runner", link: "/agent-runner" },
               { text: "Unified Webhook Mode", link: "/unified-webhook" },
               { text: "Auto Context Compression", link: "/context-compress" },
-              { text: "Agent Sandbox", link: "/astrbot-agent-sandbox" },
+              { text: "Agent Sandbox", link: "/persbot-agent-sandbox" },
             ],
           },
           {
@@ -436,12 +436,12 @@ export default defineConfig({
                 link: "/plugin-platform-adapter",
               },
               {
-                text: "AstrBot HTTP API",
+                text: "Persbot HTTP API",
                 link: "/openapi",
               },
               {
-                text: "AstrBot Configuration File",
-                link: "/astrbot-config",
+                text: "Persbot Configuration File",
+                link: "/persbot-config",
               },
             ],
           },
@@ -472,12 +472,12 @@ export default defineConfig({
           next: 'Next'
         },
         editLink: {
-          pattern: 'https://github.com/AstrBotdevs/AstrBot/edit/master/docs/:path',
+          pattern: 'https://github.com/Persbotdevs/Persbot/edit/master/docs/:path',
           text: 'Edit this page on GitHub',
         },
         logo: '/logo_prod.png',
         socialLinks: [
-          { icon: "github", link: "https://github.com/AstrBotDevs/AstrBot" },
+          { icon: "github", link: "https://github.com/PersbotDevs/Persbot" },
         ],
         footer: {
           message: 'Deployed on&nbsp' +

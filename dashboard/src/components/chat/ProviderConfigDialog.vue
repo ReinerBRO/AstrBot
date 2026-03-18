@@ -42,7 +42,7 @@
 
                 <!-- 基础配置 -->
                 <div class="mb-4">
-                  <AstrBotConfig v-if="basicSourceConfig" :iterable="basicSourceConfig" :metadata="configSchema"
+                  <PersbotConfig v-if="basicSourceConfig" :iterable="basicSourceConfig" :metadata="configSchema"
                     metadataKey="provider" :is-editing="true" />
                 </div>
 
@@ -53,7 +53,7 @@
                       <span class="font-weight-medium">{{ tm('providerSources.advancedConfig') }}</span>
                     </v-expansion-panel-title>
                     <v-expansion-panel-text>
-                      <AstrBotConfig v-if="advancedSourceConfig" :iterable="advancedSourceConfig"
+                      <PersbotConfig v-if="advancedSourceConfig" :iterable="advancedSourceConfig"
                         :metadata="configSchema" metadataKey="provider" :is-editing="true" />
                     </v-expansion-panel-text>
                   </v-expansion-panel>
@@ -105,7 +105,7 @@
       <v-card :title="providerEditData?.id || tm('dialogs.config.editTitle')">
         <v-card-text class="py-4">
           <small style="color: gray;">不建议修改 ID，可能会导致指向该模型的相关配置（如默认模型、插件相关配置等）失效。</small>
-          <AstrBotConfig v-if="providerEditData" :iterable="providerEditData" :metadata="configSchema"
+          <PersbotConfig v-if="providerEditData" :iterable="providerEditData" :metadata="configSchema"
             metadataKey="provider" :is-editing="true" />
         </v-card-text>
         <v-card-actions class="pa-4">
@@ -126,7 +126,7 @@
 <script setup>
 import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useModuleI18n } from '@/i18n/composables'
-import AstrBotConfig from '@/components/shared/AstrBotConfig.vue'
+import PersbotConfig from '@/components/shared/PersbotConfig.vue'
 import ProviderModelsPanel from '@/components/provider/ProviderModelsPanel.vue'
 import ProviderSourcesPanel from '@/components/provider/ProviderSourcesPanel.vue'
 import { useProviderSources } from '@/composables/useProviderSources'

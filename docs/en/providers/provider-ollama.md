@@ -19,17 +19,17 @@ After pulling is complete, use `ollama list` to view the models you have pulled.
 
 Then use `ollama run <model_name>` to run the model.
 
-## Configure AstrBot
+## Configure Persbot
 
-Open the AstrBot WebUI, locate Service Provider Management, click on Add Provider, find and click on `Ollama`.
-![image](https://files.astrbot.app/docs/source/images/ollama/image.png)
+Open the Persbot WebUI, locate Service Provider Management, click on Add Provider, find and click on `Ollama`.
+![image](https://files.persbot.app/docs/source/images/ollama/image.png)
 
 Save the configuration.
 
 ::: tip
 
-For Mac/Windows users deploying AstrBot with Docker Desktop, enter `http://host.docker.internal:11434/v1` for the API Base URL.\
-For Linux users deploying AstrBot with Docker, enter `http://172.17.0.1:11434/v1` for the API Base URL, or replace `172.17.0.1` with your public IP address (ensure that port 11434 is allowed by the host system).\
+For Mac/Windows users deploying Persbot with Docker Desktop, enter `http://host.docker.internal:11434/v1` for the API Base URL.\
+For Linux users deploying Persbot with Docker, enter `http://172.17.0.1:11434/v1` for the API Base URL, or replace `172.17.0.1` with your public IP address (ensure that port 11434 is allowed by the host system).\
 If Ollama is deployed using Docker, ensure that port 11434 is mapped to the host.
 
 :::
@@ -38,7 +38,7 @@ If Ollama is deployed using Docker, ensure that port 11434 is mapped to the host
 
 Error:
 ```
-AstrBot request failed.
+Persbot request failed.
 Error type: NotFoundError
 Error message: Error code: 404 - {'error': {'message': 'model "llama3.1-8b" not found, try pulling it first', 'type': 'api_error', 'param': None, 'code': None}}
 

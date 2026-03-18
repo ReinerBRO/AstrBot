@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from astrbot.core.subagent_orchestrator import SubAgentOrchestrator
+from persbot.core.subagent_orchestrator import SubAgentOrchestrator
 
 
 def _build_cfg(agent_overrides: dict) -> dict:
@@ -48,7 +48,7 @@ async def test_reload_from_config_missing_persona_falls_back_to_inline_and_warns
     persona_mgr.get_persona_v3_by_id.return_value = None
     orchestrator = SubAgentOrchestrator(tool_mgr=tool_mgr, persona_mgr=persona_mgr)
 
-    with patch("astrbot.core.subagent_orchestrator.logger") as mock_logger:
+    with patch("persbot.core.subagent_orchestrator.logger") as mock_logger:
         await orchestrator.reload_from_config(_build_cfg({"persona_id": "not_exists"}))
 
     assert len(orchestrator.handoffs) == 1

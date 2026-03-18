@@ -46,24 +46,24 @@ export function getPlatformIcon(name) {
  */
 export function getTutorialLink(platformType) {
   const tutorialMap = {
-    "qq_official_webhook": "https://docs.astrbot.app/platform/qqofficial/webhook.html",
-    "qq_official": "https://docs.astrbot.app/platform/qqofficial/websockets.html",
-    "aiocqhttp": "https://docs.astrbot.app/platform/aiocqhttp/napcat.html",
-    "wecom": "https://docs.astrbot.app/platform/wecom.html",
-    "wecom_ai_bot": "https://docs.astrbot.app/platform/wecom_ai_bot.html",
-    "lark": "https://docs.astrbot.app/platform/lark.html",
-    "telegram": "https://docs.astrbot.app/platform/telegram.html",
-    "dingtalk": "https://docs.astrbot.app/platform/dingtalk.html",
-    "weixin_official_account": "https://docs.astrbot.app/platform/weixin-official-account.html",
-    "discord": "https://docs.astrbot.app/platform/discord.html",
-    "slack": "https://docs.astrbot.app/platform/slack.html",
-    "kook": "https://docs.astrbot.app/platform/kook.html",
-    "vocechat": "https://docs.astrbot.app/platform/vocechat.html",
-    "satori": "https://docs.astrbot.app/platform/satori/llonebot.html",
-    "misskey": "https://docs.astrbot.app/platform/misskey.html",
-    "line": "https://docs.astrbot.app/platform/line.html",
+    "qq_official_webhook": "https://docs.persbot.app/platform/qqofficial/webhook.html",
+    "qq_official": "https://docs.persbot.app/platform/qqofficial/websockets.html",
+    "aiocqhttp": "https://docs.persbot.app/platform/aiocqhttp/napcat.html",
+    "wecom": "https://docs.persbot.app/platform/wecom.html",
+    "wecom_ai_bot": "https://docs.persbot.app/platform/wecom_ai_bot.html",
+    "lark": "https://docs.persbot.app/platform/lark.html",
+    "telegram": "https://docs.persbot.app/platform/telegram.html",
+    "dingtalk": "https://docs.persbot.app/platform/dingtalk.html",
+    "weixin_official_account": "https://docs.persbot.app/platform/weixin-official-account.html",
+    "discord": "https://docs.persbot.app/platform/discord.html",
+    "slack": "https://docs.persbot.app/platform/slack.html",
+    "kook": "https://docs.persbot.app/platform/kook.html",
+    "vocechat": "https://docs.persbot.app/platform/vocechat.html",
+    "satori": "https://docs.persbot.app/platform/satori/llonebot.html",
+    "misskey": "https://docs.persbot.app/platform/misskey.html",
+    "line": "https://docs.persbot.app/platform/line.html",
   }
-  return tutorialMap[platformType] || "https://docs.astrbot.app";
+  return tutorialMap[platformType] || "https://docs.persbot.app";
 }
 
 /**

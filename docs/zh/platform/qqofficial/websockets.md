@@ -22,7 +22,7 @@
 1. 打开 [QQ 开放平台](https://q.qq.com/qqbot/openclaw/)。如果没注册，需要先注册。
 2. 点击右侧 `创建机器人` 按钮。
 3. 获取 `AppID` 和 `AppSecret`。
-4. 进入 AstrBot 的 WebUI，点击左边栏 `机器人`，然后在右边的界面中，点击 `+ 创建机器人`，选择 `QQ 官方机器人（WebSocket）`，将之前得到的的 `AppID` 和 `AppSecret` 复制到这里的表单中，然后 `启用`，然后点击保存。
+4. 进入 Persbot 的 WebUI，点击左边栏 `机器人`，然后在右边的界面中，点击 `+ 创建机器人`，选择 `QQ 官方机器人（WebSocket）`，将之前得到的的 `AppID` 和 `AppSecret` 复制到这里的表单中，然后 `启用`，然后点击保存。
 5. 回到 QQ 开放平台页面，点击机器人右边的 `扫码聊天`。用手机 QQ 扫码即可聊天。
 
 如果要在群聊中使用，参考下面文档的 `允许机器人加入频道/群/私聊` 一节。
@@ -42,7 +42,7 @@
 
 点击创建好的机器人，然后你将会被导航到机器人的管理页面。如下图所示：
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image.png)
 
 ## 允许机器人加入频道/群/私聊
 
@@ -50,7 +50,7 @@
 
 然后你将会看到 QQ 群配置、消息列表配置和 QQ 频道配置。根据你的需求来选择QQ群、允许私聊的QQ号、QQ频道。
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image-1.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image-1.png)
 
 ## 获取 appid、secret
 
@@ -62,16 +62,16 @@
 
 点击 `开发->开发设置`，找到 IP 白名单。添加你的服务器 IP 地址。
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image-3.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image-3.png)
 
 > [!TIP]
 > 如果你不知道你的服务器 IP 地址，可以在终端中输入 `curl ifconfig.me` 来获取。或者登录 [ip138.com](https://ip138.com/) 查看。
 >
 > 如果你在没有公网 IP 的环境下，你看到的 IP 是运营商 NAT 的 IP，这个 IP 根据你的运营商的情况可能会随时变化。如有必要，可以配置代理。
 
-## 在 AstrBot 配置
+## 在 Persbot 配置
 
-1. 进入 AstrBot 的管理面板
+1. 进入 Persbot 的管理面板
 2. 点击左边栏 `机器人`
 3. 然后在右边的界面中，点击 `+ 创建机器人`
 4. 选择 `QQ 官方机器人（WebSocket）`
@@ -87,4 +87,4 @@
 
 ## 🎉 大功告成
 
-此时，你的 AstrBot 和 NapCatQQ 应该已经连接成功。使用 `私聊` 的方式在 QQ 对机器人发送 `/help` 以检查是否连接成功。
+此时，你的 Persbot 和 NapCatQQ 应该已经连接成功。使用 `私聊` 的方式在 QQ 对机器人发送 `/help` 以检查是否连接成功。

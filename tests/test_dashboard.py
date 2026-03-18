@@ -12,14 +12,14 @@ import pytest_asyncio
 from quart import Quart
 from werkzeug.datastructures import FileStorage
 
-from astrbot.core import LogBroker
-from astrbot.core.core_lifecycle import AstrBotCoreLifecycle
-from astrbot.core.db.sqlite import SQLiteDatabase
-from astrbot.core.star.star import star_registry
-from astrbot.core.star.star_handler import star_handlers_registry
-from astrbot.core.utils.pip_installer import PipInstallError
-from astrbot.dashboard.routes.plugin import PluginRoute
-from astrbot.dashboard.server import AstrBotDashboard
+from persbot.core import LogBroker
+from persbot.core.core_lifecycle import PersbotCoreLifecycle
+from persbot.core.db.sqlite import SQLiteDatabase
+from persbot.core.star.star import star_registry
+from persbot.core.star.star_handler import star_handlers_registry
+from persbot.core.utils.pip_installer import PipInstallError
+from persbot.dashboard.routes.plugin import PluginRoute
+from persbot.dashboard.server import PersbotDashboard
 from tests.fixtures.helpers import (
     MockPluginBuilder,
     create_mock_updater_install,
@@ -33,7 +33,7 @@ async def core_lifecycle_td(tmp_path_factory):
     tmp_db_path = tmp_path_factory.mktemp("data") / "test_data_v3.db"
     db = SQLiteDatabase(str(tmp_db_path))
     log_broker = LogBroker()
-    core_lifecycle = AstrBotCoreLifecycle(log_broker, db)
+    core_lifecycle = PersbotCoreLifecycle(log_broker, db)
     await core_lifecycle.initialize()
     try:
         yield core_lifecycle
@@ -49,23 +49,23 @@ async def core_lifecycle_td(tmp_path_factory):
 
 
 @pytest.fixture(scope="module")
-def app(core_lifecycle_td: AstrBotCoreLifecycle):
+def app(core_lifecycle_td: PersbotCoreLifecycle):
     """Creates a Quart app instance for testing."""
     shutdown_event = asyncio.Event()
     # The db instance is already part of the core_lifecycle_td
-    server = AstrBotDashboard(core_lifecycle_td, core_lifecycle_td.db, shutdown_event)
+    server = PersbotDashboard(core_lifecycle_td, core_lifecycle_td.db, shutdown_event)
     return server.app
 
 
 @pytest_asyncio.fixture(scope="module")
-async def authenticated_header(app: Quart, core_lifecycle_td: AstrBotCoreLifecycle):
+async def authenticated_header(app: Quart, core_lifecycle_td: PersbotCoreLifecycle):
     """Handles login and returns an authenticated header."""
     test_client = app.test_client()
     response = await test_client.post(
         "/api/auth/login",
         json={
-            "username": core_lifecycle_td.astrbot_config["dashboard"]["username"],
-            "password": core_lifecycle_td.astrbot_config["dashboard"]["password"],
+            "username": core_lifecycle_td.persbot_config["dashboard"]["username"],
+            "password": core_lifecycle_td.persbot_config["dashboard"]["password"],
         },
     )
     data = await response.get_json()
@@ -75,7 +75,7 @@ async def authenticated_header(app: Quart, core_lifecycle_td: AstrBotCoreLifecyc
 
 
 @pytest.mark.asyncio
-async def test_auth_login(app: Quart, core_lifecycle_td: AstrBotCoreLifecycle):
+async def test_auth_login(app: Quart, core_lifecycle_td: PersbotCoreLifecycle):
     """Tests the login functionality with both wrong and correct credentials."""
     test_client = app.test_client()
     response = await test_client.post(
@@ -88,8 +88,8 @@ async def test_auth_login(app: Quart, core_lifecycle_td: AstrBotCoreLifecycle):
     response = await test_client.post(
         "/api/auth/login",
         json={
-            "username": core_lifecycle_td.astrbot_config["dashboard"]["username"],
-            "password": core_lifecycle_td.astrbot_config["dashboard"]["password"],
+            "username": core_lifecycle_td.persbot_config["dashboard"]["username"],
+            "password": core_lifecycle_td.persbot_config["dashboard"]["password"],
         },
     )
     data = await response.get_json()
@@ -111,11 +111,11 @@ async def test_get_stat(app: Quart, authenticated_header: dict):
 async def test_subagent_config_accepts_default_persona(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
 ):
     test_client = app.test_client()
     old_cfg = copy.deepcopy(
-        core_lifecycle_td.astrbot_config.get("subagent_orchestrator", {})
+        core_lifecycle_td.persbot_config.get("subagent_orchestrator", {})
     )
     payload = {
         "main_enable": True,
@@ -189,7 +189,7 @@ async def test_batch_delete_sessions_masks_internal_error(
         raise RuntimeError("secret-internal-error")
 
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.chat.ChatRoute._delete_session_internal",
+        "persbot.dashboard.routes.chat.ChatRoute._delete_session_internal",
         _raise_error,
     )
 
@@ -212,7 +212,7 @@ async def test_batch_delete_sessions_masks_internal_error(
 async def test_batch_delete_sessions_uses_batch_lookup(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
     monkeypatch,
 ):
     test_client = app.test_client()
@@ -261,7 +261,7 @@ async def test_batch_delete_sessions_uses_batch_lookup(
 async def test_plugins(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
     monkeypatch,
 ):
     """测试插件 API 端点，使用 Mock 避免真实网络调用。"""
@@ -430,7 +430,7 @@ async def test_commands_api(app: Quart, authenticated_header: dict):
 async def test_check_update(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
     monkeypatch,
 ):
     """测试检查更新 API，使用 Mock 避免真实网络调用。"""
@@ -443,17 +443,17 @@ async def test_check_update(
 
     async def mock_get_dashboard_version(*args, **kwargs):
         """Mock Dashboard 版本获取。"""
-        from astrbot.core.config.default import VERSION
+        from persbot.core.config.default import VERSION
 
         return f"v{VERSION}"  # 返回当前版本
 
     monkeypatch.setattr(
-        core_lifecycle_td.astrbot_updator,
+        core_lifecycle_td.persbot_updator,
         "check_update",
         mock_check_update,
     )
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.update.get_dashboard_version",
+        "persbot.dashboard.routes.update.get_dashboard_version",
         mock_get_dashboard_version,
     )
 
@@ -468,7 +468,7 @@ async def test_check_update(
 async def test_do_update(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
     monkeypatch,
     tmp_path_factory,
 ):
@@ -476,7 +476,7 @@ async def test_do_update(
 
     # Use a temporary path for the mock update to avoid side effects
     temp_release_dir = tmp_path_factory.mktemp("release")
-    release_path = temp_release_dir / "astrbot"
+    release_path = temp_release_dir / "persbot"
 
     async def mock_update(*args, **kwargs):
         """Mocks the update process by creating a directory in the temp path."""
@@ -490,13 +490,13 @@ async def test_do_update(
         """Mocks pip install to prevent actual installation."""
         return
 
-    monkeypatch.setattr(core_lifecycle_td.astrbot_updator, "update", mock_update)
+    monkeypatch.setattr(core_lifecycle_td.persbot_updator, "update", mock_update)
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.update.download_dashboard",
+        "persbot.dashboard.routes.update.download_dashboard",
         mock_download_dashboard,
     )
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.update.pip_installer.install",
+        "persbot.dashboard.routes.update.pip_installer.install",
         mock_pip_install,
     )
 
@@ -524,7 +524,7 @@ async def test_install_pip_package_returns_pip_install_error_message(
         raise PipInstallError("install failed", code=2)
 
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.update.pip_installer.install",
+        "persbot.dashboard.routes.update.pip_installer.install",
         mock_pip_install,
     )
 
@@ -603,10 +603,10 @@ class _FakeNeoBayClient:
 async def test_neo_skills_routes(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
     monkeypatch,
 ):
-    provider_settings = core_lifecycle_td.astrbot_config.setdefault(
+    provider_settings = core_lifecycle_td.persbot_config.setdefault(
         "provider_settings", {}
     )
     sandbox = provider_settings.setdefault("sandbox", {})
@@ -632,11 +632,11 @@ async def test_neo_skills_routes(
         return
 
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.skills.NeoSkillSyncManager.sync_release",
+        "persbot.dashboard.routes.skills.NeoSkillSyncManager.sync_release",
         _fake_sync_release,
     )
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.skills.sync_skills_to_active_sandboxes",
+        "persbot.dashboard.routes.skills.sync_skills_to_active_sandboxes",
         _fake_sync_skills_to_active_sandboxes,
     )
 
@@ -766,11 +766,11 @@ async def test_batch_upload_skills_accepts_zip_files(
         return "demo_skill"
 
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.skills.sync_skills_to_active_sandboxes",
+        "persbot.dashboard.routes.skills.sync_skills_to_active_sandboxes",
         _fake_sync_skills_to_active_sandboxes,
     )
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.skills.SkillManager.install_skill_from_zip",
+        "persbot.dashboard.routes.skills.SkillManager.install_skill_from_zip",
         _fake_install_skill_from_zip,
     )
 
@@ -817,23 +817,23 @@ async def test_batch_upload_skills_accepts_valid_skill_archive(
         return
 
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.skills.sync_skills_to_active_sandboxes",
+        "persbot.dashboard.routes.skills.sync_skills_to_active_sandboxes",
         _fake_sync_skills_to_active_sandboxes,
     )
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_data_path",
+        "persbot.core.skills.skill_manager.get_persbot_data_path",
         lambda: str(data_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_skills_path",
+        "persbot.core.skills.skill_manager.get_persbot_skills_path",
         lambda: str(skills_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_temp_path",
+        "persbot.core.skills.skill_manager.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.skills.get_astrbot_temp_path",
+        "persbot.dashboard.routes.skills.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
 
@@ -893,17 +893,17 @@ async def test_batch_upload_skills_partial_success(
         raise RuntimeError("install failed")
 
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.skills.sync_skills_to_active_sandboxes",
+        "persbot.dashboard.routes.skills.sync_skills_to_active_sandboxes",
         _fake_sync_skills_to_active_sandboxes,
     )
     monkeypatch.setattr(
-        "astrbot.dashboard.routes.skills.SkillManager.install_skill_from_zip",
+        "persbot.dashboard.routes.skills.SkillManager.install_skill_from_zip",
         _fake_install_skill_from_zip,
     )
 
     test_client = app.test_client()
 
-    boundary = "----AstrBotBatchBoundary"
+    boundary = "----PersbotBatchBoundary"
     body = (
         (
             f"--{boundary}\r\n"

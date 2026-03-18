@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ──────────────────────────────────────────────────────────────
-# start-with-neo.sh — 一键启动 Shipyard Neo Bay + AstrBot
+# start-with-neo.sh — 一键启动 Shipyard Neo Bay + Persbot
 #
 # Usage:
 #   bash scripts/start-with-neo.sh            # 默认 Bay :8114
@@ -10,9 +10,9 @@ set -euo pipefail
 
 # ── 路径 ──────────────────────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ASTRBOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-# shipyard-neo mono-repo root is one level above AstrBot
-NEO_ROOT="$(cd "$ASTRBOT_DIR/.." && pwd)"
+PERSBOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+# shipyard-neo mono-repo root is one level above Persbot
+NEO_ROOT="$(cd "$PERSBOT_DIR/.." && pwd)"
 BAY_DIR="$NEO_ROOT/pkgs/bay"
 
 BAY_PORT="${BAY_PORT:-8114}"
@@ -126,7 +126,7 @@ security:
 profiles:
   - id: python-default
     description: "Standard Python sandbox"
-    image: "ghcr.io/astrbotdevs/shipyard-neo-ship:latest"
+    image: "ghcr.io/persbotdevs/shipyard-neo-ship:latest"
     runtime_type: ship
     runtime_port: 8123
     resources:
@@ -158,7 +158,7 @@ BAYCONFIG
 
 # ── 拉取 Ship 镜像 ───────────────────────────────────────────
 ensure_ship_image() {
-    local image="ghcr.io/astrbotdevs/shipyard-neo-ship:latest"
+    local image="ghcr.io/persbotdevs/shipyard-neo-ship:latest"
     log "Checking Ship image: $image ..."
 
     if docker image inspect "$image" &>/dev/null 2>&1 || \
@@ -245,8 +245,8 @@ except Exception:
     fi
 }
 
-# ── 打印 AstrBot 配置提示 ────────────────────────────────────
-print_astrbot_config_hint() {
+# ── 打印 Persbot 配置提示 ────────────────────────────────────
+print_persbot_config_hint() {
     echo ""
     echo -e "${GREEN}════════════════════════════════════════════════════════════${NC}"
     echo -e "${GREEN}  Shipyard Neo Bay is running at http://127.0.0.1:$BAY_PORT ${NC}"
@@ -257,7 +257,7 @@ print_astrbot_config_hint() {
         echo -e "  ${YELLOW}$BAY_API_KEY${NC}"
         echo ""
     fi
-    echo -e "  ${CYAN}AstrBot Dashboard 配置指引：${NC}"
+    echo -e "  ${CYAN}Persbot Dashboard 配置指引：${NC}"
     echo -e "  1. AI 配置 → Agent Computer Use"
     echo -e "     • Computer Use Runtime → ${YELLOW}沙箱${NC}"
     echo -e "     • 沙箱环境驱动器        → ${YELLOW}Shipyard Neo${NC}"
@@ -271,10 +271,10 @@ print_astrbot_config_hint() {
     echo ""
 }
 
-# ── 启动 AstrBot ──────────────────────────────────────────────
-start_astrbot() {
-    log "Starting AstrBot..."
-    cd "$ASTRBOT_DIR"
+# ── 启动 Persbot ──────────────────────────────────────────────
+start_persbot() {
+    log "Starting Persbot..."
+    cd "$PERSBOT_DIR"
     uv run main.py
 }
 
@@ -282,7 +282,7 @@ start_astrbot() {
 main() {
     echo ""
     echo -e "${CYAN}╔══════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║   Shipyard Neo + AstrBot Quick Start    ║${NC}"
+    echo -e "${CYAN}║   Shipyard Neo + Persbot Quick Start    ║${NC}"
     echo -e "${CYAN}╚══════════════════════════════════════════╝${NC}"
     echo ""
 
@@ -291,8 +291,8 @@ main() {
     ensure_ship_image
     start_bay
     read_bay_credentials
-    print_astrbot_config_hint
-    start_astrbot
+    print_persbot_config_hint
+    start_persbot
 }
 
 main "$@"

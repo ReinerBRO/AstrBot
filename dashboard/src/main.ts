@@ -36,7 +36,7 @@ setupI18n().then(async () => {
     const storedSecondary = localStorage.getItem('themeSecondary');
     if (storedPrimary || storedSecondary) {
       const themes = vuetify.theme.themes.value;
-      ['PurpleTheme', 'PurpleThemeDark'].forEach((name) => {
+      ['PersbotLightTheme', 'PersbotDarkTheme'].forEach((name) => {
         const theme = themes[name];
         if (!theme?.colors) return;
         if (storedPrimary) theme.colors.primary = storedPrimary;
@@ -69,7 +69,7 @@ setupI18n().then(async () => {
     const storedSecondary = localStorage.getItem('themeSecondary');
     if (storedPrimary || storedSecondary) {
       const themes = vuetify.theme.themes.value;
-      ['PurpleTheme', 'PurpleThemeDark'].forEach((name) => {
+      ['PersbotLightTheme', 'PersbotDarkTheme'].forEach((name) => {
         const theme = themes[name];
         if (!theme?.colors) return;
         if (storedPrimary) theme.colors.primary = storedPrimary;
@@ -87,7 +87,7 @@ axios.interceptors.request.use((config) => {
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;
   }
-  const locale = localStorage.getItem('astrbot-locale');
+  const locale = localStorage.getItem('persbot-locale');
   if (locale) {
     config.headers['Accept-Language'] = locale;
   }
@@ -105,7 +105,7 @@ window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
   if (!headers.has('Authorization')) {
     headers.set('Authorization', `Bearer ${token}`);
   }
-  const locale = localStorage.getItem('astrbot-locale');
+  const locale = localStorage.getItem('persbot-locale');
   if (locale && !headers.has('Accept-Language')) {
     headers.set('Accept-Language', locale);
   }

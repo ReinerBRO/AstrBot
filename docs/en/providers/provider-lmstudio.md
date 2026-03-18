@@ -16,9 +16,9 @@ https://lmstudio.ai/models
 lms get deepseek-r1-qwen-7b
 ```
 
-### 配置 AstrBot
+### 配置 Persbot
 
-在 AstrBot 上：
+在 Persbot 上：
 
 点击 配置->服务提供商配置->加号->openai
 
@@ -26,8 +26,8 @@ API Base URL 填写 `http://localhost:1234/v1`
 
 API Key 填写 `lm-studio`
 
-> 对于 Mac/Windows 使用 Docker Desktop 部署 AstrBot 部署的用户，API Base URL 请填写为 `http://host.docker.internal:1234/v1`。
-> 对于 Linux 使用 Docker 部署 AstrBot 部署的用户，API Base URL 请填写为 `http://172.17.0.1:1234/v1`，或者将 `172.17.0.1` 替换为你的公网 IP IP（确保宿主机系统放行了 1234 端口）。
+> 对于 Mac/Windows 使用 Docker Desktop 部署 Persbot 部署的用户，API Base URL 请填写为 `http://host.docker.internal:1234/v1`。
+> 对于 Linux 使用 Docker 部署 Persbot 部署的用户，API Base URL 请填写为 `http://172.17.0.1:1234/v1`，或者将 `172.17.0.1` 替换为你的公网 IP IP（确保宿主机系统放行了 1234 端口）。
 
 如果 LM Studio 使用了 Docker 部署，请确保 1234 端口已经映射到宿主机。
 
@@ -35,4 +35,4 @@ API Key 填写 `lm-studio`
 
 保存配置即可。
 
-> 输入 /provider 查看 AstrBot 配置的模型
+> 输入 /provider 查看 Persbot 配置的模型

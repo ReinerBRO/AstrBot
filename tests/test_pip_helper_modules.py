@@ -2,9 +2,9 @@ from pathlib import Path
 
 import pytest
 
-from astrbot.core.utils import core_constraints as core_constraints_module
-from astrbot.core.utils import requirements_utils
-from astrbot.core.utils.core_constraints import CoreConstraintsProvider
+from persbot.core.utils import core_constraints as core_constraints_module
+from persbot.core.utils import requirements_utils
+from persbot.core.utils.core_constraints import CoreConstraintsProvider
 
 
 def test_requirements_utils_parse_package_install_input_collects_specs_and_names():
@@ -25,20 +25,20 @@ def test_core_constraints_provider_writes_constraints_file_from_fallback_distrib
     monkeypatch,
 ):
     class FakeFallbackDistribution:
-        metadata = {"Name": "AstrBot-App"}
+        metadata = {"Name": "Persbot-App"}
         requires = ["shared-lib>=1.0"]
 
         def read_text(self, name):
             if name == "top_level.txt":
-                return "astrbot\n"
+                return "persbot\n"
             return ""
 
     fake_distribution = FakeFallbackDistribution()
 
     def mock_distribution(name):
-        if name == "AstrBot":
+        if name == "Persbot":
             raise core_constraints_module.importlib_metadata.PackageNotFoundError
-        if name == "AstrBot-App":
+        if name == "Persbot-App":
             return fake_distribution
         raise core_constraints_module.importlib_metadata.PackageNotFoundError
 
@@ -80,15 +80,15 @@ def test_resolve_core_dist_name_skips_distribution_without_name(monkeypatch):
 
         def read_text(self, name):
             if name == "top_level.txt":
-                return "astrbot\n"
+                return "persbot\n"
             return ""
 
     class NamedDistribution:
-        metadata = {"Name": "AstrBot-App"}
+        metadata = {"Name": "Persbot-App"}
 
         def read_text(self, name):
             if name == "top_level.txt":
-                return "astrbot\n"
+                return "persbot\n"
             return ""
 
     monkeypatch.setattr(
@@ -104,7 +104,7 @@ def test_resolve_core_dist_name_skips_distribution_without_name(monkeypatch):
         lambda: [NamelessDistribution(), NamedDistribution()],
     )
 
-    assert core_constraints_module._resolve_core_dist_name(None) == "AstrBot-App"
+    assert core_constraints_module._resolve_core_dist_name(None) == "Persbot-App"
 
 
 def test_find_missing_requirements_returns_none_when_precheck_gate_fails(
@@ -287,7 +287,7 @@ def test_build_missing_requirements_install_lines_logs_why_option_lines_fall_bac
     debug_logs = []
 
     monkeypatch.setattr(
-        "astrbot.core.utils.requirements_utils.logger.debug",
+        "persbot.core.utils.requirements_utils.logger.debug",
         lambda line, *args: debug_logs.append(line % args if args else line),
     )
 
@@ -312,7 +312,7 @@ def test_find_missing_requirements_logs_path_and_reason_on_precheck_fallback(
     info_logs = []
 
     monkeypatch.setattr(
-        "astrbot.core.utils.requirements_utils.logger.info",
+        "persbot.core.utils.requirements_utils.logger.info",
         lambda line, *args: info_logs.append(line % args if args else line),
     )
 
@@ -377,7 +377,7 @@ def test_get_core_constraints_logs_resolution_step_context(monkeypatch):
         lambda core_dist_name: (_ for _ in ()).throw(RuntimeError("boom")),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.core_constraints.logger.warning",
+        "persbot.core.utils.core_constraints.logger.warning",
         lambda line, *args: warning_logs.append(line % args if args else line),
     )
 

@@ -1,8 +1,8 @@
 ﻿{
     "greeting": {
-        "morning": "Доброе утро, добро пожаловать в AstrBot",
-        "afternoon": "Добрый день, добро пожаловать в AstrBot",
-        "evening": "Добрый вечер, добро пожаловать в AstrBot",
+        "morning": "Доброе утро, добро пожаловать в Persbot",
+        "afternoon": "Добрый день, добро пожаловать в Persbot",
+        "evening": "Добрый вечер, добро пожаловать в Persbot",
         "newYear": "С Новым Годом!"
     },
     "subtitle": "Сначала пройдите базовое руководство. Настройку платформ и провайдеров моделей можно завершить позже.",
@@ -13,9 +13,9 @@
         "title": "Быстрый старт",
         "subtitle": "Вы можете выполнить первичную настройку прямо здесь.",
         "step1Title": "Настройка платформ",
-        "step1Desc": "Подключите AstrBot к QQ, Lark, WeChat, Telegram и другим мессенджерам.",
+        "step1Desc": "Подключите Persbot к QQ, Lark, WeChat, Telegram и другим мессенджерам.",
         "step2Title": "Настройка AI моделей",
-        "step2Desc": "Выберите и настройте AI провайдеров для AstrBot.",
+        "step2Desc": "Выберите и настройте AI провайдеров для Persbot.",
         "configure": "Настроить",
         "skip": "Пропустить",
         "pending": "Ожидает",
@@ -30,8 +30,8 @@
         "title": "Ресурсы",
         "githubDesc": "Поставьте нам звезду на GitHub!",
         "docsTitle": "Документация",
-        "docsDesc": "Официальная документация AstrBot.",
+        "docsDesc": "Официальная документация Persbot.",
         "afdianTitle": "Afdian",
-        "afdianDesc": "Поддержите команду AstrBot через Afdian."
+        "afdianDesc": "Поддержите команду Persbot через Afdian."
     }
 }

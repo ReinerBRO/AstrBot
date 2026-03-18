@@ -21,7 +21,7 @@ Proactive message push: Supported.
 1. Open [QQ Open Platform](https://q.qq.com/qqbot/openclaw/). Register an account if you don't have one.
 2. Click the `Create Bot` button on the right.
 3. Obtain your `AppID` and `AppSecret`.
-4. In AstrBot WebUI, click `Bots` in the left sidebar, then click `+ Create Bot`, select `QQ Official Bot (WebSocket)`, paste the `AppID` and `AppSecret` into the form, click `Enable`, then click `Save`.
+4. In Persbot WebUI, click `Bots` in the left sidebar, then click `+ Create Bot`, select `QQ Official Bot (WebSocket)`, paste the `AppID` and `AppSecret` into the form, click `Enable`, then click `Save`.
 5. Back on the QQ Open Platform page, click `Scan QR Code to Chat` next to your bot, then scan with your mobile QQ to start chatting.
 
 To use the bot in group chats, refer to the `Allow Bot in Channel / Group / Private Chat` section below.
@@ -41,7 +41,7 @@ Create a bot, fill in name/description/avatar, then submit for review. After sec
 
 Open the created bot to enter its management page:
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image.png)
 
 ## Allow Bot in Channel / Group / Private Chat
 
@@ -49,7 +49,7 @@ Open `Sandbox Configuration` to set a sandbox channel / QQ group / QQ private ch
 
 Then configure QQ groups, private chat QQ accounts, and QQ channels as needed.
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image-1.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image-1.png)
 
 ## Get `appid` and `secret`
 
@@ -59,16 +59,16 @@ After adding the bot where you need it, open `Development -> Development Setting
 
 Open `Development -> Development Settings`, find IP whitelist, and add your server IP.
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image-3.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image-3.png)
 
 > [!TIP]
 > If you do not know your server IP, run `curl ifconfig.me` or check [ip138.com](https://ip138.com/).
 >
 > In NAT environments without a public IP, the observed IP may change depending on your carrier. Use proxy/tunnel if needed.
 
-## Configure in AstrBot
+## Configure in Persbot
 
-1. Open AstrBot Dashboard.
+1. Open Persbot Dashboard.
 2. Click `Bots` in the left sidebar.
 3. Click `+ Create Bot`.
 4. Select `qq_official`.
@@ -84,4 +84,4 @@ Click `Save`.
 
 ## Done
 
-AstrBot should now be connected. Send `/help` to the bot in QQ private chat to verify.
+Persbot should now be connected. Send `/help` to the bot in QQ private chat to verify.

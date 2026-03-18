@@ -1,7 +1,7 @@
 # 接入 server-satori (基于 Koishi)
 
 > [!TIP]
-> server-satori 是 Koishi 平台的一个插件，可以将 Koishi 作为 Satori 协议的服务端，让 AstrBot 通过 Satori 协议接入 koishi 响应消息。
+> server-satori 是 Koishi 平台的一个插件，可以将 Koishi 作为 Satori 协议的服务端，让 Persbot 通过 Satori 协议接入 koishi 响应消息。
 
 ## 准备工作
 
@@ -19,11 +19,11 @@
 
 安装并启用插件后，server-satori 会自动在 Koishi 的 `/satori` 路径下提供 Satori 协议服务。
 
-![image](https://files.astrbot.app/docs/source/images/satori/2025-09-07_17-14-55.png)
+![image](https://files.persbot.app/docs/source/images/satori/2025-09-07_17-14-55.png)
 
-## 在 AstrBot 中配置 Satori 适配器
+## 在 Persbot 中配置 Satori 适配器
 
-1. 进入 AstrBot 的管理面板
+1. 进入 Persbot 的管理面板
 2. 点击左边栏 `机器人`
 3. 然后在右边的界面中，点击 `+ 创建机器人`
 4. 选择 `satori`
@@ -44,19 +44,19 @@
 >
 > 如果你的 koishi 运行在其他端口或路由下，**请根据实际情况修改对应的配置！**
 
-![image](https://files.astrbot.app/docs/source/images/satori/2025-10-10_16-16-25.png)
+![image](https://files.persbot.app/docs/source/images/satori/2025-10-10_16-16-25.png)
 
 点击右下角 `保存` 完成配置。
 
 ## 🎉 大功告成
 
-此时，你的 AstrBot 应该已经通过 Satori 协议成功连接到了 Koishi 的 server-satori 插件。
+此时，你的 Persbot 应该已经通过 Satori 协议成功连接到了 Koishi 的 server-satori 插件。
 
-在 Koishi 的沙盒里 向机器人发送 AstrBot的指令（例如：`/help`）进行测试，
+在 Koishi 的沙盒里 向机器人发送 Persbot的指令（例如：`/help`）进行测试，
 
 如果成功回复，则配置成功。
 
-![image](https://files.astrbot.app/docs/source/images/satori/2025-09-07_17-19-04.png)
+![image](https://files.persbot.app/docs/source/images/satori/2025-09-07_17-19-04.png)
 
 ## 常见问题
 

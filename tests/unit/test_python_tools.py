@@ -1,5 +1,5 @@
 import platform
-from astrbot.core.computer.tools.python import PythonTool, LocalPythonTool
+from persbot.core.computer.tools.python import PythonTool, LocalPythonTool
 
 def test_python_tool_description_contains_os():
     """测试 PythonTool 的描述中是否包含当前操作系统信息"""

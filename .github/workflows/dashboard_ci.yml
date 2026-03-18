@@ -1,4 +1,4 @@
-name: AstrBot Dashboard CI
+name: Persbot Dashboard CI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    if: github.repository == 'AstrBotDevs/AstrBot'
+    if: github.repository == 'PersbotDevs/Persbot'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -49,8 +49,8 @@ jobs:
         uses: ncipollo/release-action@v1.21.0
         with:
           tag: release-${{ github.sha }}
-          owner: AstrBotDevs
-          repo: astrbot-release-harbour
+          owner: PersbotDevs
+          repo: persbot-release-harbour
           body: "Automated release from commit ${{ github.sha }}"
-          token: ${{ secrets.ASTRBOT_HARBOUR_TOKEN }}
+          token: ${{ secrets.PERSBOT_HARBOUR_TOKEN }}
           artifacts: "dashboard/dist.zip"
