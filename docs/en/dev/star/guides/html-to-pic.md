@@ -2,11 +2,11 @@
 # Text to Image
 
 > [!TIP]
-> For easier development, you can use the [AstrBot Text2Image Playground](https://t2i-playground.astrbot.app/) for online visual editing and testing of HTML templates.
+> For easier development, you can use the [Persbot Text2Image Playground](https://t2i-playground.persbot.app/) for online visual editing and testing of HTML templates.
 
 ## Basic Usage
 
-AstrBot supports rendering text into images.
+Persbot supports rendering text into images.
 
 ```python
 @filter.command("image") # Register an /image command that accepts a text parameter.
@@ -17,13 +17,13 @@ async def on_aiocqhttp(self, event: AstrMessageEvent, text: str):
 
 ```
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-3.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-3.png)
 
 ## Customization (HTML-Based)
 
 If you find the default rendered images insufficiently aesthetic, you can use custom HTML templates to render images.
 
-AstrBot supports rendering text-to-image templates using `HTML + Jinja2`.
+Persbot supports rendering text-to-image templates using `HTML + Jinja2`.
 
 ```py{7}
 # Custom Jinja2 template with CSS support
@@ -47,7 +47,7 @@ async def custom_t2i_tmpl(self, event: AstrMessageEvent):
 
 The result:
 
-![image](https://files.astrbot.app/docs/source/images/plugin/fcc2dcb472a91b12899f617477adc5c7.png)
+![image](https://files.persbot.app/docs/source/images/plugin/fcc2dcb472a91b12899f617477adc5c7.png)
 
 This is just a simple example. Thanks to the powerful capabilities of HTML and DOM renderers, you can create more complex and visually appealing designs. Additionally, Jinja2 supports syntax for loops, conditionals, and more to accommodate data structures like lists and dictionaries. You can learn more about Jinja2 online.
 

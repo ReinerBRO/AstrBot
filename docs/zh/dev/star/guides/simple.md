@@ -3,9 +3,9 @@
 插件模版中的 `main.py` 是一个最小的插件实例。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
-from astrbot.api.star import Context, Star, register
-from astrbot.api import logger # 使用 astrbot 提供的 logger 接口
+from persbot.api.event import filter, AstrMessageEvent, MessageEventResult
+from persbot.api.star import Context, Star, register
+from persbot.api import logger # 使用 persbot 提供的 logger 接口
 
 class MyPlugin(Star):
     def __init__(self, context: Context):
@@ -27,10 +27,10 @@ class MyPlugin(Star):
 解释如下：
 
 - 插件需要继承 `Star` 类。
-- `Context` 类用于插件与 AstrBot Core 交互，可以由此调用 AstrBot Core 提供的各种 API。
+- `Context` 类用于插件与 Persbot Core 交互，可以由此调用 Persbot Core 提供的各种 API。
 - 具体的处理函数 `Handler` 在插件类中定义，如这里的 `helloworld` 函数。
-- `AstrMessageEvent` 是 AstrBot 的消息事件对象，存储了消息发送者、消息内容等信息。
-- `AstrBotMessage` 是 AstrBot 的消息对象，存储了消息平台下发的消息的具体内容。可以通过 `event.message_obj` 获取。
+- `AstrMessageEvent` 是 Persbot 的消息事件对象，存储了消息发送者、消息内容等信息。
+- `PersbotMessage` 是 Persbot 的消息对象，存储了消息平台下发的消息的具体内容。可以通过 `event.message_obj` 获取。
 
 > [!TIP]
 >

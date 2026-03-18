@@ -2,9 +2,9 @@
 outline: deep
 ---
 
-# AstrBot HTTP API
+# Persbot HTTP API
 
-Starting from v4.18.0, AstrBot provides API Key based HTTP APIs for programmatic access.
+Starting from v4.18.0, Persbot provides API Key based HTTP APIs for programmatic access.
 
 ## Quick Start
 
@@ -48,4 +48,4 @@ curl -N 'http://localhost:6185/api/v1/chat' \
 
 Use the interactive docs:
 
-- https://docs.astrbot.app/scalar.html
+- https://docs.persbot.app/scalar.html

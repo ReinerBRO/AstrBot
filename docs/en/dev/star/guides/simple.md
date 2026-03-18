@@ -3,9 +3,9 @@
 The `main.py` file in the plugin template is a minimal plugin instance.
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
-from astrbot.api.star import Context, Star
-from astrbot.api import logger # Use the logger interface provided by AstrBot
+from persbot.api.event import filter, AstrMessageEvent, MessageEventResult
+from persbot.api.star import Context, Star
+from persbot.api import logger # Use the logger interface provided by Persbot
 
 class MyPlugin(Star):
     def __init__(self, context: Context):
@@ -27,10 +27,10 @@ class MyPlugin(Star):
 Explanation:
 
 - Plugins must inherit from the `Star` class.
-- The `Context` class is used for plugin interaction with AstrBot Core, allowing you to call various APIs provided by AstrBot Core.
+- The `Context` class is used for plugin interaction with Persbot Core, allowing you to call various APIs provided by Persbot Core.
 - Specific handler functions are defined within the plugin class, such as the `helloworld` function here.
-- `AstrMessageEvent` is AstrBot's message event object, which stores information about the message sender, message content, etc.
-- `AstrBotMessage` is AstrBot's message object, which stores the specific content of messages delivered by the messaging platform. It can be accessed via `event.message_obj`.
+- `AstrMessageEvent` is Persbot's message event object, which stores information about the message sender, message content, etc.
+- `PersbotMessage` is Persbot's message object, which stores the specific content of messages delivered by the messaging platform. It can be accessed via `event.message_obj`.
 
 > [!TIP]
 >
@@ -44,10 +44,10 @@ All handler functions must be written within the plugin class. To keep content c
 解释如下：
 
 - 插件需要继承 `Star` 类。
-- `Context` 类用于插件与 AstrBot Core 交互，可以由此调用 AstrBot Core 提供的各种 API。
+- `Context` 类用于插件与 Persbot Core 交互，可以由此调用 Persbot Core 提供的各种 API。
 - 具体的处理函数 `Handler` 在插件类中定义，如这里的 `helloworld` 函数。
-- `AstrMessageEvent` 是 AstrBot 的消息事件对象，存储了消息发送者、消息内容等信息。
-- `AstrBotMessage` 是 AstrBot 的消息对象，存储了消息平台下发的消息的具体内容。可以通过 `event.message_obj` 获取。
+- `AstrMessageEvent` 是 Persbot 的消息事件对象，存储了消息发送者、消息内容等信息。
+- `PersbotMessage` 是 Persbot 的消息对象，存储了消息平台下发的消息的具体内容。可以通过 `event.message_obj` 获取。
 
 > [!TIP]
 >

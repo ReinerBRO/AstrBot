@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: persbot-service-lb
+  namespace: persbot-ns
+  labels:
+    app: persbot-stack
+spec:
+  type: LoadBalancer
+  selector:
+    app: persbot-stack
+  ports:
+    - name: napcat-web
+      port: 6099
+      targetPort: 6099
+    - name: persbot-web
+      port: 6185
+      targetPort: 6185

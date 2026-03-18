@@ -1,7 +1,7 @@
 """Tests for ContextTruncator."""
 
-from astrbot.core.agent.context.truncator import ContextTruncator
-from astrbot.core.agent.message import Message
+from persbot.core.agent.context.truncator import ContextTruncator
+from persbot.core.agent.message import Message
 
 
 class TestContextTruncator:

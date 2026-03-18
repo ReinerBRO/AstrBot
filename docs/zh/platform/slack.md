@@ -1,10 +1,10 @@
 # 接入 Slack
 
-## 创建 AstrBot Slack 平台适配器
+## 创建 Persbot Slack 平台适配器
 
 进入 `机器人` 页，点击 `+ 创建机器人`，找到 Slack 并点击进入 Slack 配置页。
 
-![image](https://files.astrbot.app/docs/source/images/slack/image-1.png)
+![image](https://files.persbot.app/docs/source/images/slack/image-1.png)
 
 在弹出的配置对话框中点击 `启用`。
 
@@ -16,11 +16,11 @@ Slack 支持两种接入方式：`Webhook` 与 `Socket`。如果您没有公网�
 2. 前往 [应用后台](https://api.slack.com/apps)，点击「Create New App」->「From Scratch」，输入 `应用名称` 和要添加到的工作区，然后点击「Create App」。  
 3. （仅 Webhook 需要）获取 `Signing Secret`，在左边栏 Basic Information 页下，找到 App Credentials 的 `Signing Secret`，点击 Show 并且复制到平台适配器配置的 signing_secret 处。
 
-![image](https://files.astrbot.app/docs/source/images/slack/image.png)
+![image](https://files.persbot.app/docs/source/images/slack/image.png)
 
-4. 在左边栏 Basic Information 页下，找到 App-Level Tokens，点击 「Generate Token and Scopes」。Token Name 任意输入，点击 Add Scope，选择 `connections:write`，然后点击 「Generate」，点击 Copy 将结果复制到 AstrBot 配置页的 app_token 处。
+4. 在左边栏 Basic Information 页下，找到 App-Level Tokens，点击 「Generate Token and Scopes」。Token Name 任意输入，点击 Add Scope，选择 `connections:write`，然后点击 「Generate」，点击 Copy 将结果复制到 Persbot 配置页的 app_token 处。
 
-![image](https://files.astrbot.app/docs/source/images/slack/image-2.png)
+![image](https://files.persbot.app/docs/source/images/slack/image-2.png)
 
 5. 在左边栏 OAuth & Permissions 页下，在 Bot Token Scopes 下方添加如下权限：
    - channels:history
@@ -45,7 +45,7 @@ Slack 支持两种接入方式：`Webhook` 与 `Socket`。如果您没有公网�
 
 7. （仅 Socket 需要）在左边栏 Socket Mode 页下，开启 Enable Socket Mode。
 
-![image](https://files.astrbot.app/docs/source/images/slack/image-3.png)
+![image](https://files.persbot.app/docs/source/images/slack/image-3.png)
 
 ## 启动平台适配器
 
@@ -63,14 +63,14 @@ Slack 支持两种接入方式：`Webhook` 与 `Socket`。如果您没有公网�
 
 如果您使用的是 Webhook 模式：
 
-- 如果开启了 `统一 Webhook 模式`，点击保存之后，AstrBot 将会自动为你生成唯一的 Webhook 回调链接，你可以在日志中或者 WebUI 的机器人页的卡片上找到，将该链接填入 `Request URL` 输入框中。
+- 如果开启了 `统一 Webhook 模式`，点击保存之后，Persbot 将会自动为你生成唯一的 Webhook 回调链接，你可以在日志中或者 WebUI 的机器人页的卡片上找到，将该链接填入 `Request URL` 输入框中。
 
-![unified_webhook](https://files.astrbot.app/docs/source/images/use/unified-webhook.png)
+![unified_webhook](https://files.persbot.app/docs/source/images/use/unified-webhook.png)
 
-- 如果没有开启 `统一 Webhook 模式`，请在 `Request URL` 输入框中输入 `https://您的域名/astrbot-slack-webhook/callback`。
+- 如果没有开启 `统一 Webhook 模式`，请在 `Request URL` 输入框中输入 `https://您的域名/persbot-slack-webhook/callback`。
 
 > [!TIP]
-> Webhook 模式下，您需要先在 DNS 服务商处设置好域名，然后使用反向代理软件将请求转发到 AstrBot 所在服务器的 `6185` 端口（如果开启了统一 Webhook 模式）或配置指定的端口（如果没有开启统一 Webhook 模式）。或者您可以使用 Cloudflare Tunnel。具体教程请参考网络资源，本教程不赘述。
+> Webhook 模式下，您需要先在 DNS 服务商处设置好域名，然后使用反向代理软件将请求转发到 Persbot 所在服务器的 `6185` 端口（如果开启了统一 Webhook 模式）或配置指定的端口（如果没有开启统一 Webhook 模式）。或者您可以使用 Cloudflare Tunnel。具体教程请参考网络资源，本教程不赘述。
 
 启用后，在下方的 Subscribe to bot events 处，点击 Add Bot User Event，添加如下事件：
 
@@ -90,4 +90,4 @@ Slack 支持两种接入方式：`Webhook` 与 `Socket`。如果您没有公网�
 
 进入您刚刚添加的 Slack 工作区，进入需要用到 Bot 的频道，然后 @ 您刚刚创建的应用。然后点击 Slackbot 随后发送的消息中的 添加 按钮来添加到工作区中。然后，@ 应用，输入 `/help`，如果能够成功回复，说明测试成功。
 
-如果有疑问，请[提交 Issue](https://github.com/AstrBotDevs/AstrBot/issues)。
+如果有疑问，请[提交 Issue](https://github.com/PersbotDevs/Persbot/issues)。

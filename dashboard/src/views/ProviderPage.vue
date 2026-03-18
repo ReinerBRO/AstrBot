@@ -67,7 +67,7 @@
                 <v-card-text>
                   <template v-if="selectedProviderSource">
                     <div>
-                      <AstrBotConfig v-if="basicSourceConfig" :iterable="basicSourceConfig" :metadata="providerSourceSchema"
+                      <PersbotConfig v-if="basicSourceConfig" :iterable="basicSourceConfig" :metadata="providerSourceSchema"
                         metadataKey="provider" :is-editing="true" />
                     </div>
 
@@ -77,7 +77,7 @@
                           <span class="font-weight-medium">{{ tm('providerSources.advancedConfig') }}</span>
                         </v-expansion-panel-title>
                         <v-expansion-panel-text>
-                          <AstrBotConfig v-if="advancedSourceConfig" :iterable="advancedSourceConfig"
+                          <PersbotConfig v-if="advancedSourceConfig" :iterable="advancedSourceConfig"
                             :metadata="providerSourceSchema" metadataKey="provider" :is-editing="true" />
                         </v-expansion-panel-text>
                       </v-expansion-panel>
@@ -186,7 +186,7 @@
       <v-card
         :title="updatingMode ? tm('dialogs.config.editTitle') : tm('dialogs.config.addTitle') + ` ${newSelectedProviderName} ` + tm('dialogs.config.provider')">
         <v-card-text class="py-4">
-          <AstrBotConfig :iterable="newSelectedProviderConfig" :metadata="configSchema"
+          <PersbotConfig :iterable="newSelectedProviderConfig" :metadata="configSchema"
             metadataKey="provider" :is-editing="updatingMode" />
         </v-card-text>
 
@@ -208,8 +208,8 @@
     <v-dialog v-model="showProviderEditDialog" width="800">
       <v-card :title="providerEditData?.id || tm('dialogs.config.editTitle')">
         <v-card-text class="py-4">
-          <small style="color: gray;">不建议修改 ID，可能会导致指向该模型的相关配置（如默认模型、插件相关配置等）失效。旧版本 AstrBot 的 “提供商 ID” 是下方的 “ID”。</small>
-          <AstrBotConfig v-if="providerEditData" :iterable="providerEditData" :metadata="configSchema"
+          <small style="color: gray;">不建议修改 ID，可能会导致指向该模型的相关配置（如默认模型、插件相关配置等）失效。旧版本 Persbot 的 “提供商 ID” 是下方的 “ID”。</small>
+          <PersbotConfig v-if="providerEditData" :iterable="providerEditData" :metadata="configSchema"
             metadataKey="provider" :is-editing="true" />
         </v-card-text>
         <v-card-actions class="pa-4">
@@ -261,7 +261,7 @@ import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { useModuleI18n } from '@/i18n/composables'
-import AstrBotConfig from '@/components/shared/AstrBotConfig.vue'
+import PersbotConfig from '@/components/shared/PersbotConfig.vue'
 import ItemCard from '@/components/shared/ItemCard.vue'
 import AddNewProvider from '@/components/provider/AddNewProvider.vue'
 import ProviderModelsPanel from '@/components/provider/ProviderModelsPanel.vue'

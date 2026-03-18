@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any, Callable
 from unittest.mock import AsyncMock, MagicMock
 
-from astrbot.core.message.components import BaseMessageComponent
+from persbot.core.message.components import BaseMessageComponent
 
 
 class NoopAwaitable:
@@ -50,7 +50,7 @@ def make_platform_config(platform_type: str, **kwargs) -> dict:
             "telegram_command_register_interval": 300,
             "telegram_media_group_timeout": 2.5,
             "telegram_media_group_max_wait": 10.0,
-            "start_message": "Welcome to AstrBot!",
+            "start_message": "Welcome to Persbot!",
         },
         "discord": {
             "id": "test_discord",
@@ -58,7 +58,7 @@ def make_platform_config(platform_type: str, **kwargs) -> dict:
             "discord_proxy": None,
             "discord_command_register": True,
             "discord_guild_id_for_debug": None,
-            "discord_activity_name": "Playing AstrBot",
+            "discord_activity_name": "Playing Persbot",
         },
         "aiocqhttp": {
             "id": "test_aiocqhttp",
@@ -287,7 +287,7 @@ def create_mock_message_component(
     Returns:
         BaseMessageComponent: 消息组件实例
     """
-    from astrbot.core.message import components as Comp
+    from persbot.core.message import components as Comp
 
     component_map = {
         "plain": Comp.Plain,
@@ -323,7 +323,7 @@ def create_mock_llm_response(
     Returns:
         LLMResponse: 模拟的 LLM 响应
     """
-    from astrbot.core.provider.entities import LLMResponse, TokenUsage
+    from persbot.core.provider.entities import LLMResponse, TokenUsage
 
     return LLMResponse(
         role=role,
@@ -371,7 +371,7 @@ class MockPluginConfig:
 
 # 默认的插件主代码模板
 DEFAULT_PLUGIN_MAIN_TEMPLATE = '''
-from astrbot.api import star
+from persbot.api import star
 
 class Main(star.Star):
     """测试插件主类。"""

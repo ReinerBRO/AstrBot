@@ -5,11 +5,11 @@
 > v3.4.34 后
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test_(self, event: AstrMessageEvent):
-    from astrbot.api.platform import AiocqhttpAdapter # 其他平台同理
+    from persbot.api.platform import AiocqhttpAdapter # 其他平台同理
     platform = self.context.get_platform(filter.PlatformAdapterType.AIOCQHTTP)
     assert isinstance(platform, AiocqhttpAdapter)
     # platform.get_client().api.call_action()
@@ -22,7 +22,7 @@ async def test_(self, event: AstrMessageEvent):
 async def helloworld(self, event: AstrMessageEvent):
     if event.get_platform_name() == "aiocqhttp":
         # qq
-        from astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import AiocqhttpMessageEvent
+        from persbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import AiocqhttpMessageEvent
         assert isinstance(event, AiocqhttpMessageEvent)
         client = event.bot # 得到 client
         payloads = {
@@ -47,6 +47,6 @@ plugins = self.context.get_all_stars() # 返回 StarMetadata 包含了插件类�
 ## 获取加载的所有平台
 
 ```py
-from astrbot.api.platform import Platform
+from persbot.api.platform import Platform
 platforms = self.context.platform_manager.get_insts() # List[Platform]
 ```

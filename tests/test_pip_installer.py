@@ -4,10 +4,10 @@ from unittest.mock import AsyncMock
 
 import pytest
 
-from astrbot.core.utils import core_constraints as core_constraints_module
-from astrbot.core.utils import pip_installer as pip_installer_module
-from astrbot.core.utils import requirements_utils
-from astrbot.core.utils.pip_installer import PipInstaller
+from persbot.core.utils import core_constraints as core_constraints_module
+from persbot.core.utils import pip_installer as pip_installer_module
+from persbot.core.utils import requirements_utils
+from persbot.core.utils.pip_installer import PipInstaller
 
 
 def _make_run_pip_mock(
@@ -26,7 +26,7 @@ def _make_run_pip_mock(
 
 @pytest.mark.asyncio
 async def test_install_targets_site_packages_for_desktop_client(monkeypatch, tmp_path):
-    monkeypatch.setenv("ASTRBOT_DESKTOP_CLIENT", "1")
+    monkeypatch.setenv("PERSBOT_DESKTOP_CLIENT", "1")
     monkeypatch.delattr("sys.frozen", raising=False)
 
     site_packages_path = tmp_path / "site-packages"
@@ -36,15 +36,15 @@ async def test_install_targets_site_packages_for_desktop_client(monkeypatch, tmp
 
     monkeypatch.setattr(PipInstaller, "_run_pip_in_process", run_pip)
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.get_astrbot_site_packages_path",
+        "persbot.core.utils.pip_installer.get_persbot_site_packages_path",
         lambda: str(site_packages_path),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._prepend_sys_path",
+        "persbot.core.utils.pip_installer._prepend_sys_path",
         lambda path: prepend_sys_path_calls.append(path),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
+        "persbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
         lambda path, requirements: ensure_preferred_calls.append((path, requirements)),
     )
 
@@ -82,11 +82,11 @@ async def test_run_pip_in_process_streams_output_lines(monkeypatch):
             loop.call_soon_threadsafe(first_line_seen.set)
 
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._get_pip_main",
+        "persbot.core.utils.pip_installer._get_pip_main",
         lambda: fake_pip_main,
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.logger.info",
+        "persbot.core.utils.pip_installer.logger.info",
         record_log,
     )
 
@@ -120,11 +120,11 @@ async def test_run_pip_in_process_preserves_shared_stream_order(monkeypatch):
         return 0
 
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._get_pip_main",
+        "persbot.core.utils.pip_installer._get_pip_main",
         lambda: fake_pip_main,
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.logger.info",
+        "persbot.core.utils.pip_installer.logger.info",
         lambda line, *args: logged_lines.append(line % args if args else line),
     )
 
@@ -147,11 +147,11 @@ async def test_run_pip_in_process_preserves_blank_lines(monkeypatch):
         return 0
 
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._get_pip_main",
+        "persbot.core.utils.pip_installer._get_pip_main",
         lambda: fake_pip_main,
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.logger.info",
+        "persbot.core.utils.pip_installer.logger.info",
         lambda line, *args: logged_lines.append(line % args if args else line),
     )
 
@@ -178,11 +178,11 @@ async def test_run_pip_in_process_preserves_trailing_blank_line_on_flush(monkeyp
         return 0
 
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._get_pip_main",
+        "persbot.core.utils.pip_installer._get_pip_main",
         lambda: fake_pip_main,
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.logger.info",
+        "persbot.core.utils.pip_installer.logger.info",
         lambda line, *args: logged_lines.append(line % args if args else line),
     )
 
@@ -208,11 +208,11 @@ async def test_run_pip_in_process_normalizes_crlf_without_extra_blank_lines(
         return 0
 
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._get_pip_main",
+        "persbot.core.utils.pip_installer._get_pip_main",
         lambda: fake_pip_main,
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.logger.info",
+        "persbot.core.utils.pip_installer.logger.info",
         lambda line, *args: logged_lines.append(line % args if args else line),
     )
 
@@ -231,16 +231,16 @@ async def test_run_pip_in_process_classifies_nonstandard_conflict_output(monkeyp
     def fake_pip_main(args):
         del args
         print(
-            "Cannot install demo-package and astrbot-core because these package "
+            "Cannot install demo-package and persbot-core because these package "
             "versions have conflicting dependencies."
         )
         print("The conflict is caused by:")
         print("    demo-package depends on shared-lib>=3.0")
-        print("    AstrBot (constraint) depends on shared-lib==2.0")
+        print("    Persbot (constraint) depends on shared-lib==2.0")
         return 1
 
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._get_pip_main",
+        "persbot.core.utils.pip_installer._get_pip_main",
         lambda: fake_pip_main,
     )
 
@@ -251,7 +251,7 @@ async def test_run_pip_in_process_classifies_nonstandard_conflict_output(monkeyp
     assert exc_info.value.is_core_conflict is True
     assert "demo-package" in str(exc_info.value)
     assert "demo-package depends on shared-lib>=3.0" in str(exc_info.value)
-    assert "AstrBot (constraint) depends on shared-lib==2.0" in str(exc_info.value)
+    assert "Persbot (constraint) depends on shared-lib==2.0" in str(exc_info.value)
     assert "The conflict is caused by:" in exc_info.value.errors
 
 
@@ -294,19 +294,19 @@ async def test_run_pip_in_process_bounds_retained_conflict_lines(monkeypatch):
         for index in range(10):
             print(f"noise-{index}")
         print(
-            "Cannot install demo-package and astrbot-core because these package "
+            "Cannot install demo-package and persbot-core because these package "
             "versions have conflicting dependencies."
         )
         print("The conflict is caused by:")
         print("    demo-package depends on shared-lib>=3.0")
-        print("    AstrBot (constraint) depends on shared-lib==2.0")
+        print("    Persbot (constraint) depends on shared-lib==2.0")
         return 1
 
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._get_pip_main",
+        "persbot.core.utils.pip_installer._get_pip_main",
         lambda: fake_pip_main,
     )
-    monkeypatch.setattr("astrbot.core.utils.pip_installer._MAX_PIP_OUTPUT_LINES", 4)
+    monkeypatch.setattr("persbot.core.utils.pip_installer._MAX_PIP_OUTPUT_LINES", 4)
 
     installer = PipInstaller("")
     with pytest.raises(pip_installer_module.DependencyConflictError) as exc_info:
@@ -316,7 +316,7 @@ async def test_run_pip_in_process_bounds_retained_conflict_lines(monkeypatch):
     assert exc_info.value.errors[0].startswith("Cannot install demo-package")
     assert (
         exc_info.value.errors[-1]
-        == "    AstrBot (constraint) depends on shared-lib==2.0"
+        == "    Persbot (constraint) depends on shared-lib==2.0"
     )
 
 
@@ -487,21 +487,21 @@ def test_get_core_constraints_caches_fallback_resolution(monkeypatch):
     distributions_calls = []
 
     class FakeFallbackDistribution:
-        metadata = {"Name": "AstrBot-App"}
+        metadata = {"Name": "Persbot-App"}
         requires = ["shared-lib>=1.0"]
 
         def read_text(self, name):
             if name == "top_level.txt":
-                return "astrbot\n"
+                return "persbot\n"
             return ""
 
     fake_distribution = FakeFallbackDistribution()
 
     def mock_distribution(name):
         distribution_calls.append(name)
-        if name == "AstrBot":
+        if name == "Persbot":
             raise pip_installer_module.importlib_metadata.PackageNotFoundError
-        if name == "AstrBot-App":
+        if name == "Persbot-App":
             return fake_distribution
         raise pip_installer_module.importlib_metadata.PackageNotFoundError
 
@@ -535,7 +535,7 @@ def test_get_core_constraints_caches_fallback_resolution(monkeypatch):
 
     assert first == ("shared-lib==2.0",)
     assert second == ("shared-lib==2.0",)
-    assert distribution_calls == ["AstrBot", "AstrBot-App"]
+    assert distribution_calls == ["Persbot", "Persbot-App"]
     assert distributions_calls == ["scan"]
 
 
@@ -552,21 +552,21 @@ def test_get_core_constraints_skips_distributions_with_unreadable_top_level(
             return ""
 
     class FakeFallbackDistribution:
-        metadata = {"Name": "AstrBot-App"}
+        metadata = {"Name": "Persbot-App"}
         requires = ["shared-lib>=1.0"]
 
         def read_text(self, name):
             if name == "top_level.txt":
-                return "astrbot\n"
+                return "persbot\n"
             return ""
 
     broken_distribution = BrokenDistribution()
     fake_distribution = FakeFallbackDistribution()
 
     def mock_distribution(name):
-        if name == "AstrBot":
+        if name == "Persbot":
             raise pip_installer_module.importlib_metadata.PackageNotFoundError
-        if name == "AstrBot-App":
+        if name == "Persbot-App":
             return fake_distribution
         raise pip_installer_module.importlib_metadata.PackageNotFoundError
 
@@ -615,7 +615,7 @@ def test_core_constraints_file_propagates_inner_conflict_without_fake_warning(
         lambda core_dist_name: ("aiohttp==3.13.3",),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.core_constraints.logger.warning",
+        "persbot.core.utils.core_constraints.logger.warning",
         lambda line, *args: warning_logs.append(line % args if args else line),
     )
 
@@ -623,7 +623,7 @@ def test_core_constraints_file_propagates_inner_conflict_without_fake_warning(
         pip_installer_module.DependencyConflictError,
         match="core conflict",
     ):
-        provider = core_constraints_module.CoreConstraintsProvider("AstrBot")
+        provider = core_constraints_module.CoreConstraintsProvider("Persbot")
         with provider.constraints_file() as constraints_path:
             assert constraints_path is not None
             raise conflict
@@ -736,7 +736,7 @@ async def test_install_splits_three_bare_packages(monkeypatch):
 async def test_install_tracks_multiline_packages_for_desktop_client(
     monkeypatch, tmp_path
 ):
-    monkeypatch.setenv("ASTRBOT_DESKTOP_CLIENT", "1")
+    monkeypatch.setenv("PERSBOT_DESKTOP_CLIENT", "1")
     monkeypatch.delattr("sys.frozen", raising=False)
 
     site_packages_path = tmp_path / "site-packages"
@@ -745,15 +745,15 @@ async def test_install_tracks_multiline_packages_for_desktop_client(
 
     monkeypatch.setattr(PipInstaller, "_run_pip_in_process", run_pip)
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.get_astrbot_site_packages_path",
+        "persbot.core.utils.pip_installer.get_persbot_site_packages_path",
         lambda: str(site_packages_path),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._prepend_sys_path",
+        "persbot.core.utils.pip_installer._prepend_sys_path",
         lambda path: None,
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
+        "persbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
         lambda path, requirements: ensure_preferred_calls.append((path, requirements)),
     )
 
@@ -851,7 +851,7 @@ async def test_install_keeps_single_requirement_with_version_range_intact(monkey
 async def test_install_tracks_only_real_requirement_names_for_spaced_single_requirement(
     monkeypatch, tmp_path
 ):
-    monkeypatch.setenv("ASTRBOT_DESKTOP_CLIENT", "1")
+    monkeypatch.setenv("PERSBOT_DESKTOP_CLIENT", "1")
     monkeypatch.delattr("sys.frozen", raising=False)
 
     site_packages_path = tmp_path / "site-packages"
@@ -860,15 +860,15 @@ async def test_install_tracks_only_real_requirement_names_for_spaced_single_requ
 
     monkeypatch.setattr(PipInstaller, "_run_pip_in_process", run_pip)
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.get_astrbot_site_packages_path",
+        "persbot.core.utils.pip_installer.get_persbot_site_packages_path",
         lambda: str(site_packages_path),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._prepend_sys_path",
+        "persbot.core.utils.pip_installer._prepend_sys_path",
         lambda path: None,
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
+        "persbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
         lambda path, requirements: ensure_preferred_calls.append((path, requirements)),
     )
 
@@ -881,7 +881,7 @@ async def test_install_tracks_only_real_requirement_names_for_spaced_single_requ
 def test_prefer_installed_dependencies_prefers_modules_for_requirements_in_desktop_runtime(
     monkeypatch, tmp_path
 ):
-    monkeypatch.setenv("ASTRBOT_DESKTOP_CLIENT", "1")
+    monkeypatch.setenv("PERSBOT_DESKTOP_CLIENT", "1")
     monkeypatch.delattr("sys.frozen", raising=False)
 
     site_packages_path = tmp_path / "site-packages"
@@ -893,15 +893,15 @@ def test_prefer_installed_dependencies_prefers_modules_for_requirements_in_deskt
     preferred_calls = []
 
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.get_astrbot_site_packages_path",
+        "persbot.core.utils.pip_installer.get_persbot_site_packages_path",
         lambda: str(site_packages_path),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._prepend_sys_path",
+        "persbot.core.utils.pip_installer._prepend_sys_path",
         lambda path: prepend_calls.append(path),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
+        "persbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
         lambda path, requirements: preferred_calls.append((path, requirements)),
     )
 
@@ -997,7 +997,7 @@ async def test_install_splits_single_line_option_with_url(monkeypatch):
 async def test_install_tracks_requirement_name_for_single_line_option_input(
     monkeypatch, tmp_path
 ):
-    monkeypatch.setenv("ASTRBOT_DESKTOP_CLIENT", "1")
+    monkeypatch.setenv("PERSBOT_DESKTOP_CLIENT", "1")
     monkeypatch.delattr("sys.frozen", raising=False)
 
     site_packages_path = tmp_path / "site-packages"
@@ -1006,15 +1006,15 @@ async def test_install_tracks_requirement_name_for_single_line_option_input(
 
     monkeypatch.setattr(PipInstaller, "_run_pip_in_process", run_pip)
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.get_astrbot_site_packages_path",
+        "persbot.core.utils.pip_installer.get_persbot_site_packages_path",
         lambda: str(site_packages_path),
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._prepend_sys_path",
+        "persbot.core.utils.pip_installer._prepend_sys_path",
         lambda path: None,
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
+        "persbot.core.utils.pip_installer._ensure_plugin_dependencies_preferred",
         lambda path, requirements: ensure_preferred_calls.append((path, requirements)),
     )
 
@@ -1292,7 +1292,7 @@ async def test_install_logs_redacted_pip_argv_when_credentials_present(monkeypat
 
     monkeypatch.setattr(PipInstaller, "_run_pip_in_process", run_pip)
     monkeypatch.setattr(
-        "astrbot.core.utils.pip_installer.logger.info",
+        "persbot.core.utils.pip_installer.logger.info",
         lambda line, *args: logged_lines.append(line % args if args else line),
     )
 

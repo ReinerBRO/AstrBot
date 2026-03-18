@@ -1,6 +1,6 @@
 .PHONY: worktree worktree-add worktree-rm pr-test-neo pr-test-full pr-test-full-fast
 
-WORKTREE_DIR ?= ../astrbot_worktree
+WORKTREE_DIR ?= ../persbot_worktree
 BRANCH ?= $(word 2,$(MAKECMDGOALS))
 BASE ?= $(word 3,$(MAKECMDGOALS))
 BASE ?= master

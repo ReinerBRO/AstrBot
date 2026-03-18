@@ -14,13 +14,13 @@ User: Keen observation (明察秋毫)
 ...
 ```
 
-AstrBot provides out-of-the-box session control functionality:
+Persbot provides out-of-the-box session control functionality:
 
 Import:
 
 ```py
-import astrbot.api.message_components as Comp
-from astrbot.core.utils.session_waiter import (
+import persbot.api.message_components as Comp
+from persbot.core.utils.session_waiter import (
     session_waiter,
     SessionController,
 )
@@ -29,7 +29,7 @@ from astrbot.core.utils.session_waiter import (
 Code within the handler can be written as follows:
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("idiom-chain")
 async def handle_empty_mention(self, event: AstrMessageEvent):
@@ -54,7 +54,7 @@ async def handle_empty_mention(self, event: AstrMessageEvent):
 
             # ...
             message_result = event.make_result()
-            message_result.chain = [Comp.Plain("Foresight")] # import astrbot.api.message_components as Comp
+            message_result.chain = [Comp.Plain("Foresight")] # import persbot.api.message_components as Comp
             await event.send(message_result) # Send a reply, cannot use yield
 
             controller.keep(timeout=60, reset_timeout=True) # Reset timeout to 60s. If not reset, it will continue the previous timeout countdown.
@@ -88,11 +88,11 @@ Used by developers to control whether a session should end, and to retrieve mess
 
 ## Custom Session ID Filter
 
-By default, the AstrBot session controller uses `sender_id` (the sender's ID) as the identifier for distinguishing different sessions. If you want to treat an entire group as one session, you need to customize the session ID filter.
+By default, the Persbot session controller uses `sender_id` (the sender's ID) as the identifier for distinguishing different sessions. If you want to treat an entire group as one session, you need to customize the session ID filter.
 
 ```py
-import astrbot.api.message_components as Comp
-from astrbot.core.utils.session_waiter import (
+import persbot.api.message_components as Comp
+from persbot.core.utils.session_waiter import (
     session_waiter,
     SessionFilter,
     SessionController,

@@ -8,17 +8,17 @@ $color-pack: false;
 
 // Global font size and border radius
 $font-size-root: 1rem;
-$border-radius-root: 8px;
+$border-radius-root: 14px;
 $cjk-sans-fallback: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Microsoft YaHei' !default;
 $cjk-mono-fallback: 'PingFang SC', 'PingFang TC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Microsoft YaHei' !default;
 
 :root {
-  --astrbot-font-cjk-sans: #{$cjk-sans-fallback};
-  --astrbot-font-cjk-mono: #{$cjk-mono-fallback};
+  --persbot-font-cjk-sans: #{$cjk-sans-fallback};
+  --persbot-font-cjk-mono: #{$cjk-mono-fallback};
 }
 
-$body-font-family: 'Roboto', $cjk-sans-fallback, sans-serif !default;
-$heading-font-family: $body-font-family !default;
+$body-font-family: 'Poppins', $cjk-sans-fallback, sans-serif !default;
+$heading-font-family: 'Outfit', $cjk-sans-fallback, sans-serif !default;
 $btn-font-weight: 400 !default;
 $btn-letter-spacing: 0 !default;
 
@@ -129,4 +129,4 @@ $card-item-spacer-xy: 20px 24px !default;
 $card-text-spacer: 24px !default;
 $card-title-size: 18px !default;
 // Global Shadow
-$box-shadow: 1px 0 20px rgb(0 0 0 / 8%);
+$box-shadow: 0 24px 60px rgb(17 34 39 / 12%);

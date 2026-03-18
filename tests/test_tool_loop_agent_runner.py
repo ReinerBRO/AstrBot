@@ -7,12 +7,12 @@ import pytest
 # 将项目根目录添加到 sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from astrbot.core.agent.hooks import BaseAgentRunHooks
-from astrbot.core.agent.run_context import ContextWrapper
-from astrbot.core.agent.runners.tool_loop_agent_runner import ToolLoopAgentRunner
-from astrbot.core.agent.tool import FunctionTool, ToolSet
-from astrbot.core.provider.entities import LLMResponse, ProviderRequest, TokenUsage
-from astrbot.core.provider.provider import Provider
+from persbot.core.agent.hooks import BaseAgentRunHooks
+from persbot.core.agent.run_context import ContextWrapper
+from persbot.core.agent.runners.tool_loop_agent_runner import ToolLoopAgentRunner
+from persbot.core.agent.tool import FunctionTool, ToolSet
+from persbot.core.provider.entities import LLMResponse, ProviderRequest, TokenUsage
+from persbot.core.provider.provider import Provider
 
 
 class MockProvider(Provider):

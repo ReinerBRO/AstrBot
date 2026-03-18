@@ -57,21 +57,21 @@ withDefaults(defineProps<{
 }
 
 /* 深色模式下的下拉框样式 - 需要全局样式才能检测主题 */
-.v-theme--PurpleThemeDark .styled-menu-card {
+.v-theme--PersbotDarkTheme .styled-menu-card {
   background: rgba(var(--v-theme-surface), 0.98) !important;
   border: 1px solid rgba(var(--v-theme-primary), 0.2) !important;
 }
 
 /* 深色模式下的列表项悬停效果 */
-.v-theme--PurpleThemeDark .styled-menu-item:hover {
+.v-theme--PersbotDarkTheme .styled-menu-item:hover {
   background: rgba(var(--v-theme-primary), 0.12) !important;
 }
 
-.v-theme--PurpleThemeDark .styled-menu-item-active {
+.v-theme--PersbotDarkTheme .styled-menu-item-active {
   background: rgba(var(--v-theme-primary), 0.2) !important;
 }
 
-.v-theme--PurpleThemeDark .styled-menu-item-active:hover {
+.v-theme--PersbotDarkTheme .styled-menu-item-active:hover {
   background: rgba(var(--v-theme-primary), 0.25) !important;
 }
 </style>
