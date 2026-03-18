@@ -14,9 +14,9 @@ The development team behind Satori has long worked on bot development and is fam
 
 Please refer to the deployment documentation of the chosen implementation project.
 
-## 2. Configure Satori protocol in AstrBot
+## 2. Configure Satori protocol in Persbot
 
-1. Open AstrBot WebUI.
+1. Open Persbot WebUI.
 2. Click `Bots` in the left sidebar.
 3. In the right panel, click `+ Create Bot`.
 4. Select `satori`.

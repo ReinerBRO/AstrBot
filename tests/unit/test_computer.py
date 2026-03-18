@@ -1,4 +1,4 @@
-"""Tests for astrbot/core/computer module.
+"""Tests for persbot/core/computer module.
 
 This module tests the ComputerClient, Booter implementations (local, shipyard, boxlite),
 filesystem operations, Python execution, shell execution, and security restrictions.
@@ -9,8 +9,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from astrbot.core.computer.booters.base import ComputerBooter
-from astrbot.core.computer.booters.local import (
+from persbot.core.computer.booters.base import ComputerBooter
+from persbot.core.computer.booters.local import (
     LocalBooter,
     LocalFileSystemComponent,
     LocalPythonComponent,
@@ -132,18 +132,18 @@ class TestSecurityRestrictions:
         test_file = tmp_path / "test.txt"
         test_file.write_text("test")
 
-        # Mock get_astrbot_root, get_astrbot_data_path, get_astrbot_temp_path
+        # Mock get_persbot_root, get_persbot_data_path, get_persbot_temp_path
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -154,15 +154,15 @@ class TestSecurityRestrictions:
         """Test paths outside allowed roots raise PermissionError."""
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -209,15 +209,15 @@ class TestLocalShellComponent:
 
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -291,15 +291,15 @@ class TestLocalFileSystemComponent:
 
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -317,15 +317,15 @@ class TestLocalFileSystemComponent:
 
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -341,15 +341,15 @@ class TestLocalFileSystemComponent:
 
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -366,15 +366,15 @@ class TestLocalFileSystemComponent:
 
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -392,15 +392,15 @@ class TestLocalFileSystemComponent:
 
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -419,15 +419,15 @@ class TestLocalFileSystemComponent:
 
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -449,15 +449,15 @@ class TestLocalFileSystemComponent:
 
         with (
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_root",
+                "persbot.core.computer.booters.local.get_persbot_root",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_data_path",
+                "persbot.core.computer.booters.local.get_persbot_data_path",
                 return_value=str(tmp_path),
             ),
             patch(
-                "astrbot.core.computer.booters.local.get_astrbot_temp_path",
+                "persbot.core.computer.booters.local.get_persbot_temp_path",
                 return_value=str(tmp_path),
             ),
         ):
@@ -488,8 +488,8 @@ class TestShipyardBooter:
     @pytest.mark.asyncio
     async def test_shipyard_booter_init(self):
         """Test ShipyardBooter initialization."""
-        with patch("astrbot.core.computer.booters.shipyard.ShipyardClient"):
-            from astrbot.core.computer.booters.shipyard import ShipyardBooter
+        with patch("persbot.core.computer.booters.shipyard.ShipyardClient"):
+            from persbot.core.computer.booters.shipyard import ShipyardBooter
 
             booter = ShipyardBooter(
                 endpoint_url="http://localhost:8080",
@@ -513,10 +513,10 @@ class TestShipyardBooter:
         mock_client.create_ship = AsyncMock(return_value=mock_ship)
 
         with patch(
-            "astrbot.core.computer.booters.shipyard.ShipyardClient",
+            "persbot.core.computer.booters.shipyard.ShipyardClient",
             return_value=mock_client,
         ):
-            from astrbot.core.computer.booters.shipyard import ShipyardBooter
+            from persbot.core.computer.booters.shipyard import ShipyardBooter
 
             booter = ShipyardBooter(
                 endpoint_url="http://localhost:8080",
@@ -535,10 +535,10 @@ class TestShipyardBooter:
         mock_client.get_ship = AsyncMock(return_value={"status": 1})
 
         with patch(
-            "astrbot.core.computer.booters.shipyard.ShipyardClient",
+            "persbot.core.computer.booters.shipyard.ShipyardClient",
             return_value=mock_client,
         ):
-            from astrbot.core.computer.booters.shipyard import ShipyardBooter
+            from persbot.core.computer.booters.shipyard import ShipyardBooter
 
             booter = ShipyardBooter(
                 endpoint_url="http://localhost:8080",
@@ -560,10 +560,10 @@ class TestShipyardBooter:
         mock_client.get_ship = AsyncMock(return_value={"status": 0})
 
         with patch(
-            "astrbot.core.computer.booters.shipyard.ShipyardClient",
+            "persbot.core.computer.booters.shipyard.ShipyardClient",
             return_value=mock_client,
         ):
-            from astrbot.core.computer.booters.shipyard import ShipyardBooter
+            from persbot.core.computer.booters.shipyard import ShipyardBooter
 
             booter = ShipyardBooter(
                 endpoint_url="http://localhost:8080",
@@ -587,7 +587,7 @@ class TestBoxliteBooter:
         mock_boxlite.SimpleBox = MagicMock()
 
         with patch.dict(sys.modules, {"boxlite": mock_boxlite}):
-            from astrbot.core.computer.booters.boxlite import BoxliteBooter
+            from persbot.core.computer.booters.boxlite import BoxliteBooter
 
             # Just verify class exists and can be instantiated (boot is async)
             booter = BoxliteBooter.__new__(BoxliteBooter)
@@ -599,7 +599,7 @@ class TestComputerClient:
 
     def test_get_local_booter(self):
         """Test get_local_booter returns singleton LocalBooter."""
-        from astrbot.core.computer import computer_client
+        from persbot.core.computer import computer_client
 
         # Clear the global booter to test singleton
         computer_client.local_booter = None
@@ -616,8 +616,8 @@ class TestComputerClient:
     @pytest.mark.asyncio
     async def test_get_booter_shipyard(self):
         """Test get_booter with shipyard type."""
-        from astrbot.core.computer import computer_client
-        from astrbot.core.computer.booters.shipyard import ShipyardBooter
+        from persbot.core.computer import computer_client
+        from persbot.core.computer.booters.shipyard import ShipyardBooter
 
         # Clear session booter
         computer_client.session_booter.clear()
@@ -653,7 +653,7 @@ class TestComputerClient:
         with (
             patch.object(ShipyardBooter, "boot", new=AsyncMock()),
             patch(
-                "astrbot.core.computer.computer_client._sync_skills_to_sandbox",
+                "persbot.core.computer.computer_client._sync_skills_to_sandbox",
                 AsyncMock(),
             ),
         ):
@@ -669,7 +669,7 @@ class TestComputerClient:
     @pytest.mark.asyncio
     async def test_get_booter_unknown_type(self):
         """Test get_booter with unknown booter type raises ValueError."""
-        from astrbot.core.computer import computer_client
+        from persbot.core.computer import computer_client
 
         computer_client.session_booter.clear()
 
@@ -691,8 +691,8 @@ class TestComputerClient:
     @pytest.mark.asyncio
     async def test_get_booter_reuses_existing(self):
         """Test get_booter reuses existing booter for same session."""
-        from astrbot.core.computer import computer_client
-        from astrbot.core.computer.booters.shipyard import ShipyardBooter
+        from persbot.core.computer import computer_client
+        from persbot.core.computer.booters.shipyard import ShipyardBooter
 
         computer_client.session_booter.clear()
 
@@ -718,7 +718,7 @@ class TestComputerClient:
         with (
             patch.object(ShipyardBooter, "boot", new=AsyncMock()),
             patch(
-                "astrbot.core.computer.computer_client._sync_skills_to_sandbox",
+                "persbot.core.computer.computer_client._sync_skills_to_sandbox",
                 AsyncMock(),
             ),
         ):
@@ -735,8 +735,8 @@ class TestComputerClient:
     @pytest.mark.asyncio
     async def test_get_booter_rebuild_unavailable(self):
         """Test get_booter rebuilds when existing booter is unavailable."""
-        from astrbot.core.computer import computer_client
-        from astrbot.core.computer.booters.shipyard import ShipyardBooter
+        from persbot.core.computer import computer_client
+        from persbot.core.computer.booters.shipyard import ShipyardBooter
 
         computer_client.session_booter.clear()
 
@@ -761,11 +761,11 @@ class TestComputerClient:
 
         with (
             patch(
-                "astrbot.core.computer.booters.shipyard.ShipyardBooter",
+                "persbot.core.computer.booters.shipyard.ShipyardBooter",
                 return_value=mock_new_booter,
             ) as mock_booter_cls,
             patch(
-                "astrbot.core.computer.computer_client._sync_skills_to_sandbox",
+                "persbot.core.computer.computer_client._sync_skills_to_sandbox",
                 AsyncMock(),
             ),
         ):
@@ -794,7 +794,7 @@ class TestSyncSkillsToSandbox:
     @pytest.mark.asyncio
     async def test_sync_skills_no_skills_dir(self):
         """Test sync does nothing when skills directory doesn't exist."""
-        from astrbot.core.computer import computer_client
+        from persbot.core.computer import computer_client
 
         mock_booter = MagicMock()
         mock_booter.shell.exec = AsyncMock()
@@ -802,11 +802,11 @@ class TestSyncSkillsToSandbox:
 
         with (
             patch(
-                "astrbot.core.computer.computer_client.get_astrbot_skills_path",
+                "persbot.core.computer.computer_client.get_persbot_skills_path",
                 return_value="/nonexistent/path",
             ),
             patch(
-                "astrbot.core.computer.computer_client.os.path.isdir",
+                "persbot.core.computer.computer_client.os.path.isdir",
                 return_value=False,
             ),
         ):
@@ -816,7 +816,7 @@ class TestSyncSkillsToSandbox:
     @pytest.mark.asyncio
     async def test_sync_skills_empty_dir(self):
         """Test sync does nothing when skills directory is empty."""
-        from astrbot.core.computer import computer_client
+        from persbot.core.computer import computer_client
 
         mock_booter = MagicMock()
         mock_booter.shell.exec = AsyncMock()
@@ -824,15 +824,15 @@ class TestSyncSkillsToSandbox:
 
         with (
             patch(
-                "astrbot.core.computer.computer_client.get_astrbot_skills_path",
+                "persbot.core.computer.computer_client.get_persbot_skills_path",
                 return_value="/tmp/empty",
             ),
             patch(
-                "astrbot.core.computer.computer_client.os.path.isdir",
+                "persbot.core.computer.computer_client.os.path.isdir",
                 return_value=True,
             ),
             patch(
-                "astrbot.core.computer.computer_client.Path.iterdir",
+                "persbot.core.computer.computer_client.Path.iterdir",
                 return_value=iter([]),
             ),
         ):
@@ -842,7 +842,7 @@ class TestSyncSkillsToSandbox:
     @pytest.mark.asyncio
     async def test_sync_skills_success(self):
         """Test successful skills sync."""
-        from astrbot.core.computer import computer_client
+        from persbot.core.computer import computer_client
 
         mock_booter = MagicMock()
         mock_booter.shell.exec = AsyncMock(return_value={"exit_code": 0})
@@ -854,30 +854,30 @@ class TestSyncSkillsToSandbox:
 
         with (
             patch(
-                "astrbot.core.computer.computer_client.get_astrbot_skills_path",
+                "persbot.core.computer.computer_client.get_persbot_skills_path",
                 return_value="/tmp/skills",
             ),
             patch(
-                "astrbot.core.computer.computer_client.os.path.isdir",
+                "persbot.core.computer.computer_client.os.path.isdir",
                 return_value=True,
             ),
             patch(
-                "astrbot.core.computer.computer_client.Path.iterdir",
+                "persbot.core.computer.computer_client.Path.iterdir",
                 return_value=iter([mock_skill_file]),
             ),
             patch(
-                "astrbot.core.computer.computer_client.get_astrbot_temp_path",
+                "persbot.core.computer.computer_client.get_persbot_temp_path",
                 return_value="/tmp",
             ),
             patch(
-                "astrbot.core.computer.computer_client.shutil.make_archive",
+                "persbot.core.computer.computer_client.shutil.make_archive",
             ),
             patch(
-                "astrbot.core.computer.computer_client.os.path.exists",
+                "persbot.core.computer.computer_client.os.path.exists",
                 return_value=True,
             ),
             patch(
-                "astrbot.core.computer.computer_client.os.remove",
+                "persbot.core.computer.computer_client.os.remove",
             ),
         ):
             # Should not raise

@@ -6,7 +6,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from astrbot.core.event_bus import EventBus
+from persbot.core.event_bus import EventBus
 
 
 @pytest.fixture
@@ -39,7 +39,7 @@ def event_bus(event_queue, mock_pipeline_scheduler, mock_config_manager):
     return EventBus(
         event_queue=event_queue,
         pipeline_scheduler_mapping={"test-conf-id": mock_pipeline_scheduler},
-        astrbot_config_mgr=mock_config_manager,
+        persbot_config_mgr=mock_config_manager,
     )
 
 
@@ -51,12 +51,12 @@ class TestEventBusInit:
         bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping={"test": mock_pipeline_scheduler},
-            astrbot_config_mgr=mock_config_manager,
+            persbot_config_mgr=mock_config_manager,
         )
 
         assert bus.event_queue == event_queue
         assert bus.pipeline_scheduler_mapping == {"test": mock_pipeline_scheduler}
-        assert bus.astrbot_config_mgr == mock_config_manager
+        assert bus.persbot_config_mgr == mock_config_manager
 
 
 class TestEventBusDispatch:
@@ -131,7 +131,7 @@ class TestEventBusDispatch:
 
         await event_queue.put(mock_event)
 
-        with patch("astrbot.core.event_bus.logger") as mock_logger:
+        with patch("persbot.core.event_bus.logger") as mock_logger:
             mock_logger.error.side_effect = error_and_signal
             task = asyncio.create_task(event_bus.dispatch())
             try:
@@ -238,7 +238,7 @@ class TestPrintEvent:
         mock_event.get_sender_id.return_value = "user123"
         mock_event.get_message_outline.return_value = "Hello"
 
-        with patch("astrbot.core.event_bus.logger") as mock_logger:
+        with patch("persbot.core.event_bus.logger") as mock_logger:
             event_bus._print_event(mock_event, "TestConfig")
 
         mock_logger.info.assert_called_once()
@@ -257,7 +257,7 @@ class TestPrintEvent:
         mock_event.get_sender_id.return_value = "user123"
         mock_event.get_message_outline.return_value = "Hello"
 
-        with patch("astrbot.core.event_bus.logger") as mock_logger:
+        with patch("persbot.core.event_bus.logger") as mock_logger:
             event_bus._print_event(mock_event, "TestConfig")
 
         mock_logger.info.assert_called_once()
@@ -289,7 +289,7 @@ class TestEventSubscription:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=mock_config_manager,
+            persbot_config_mgr=mock_config_manager,
         )
 
         # Verify both subscribers are registered
@@ -334,7 +334,7 @@ class TestEventSubscription:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=mock_config_manager,
+            persbot_config_mgr=mock_config_manager,
         )
 
         mock_event = MagicMock()
@@ -371,7 +371,7 @@ class TestEventSubscription:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=mock_config_manager,
+            persbot_config_mgr=mock_config_manager,
         )
 
         # Verify scheduler is registered
@@ -419,7 +419,7 @@ class TestEventSubscription:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=mock_config_manager,
+            persbot_config_mgr=mock_config_manager,
         )
 
         # First event will cause exception
@@ -475,7 +475,7 @@ class TestEventFiltering:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=config_mgr,
+            persbot_config_mgr=config_mgr,
         )
 
         processed = asyncio.Event()
@@ -522,7 +522,7 @@ class TestEventFiltering:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=mock_config_manager,
+            persbot_config_mgr=mock_config_manager,
         )
 
         # Create event with group message origin
@@ -580,7 +580,7 @@ class TestEventFiltering:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=config_mgr,
+            persbot_config_mgr=config_mgr,
         )
 
         processed = asyncio.Event()
@@ -629,7 +629,7 @@ class TestEventFiltering:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=config_mgr,
+            persbot_config_mgr=config_mgr,
         )
 
         mock_event = MagicMock()
@@ -642,7 +642,7 @@ class TestEventFiltering:
 
         await event_queue.put(mock_event)
 
-        with patch("astrbot.core.event_bus.logger") as mock_logger:
+        with patch("persbot.core.event_bus.logger") as mock_logger:
             mock_logger.error.side_effect = lambda *args, **kwargs: error_logged.set()  # noqa: ARG001
             task = asyncio.create_task(event_bus.dispatch())
             try:
@@ -674,7 +674,7 @@ class TestEventFiltering:
         event_bus = EventBus(
             event_queue=event_queue,
             pipeline_scheduler_mapping=pipeline_mapping,
-            astrbot_config_mgr=config_mgr,
+            persbot_config_mgr=config_mgr,
         )
 
         mock_event = MagicMock()
@@ -687,7 +687,7 @@ class TestEventFiltering:
 
         await event_queue.put(mock_event)
 
-        with patch("astrbot.core.event_bus.logger") as mock_logger:
+        with patch("persbot.core.event_bus.logger") as mock_logger:
             mock_logger.error.side_effect = lambda *args, **kwargs: error_logged.set()  # noqa: ARG001
             task = asyncio.create_task(event_bus.dispatch())
             try:

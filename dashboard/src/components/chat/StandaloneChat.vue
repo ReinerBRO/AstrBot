@@ -10,7 +10,7 @@
                     <div class="welcome-container fade-in" v-else>
                         <div class="welcome-title">
                             <span>Hello, I'm</span>
-                            <span class="bot-name">AstrBot ⭐</span>
+                            <span class="bot-name">Persbot ⭐</span>
                         </div>
                         <p class="text-caption text-medium-emphasis mt-2">
                             测试配置: {{ configId || 'default' }}
@@ -169,7 +169,7 @@ const chatInputRef = ref<InstanceType<typeof ChatInput> | null>(null);
 // 输入状态
 const prompt = ref('');
 
-const isDark = computed(() => useCustomizerStore().uiTheme === 'PurpleThemeDark');
+const isDark = computed(() => useCustomizerStore().uiTheme === 'PersbotDarkTheme');
 
 function openImagePreview(imageUrl: string) {
     previewImageUrl.value = imageUrl;

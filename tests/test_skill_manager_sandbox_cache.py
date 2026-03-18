@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from astrbot.core.skills.skill_manager import SkillManager
+from persbot.core.skills.skill_manager import SkillManager
 
 
 def _write_skill(root: Path, name: str, description: str) -> None:
@@ -25,11 +25,11 @@ def test_list_skills_merges_local_and_sandbox_cache(monkeypatch, tmp_path: Path)
     skills_root.mkdir(parents=True, exist_ok=True)
 
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_data_path",
+        "persbot.core.skills.skill_manager.get_persbot_data_path",
         lambda: str(data_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_temp_path",
+        "persbot.core.skills.skill_manager.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
 
@@ -73,11 +73,11 @@ def test_sandbox_cached_skill_respects_active_and_display_path(
     skills_root.mkdir(parents=True, exist_ok=True)
 
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_data_path",
+        "persbot.core.skills.skill_manager.get_persbot_data_path",
         lambda: str(data_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_temp_path",
+        "persbot.core.skills.skill_manager.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
 
@@ -120,11 +120,11 @@ def test_sandbox_and_local_path_resolution_with_show_sandbox_path_false(
     skills_root.mkdir(parents=True, exist_ok=True)
 
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_data_path",
+        "persbot.core.skills.skill_manager.get_persbot_data_path",
         lambda: str(data_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_temp_path",
+        "persbot.core.skills.skill_manager.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
 

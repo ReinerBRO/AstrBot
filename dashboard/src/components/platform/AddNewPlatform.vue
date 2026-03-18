@@ -35,7 +35,7 @@
                     {{ tm('dialog.viewTutorial') }}
                   </v-btn>
                   <div class="mt-2">
-                    <AstrBotConfig :iterable="selectedPlatformConfig" :metadata="metadata['platform_group']?.metadata"
+                    <PersbotConfig :iterable="selectedPlatformConfig" :metadata="metadata['platform_group']?.metadata"
                       metadataKey="platform" />
                   </div>
                 </div>
@@ -46,7 +46,7 @@
                   disabled></v-text-field>
                 <div class="mt-3">
                   <div class="mt-2">
-                    <AstrBotConfig :iterable="updatingPlatformConfig" :metadata="metadata['platform_group']?.metadata"
+                    <PersbotConfig :iterable="updatingPlatformConfig" :metadata="metadata['platform_group']?.metadata"
                       metadataKey="platform" />
                   </div>
                 </div>
@@ -116,7 +116,7 @@
                   </div>
                   <div v-else-if="selectedConfigData && selectedConfigMetadata" class="config-preview-container">
                     <h4 class="mb-3">配置文件预览</h4>
-                    <AstrBotCoreConfigWrapper :metadata="selectedConfigMetadata" :config_data="selectedConfigData"
+                    <PersbotCoreConfigWrapper :metadata="selectedConfigMetadata" :config_data="selectedConfigData"
                       readonly="true" />
                   </div>
                   <div v-else class="text-center py-4 text-grey">
@@ -132,7 +132,7 @@
                   </div>
                   <div v-else-if="newConfigData && newConfigMetadata" class="config-preview-container">
                     <h4 class="mb-3">{{ tm('createDialog.newConfigTitle') }}</h4>
-                    <AstrBotCoreConfigWrapper :metadata="newConfigMetadata" :config_data="newConfigData" />
+                    <PersbotCoreConfigWrapper :metadata="newConfigMetadata" :config_data="newConfigData" />
                   </div>
                   <div v-else class="text-center py-4 text-grey">
                     <v-icon>mdi-information-outline</v-icon>
@@ -259,7 +259,7 @@
       <v-card-text class="py-4">
         <p>{{ tm('dialog.securityWarning.aiocqhttpTokenMissing') }}</p>
         <span><a
-            href="https://docs.astrbot.app/deploy/platform/aiocqhttp/napcat.html#%E9%99%84%E5%BD%95-%E5%A2%9E%E5%BC%BA%E8%BF%9E%E6%8E%A5%E5%AE%89%E5%85%A8%E6%80%A7"
+            href="https://docs.persbot.app/deploy/platform/aiocqhttp/napcat.html#%E9%99%84%E5%BD%95-%E5%A2%9E%E5%BC%BA%E8%BF%9E%E6%8E%A5%E5%AE%89%E5%85%A8%E6%80%A7"
             target="_blank">{{ tm('dialog.securityWarning.learnMore') }}</a></span>
       </v-card-text>
       <v-card-actions class="px-4 pb-4">
@@ -307,13 +307,13 @@
 import axios from 'axios';
 import { useModuleI18n } from '@/i18n/composables';
 import { getPlatformIcon, getPlatformDescription, getTutorialLink } from '@/utils/platformUtils';
-import AstrBotConfig from '@/components/shared/AstrBotConfig.vue';
-import AstrBotCoreConfigWrapper from '@/components/config/AstrBotCoreConfigWrapper.vue';
+import PersbotConfig from '@/components/shared/PersbotConfig.vue';
+import PersbotCoreConfigWrapper from '@/components/config/PersbotCoreConfigWrapper.vue';
 import ConfigPage from '@/views/ConfigPage.vue';
 
 export default {
   name: 'AddNewPlatform',
-  components: { AstrBotConfig, AstrBotCoreConfigWrapper, ConfigPage },
+  components: { PersbotConfig, PersbotCoreConfigWrapper, ConfigPage },
   emits: ['update:show', 'show-toast', 'refresh-config'],
   props: {
     show: {

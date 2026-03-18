@@ -1,9 +1,9 @@
 
 # AI
 
-AstrBot 内置了对多种大语言模型（LLM）提供商的支持，并且提供了统一的接口，方便插件开发者调用各种 LLM 服务。
+Persbot 内置了对多种大语言模型（LLM）提供商的支持，并且提供了统一的接口，方便插件开发者调用各种 LLM 服务。
 
-您可以使用 AstrBot 提供的 LLM / Agent 接口来实现自己的智能体。
+您可以使用 Persbot 提供的 LLM / Agent 接口来实现自己的智能体。
 
 我们在 `v4.5.7` 版本之后对 LLM 提供商的调用方式进行了较大调整，推荐使用新的调用方式。新的调用方式更加简洁，并且支持更多的功能。当然，您仍然可以使用[旧的调用方式](/dev/star/plugin#ai)。
 
@@ -38,9 +38,9 @@ Tool 是大语言模型调用外部工具的能力。
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
-from astrbot.core.agent.run_context import ContextWrapper
-from astrbot.core.agent.tool import FunctionTool, ToolExecResult
-from astrbot.core.astr_agent_context import AstrAgentContext
+from persbot.core.agent.run_context import ContextWrapper
+from persbot.core.agent.tool import FunctionTool, ToolExecResult
+from persbot.core.astr_agent_context import AstrAgentContext
 
 
 @dataclass
@@ -63,12 +63,12 @@ class BilibiliTool(FunctionTool[AstrAgentContext]):
     async def call(
         self, context: ContextWrapper[AstrAgentContext], **kwargs
     ) -> ToolExecResult:
-        return "1. 视频标题：如何使用AstrBot\n视频链接：xxxxxx"
+        return "1. 视频标题：如何使用Persbot\n视频链接：xxxxxx"
 ```
 
-## 注册 Tool 到 AstrBot
+## 注册 Tool 到 Persbot
 
-在上面定义好 Tool 之后，如果你需要实现的功能是让用户在使用 AstrBot 进行对话时自动调用该 Tool，那么你需要在插件的 __init__ 方法中将 Tool 注册到 AstrBot 中：
+在上面定义好 Tool 之后，如果你需要实现的功能是让用户在使用 Persbot 进行对话时自动调用该 Tool，那么你需要在插件的 __init__ 方法中将 Tool 注册到 Persbot 中：
 
 ```py
 class MyPlugin(Star):
@@ -84,7 +84,7 @@ class MyPlugin(Star):
 
 ### 通过装饰器定义 Tool 和注册 Tool
 
-除了上述的通过 `@dataclass` 定义 Tool 的方式之外，你也可以使用装饰器的方式注册 tool 到 AstrBot。如果请务必按照以下格式编写一个工具（包括函数注释，AstrBot 会解析该函数注释，请务必将注释格式写对）
+除了上述的通过 `@dataclass` 定义 Tool 的方式之外，你也可以使用装饰器的方式注册 tool 到 Persbot。如果请务必按照以下格式编写一个工具（包括函数注释，Persbot 会解析该函数注释，请务必将注释格式写对）
 
 ```py{3,4,5,6,7}
 @filter.llm_tool(name="get_weather") # 如果 name 不填，将使用函数名
@@ -115,7 +115,7 @@ Agent 可以被定义为 system_prompt + tools + llm 的结合体，可以实现
 llm_resp = await self.context.tool_loop_agent(
     event=event,
     chat_provider_id=prov_id,
-    prompt="搜索一下 bilibili 上关于 AstrBot 的相关视频。",
+    prompt="搜索一下 bilibili 上关于 Persbot 的相关视频。",
     tools=ToolSet([BilibiliTool()]),
     max_steps=30, # Agent 最大执行步骤
     tool_call_timeout=60, # 工具调用超时时间
@@ -134,7 +134,7 @@ Multi-Agent（多智能体）系统将复杂应用分解为多个专业化智能
 
 在下面的例子中，我们定义了一个主智能体（Main Agent），它负责根据用户查询将任务分配给不同的子智能体（Sub-Agents）。每个子智能体专注于特定任务，例如获取天气信息。
 
-![multi-agent-example-1](https://files.astrbot.app/docs/zh/dev/star/guides/multi-agent-example-1.svg)
+![multi-agent-example-1](https://files.persbot.app/docs/zh/dev/star/guides/multi-agent-example-1.svg)
 
 定义 Tools:
 
@@ -142,9 +142,9 @@ Multi-Agent（多智能体）系统将复杂应用分解为多个专业化智能
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
-from astrbot.core.agent.run_context import ContextWrapper
-from astrbot.core.agent.tool import FunctionTool, ToolExecResult
-from astrbot.core.astr_agent_context import AstrAgentContext
+from persbot.core.agent.run_context import ContextWrapper
+from persbot.core.agent.tool import FunctionTool, ToolExecResult
+from persbot.core.astr_agent_context import AstrAgentContext
 
 @dataclass
 class AssignAgentTool(FunctionTool[AstrAgentContext]):
@@ -289,7 +289,7 @@ async def test(self, event: AstrMessageEvent):
 ### 获取会话当前的 LLM 对话历史 `get_conversation`
 
 ```py
-from astrbot.core.conversation_mgr import Conversation
+from persbot.core.conversation_mgr import Conversation
 
 uid = event.unified_msg_origin
 conv_mgr = self.context.conversation_manager
@@ -305,7 +305,7 @@ class Conversation:
     """The conversation entity representing a chat session."""
 
     platform_id: str
-    """The platform ID in AstrBot"""
+    """The platform ID in Persbot"""
     user_id: str
     """The user ID associated with the conversation."""
     cid: str
@@ -327,7 +327,7 @@ class Conversation:
 ### 快速添加 LLM 记录到对话 `add_message_pair`
 
 ```py
-from astrbot.core.agent.message import (
+from persbot.core.agent.message import (
     AssistantMessageSegment,
     UserMessageSegment,
     TextPart,
@@ -428,7 +428,7 @@ await conv_mgr.add_message_pair(
 
 ## 人格设定管理器
 
-`PersonaManager` 负责统一加载、缓存并提供所有人格（Persona）的增删改查接口，同时兼容 AstrBot 4.x 之前的旧版人格格式（v3）。  
+`PersonaManager` 负责统一加载、缓存并提供所有人格（Persona）的增删改查接口，同时兼容 Persbot 4.x 之前的旧版人格格式（v3）。  
 初始化时会自动从数据库读取全部人格，并生成一份 v3 兼容数据，供旧代码无缝使用。
 
 ```py

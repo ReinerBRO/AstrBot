@@ -2,14 +2,14 @@
     "title": "Плагины",
     "subtitle": "Управление и настройка расширений системы",
     "tabs": {
-        "installedPlugins": "Плагины AstrBot",
+        "installedPlugins": "Плагины Persbot",
         "market": "Магазин плагинов",
         "installedMcpServers": "MCP",
         "skills": "Навыки",
         "handlersOperation": "Управление поведением"
     },
     "titles": {
-        "installedAstrBotPlugins": "Установленные плагины AstrBot"
+        "installedPersbotPlugins": "Установленные плагины Persbot"
     },
     "failedPlugins": {
         "title": "Ошибка загрузки ({count})",
@@ -174,7 +174,7 @@
         },
         "versionCompatibility": {
             "title": "Предупреждение о версии",
-            "message": "Требуемая плагином версия AstrBot не совпадает с вашей текущей версией. Вы можете продолжить установку на свой страх и риск.",
+            "message": "Требуемая плагином версия Persbot не совпадает с вашей текущей версией. Вы можете продолжить установку на свой страх и риск.",
             "confirm": "Игнорировать и установить",
             "cancel": "Отмена"
         },
@@ -335,7 +335,7 @@
             "handlersCount": "действий",
             "supportPlatform": "Платформы",
             "supportPlatformsCount": "Платформ: {count}",
-            "astrbotVersion": "Требуемая версия AstrBot"
+            "persbotVersion": "Требуемая версия Persbot"
         },
         "alt": {
             "logo": "логотип",

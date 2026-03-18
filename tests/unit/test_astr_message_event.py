@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from astrbot.core.message.components import (
+from persbot.core.message.components import (
     At,
     AtAll,
     Face,
@@ -14,11 +14,11 @@ from astrbot.core.message.components import (
     Plain,
     Reply,
 )
-from astrbot.core.message.message_event_result import MessageEventResult
-from astrbot.core.platform.astr_message_event import AstrMessageEvent
-from astrbot.core.platform.astrbot_message import AstrBotMessage, MessageMember
-from astrbot.core.platform.message_type import MessageType
-from astrbot.core.platform.platform_metadata import PlatformMetadata
+from persbot.core.message.message_event_result import MessageEventResult
+from persbot.core.platform.astr_message_event import AstrMessageEvent
+from persbot.core.platform.persbot_message import PersbotMessage, MessageMember
+from persbot.core.platform.message_type import MessageType
+from persbot.core.platform.platform_metadata import PlatformMetadata
 
 
 class ConcreteAstrMessageEvent(AstrMessageEvent):
@@ -46,9 +46,9 @@ def message_member():
 
 
 @pytest.fixture
-def astrbot_message(message_member):
-    """Create an AstrBotMessage for testing."""
-    message = AstrBotMessage()
+def persbot_message(message_member):
+    """Create an PersbotMessage for testing."""
+    message = PersbotMessage()
     message.type = MessageType.FRIEND_MESSAGE
     message.self_id = "bot123"
     message.session_id = "session123"
@@ -61,11 +61,11 @@ def astrbot_message(message_member):
 
 
 @pytest.fixture
-def astr_message_event(platform_meta, astrbot_message):
+def astr_message_event(platform_meta, persbot_message):
     """Create an AstrMessageEvent instance for testing."""
     return ConcreteAstrMessageEvent(
         message_str="Hello world",
-        message_obj=astrbot_message,
+        message_obj=persbot_message,
         platform_meta=platform_meta,
         session_id="session123",
     )
@@ -155,12 +155,12 @@ class TestGetMessageInfo:
         """Test get_message_str method."""
         assert astr_message_event.get_message_str() == "Hello world"
 
-    def test_get_message_str_none(self, platform_meta, astrbot_message):
+    def test_get_message_str_none(self, platform_meta, persbot_message):
         """Test get_message_str keeps None when source message_str is None."""
-        astrbot_message.message_str = None
+        persbot_message.message_str = None
         event = ConcreteAstrMessageEvent(
             message_str=None,
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
@@ -197,24 +197,24 @@ class TestGetMessageInfo:
         """Test get_sender_name method."""
         assert astr_message_event.get_sender_name() == "TestUser"
 
-    def test_get_sender_name_empty_when_none(self, platform_meta, astrbot_message):
+    def test_get_sender_name_empty_when_none(self, platform_meta, persbot_message):
         """Test get_sender_name returns empty string when nickname is None."""
-        astrbot_message.sender = MessageMember(user_id="user123", nickname=None)
+        persbot_message.sender = MessageMember(user_id="user123", nickname=None)
         event = ConcreteAstrMessageEvent(
             message_str="test",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
         assert event.get_sender_name() == ""
 
-    def test_get_sender_name_coerces_non_string(self, platform_meta, astrbot_message):
+    def test_get_sender_name_coerces_non_string(self, platform_meta, persbot_message):
         """Test get_sender_name stringifies non-string nickname values."""
-        astrbot_message.sender = MessageMember(user_id="user123", nickname=None)
-        astrbot_message.sender.nickname = 12345
+        persbot_message.sender = MessageMember(user_id="user123", nickname=None)
+        persbot_message.sender.nickname = 12345
         event = ConcreteAstrMessageEvent(
             message_str="test",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
@@ -229,15 +229,15 @@ class TestGetMessageOutline:
         outline = astr_message_event.get_message_outline()
         assert "Hello world" in outline
 
-    def test_outline_with_image(self, platform_meta, astrbot_message):
+    def test_outline_with_image(self, platform_meta, persbot_message):
         """Test outline with image component."""
-        astrbot_message.message = [
+        persbot_message.message = [
             Plain(text="Look at this"),
             Image(file="http://example.com/img.jpg"),
         ]
         event = ConcreteAstrMessageEvent(
             message_str="Look at this",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
@@ -245,24 +245,24 @@ class TestGetMessageOutline:
         assert "Look at this" in outline
         assert "[图片]" in outline
 
-    def test_outline_with_at(self, platform_meta, astrbot_message):
+    def test_outline_with_at(self, platform_meta, persbot_message):
         """Test outline with At component."""
-        astrbot_message.message = [At(qq="12345"), Plain(text=" hello")]
+        persbot_message.message = [At(qq="12345"), Plain(text=" hello")]
         event = ConcreteAstrMessageEvent(
             message_str=" hello",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
         outline = event.get_message_outline()
         assert "[At:12345]" in outline
 
-    def test_outline_with_at_all(self, platform_meta, astrbot_message):
+    def test_outline_with_at_all(self, platform_meta, persbot_message):
         """Test outline with AtAll component."""
-        astrbot_message.message = [AtAll()]
+        persbot_message.message = [AtAll()]
         event = ConcreteAstrMessageEvent(
             message_str="",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
@@ -270,81 +270,81 @@ class TestGetMessageOutline:
         # AtAll format is "[At:all]" in the actual implementation
         assert "[At:" in outline and "all" in outline.lower()
 
-    def test_outline_with_face(self, platform_meta, astrbot_message):
+    def test_outline_with_face(self, platform_meta, persbot_message):
         """Test outline with Face component."""
-        astrbot_message.message = [Face(id="123")]
+        persbot_message.message = [Face(id="123")]
         event = ConcreteAstrMessageEvent(
             message_str="",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
         outline = event.get_message_outline()
         assert "[表情:123]" in outline
 
-    def test_outline_with_forward(self, platform_meta, astrbot_message):
+    def test_outline_with_forward(self, platform_meta, persbot_message):
         """Test outline with Forward component."""
         # Forward requires an id parameter
-        astrbot_message.message = [Forward(id="test_forward_id")]
+        persbot_message.message = [Forward(id="test_forward_id")]
         event = ConcreteAstrMessageEvent(
             message_str="",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
         outline = event.get_message_outline()
         assert "[转发消息]" in outline
 
-    def test_outline_with_reply(self, platform_meta, astrbot_message):
+    def test_outline_with_reply(self, platform_meta, persbot_message):
         """Test outline with Reply component."""
         # Reply requires an id parameter
         reply = Reply(id="test_reply_id")
         reply.message_str = "Original message"
         reply.sender_nickname = "Sender"
-        astrbot_message.message = [reply, Plain(text=" reply")]
+        persbot_message.message = [reply, Plain(text=" reply")]
         event = ConcreteAstrMessageEvent(
             message_str=" reply",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
         outline = event.get_message_outline()
         assert "[引用消息(Sender: Original message)]" in outline
 
-    def test_outline_with_reply_no_message(self, platform_meta, astrbot_message):
+    def test_outline_with_reply_no_message(self, platform_meta, persbot_message):
         """Test outline with Reply component without message_str."""
         # Reply requires an id parameter
         reply = Reply(id="test_reply_id")
         reply.message_str = None
-        astrbot_message.message = [reply]
+        persbot_message.message = [reply]
         event = ConcreteAstrMessageEvent(
             message_str="",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
         outline = event.get_message_outline()
         assert "[引用消息]" in outline
 
-    def test_outline_empty_chain(self, platform_meta, astrbot_message):
+    def test_outline_empty_chain(self, platform_meta, persbot_message):
         """Test outline with empty message chain."""
-        astrbot_message.message = []
+        persbot_message.message = []
         event = ConcreteAstrMessageEvent(
             message_str="",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
         outline = event.get_message_outline()
         assert outline == ""
 
-    def test_outline_very_long_plain_text(self, platform_meta, astrbot_message):
+    def test_outline_very_long_plain_text(self, platform_meta, persbot_message):
         """Test outline generation for very long plain text content."""
         long_text = "A" * 20000
-        astrbot_message.message = [Plain(text=long_text)]
+        persbot_message.message = [Plain(text=long_text)]
         event = ConcreteAstrMessageEvent(
             message_str=long_text,
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
@@ -456,12 +456,12 @@ class TestIsPrivateChat:
         """Test is_private_chat returns True for friend message."""
         assert astr_message_event.is_private_chat() is True
 
-    def test_is_private_chat_false(self, platform_meta, astrbot_message):
+    def test_is_private_chat_false(self, platform_meta, persbot_message):
         """Test is_private_chat returns False for group message."""
-        astrbot_message.type = MessageType.GROUP_MESSAGE
+        persbot_message.type = MessageType.GROUP_MESSAGE
         event = ConcreteAstrMessageEvent(
             message_str="test",
-            message_obj=astrbot_message,
+            message_obj=persbot_message,
             platform_meta=platform_meta,
             session_id="session123",
         )
@@ -633,7 +633,7 @@ class TestSendStreaming:
             yield MessageEventResult().message("Test")
 
         with patch(
-            "astrbot.core.platform.astr_message_event.Metric.upload",
+            "persbot.core.platform.astr_message_event.Metric.upload",
             new_callable=AsyncMock,
         ):
             await astr_message_event.send_streaming(generator())
@@ -692,7 +692,7 @@ class TestMessageTypeHandling:
 
     def test_message_type_from_valid_string(self, platform_meta):
         """Valid MessageType string should be converted correctly."""
-        message = AstrBotMessage()
+        message = PersbotMessage()
         message.type = "FRIEND_MESSAGE"
         message.message = []
         event = ConcreteAstrMessageEvent(
@@ -706,7 +706,7 @@ class TestMessageTypeHandling:
 
     def test_message_type_from_invalid_string_defaults_to_friend(self, platform_meta):
         """Invalid message type should default to FRIEND_MESSAGE."""
-        message = AstrBotMessage()
+        message = PersbotMessage()
         message.type = "InvalidMessageType"
         message.message = []
         event = ConcreteAstrMessageEvent(
@@ -720,7 +720,7 @@ class TestMessageTypeHandling:
 
     def test_message_type_from_none_defaults_to_friend(self, platform_meta):
         """None message type should default to FRIEND_MESSAGE."""
-        message = AstrBotMessage()
+        message = PersbotMessage()
         message.type = None
         message.message = []
         event = ConcreteAstrMessageEvent(
@@ -734,7 +734,7 @@ class TestMessageTypeHandling:
 
     def test_message_type_from_integer_defaults_to_friend(self, platform_meta):
         """Integer message type should default to FRIEND_MESSAGE."""
-        message = AstrBotMessage()
+        message = PersbotMessage()
         message.type = 123
         message.message = []
         event = ConcreteAstrMessageEvent(

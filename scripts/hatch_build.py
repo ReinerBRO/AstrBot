@@ -1,16 +1,16 @@
 """
 Custom Hatchling build hook.
 
-Only runs when the environment variable ASTRBOT_BUILD_DASHBOARD=1 is set,
+Only runs when the environment variable PERSBOT_BUILD_DASHBOARD=1 is set,
 so that `uv sync` / editable installs are never affected.
 
 Usage:
-    ASTRBOT_BUILD_DASHBOARD=1 uv build
+    PERSBOT_BUILD_DASHBOARD=1 uv build
 
 When enabled, this hook:
 1. Runs `npm run build` inside the `dashboard/` directory.
 2. Copies the resulting `dashboard/dist/` tree into
-   `astrbot/dashboard/dist/` so the static assets are shipped
+   `persbot/dashboard/dist/` so the static assets are shipped
    inside the Python wheel.
 """
 
@@ -29,13 +29,13 @@ class CustomBuildHook(BuildHookInterface):
     def initialize(self, version: str, build_data: dict) -> None:
         # Only run when explicitly requested (e.g. during CI / release builds).
         # This prevents `uv sync` / editable installs from triggering npm.
-        if os.environ.get("ASTRBOT_BUILD_DASHBOARD", "").strip() != "1":
+        if os.environ.get("PERSBOT_BUILD_DASHBOARD", "").strip() != "1":
             return
 
         root = Path(self.root)
         dashboard_src = root / "dashboard"
         dist_src = dashboard_src / "dist"
-        dist_target = root / "astrbot" / "dashboard" / "dist"
+        dist_target = root / "persbot" / "dashboard" / "dist"
 
         if not dashboard_src.exists():
             print(

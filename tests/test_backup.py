@@ -9,26 +9,26 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from astrbot.core.backup import (
+from persbot.core.backup import (
     BACKUP_MANIFEST_VERSION,
     KB_METADATA_MODELS,
     MAIN_DB_MODELS,
     ImportPreCheckResult,
 )
-from astrbot.core.backup.exporter import AstrBotExporter
-from astrbot.core.backup.importer import (
+from persbot.core.backup.exporter import PersbotExporter
+from persbot.core.backup.importer import (
     DatabaseClearError,
     PLATFORM_STATS_INVALID_COUNT_WARN_LIMIT,
-    AstrBotImporter,
+    PersbotImporter,
     ImportResult,
     _get_major_version,
 )
-from astrbot.core.config.default import VERSION
-from astrbot.core.db.po import (
+from persbot.core.config.default import VERSION
+from persbot.core.db.po import (
     ConversationV2,
 )
-from astrbot.core.utils.version_comparator import VersionComparator
-from astrbot.dashboard.routes.backup import (
+from persbot.core.utils.version_comparator import VersionComparator
+from persbot.dashboard.routes.backup import (
     generate_unique_filename,
     secure_filename,
 )
@@ -128,12 +128,12 @@ class TestImportResult:
         assert "warning" in d["warnings"]
 
 
-class TestAstrBotExporter:
-    """AstrBotExporter 类测试"""
+class TestPersbotExporter:
+    """PersbotExporter 类测试"""
 
     def test_init(self, mock_main_db, mock_kb_manager, temp_data_dir):
         """测试初始化"""
-        exporter = AstrBotExporter(
+        exporter = PersbotExporter(
             main_db=mock_main_db,
             kb_manager=mock_kb_manager,
             config_path=str(temp_data_dir / "cmd_config.json"),
@@ -143,7 +143,7 @@ class TestAstrBotExporter:
 
     def test_model_to_dict_with_model_dump(self):
         """测试 _model_to_dict 使用 model_dump 方法"""
-        exporter = AstrBotExporter(main_db=MagicMock())
+        exporter = PersbotExporter(main_db=MagicMock())
 
         # 创建一个有 model_dump 方法的模拟对象
         mock_record = MagicMock()
@@ -154,7 +154,7 @@ class TestAstrBotExporter:
 
     def test_model_to_dict_with_datetime(self):
         """测试 _model_to_dict 处理 datetime 字段"""
-        exporter = AstrBotExporter(main_db=MagicMock())
+        exporter = PersbotExporter(main_db=MagicMock())
 
         now = datetime.now()
         mock_record = MagicMock()
@@ -165,7 +165,7 @@ class TestAstrBotExporter:
 
     def test_add_checksum(self):
         """测试添加校验和"""
-        exporter = AstrBotExporter(main_db=MagicMock())
+        exporter = PersbotExporter(main_db=MagicMock())
 
         exporter._add_checksum("test.json", '{"test": "data"}')
 
@@ -174,7 +174,7 @@ class TestAstrBotExporter:
 
     def test_generate_manifest(self, mock_main_db, mock_kb_manager):
         """测试生成清单"""
-        exporter = AstrBotExporter(
+        exporter = PersbotExporter(
             main_db=mock_main_db,
             kb_manager=mock_kb_manager,
         )
@@ -196,7 +196,7 @@ class TestAstrBotExporter:
         manifest = exporter._generate_manifest(main_data, kb_meta_data, dir_stats)
 
         assert manifest["version"] == BACKUP_MANIFEST_VERSION
-        assert manifest["astrbot_version"] == VERSION
+        assert manifest["persbot_version"] == VERSION
         assert manifest["origin"] == "exported"  # 验证备份来源标记
         assert "exported_at" in manifest
         assert "tables" in manifest
@@ -221,7 +221,7 @@ class TestAstrBotExporter:
             __aexit__=AsyncMock(return_value=None),
         )
 
-        exporter = AstrBotExporter(
+        exporter = PersbotExporter(
             main_db=mock_main_db,
             kb_manager=None,
             config_path=str(temp_data_dir / "cmd_config.json"),
@@ -231,7 +231,7 @@ class TestAstrBotExporter:
 
         assert os.path.exists(zip_path)
         assert zip_path.endswith(".zip")
-        assert "astrbot_backup_" in zip_path
+        assert "persbot_backup_" in zip_path
 
         # 验证 ZIP 文件内容
         with zipfile.ZipFile(zip_path, "r") as zf:
@@ -241,12 +241,12 @@ class TestAstrBotExporter:
             assert "config/cmd_config.json" in namelist
 
 
-class TestAstrBotImporter:
-    """AstrBotImporter 类测试"""
+class TestPersbotImporter:
+    """PersbotImporter 类测试"""
 
     def test_init(self, mock_main_db, mock_kb_manager, temp_data_dir):
         """测试初始化"""
-        importer = AstrBotImporter(
+        importer = PersbotImporter(
             main_db=mock_main_db,
             kb_manager=mock_kb_manager,
             config_path=str(temp_data_dir / "cmd_config.json"),
@@ -256,36 +256,36 @@ class TestAstrBotImporter:
 
     def test_validate_version_match(self):
         """测试版本匹配验证"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
 
-        manifest = {"astrbot_version": VERSION}
+        manifest = {"persbot_version": VERSION}
         # 不应该抛出异常
         importer._validate_version(manifest)
 
     def test_validate_version_major_diff_rejected(self):
         """测试主版本不同被拒绝"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
 
         # 使用一个明显不同的主版本
-        manifest = {"astrbot_version": "0.0.1"}
+        manifest = {"persbot_version": "0.0.1"}
         with pytest.raises(ValueError, match="主版本不兼容"):
             importer._validate_version(manifest)
 
     def test_validate_version_minor_diff_allowed(self):
         """测试小版本不同被允许（仅警告）"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
 
         # 获取当前主版本
         major_version = _get_major_version(VERSION)
         # 构造一个同主版本但小版本不同的版本
         minor_diff_version = f"{major_version}.999"
-        manifest = {"astrbot_version": minor_diff_version}
+        manifest = {"persbot_version": minor_diff_version}
         # 不应该抛出异常
         importer._validate_version(manifest)
 
     def test_validate_version_missing(self):
         """测试缺少版本信息"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
 
         manifest = {}
         with pytest.raises(ValueError, match="缺少版本信息"):
@@ -293,7 +293,7 @@ class TestAstrBotImporter:
 
     def test_convert_datetime_fields(self):
         """测试 datetime 字段转换"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
 
         # 使用 ConversationV2 作为测试模型（它有 created_at 和 updated_at 字段）
         row = {
@@ -312,7 +312,7 @@ class TestAstrBotImporter:
 
     def test_merge_platform_stats_rows(self):
         """测试 platform_stats 重复键会在导入前聚合"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
         rows = [
             {
                 "id": 1,
@@ -379,7 +379,7 @@ class TestAstrBotImporter:
 
     def test_merge_platform_stats_rows_normalizes_naive_timestamp_to_utc(self):
         """测试 platform_stats 合并前会将 naive timestamp 标准化为 UTC 偏移"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
 
         rows = [
             {
@@ -404,8 +404,8 @@ class TestAstrBotImporter:
 
     def test_merge_platform_stats_rows_warns_on_invalid_count(self):
         """测试 platform_stats count 非法时会告警并按 0 处理（含上限）"""
-        importer = AstrBotImporter(main_db=MagicMock())
-        with patch("astrbot.core.backup.importer.logger.warning") as warning_mock:
+        importer = PersbotImporter(main_db=MagicMock())
+        with patch("persbot.core.backup.importer.logger.warning") as warning_mock:
             rows = [
                 {
                     "timestamp": "2025-12-13T20:00:00+00:00",
@@ -497,7 +497,7 @@ class TestAstrBotImporter:
 
     def test_merge_platform_stats_rows_keeps_invalid_timestamps_distinct(self):
         """测试空/非法 timestamp 不参与聚合，避免误合并"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
         rows = [
             {
                 "timestamp": "",
@@ -528,7 +528,7 @@ class TestAstrBotImporter:
 
     def test_merge_platform_stats_rows_keeps_non_string_platform_keys_distinct(self):
         """测试非字符串 platform_id/platform_type 不参与聚合"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
         rows = [
             {
                 "timestamp": "2025-12-13T20:00:00+00:00",
@@ -564,7 +564,7 @@ class TestAstrBotImporter:
 
     def test_merge_platform_stats_rows_preserves_input_order(self):
         """测试 platform_stats 聚合后仍保持输入顺序（按首次出现位置）"""
-        importer = AstrBotImporter(main_db=MagicMock())
+        importer = PersbotImporter(main_db=MagicMock())
         rows = [
             {
                 "id": 1,
@@ -605,7 +605,7 @@ class TestAstrBotImporter:
     @pytest.mark.asyncio
     async def test_import_file_not_exists(self, mock_main_db, tmp_path):
         """测试导入不存在的文件"""
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
 
         result = await importer.import_all(str(tmp_path / "nonexistent.zip"))
 
@@ -619,7 +619,7 @@ class TestAstrBotImporter:
         invalid_zip = tmp_path / "invalid.zip"
         invalid_zip.write_text("not a zip file")
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = await importer.import_all(str(invalid_zip))
 
         assert result.success is False
@@ -633,7 +633,7 @@ class TestAstrBotImporter:
         with zipfile.ZipFile(zip_path, "w") as zf:
             zf.writestr("test.txt", "test content")
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = await importer.import_all(str(zip_path))
 
         assert result.success is False
@@ -646,14 +646,14 @@ class TestAstrBotImporter:
         zip_path = tmp_path / "old_version.zip"
         manifest = {
             "version": "1.0",
-            "astrbot_version": "0.0.1",  # 主版本不同
+            "persbot_version": "0.0.1",  # 主版本不同
             "tables": {"main_db": []},
         }
 
         with zipfile.ZipFile(zip_path, "w") as zf:
             zf.writestr("manifest.json", json.dumps(manifest))
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = await importer.import_all(str(zip_path))
 
         assert result.success is False
@@ -667,7 +667,7 @@ class TestAstrBotImporter:
         zip_path = tmp_path / "valid_backup.zip"
         manifest = {
             "version": "1.1",
-            "astrbot_version": VERSION,
+            "persbot_version": VERSION,
             "tables": {"platform_stats": 0},
         }
         main_data = {"platform_stats": []}
@@ -675,7 +675,7 @@ class TestAstrBotImporter:
             zf.writestr("manifest.json", json.dumps(manifest))
             zf.writestr("databases/main_db.json", json.dumps(main_data))
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         importer._clear_main_db = AsyncMock(
             side_effect=DatabaseClearError("清空表 platform_stats 失败: db locked")
         )
@@ -861,7 +861,7 @@ class TestPreCheck:
 
     def test_pre_check_file_not_exists(self, mock_main_db):
         """测试预检查不存在的文件"""
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer.pre_check("/nonexistent/file.zip")
 
         assert result.valid is False
@@ -872,7 +872,7 @@ class TestPreCheck:
         invalid_zip = tmp_path / "invalid.zip"
         invalid_zip.write_text("not a zip file")
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer.pre_check(str(invalid_zip))
 
         assert result.valid is False
@@ -884,7 +884,7 @@ class TestPreCheck:
         with zipfile.ZipFile(zip_path, "w") as zf:
             zf.writestr("test.txt", "test content")
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer.pre_check(str(zip_path))
 
         assert result.valid is False
@@ -895,7 +895,7 @@ class TestPreCheck:
         zip_path = tmp_path / "backup.zip"
         manifest = {
             "version": "1.1",
-            "astrbot_version": VERSION,
+            "persbot_version": VERSION,
             "created_at": "2024-01-01T12:00:00",
             "tables": {"platform_stats": 1},
             "has_knowledge_bases": True,
@@ -906,7 +906,7 @@ class TestPreCheck:
         with zipfile.ZipFile(zip_path, "w") as zf:
             zf.writestr("manifest.json", json.dumps(manifest))
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer.pre_check(str(zip_path))
 
         assert result.valid is True
@@ -925,7 +925,7 @@ class TestPreCheck:
         zip_path = tmp_path / "backup.zip"
         manifest = {
             "version": "1.1",
-            "astrbot_version": minor_diff_version,
+            "persbot_version": minor_diff_version,
             "created_at": "2024-01-01T12:00:00",
             "tables": {},
         }
@@ -933,7 +933,7 @@ class TestPreCheck:
         with zipfile.ZipFile(zip_path, "w") as zf:
             zf.writestr("manifest.json", json.dumps(manifest))
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer.pre_check(str(zip_path))
 
         assert result.valid is True
@@ -947,7 +947,7 @@ class TestPreCheck:
         zip_path = tmp_path / "backup.zip"
         manifest = {
             "version": "1.1",
-            "astrbot_version": "0.0.1",  # 主版本不同
+            "persbot_version": "0.0.1",  # 主版本不同
             "created_at": "2024-01-01T12:00:00",
             "tables": {},
         }
@@ -955,7 +955,7 @@ class TestPreCheck:
         with zipfile.ZipFile(zip_path, "w") as zf:
             zf.writestr("manifest.json", json.dumps(manifest))
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer.pre_check(str(zip_path))
 
         assert result.valid is True  # 文件有效
@@ -969,7 +969,7 @@ class TestVersionCompatibility:
 
     def test_check_version_compatibility_match(self, mock_main_db):
         """测试版本完全匹配"""
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer._check_version_compatibility(VERSION)
 
         assert result["status"] == "match"
@@ -980,7 +980,7 @@ class TestVersionCompatibility:
         major_version = _get_major_version(VERSION)
         minor_diff_version = f"{major_version}.999"
 
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer._check_version_compatibility(minor_diff_version)
 
         assert result["status"] == "minor_diff"
@@ -988,7 +988,7 @@ class TestVersionCompatibility:
 
     def test_check_version_compatibility_major_diff(self, mock_main_db):
         """测试主版本差异"""
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer._check_version_compatibility("0.0.1")
 
         assert result["status"] == "major_diff"
@@ -996,7 +996,7 @@ class TestVersionCompatibility:
 
     def test_check_version_compatibility_empty_version(self, mock_main_db):
         """测试空版本号"""
-        importer = AstrBotImporter(main_db=mock_main_db)
+        importer = PersbotImporter(main_db=mock_main_db)
         result = importer._check_version_compatibility("")
 
         assert result["status"] == "major_diff"
@@ -1068,7 +1068,7 @@ class TestBackupIntegration:
         )
 
         # 导出
-        exporter = AstrBotExporter(
+        exporter = PersbotExporter(
             main_db=mock_db,
             kb_manager=None,
             config_path=str(config_path),
@@ -1081,7 +1081,7 @@ class TestBackupIntegration:
         with zipfile.ZipFile(zip_path, "r") as zf:
             # 读取 manifest
             manifest = json.loads(zf.read("manifest.json"))
-            assert manifest["astrbot_version"] == VERSION
+            assert manifest["persbot_version"] == VERSION
             assert manifest["origin"] == "exported"  # 验证备份来源标记
 
             # 读取配置

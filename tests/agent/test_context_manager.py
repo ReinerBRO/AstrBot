@@ -10,10 +10,10 @@ import pytest
 # Add parent directory to path to avoid circular import issues
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from astrbot.core.agent.context.config import ContextConfig
-from astrbot.core.agent.context.manager import ContextManager
-from astrbot.core.agent.message import Message, TextPart
-from astrbot.core.provider.entities import LLMResponse
+from persbot.core.agent.context.config import ContextConfig
+from persbot.core.agent.context.manager import ContextManager
+from persbot.core.agent.message import Message, TextPart
+from persbot.core.provider.entities import LLMResponse
 
 
 class MockProvider:
@@ -81,7 +81,7 @@ class TestContextManager:
         )
         manager = ContextManager(config)
 
-        from astrbot.core.agent.context.compressor import LLMSummaryCompressor
+        from persbot.core.agent.context.compressor import LLMSummaryCompressor
 
         assert isinstance(manager.compressor, LLMSummaryCompressor)
 
@@ -90,7 +90,7 @@ class TestContextManager:
         config = ContextConfig(truncate_turns=3)
         manager = ContextManager(config)
 
-        from astrbot.core.agent.context.compressor import TruncateByTurnsCompressor
+        from persbot.core.agent.context.compressor import TruncateByTurnsCompressor
 
         assert isinstance(manager.compressor, TruncateByTurnsCompressor)
 
@@ -378,7 +378,7 @@ class TestContextManager:
         mock_compressor.should_compress = MagicMock(return_value=True)
         manager.compressor = mock_compressor
 
-        with patch("astrbot.core.agent.context.manager.logger") as mock_logger:
+        with patch("persbot.core.agent.context.manager.logger") as mock_logger:
             result = await manager.process(messages)
 
             # Logger error method should be called
@@ -688,7 +688,7 @@ class TestContextManager:
 
     def test_split_history_ensures_user_start(self):
         """Test split_history ensures recent_messages starts with user message."""
-        from astrbot.core.agent.context.compressor import split_history
+        from persbot.core.agent.context.compressor import split_history
 
         # Create alternating messages: user, assistant, user, assistant, user, assistant
         messages = [
@@ -714,7 +714,7 @@ class TestContextManager:
 
     def test_split_history_handles_assistant_at_split_point(self):
         """Test split_history when assistant message is at the intended split point."""
-        from astrbot.core.agent.context.compressor import split_history
+        from persbot.core.agent.context.compressor import split_history
 
         messages = [
             self.create_message("user", "msg1"),
@@ -735,7 +735,7 @@ class TestContextManager:
 
     def test_split_history_all_assistant_messages(self):
         """Test split_history when there are consecutive assistant messages."""
-        from astrbot.core.agent.context.compressor import split_history
+        from persbot.core.agent.context.compressor import split_history
 
         messages = [
             self.create_message("user", "msg1"),
@@ -753,7 +753,7 @@ class TestContextManager:
 
     def test_split_history_with_system_messages(self):
         """Test split_history preserves system messages separately."""
-        from astrbot.core.agent.context.compressor import split_history
+        from persbot.core.agent.context.compressor import split_history
 
         messages = [
             self.create_message("system", "System 1"),

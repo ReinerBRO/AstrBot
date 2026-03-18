@@ -3,7 +3,7 @@
 
 As plugin functionality grows, you may need to define configurations to allow users to customize plugin behavior.
 
-AstrBot provides "powerful" configuration parsing and visualization features. Users can configure plugins directly in the management panel without modifying code.
+Persbot provides "powerful" configuration parsing and visualization features. Users can configure plugins directly in the management panel without modifying code.
 
 ## Configuration Definition
 
@@ -51,20 +51,20 @@ The file content is a `Schema` that represents the configuration. The Schema is 
 - `items`: Optional. If the configuration type is `object`, the `items` field needs to be added. The content of `items` is the sub-Schema of this configuration item. Theoretically, it can be nested infinitely, but excessive nesting is not recommended.
 - `invisible`: Optional. Whether the configuration is hidden. Default is `false`. If set to `true`, it will not be displayed in the management panel.
 - `options`: Optional. A list, such as `"options": ["chat", "agent", "workflow"]`. Provides dropdown list options.
-- `editor_mode`: Optional. Whether to enable code editor mode. Requires AstrBot >= `v3.5.10`. Versions below this won't report errors but won't take effect. Default is false.
+- `editor_mode`: Optional. Whether to enable code editor mode. Requires Persbot >= `v3.5.10`. Versions below this won't report errors but won't take effect. Default is false.
 - `editor_language`: Optional. The code language for the code editor, defaults to `json`.
 - `editor_theme`: Optional. The theme for the code editor. Options are `vs-light` (default) and `vs-dark`.
-- `_special`: Optional. Used to call AstrBot's visualization features for provider selection, persona selection, knowledge base selection, etc. See details below.
+- `_special`: Optional. Used to call Persbot's visualization features for provider selection, persona selection, knowledge base selection, etc. See details below.
 
 When the code editor is enabled, it looks like this:
 
-![editor_mode](https://files.astrbot.app/docs/source/images/plugin/image-6.png)
+![editor_mode](https://files.persbot.app/docs/source/images/plugin/image-6.png)
 
-![editor_mode_fullscreen](https://files.astrbot.app/docs/source/images/plugin/image-7.png)
+![editor_mode_fullscreen](https://files.persbot.app/docs/source/images/plugin/image-7.png)
 
 The **_special** field is only available after v4.0.0. Currently supports `select_provider`, `select_provider_tts`, `select_provider_stt`, `select_persona`, allowing users to quickly select model providers, personas, and other data already configured in the WebUI. Results are all strings. Using select_provider as an example, it will present the following effect:
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-select-provider.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-select-provider.png)
 
 ### `file` type schema
 
@@ -83,7 +83,7 @@ Introduced in v4.13.0, this allows plugins to define file-upload configuration i
 
 ### `dict` type schema
 
-Used to visualize editing a Python `dict` type configuration. For example, AstrBot Core's custom extra body parameter configuration:
+Used to visualize editing a Python `dict` type configuration. For example, Persbot Core's custom extra body parameter configuration:
 
 ```py
 "custom_extra_body": {
@@ -122,7 +122,7 @@ Used to visualize editing a Python `dict` type configuration. For example, AstrB
 ### `template_list` type schema
 
 > [!NOTE]
-> Introduced in v4.10.4. For more details see: [#4208](https://github.com/AstrBotDevs/AstrBot/pull/4208)
+> Introduced in v4.10.4. For more details see: [#4208](https://github.com/PersbotDevs/Persbot/pull/4208)
 
 Plugin developers can add a template-style configuration to `_conf_schema` in the following format (somewhat similar to nested configs):
 
@@ -191,13 +191,13 @@ Saved config example:
 
 ## Using Configuration in Plugins
 
-When loading plugins, AstrBot will check if there's a `_conf_schema.json` file in the plugin directory. If it exists, it will automatically parse the configuration and save it under `data/config/<plugin_name>_config.json` (a configuration file entity created according to the Schema), and pass it to `__init__()` when instantiating the plugin class.
+When loading plugins, Persbot will check if there's a `_conf_schema.json` file in the plugin directory. If it exists, it will automatically parse the configuration and save it under `data/config/<plugin_name>_config.json` (a configuration file entity created according to the Schema), and pass it to `__init__()` when instantiating the plugin class.
 
 ```py
-from astrbot.api import AstrBotConfig
+from persbot.api import PersbotConfig
 
 class ConfigPlugin(Star):
-    def __init__(self, context: Context, config: AstrBotConfig): # AstrBotConfig inherits from Dict and has all dictionary methods
+    def __init__(self, context: Context, config: PersbotConfig): # PersbotConfig inherits from Dict and has all dictionary methods
         super().__init__(context)
         self.config = config
         print(self.config)
@@ -208,4 +208,4 @@ class ConfigPlugin(Star):
 
 ## Configuration Updates
 
-When you update the Schema across different versions, AstrBot will recursively inspect the configuration items in the Schema, automatically adding default values for missing items and removing those that no longer exist.
+When you update the Schema across different versions, Persbot will recursively inspect the configuration items in the Schema, automatically adding default values for missing items and removing those that no longer exist.

@@ -5,14 +5,14 @@ from pathlib import Path
 import pytest
 import yaml
 
-from astrbot.core.star.star_manager import PluginDependencyInstallError, PluginManager
-from astrbot.core.utils.pip_installer import PipInstallError
-from astrbot.core.utils.requirements_utils import MissingRequirementsPlan
+from persbot.core.star.star_manager import PluginDependencyInstallError, PluginManager
+from persbot.core.utils.pip_installer import PipInstallError
+from persbot.core.utils.requirements_utils import MissingRequirementsPlan
 
 # --- Test Data & Helpers ---
 
 TEST_PLUGIN_NAME = "helloworld"
-TEST_PLUGIN_REPO = "https://github.com/AstrBotDevs/astrbot_plugin_helloworld"
+TEST_PLUGIN_REPO = "https://github.com/PersbotDevs/persbot_plugin_helloworld"
 TEST_PLUGIN_DIR = "helloworld"
 
 
@@ -32,13 +32,13 @@ def _write_local_test_plugin(plugin_path: Path, repo_url: str):
         "name": TEST_PLUGIN_NAME,
         "repo": repo_url,
         "version": "1.0.0",
-        "author": "AstrBot Team",
+        "author": "Persbot Team",
         "desc": "Local test plugin",
     }
     with open(plugin_path / "info.yaml", "w", encoding="utf-8") as f:
         yaml.dump(metadata, f)
     with open(plugin_path / "main.py", "w", encoding="utf-8") as f:
-        f.write("from astrbot.api.star import Star, Context, StarManager\n")
+        f.write("from persbot.api.star import Star, Context, StarManager\n")
         f.write("@StarManager.register\n")
         f.write("class HelloWorld(Star):\n")
         f.write("    def __init__(self, context: Context): ...\n")
@@ -115,7 +115,7 @@ def _mock_missing_requirements_plan(
     fallback_reason: str | None = None,
 ):
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.plan_missing_requirements_install",
+        "persbot.core.star.star_manager.plan_missing_requirements_install",
         lambda requirements_path: MissingRequirementsPlan(
             missing_names=frozenset(missing_names),
             install_lines=tuple(install_lines),
@@ -126,7 +126,7 @@ def _mock_missing_requirements_plan(
 
 def _mock_precheck_fails(monkeypatch):
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.plan_missing_requirements_install",
+        "persbot.core.star.star_manager.plan_missing_requirements_install",
         lambda requirements_path: None,
     )
 
@@ -163,7 +163,7 @@ def plugin_manager_pm(tmp_path, monkeypatch):
     # Clear module cache before setup to ensure isolation
     _clear_module_cache()
 
-    plugin_dir = tmp_path / "astrbot_root" / "data" / "plugins"
+    plugin_dir = tmp_path / "persbot_root" / "data" / "plugins"
     plugin_dir.mkdir(parents=True, exist_ok=True)
 
     class MockContext:
@@ -186,7 +186,7 @@ def plugin_manager_pm(tmp_path, monkeypatch):
     # Patch paths to use tmp_path
     monkeypatch.setattr(pm, "plugin_store_path", str(plugin_dir))
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.get_astrbot_plugin_path",
+        "persbot.core.star.star_manager.get_persbot_plugin_path",
         lambda: str(plugin_dir),
     )
 
@@ -221,7 +221,7 @@ async def test_install_plugin_dependency_install_flow(
 
     monkeypatch.setattr(plugin_manager_pm.updator, "install", mock_install)
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, dependency_install_fails),
     )
 
@@ -272,7 +272,7 @@ async def test_install_plugin_from_file_dependency_install_flow(
 
     monkeypatch.setattr(plugin_manager_pm.updator, "unzip_file", mock_unzip_file)
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, dependency_install_fails),
     )
 
@@ -306,7 +306,7 @@ async def test_reload_failed_plugin_dependency_install_flow(
     _mock_missing_requirements(monkeypatch, {"networkx"})
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, dependency_install_fails),
     )
 
@@ -347,7 +347,7 @@ async def test_ensure_plugin_requirements_reraises_cancelled_error(
         raise asyncio.CancelledError()
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         mock_install_requirements,
     )
 
@@ -369,7 +369,7 @@ async def test_ensure_plugin_requirements_wraps_generic_dependency_install_failu
         raise RuntimeError("pip failed")
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         mock_install_requirements,
     )
 
@@ -395,7 +395,7 @@ async def test_ensure_plugin_requirements_wraps_pip_install_error(
         raise PipInstallError("install failed", code=2)
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         mock_install_requirements,
     )
 
@@ -422,11 +422,11 @@ async def test_ensure_plugin_requirements_logs_requirements_file_install_for_mis
         return None
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         mock_install_requirements,
     )
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.logger.info",
+        "persbot.core.star.star_manager.logger.info",
         lambda line, *args: logged_lines.append(line % args if args else line),
     )
 
@@ -459,7 +459,7 @@ async def test_update_plugin_dependency_install_flow(
 
     monkeypatch.setattr(plugin_manager_pm.updator, "update", mock_update)
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, dependency_install_fails),
     )
     monkeypatch.setattr(plugin_manager_pm, "reload", _build_reload_mock(events))
@@ -499,7 +499,7 @@ async def test_install_plugin_skips_dependency_install_when_no_requirements_miss
 
     monkeypatch.setattr(plugin_manager_pm.updator, "install", mock_install)
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, False),
     )
 
@@ -530,7 +530,7 @@ async def test_install_plugin_runs_dependency_install_when_precheck_fails(
     _mock_precheck_fails(monkeypatch)
     monkeypatch.setattr(plugin_manager_pm.updator, "install", mock_install)
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, False),
     )
 
@@ -565,7 +565,7 @@ async def test_ensure_plugin_requirements_installs_only_missing_requirement_line
     )
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, False, capture_content=True),
     )
 
@@ -593,11 +593,11 @@ async def test_ensure_plugin_requirements_creates_temp_dir_before_filtered_insta
     _mock_missing_requirements_plan(monkeypatch, {"boto3"}, ["boto3"])
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.get_astrbot_temp_path",
+        "persbot.core.star.star_manager.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, False, capture_content=True),
     )
 
@@ -619,7 +619,7 @@ async def test_ensure_plugin_requirements_falls_back_when_missing_names_have_no_
     events = []
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.plan_missing_requirements_install",
+        "persbot.core.star.star_manager.plan_missing_requirements_install",
         lambda path: MissingRequirementsPlan(
             missing_names=frozenset({"botocore"}),
             install_lines=(),
@@ -627,7 +627,7 @@ async def test_ensure_plugin_requirements_falls_back_when_missing_names_have_no_
         ),
     )
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         _build_dependency_install_mock(events, False),
     )
 
@@ -663,16 +663,16 @@ async def test_ensure_plugin_requirements_does_not_mask_install_error_when_clean
         return original_remove(path)
 
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.get_astrbot_temp_path",
+        "persbot.core.star.star_manager.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.pip_installer.install",
+        "persbot.core.star.star_manager.pip_installer.install",
         mock_install_requirements,
     )
-    monkeypatch.setattr("astrbot.core.star.star_manager.os.remove", flaky_remove)
+    monkeypatch.setattr("persbot.core.star.star_manager.os.remove", flaky_remove)
     monkeypatch.setattr(
-        "astrbot.core.star.star_manager.logger.warning",
+        "persbot.core.star.star_manager.logger.warning",
         lambda line, *args: warning_logs.append(line % args if args else line),
     )
 

@@ -27,7 +27,7 @@ Create a bot, fill in name/description/avatar, then submit for review. After sec
 
 Open the created bot to enter its management page:
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image.png)
 
 ## Allow Bot in Channel / Group / Private Chat
 
@@ -35,7 +35,7 @@ Open `Sandbox Configuration` to set a sandbox channel / QQ group / QQ private ch
 
 Then configure QQ groups, private chat QQ accounts, and QQ channels as needed.
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image-1.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image-1.png)
 
 ## Get `appid` and `secret`
 
@@ -45,11 +45,11 @@ After adding the bot where you need it, open `Development -> Development Setting
 
 Open `Development -> Development Settings`, find IP whitelist, and add your server IP.
 
-![image](https://files.astrbot.app/docs/source/images/qqofficial/image-3.png)
+![image](https://files.persbot.app/docs/source/images/qqofficial/image-3.png)
 
-## Configure in AstrBot
+## Configure in Persbot
 
-1. Open AstrBot Dashboard.
+1. Open Persbot Dashboard.
 2. Click `Bots` in the left sidebar.
 3. Click `+ Create Bot`.
 4. Select `qq_official_webhook`.
@@ -67,21 +67,21 @@ Click `Save`.
 
 In `Development -> Callback Configuration`, configure callback URL.
 
-Set request URL to `<your-domain>/astrbot-qo-webhook/callback`.
+Set request URL to `<your-domain>/persbot-qo-webhook/callback`.
 
-Your domain should reverse-proxy traffic to AstrBot port `6196` using `Caddy`, `Nginx`, or `Apache`.
+Your domain should reverse-proxy traffic to Persbot port `6196` using `Caddy`, `Nginx`, or `Apache`.
 
 Then add callback events and select all four event categories (private, group, channel, etc.).
 
-![image](https://files.astrbot.app/docs/source/images/webhook/image.png)
+![image](https://files.persbot.app/docs/source/images/webhook/image.png)
 
 After entering values, move focus out of the input box to trigger validation. If validation passes, the confirm button on the right becomes clickable.
 
-Then restart AstrBot.
+Then restart Persbot.
 
 ## Done
 
-AstrBot should now be connected. If messages do not respond immediately, wait 1-2 minutes, restart AstrBot, and test again.
+Persbot should now be connected. If messages do not respond immediately, wait 1-2 minutes, restart Persbot, and test again.
 
 ## Appendix: Reverse Proxy Setup
 

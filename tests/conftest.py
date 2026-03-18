@@ -1,5 +1,5 @@
 """
-AstrBot 测试配置
+Persbot 测试配置
 
 提供共享的 pytest fixtures 和测试工具。
 """
@@ -25,7 +25,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 # 设置测试环境变量
 os.environ.setdefault("TESTING", "true")
-os.environ.setdefault("ASTRBOT_TEST_MODE", "true")
+os.environ.setdefault("PERSBOT_TEST_MODE", "true")
 
 
 # ============================================================
@@ -39,7 +39,7 @@ def pytest_collection_modifyitems(session, config, items):  # noqa: ARG001
     integration_tests = []
     deselected = []
     profile = config.getoption("--test-profile") or os.environ.get(
-        "ASTRBOT_TEST_PROFILE", "all"
+        "PERSBOT_TEST_PROFILE", "all"
     )
 
     for item in items:
@@ -196,7 +196,7 @@ def mock_platform():
 @pytest.fixture
 def mock_conversation():
     """创建模拟的 Conversation。"""
-    from astrbot.core.db.po import ConversationV2
+    from persbot.core.db.po import ConversationV2
 
     return ConversationV2(
         conversation_id="test-conv-id",
@@ -238,11 +238,11 @@ def mock_event():
 
 
 @pytest.fixture
-def astrbot_config(temp_config_file: Path):
-    """创建 AstrBotConfig 实例。"""
-    from astrbot.core.config.astrbot_config import AstrBotConfig
+def persbot_config(temp_config_file: Path):
+    """创建 PersbotConfig 实例。"""
+    from persbot.core.config.persbot_config import PersbotConfig
 
-    config = AstrBotConfig()
+    config = PersbotConfig()
     config._config_path = str(temp_config_file)  # noqa: SLF001
     return config
 
@@ -250,7 +250,7 @@ def astrbot_config(temp_config_file: Path):
 @pytest.fixture
 def main_agent_build_config():
     """创建 MainAgentBuildConfig 实例。"""
-    from astrbot.core.astr_main_agent import MainAgentBuildConfig
+    from persbot.core.astr_main_agent import MainAgentBuildConfig
 
     return MainAgentBuildConfig(
         tool_call_timeout=60,
@@ -275,7 +275,7 @@ def main_agent_build_config():
 @pytest_asyncio.fixture
 async def temp_db(temp_db_file: Path):
     """创建临时数据库实例。"""
-    from astrbot.core.db.sqlite import SQLiteDatabase
+    from persbot.core.db.sqlite import SQLiteDatabase
 
     db = SQLiteDatabase(str(temp_db_file))
     try:
@@ -293,7 +293,7 @@ async def temp_db(temp_db_file: Path):
 
 @pytest_asyncio.fixture
 async def mock_context(
-    astrbot_config,
+    persbot_config,
     temp_db,
     mock_provider,
     mock_platform,
@@ -301,7 +301,7 @@ async def mock_context(
     """创建模拟的插件上下文。"""
     from asyncio import Queue
 
-    from astrbot.core.star.context import Context
+    from persbot.core.star.context import Context
 
     event_queue = Queue()
 
@@ -314,21 +314,21 @@ async def mock_context(
     message_history_manager = MagicMock()
     persona_manager = MagicMock()
     persona_manager.personas_v3 = []
-    astrbot_config_mgr = MagicMock()
+    persbot_config_mgr = MagicMock()
     knowledge_base_manager = MagicMock()
     cron_manager = MagicMock()
     subagent_orchestrator = None
 
     context = Context(
         event_queue,
-        astrbot_config,
+        persbot_config,
         temp_db,
         provider_manager,
         platform_manager,
         conversation_manager,
         message_history_manager,
         persona_manager,
-        astrbot_config_mgr,
+        persbot_config_mgr,
         knowledge_base_manager,
         cron_manager,
         subagent_orchestrator,
@@ -345,7 +345,7 @@ async def mock_context(
 @pytest.fixture
 def provider_request():
     """创建 ProviderRequest 实例。"""
-    from astrbot.core.provider.entities import ProviderRequest
+    from persbot.core.provider.entities import ProviderRequest
 
     return ProviderRequest(
         prompt="Hello",

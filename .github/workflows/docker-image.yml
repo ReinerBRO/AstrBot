@@ -11,11 +11,11 @@ on:
 
 jobs:
   build-nightly-image:
-    if: github.repository == 'AstrBotDevs/AstrBot' && github.event_name == 'schedule'
+    if: github.repository == 'PersbotDevs/Persbot' && github.event_name == 'schedule'
     runs-on: ubuntu-latest
     env:
       DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-      GHCR_OWNER: astrbotdevs
+      GHCR_OWNER: persbotdevs
       HAS_GHCR_TOKEN: ${{ secrets.GHCR_GITHUB_TOKEN != '' }}
 
     steps:
@@ -86,12 +86,12 @@ jobs:
       - name: Build nightly image tags list
         id: test-tags
         run: |
-          TAGS="${{ env.DOCKER_HUB_USERNAME }}/astrbot:nightly-latest
-          ${{ env.DOCKER_HUB_USERNAME }}/astrbot:nightly-${{ steps.test-meta.outputs.build_date }}-${{ steps.test-meta.outputs.short_sha }}"
+          TAGS="${{ env.DOCKER_HUB_USERNAME }}/persbot:nightly-latest
+          ${{ env.DOCKER_HUB_USERNAME }}/persbot:nightly-${{ steps.test-meta.outputs.build_date }}-${{ steps.test-meta.outputs.short_sha }}"
           if [ "${{ env.HAS_GHCR_TOKEN }}" = "true" ]; then
             TAGS="$TAGS
-          ghcr.io/${{ env.GHCR_OWNER }}/astrbot:nightly-latest
-          ghcr.io/${{ env.GHCR_OWNER }}/astrbot:nightly-${{ steps.test-meta.outputs.build_date }}-${{ steps.test-meta.outputs.short_sha }}"
+          ghcr.io/${{ env.GHCR_OWNER }}/persbot:nightly-latest
+          ghcr.io/${{ env.GHCR_OWNER }}/persbot:nightly-${{ steps.test-meta.outputs.build_date }}-${{ steps.test-meta.outputs.short_sha }}"
           fi
           echo "tags<<EOF" >> $GITHUB_OUTPUT
           echo "$TAGS" >> $GITHUB_OUTPUT
@@ -109,11 +109,11 @@ jobs:
         run: echo "Test Docker image has been built and pushed successfully"
 
   build-release-image:
-    if: github.repository == 'AstrBotDevs/AstrBot' && (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')))
+    if: github.repository == 'PersbotDevs/Persbot' && (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')))
     runs-on: ubuntu-latest
     env:
       DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-      GHCR_OWNER: astrbotdevs
+      GHCR_OWNER: persbotdevs
       HAS_GHCR_TOKEN: ${{ secrets.GHCR_GITHUB_TOKEN != '' }}
 
     steps:
@@ -189,10 +189,10 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ steps.release-meta.outputs.is_prerelease == 'false' && format('{0}/astrbot:latest', env.DOCKER_HUB_USERNAME) || '' }}
-            ${{ steps.release-meta.outputs.is_prerelease == 'false' && env.HAS_GHCR_TOKEN == 'true' && format('ghcr.io/{0}/astrbot:latest', env.GHCR_OWNER) || '' }}
-            ${{ format('{0}/astrbot:{1}', env.DOCKER_HUB_USERNAME, steps.release-meta.outputs.version) }}
-            ${{ env.HAS_GHCR_TOKEN == 'true' && format('ghcr.io/{0}/astrbot:{1}', env.GHCR_OWNER, steps.release-meta.outputs.version) || '' }}
+            ${{ steps.release-meta.outputs.is_prerelease == 'false' && format('{0}/persbot:latest', env.DOCKER_HUB_USERNAME) || '' }}
+            ${{ steps.release-meta.outputs.is_prerelease == 'false' && env.HAS_GHCR_TOKEN == 'true' && format('ghcr.io/{0}/persbot:latest', env.GHCR_OWNER) || '' }}
+            ${{ format('{0}/persbot:{1}', env.DOCKER_HUB_USERNAME, steps.release-meta.outputs.version) }}
+            ${{ env.HAS_GHCR_TOKEN == 'true' && format('ghcr.io/{0}/persbot:{1}', env.GHCR_OWNER, steps.release-meta.outputs.version) || '' }}
 
       - name: Post build notifications
         run: echo "Release Docker image has been built and pushed successfully"

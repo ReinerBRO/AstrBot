@@ -1,20 +1,54 @@
 /*This is for the logo*/
 .leftSidebar {
-  border: 0px;
-  border-right: 1px solid rgba(var(--v-theme-borderLight), 0.45);
-  box-shadow: none !important;
+  border: 1px solid var(--persbot-stroke-soft);
+  border-right-color: var(--persbot-stroke-strong);
+  background: var(--persbot-panel-bg) !important;
+  box-shadow: var(--persbot-shadow-soft) !important;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
 }
 .listitem {
   overflow-y: auto;
+
   .v-list {
+    padding: 4px;
     color: rgb(var(--v-theme-secondaryText));
+    background: transparent;
   }
+
   .v-list-group__items .v-list-item,
   .v-list-item {
-    border-radius: $border-radius-root;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    margin-bottom: 6px;
     padding-inline-start: calc(12px + var(--indent-padding) / 2) !important;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+
     &:hover {
-      color: rgb(var(--v-theme-secondary));
+      color: rgb(var(--v-theme-primary));
+      background: rgba(var(--v-theme-primary), 0.08);
+      border-color: rgba(var(--v-theme-primary), 0.08);
+      transform: translateX(2px);
+    }
+
+    &.v-list-item--active {
+      color: rgb(var(--v-theme-primary));
+      background:
+        linear-gradient(135deg, rgba(var(--v-theme-primary), 0.16) 0%, rgba(var(--v-theme-secondary), 0.08) 100%);
+      border-color: rgba(var(--v-theme-primary), 0.14);
+
+      .v-list-item-title,
+      .v-icon {
+        color: rgb(var(--v-theme-primary)) !important;
+      }
+    }
+
+    .v-list-item-title {
+      font-weight: 500;
     }
   }
   .v-list-item--density-default.v-list-item--one-line {
@@ -22,31 +56,29 @@
   }
 }
 
-// 深色主题下的侧边栏悬停和选中样式
-.v-theme--PurpleThemeDark .leftSidebar {
+.v-theme--PersbotDarkTheme .leftSidebar {
   .listitem {
     .v-list-group__items .v-list-item,
     .v-list-item {
       &:hover {
         color: rgb(var(--v-theme-primary)) !important;
-        
+
         .v-list-item-title {
           color: rgb(var(--v-theme-primary)) !important;
         }
-        
+
         .v-icon {
           color: rgb(var(--v-theme-primary)) !important;
         }
       }
-      
-      // 选中状态的样式
+
       &.v-list-item--active {
         color: rgb(var(--v-theme-primary)) !important;
-        
+
         .v-list-item-title {
           color: rgb(var(--v-theme-primary)) !important;
         }
-        
+
         .v-icon {
           color: rgb(var(--v-theme-primary)) !important;
         }
@@ -93,22 +125,24 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    
+
     .flex-grow-1 {
       flex: 1 1 auto;
       overflow-y: auto;
     }
-    
+
     .sidebar-footer {
       padding: 16px;
-      background: inherit;
+      background:
+        linear-gradient(180deg, rgba(var(--v-theme-primary), 0) 0%, rgba(var(--v-theme-primary), 0.04) 100%);
+      border-top: 1px solid var(--persbot-stroke-soft);
       display: flex;
       flex-direction: column;
       align-items: center;
       font-size: 13px;
       text-align: center;
       flex-shrink: 0;
-      
+
       .v-btn {
         width: 100%;
         max-width: 180px;
@@ -118,6 +152,7 @@
       .sidebar-footer-btn {
         justify-content: flex-start;
         text-align: left;
+        border-radius: 14px;
       }
     }
   }

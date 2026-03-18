@@ -3,9 +3,9 @@ from types import SimpleNamespace
 import mcp
 import pytest
 
-from astrbot.core.agent.run_context import ContextWrapper
-from astrbot.core.astr_agent_tool_exec import FunctionToolExecutor
-from astrbot.core.message.components import Image
+from persbot.core.agent.run_context import ContextWrapper
+from persbot.core.astr_agent_tool_exec import FunctionToolExecutor
+from persbot.core.message.components import Image
 
 
 class _DummyEvent:
@@ -207,7 +207,7 @@ async def test_execute_handoff_skips_renormalize_when_image_urls_prepared(
     )
 
     monkeypatch.setattr(
-        "astrbot.core.astr_agent_tool_exec.normalize_and_dedupe_strings", _boom
+        "persbot.core.astr_agent_tool_exec.normalize_and_dedupe_strings", _boom
     )
 
     results = []
@@ -229,14 +229,14 @@ async def test_collect_handoff_image_urls_keeps_extensionless_existing_event_fil
     monkeypatch: pytest.MonkeyPatch,
 ):
     async def _fake_convert_to_file_path(self):
-        return "/tmp/astrbot-handoff-image"
+        return "/tmp/persbot-handoff-image"
 
     monkeypatch.setattr(Image, "convert_to_file_path", _fake_convert_to_file_path)
     monkeypatch.setattr(
-        "astrbot.core.astr_agent_tool_exec.get_astrbot_temp_path", lambda: "/tmp"
+        "persbot.core.astr_agent_tool_exec.get_persbot_temp_path", lambda: "/tmp"
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.image_ref_utils.os.path.exists", lambda _: True
+        "persbot.core.utils.image_ref_utils.os.path.exists", lambda _: True
     )
 
     run_context = _build_run_context([Image(file="file:///tmp/original.png")])
@@ -245,7 +245,7 @@ async def test_collect_handoff_image_urls_keeps_extensionless_existing_event_fil
         [],
     )
 
-    assert image_urls == ["/tmp/astrbot-handoff-image"]
+    assert image_urls == ["/tmp/persbot-handoff-image"]
 
 
 @pytest.mark.asyncio
@@ -253,14 +253,14 @@ async def test_collect_handoff_image_urls_filters_extensionless_missing_event_fi
     monkeypatch: pytest.MonkeyPatch,
 ):
     async def _fake_convert_to_file_path(self):
-        return "/tmp/astrbot-handoff-missing-image"
+        return "/tmp/persbot-handoff-missing-image"
 
     monkeypatch.setattr(Image, "convert_to_file_path", _fake_convert_to_file_path)
     monkeypatch.setattr(
-        "astrbot.core.astr_agent_tool_exec.get_astrbot_temp_path", lambda: "/tmp"
+        "persbot.core.astr_agent_tool_exec.get_persbot_temp_path", lambda: "/tmp"
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.image_ref_utils.os.path.exists", lambda _: False
+        "persbot.core.utils.image_ref_utils.os.path.exists", lambda _: False
     )
 
     run_context = _build_run_context([Image(file="file:///tmp/original.png")])
@@ -277,14 +277,14 @@ async def test_collect_handoff_image_urls_filters_extensionless_file_outside_tem
     monkeypatch: pytest.MonkeyPatch,
 ):
     async def _fake_convert_to_file_path(self):
-        return "/var/tmp/astrbot-handoff-image"
+        return "/var/tmp/persbot-handoff-image"
 
     monkeypatch.setattr(Image, "convert_to_file_path", _fake_convert_to_file_path)
     monkeypatch.setattr(
-        "astrbot.core.astr_agent_tool_exec.get_astrbot_temp_path", lambda: "/tmp"
+        "persbot.core.astr_agent_tool_exec.get_persbot_temp_path", lambda: "/tmp"
     )
     monkeypatch.setattr(
-        "astrbot.core.utils.image_ref_utils.os.path.exists", lambda _: True
+        "persbot.core.utils.image_ref_utils.os.path.exists", lambda _: True
     )
 
     run_context = _build_run_context([Image(file="file:///tmp/original.png")])

@@ -293,7 +293,7 @@ export default {
 :deep(.console-log-line) {
   display: block;
   margin-bottom: 2px;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, var(--astrbot-font-cjk-mono), monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, var(--persbot-font-cjk-mono), monospace;
   font-size: 12px;
   white-space: pre-wrap;
 }

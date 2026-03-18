@@ -4,7 +4,7 @@ outline: deep
 
 # 开发一个平台适配器
 
-AstrBot 支持以插件的形式接入平台适配器，你可以自行接入 AstrBot 没有的平台。如飞书、钉钉甚至是哔哩哔哩私信、Minecraft。
+Persbot 支持以插件的形式接入平台适配器，你可以自行接入 Persbot 没有的平台。如飞书、钉钉甚至是哔哩哔哩私信、Minecraft。
 
 我们以一个平台 `FakePlatform` 为例展开讲解。
 
@@ -48,12 +48,12 @@ class FakeClient():
 ```py
 import asyncio
 
-from astrbot.api.platform import Platform, AstrBotMessage, MessageMember, PlatformMetadata, MessageType
-from astrbot.api.event import MessageChain
-from astrbot.api.message_components import Plain, Image, Record # 消息链中的组件，可以根据需要导入
-from astrbot.core.platform.astr_message_event import MessageSesion
-from astrbot.api.platform import register_platform_adapter
-from astrbot import logger
+from persbot.api.platform import Platform, PersbotMessage, MessageMember, PlatformMetadata, MessageType
+from persbot.api.event import MessageChain
+from persbot.api.message_components import Plain, Image, Record # 消息链中的组件，可以根据需要导入
+from persbot.core.platform.astr_message_event import MessageSesion
+from persbot.api.platform import register_platform_adapter
+from persbot import logger
 from .client import FakeClient
 from .fake_platform_event import FakePlatformEvent
             
@@ -86,7 +86,7 @@ class FakePlatformAdapter(Platform):
         # FakeClient 是我们自己定义的，这里只是示例。这个是其回调函数
         async def on_received(data):
             logger.info(data)
-            abm = await self.convert_message(data=data) # 转换成 AstrBotMessage
+            abm = await self.convert_message(data=data) # 转换成 PersbotMessage
             await self.handle_msg(abm) 
         
         # 初始化 FakeClient
@@ -94,10 +94,10 @@ class FakePlatformAdapter(Platform):
         self.client.on_message_received = on_received
         await self.client.start_polling() # 持续监听消息，这是个堵塞方法。
 
-    async def convert_message(self, data: dict) -> AstrBotMessage:
-        # 将平台消息转换成 AstrBotMessage
+    async def convert_message(self, data: dict) -> PersbotMessage:
+        # 将平台消息转换成 PersbotMessage
         # 这里就体现了适配程度，不同平台的消息结构不一样，这里需要根据实际情况进行转换。
-        abm = AstrBotMessage()
+        abm = PersbotMessage()
         abm.type = MessageType.GROUP_MESSAGE # 还有 friend_message，对应私聊。具体平台具体分析。重要！
         abm.group_id = data['group_id'] # 如果是私聊，这里可以不填
         abm.message_str = data['content'] # 纯文本消息。重要！
@@ -110,7 +110,7 @@ class FakePlatformAdapter(Platform):
         
         return abm
     
-    async def handle_msg(self, message: AstrBotMessage):
+    async def handle_msg(self, message: PersbotMessage):
         # 处理消息
         message_event = FakePlatformEvent(
             message_str=message.message_str,
@@ -126,14 +126,14 @@ class FakePlatformAdapter(Platform):
 `fake_platform_event.py`：
 
 ```py
-from astrbot.api.event import AstrMessageEvent, MessageChain
-from astrbot.api.platform import AstrBotMessage, PlatformMetadata
-from astrbot.api.message_components import Plain, Image
+from persbot.api.event import AstrMessageEvent, MessageChain
+from persbot.api.platform import PersbotMessage, PlatformMetadata
+from persbot.api.message_components import Plain, Image
 from .client import FakeClient
-from astrbot.core.utils.io import download_image_by_url
+from persbot.core.utils.io import download_image_by_url
 
 class FakePlatformEvent(AstrMessageEvent):
-    def __init__(self, message_str: str, message_obj: AstrBotMessage, platform_meta: PlatformMetadata, session_id: str, client: FakeClient):
+    def __init__(self, message_str: str, message_obj: PersbotMessage, platform_meta: PlatformMetadata, session_id: str, client: FakeClient):
         super().__init__(message_str, message_obj, platform_meta, session_id)
         self.client = client
         
@@ -162,24 +162,24 @@ class FakePlatformEvent(AstrMessageEvent):
 最后，main.py 只需这样，在初始化的时候导入 fake_platform_adapter 模块。装饰器会自动注册。
 
 ```py
-from astrbot.api.star import Context, Star
+from persbot.api.star import Context, Star
 
 class MyPlugin(Star):
     def __init__(self, context: Context):
         from .fake_platform_adapter import FakePlatformAdapter # noqa
 ```
 
-搞好后，运行 AstrBot：
+搞好后，运行 Persbot：
 
-![image](https://files.astrbot.app/docs/source/images/plugin-platform-adapter/QQ_1738155926221.png)
+![image](https://files.persbot.app/docs/source/images/plugin-platform-adapter/QQ_1738155926221.png)
 
 这里出现了我们创建的 fake。
 
-![image](https://files.astrbot.app/docs/source/images/plugin-platform-adapter/QQ_1738155982211.png)
+![image](https://files.persbot.app/docs/source/images/plugin-platform-adapter/QQ_1738155982211.png)
 
 启动后，可以看到正常工作：
 
-![image](https://files.astrbot.app/docs/source/images/plugin-platform-adapter/QQ_1738156166893.png)
+![image](https://files.persbot.app/docs/source/images/plugin-platform-adapter/QQ_1738156166893.png)
 
 
 有任何疑问欢迎加群询问~

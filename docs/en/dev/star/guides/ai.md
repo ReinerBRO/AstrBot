@@ -1,9 +1,9 @@
 
 # AI
 
-AstrBot provides built-in support for multiple Large Language Model (LLM) providers and offers a unified interface, making it convenient for plugin developers to access various LLM services.
+Persbot provides built-in support for multiple Large Language Model (LLM) providers and offers a unified interface, making it convenient for plugin developers to access various LLM services.
 
-You can use the LLM / Agent interfaces provided by AstrBot to implement your own intelligent agents.
+You can use the LLM / Agent interfaces provided by Persbot to implement your own intelligent agents.
 
 Starting from version `v4.5.7`, we've made significant improvements to the way LLM providers are invoked. We recommend using the new approach, which is more concise and supports additional features. The legacy invocation method remains documented in the previous Chinese-only guide.
 
@@ -39,9 +39,9 @@ Tools enable large language models to invoke external capabilities.
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
-from astrbot.core.agent.run_context import ContextWrapper
-from astrbot.core.agent.tool import FunctionTool, ToolExecResult
-from astrbot.core.astr_agent_context import AstrAgentContext
+from persbot.core.agent.run_context import ContextWrapper
+from persbot.core.agent.tool import FunctionTool, ToolExecResult
+from persbot.core.astr_agent_context import AstrAgentContext
 
 
 @dataclass
@@ -64,7 +64,7 @@ class BilibiliTool(FunctionTool[AstrAgentContext]):
     async def call(
         self, context: ContextWrapper[AstrAgentContext], **kwargs
     ) -> ToolExecResult:
-        return "1. Video Title: How to Use AstrBot\nVideo Link: xxxxxx"
+        return "1. Video Title: How to Use Persbot\nVideo Link: xxxxxx"
 ```
 
 ## Invoking Agents
@@ -81,7 +81,7 @@ After defining the Tool above, you can invoke an Agent as follows:
 llm_resp = await self.context.tool_loop_agent(
     event=event,
     chat_provider_id=prov_id,
-    prompt="Search for videos related to AstrBot on Bilibili.",
+    prompt="Search for videos related to Persbot on Bilibili.",
     tools=ToolSet([BilibiliTool()]),
     max_steps=30, # Maximum agent execution steps
     tool_call_timeout=60, # Tool invocation timeout
@@ -101,7 +101,7 @@ Multi-Agent systems decompose complex applications into multiple specialized age
 
 In the example below, we define a Main Agent responsible for delegating tasks to different Sub-Agents based on user queries. Each Sub-Agent focuses on specific tasks, such as retrieving weather information.
 
-![multi-agent-example-1](https://files.astrbot.app/docs/en/dev/star/guides/multi-agent-example-1.svg)
+![multi-agent-example-1](https://files.persbot.app/docs/en/dev/star/guides/multi-agent-example-1.svg)
 
 Define Tools:
 
@@ -249,7 +249,7 @@ async def test(self, event: AstrMessageEvent):
 ### Getting the Current LLM Conversation History for a Session
 
 ```py
-from astrbot.core.conversation_mgr import Conversation
+from persbot.core.conversation_mgr import Conversation
 
 uid = event.unified_msg_origin
 conv_mgr = self.context.conversation_manager
@@ -265,7 +265,7 @@ class Conversation:
     """The conversation entity representing a chat session."""
 
     platform_id: str
-    """The platform ID in AstrBot"""
+    """The platform ID in Persbot"""
     user_id: str
     """The user ID associated with the conversation."""
     cid: str
@@ -364,7 +364,7 @@ class Conversation:
 
 ## Persona Manager
 
-`PersonaManager` is responsible for unified loading, caching, and providing CRUD interfaces for all Personas, while maintaining compatibility with the legacy persona format (v3) from before AstrBot 4.x.  
+`PersonaManager` is responsible for unified loading, caching, and providing CRUD interfaces for all Personas, while maintaining compatibility with the legacy persona format (v3) from before Persbot 4.x.  
 During initialization, it automatically reads all personas from the database and generates v3-compatible data for seamless use with legacy code.
 
 ```py

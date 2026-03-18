@@ -8,11 +8,11 @@ import pytest_asyncio
 from quart import Quart, g, request
 from werkzeug.datastructures import FileStorage
 
-from astrbot.core import LogBroker
-from astrbot.core.core_lifecycle import AstrBotCoreLifecycle
-from astrbot.core.db.sqlite import SQLiteDatabase
-from astrbot.dashboard.routes.route import Response
-from astrbot.dashboard.server import AstrBotDashboard
+from persbot.core import LogBroker
+from persbot.core.core_lifecycle import PersbotCoreLifecycle
+from persbot.core.db.sqlite import SQLiteDatabase
+from persbot.dashboard.routes.route import Response
+from persbot.dashboard.server import PersbotDashboard
 
 
 def _get_open_api_route(app: Quart):
@@ -52,7 +52,7 @@ async def core_lifecycle_td(tmp_path_factory):
     tmp_db_path = tmp_path_factory.mktemp("data") / "test_data_api_key.db"
     db = SQLiteDatabase(str(tmp_db_path))
     log_broker = LogBroker()
-    core_lifecycle = AstrBotCoreLifecycle(log_broker, db)
+    core_lifecycle = PersbotCoreLifecycle(log_broker, db)
     await core_lifecycle.initialize()
     try:
         yield core_lifecycle
@@ -66,20 +66,20 @@ async def core_lifecycle_td(tmp_path_factory):
 
 
 @pytest.fixture(scope="module")
-def app(core_lifecycle_td: AstrBotCoreLifecycle):
+def app(core_lifecycle_td: PersbotCoreLifecycle):
     shutdown_event = asyncio.Event()
-    server = AstrBotDashboard(core_lifecycle_td, core_lifecycle_td.db, shutdown_event)
+    server = PersbotDashboard(core_lifecycle_td, core_lifecycle_td.db, shutdown_event)
     return server.app
 
 
 @pytest_asyncio.fixture(scope="module")
-async def authenticated_header(app: Quart, core_lifecycle_td: AstrBotCoreLifecycle):
+async def authenticated_header(app: Quart, core_lifecycle_td: PersbotCoreLifecycle):
     test_client = app.test_client()
     response = await test_client.post(
         "/api/auth/login",
         json={
-            "username": core_lifecycle_td.astrbot_config["dashboard"]["username"],
-            "password": core_lifecycle_td.astrbot_config["dashboard"]["password"],
+            "username": core_lifecycle_td.persbot_config["dashboard"]["username"],
+            "password": core_lifecycle_td.persbot_config["dashboard"]["password"],
         },
     )
     data = await response.get_json()
@@ -170,7 +170,7 @@ async def test_open_send_message_with_api_key(app: Quart, authenticated_header: 
 async def test_open_chat_send_auto_session_id_and_username(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
 ):
     test_client = app.test_client()
 
@@ -261,7 +261,7 @@ async def test_open_chat_send_auto_session_id_and_username(
 async def test_open_chat_sessions_pagination(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
 ):
     test_client = app.test_client()
 
@@ -400,7 +400,7 @@ async def test_open_api_auth_validation_and_key_carriers(
 async def test_open_chat_send_conversation_alias_and_blank_username(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
     monkeypatch: pytest.MonkeyPatch,
 ):
     test_client = app.test_client()
@@ -600,7 +600,7 @@ async def test_open_chat_send_config_resolution(
 async def test_open_chat_sessions_input_validation_and_filtering(
     app: Quart,
     authenticated_header: dict,
-    core_lifecycle_td: AstrBotCoreLifecycle,
+    core_lifecycle_td: PersbotCoreLifecycle,
 ):
     test_client = app.test_client()
     raw_key, _ = await _create_api_key(
