@@ -27,7 +27,7 @@ class AuthRoute(Route):
             change_pwd_hint = False
             if (
                 username == "persbot"
-                and password == "77b90590a8945a7d36c963981a307dc9"
+                and password == "cde11b5fa67818341034a32dee52ed9a"
                 and not DEMO_MODE
             ):
                 change_pwd_hint = True
