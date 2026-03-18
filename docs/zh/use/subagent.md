@@ -1,10 +1,10 @@
 # Agent Handsoff 与 Subagent
 
-SubAgent 编排是 AstrBot 提供的一种高级 Agent 组织方式。它允许你将复杂的任务分解给多个专门的子 Agent（SubAgent）来完成，从而降低主 Agent 的 Prompt 长度，提高任务执行的成功率。
+SubAgent 编排是 Persbot 提供的一种高级 Agent 组织方式。它允许你将复杂的任务分解给多个专门的子 Agent（SubAgent）来完成，从而降低主 Agent 的 Prompt 长度，提高任务执行的成功率。
 
 在 v4.14.0 引入，目前是**实验性功能**，未稳定。
 
-![](https://files.astrbot.app/docs/source/images/subagent/image.png)
+![](https://files.persbot.app/docs/source/images/subagent/image.png)
 
 ## 动机
 
@@ -22,11 +22,11 @@ SubAgent 编排是 AstrBot 提供的一种高级 Agent 组织方式。它允许�
 3. **子 Agent 执行**：SubAgent 接收到任务后，使用其挂载的工具进行操作，并将结果整理后回传给主 Agent。
 4. **结果反馈**：主 Agent 收到 SubAgent 的执行结果，继续与用户对话。
 
-![](https://files.astrbot.app/docs/source/images/subagent/1.png)
+![](https://files.persbot.app/docs/source/images/subagent/1.png)
 
 ## 配置方法
 
-在 AstrBot WebUI 中，点击左侧导航栏的 **SubAgent 编排**。
+在 Persbot WebUI 中，点击左侧导航栏的 **SubAgent 编排**。
 
 ### 1. 启用 SubAgent 模式
 

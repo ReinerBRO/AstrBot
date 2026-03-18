@@ -32,7 +32,7 @@
                 </div>
             </transition>
             <textarea ref="inputField" v-model="localPrompt" @keydown="handleKeyDown" :disabled="disabled"
-                placeholder="Ask AstrBot..." class="chat-textarea"
+                placeholder="Ask Persbot..." class="chat-textarea"
                 autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="false"
                 style="width: 100%; resize: none; outline: none; border: 1px solid var(--v-theme-border); border-radius: 12px; padding: 16px 20px; min-height: 40px; max-height: 200px; overflow-y: auto; font-family: inherit; font-size: 16px; background-color: var(--v-theme-surface);"></textarea>
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 14px;">
@@ -202,7 +202,7 @@ const emit = defineEmits<{
 }>();
 
 const { tm } = useModuleI18n('features/chat');
-const isDark = computed(() => useCustomizerStore().uiTheme === 'PurpleThemeDark');
+const isDark = computed(() => useCustomizerStore().uiTheme === 'PersbotDarkTheme');
 
 const inputField = ref<HTMLTextAreaElement | null>(null);
 const imageInputRef = ref<HTMLInputElement | null>(null);

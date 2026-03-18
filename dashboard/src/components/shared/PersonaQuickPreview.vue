@@ -221,11 +221,11 @@ loadToolsMeta()
 loadSkillsMeta()
 
 onMounted(() => {
-  window.addEventListener('astrbot:persona-saved', handlePersonaSaved)
+  window.addEventListener('persbot:persona-saved', handlePersonaSaved)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('astrbot:persona-saved', handlePersonaSaved)
+  window.removeEventListener('persbot:persona-saved', handlePersonaSaved)
 })
 </script>
 

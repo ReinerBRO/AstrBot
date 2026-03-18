@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 from pathlib import Path
 
-from astrbot.core.computer import computer_client
+from persbot.core.computer import computer_client
 
 
 class _FakeShell:
@@ -46,15 +46,15 @@ def test_sync_skills_keeps_builtin_skills_when_local_is_empty(monkeypatch, tmp_p
         captured["skills"] = skills
 
     monkeypatch.setattr(
-        "astrbot.core.computer.computer_client.get_astrbot_skills_path",
+        "persbot.core.computer.computer_client.get_persbot_skills_path",
         lambda: str(skills_root),
     )
     monkeypatch.setattr(
-        "astrbot.core.computer.computer_client.get_astrbot_temp_path",
+        "persbot.core.computer.computer_client.get_persbot_temp_path",
         lambda: str(temp_root),
     )
     monkeypatch.setattr(
-        "astrbot.core.computer.computer_client.SkillManager.set_sandbox_skills_cache",
+        "persbot.core.computer.computer_client.SkillManager.set_sandbox_skills_cache",
         _fake_set_cache,
     )
 
@@ -91,15 +91,15 @@ def test_sync_skills_uses_managed_strategy_instead_of_wiping_all(
         captured["skills"] = skills
 
     monkeypatch.setattr(
-        "astrbot.core.computer.computer_client.get_astrbot_skills_path",
+        "persbot.core.computer.computer_client.get_persbot_skills_path",
         lambda: str(skills_root),
     )
     monkeypatch.setattr(
-        "astrbot.core.computer.computer_client.get_astrbot_temp_path",
+        "persbot.core.computer.computer_client.get_persbot_temp_path",
         lambda: str(temp_root),
     )
     monkeypatch.setattr(
-        "astrbot.core.computer.computer_client.SkillManager.set_sandbox_skills_cache",
+        "persbot.core.computer.computer_client.SkillManager.set_sandbox_skills_cache",
         _fake_set_cache,
     )
 

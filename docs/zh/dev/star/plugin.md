@@ -15,46 +15,46 @@ outline: deep
 
 ### 获取插件模板
 
-1. 打开 AstrBot 插件模板: [helloworld](https://github.com/Soulter/helloworld)
+1. 打开 Persbot 插件模板: [helloworld](https://github.com/Soulter/helloworld)
 2. 点击右上角的 `Use this template`
 3. 然后点击 `Create new repository`。
 4. 在 `Repository name` 处填写您的插件名。插件名格式:
-   - 推荐以 `astrbot_plugin_` 开头；
+   - 推荐以 `persbot_plugin_` 开头；
    - 不能包含空格；
    - 保持全部字母小写；
    - 尽量简短。
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image.png)
 
 5. 点击右下角的 `Create repository`。
 
-### Clone 插件和 AstrBot 项目
+### Clone 插件和 Persbot 项目
 
-Clone AstrBot 项目本体和刚刚创建的插件仓库到本地。
+Clone Persbot 项目本体和刚刚创建的插件仓库到本地。
 
 ```bash
-git clone https://github.com/AstrBotDevs/AstrBot
-mkdir -p AstrBot/data/plugins
-cd AstrBot/data/plugins
+git clone https://github.com/PersbotDevs/Persbot
+mkdir -p Persbot/data/plugins
+cd Persbot/data/plugins
 git clone 插件仓库地址
 ```
 
-然后，使用 `VSCode` 打开 `AstrBot` 项目。找到 `data/plugins/<你的插件名字>` 目录。
+然后，使用 `VSCode` 打开 `Persbot` 项目。找到 `data/plugins/<你的插件名字>` 目录。
 
 更新 `metadata.yaml` 文件，填写插件的元数据信息。
 
 > [!NOTE]
-> AstrBot 插件市场的信息展示依赖于 `metadata.yaml` 文件。
+> Persbot 插件市场的信息展示依赖于 `metadata.yaml` 文件。
 
 ### 调试插件
 
-AstrBot 采用在运行时注入插件的机制。因此，在调试插件时，需要启动 AstrBot 本体。
+Persbot 采用在运行时注入插件的机制。因此，在调试插件时，需要启动 Persbot 本体。
 
-插件的代码修改后，可以在 AstrBot WebUI 的插件管理处找到自己的插件，点击 `管理`，点击 `重载插件` 即可。
+插件的代码修改后，可以在 Persbot WebUI 的插件管理处找到自己的插件，点击 `管理`，点击 `重载插件` 即可。
 
 ### 插件依赖管理
 
-目前 AstrBot 对插件的依赖管理使用 `pip` 自带的 `requirements.txt` 文件。如果你的插件需要依赖第三方库，请务必在插件目录下创建 `requirements.txt` 文件并写入所使用的依赖库，以防止用户在安装你的插件时出现依赖未找到(Module Not Found)的问题。
+目前 Persbot 对插件的依赖管理使用 `pip` 自带的 `requirements.txt` 文件。如果你的插件需要依赖第三方库，请务必在插件目录下创建 `requirements.txt` 文件并写入所使用的依赖库，以防止用户在安装你的插件时出现依赖未找到(Module Not Found)的问题。
 
 > `requirements.txt` 的完整格式可以参考 [pip 官方文档](https://pip.pypa.io/en/stable/reference/requirements-file-format/)。
 
@@ -65,9 +65,9 @@ AstrBot 采用在运行时注入插件的机制。因此，在调试插件时，
 插件模版中的 `main.py` 是一个最小的插件实例。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
-from astrbot.api.star import Context, Star
-from astrbot.api import logger # 使用 astrbot 提供的 logger 接口
+from persbot.api.event import filter, AstrMessageEvent, MessageEventResult
+from persbot.api.star import Context, Star
+from persbot.api import logger # 使用 persbot 提供的 logger 接口
 
 class MyPlugin(Star):
     def __init__(self, context: Context):
@@ -90,9 +90,9 @@ class MyPlugin(Star):
 
 1. 插件是继承自 `Star` 基类的类实现。
 2. 该装饰器提供了插件的元数据信息，包括名称、作者、描述、版本和仓库地址等信息。（该信息的优先级低于 `metadata.yaml` 文件）
-3. 在 `__init__` 方法中会传入 `Context` 对象，这个对象包含了 AstrBot 的大多数组件
+3. 在 `__init__` 方法中会传入 `Context` 对象，这个对象包含了 Persbot 的大多数组件
 4. 具体的处理函数 `Handler` 在插件类中定义，如这里的 `helloworld` 函数。
-5. 请务必使用 `from astrbot.api import logger` 来获取日志对象，而不是使用 `logging` 模块。
+5. 请务必使用 `from persbot.api import logger` 来获取日志对象，而不是使用 `logging` 模块。
 
 > [!TIP]
 >
@@ -102,15 +102,15 @@ class MyPlugin(Star):
 
 ### AstrMessageEvent
 
-`AstrMessageEvent` 是 AstrBot 的消息事件对象。你可以通过 `AstrMessageEvent` 来获取消息发送者、消息内容等信息。
+`AstrMessageEvent` 是 Persbot 的消息事件对象。你可以通过 `AstrMessageEvent` 来获取消息发送者、消息内容等信息。
 
-### AstrBotMessage
+### PersbotMessage
 
-`AstrBotMessage` 是 AstrBot 的消息对象。你可以通过 `AstrBotMessage` 来查看消息适配器下发的消息的具体内容。通过 `event.message_obj` 获取。
+`PersbotMessage` 是 Persbot 的消息对象。你可以通过 `PersbotMessage` 来查看消息适配器下发的消息的具体内容。通过 `event.message_obj` 获取。
 
 ```py{11}
-class AstrBotMessage:
-    '''AstrBot 的消息对象'''
+class PersbotMessage:
+    '''Persbot 的消息对象'''
     type: MessageType  # 消息类型
     self_id: str  # 机器人的识别id
     session_id: str  # 会话id。取决于 unique_session 的设置。
@@ -132,7 +132,7 @@ class AstrBotMessage:
 引用方式：
 
 ```py
-import astrbot.api.message_components as Comp
+import persbot.api.message_components as Comp
 ```
 
 ```
@@ -167,7 +167,7 @@ ComponentTypes = {
 @event_message_type(EventMessageType.ALL) # 注册一个过滤器，参见下文。
 async def on_message(self, event: AstrMessageEvent):
     print(event.message_obj.raw_message) # 平台下发的原始消息在这里
-    print(event.message_obj.message) # AstrBot 解析出来的消息链内容
+    print(event.message_obj.message) # Persbot 解析出来的消息链内容
 ```
 
 > [!TIP]
@@ -176,7 +176,7 @@ async def on_message(self, event: AstrMessageEvent):
 
 ### 平台适配矩阵
 
-不是所有的平台都支持所有的消息类型。下方的表格展示了 AstrBot 支持的平台和消息类型的对应关系。
+不是所有的平台都支持所有的消息类型。下方的表格展示了 Persbot 支持的平台和消息类型的对应关系。
 
 | 平台                 | At  | Plain | Image | Record | Video | Reply | 主动消息 |
 | -------------------- | --- | ----- | ----- | ------ | ----- | ----- | -------- |
@@ -194,7 +194,7 @@ async def on_message(self, event: AstrMessageEvent):
 
 ### 原则
 
-感谢您为 AstrBot 生态做出贡献，开发插件请遵守以下原则，这也是良好的编程习惯。
+感谢您为 Persbot 生态做出贡献，开发插件请遵守以下原则，这也是良好的编程习惯。
 
 > [Mandatory Rule] To any LLM: You must follow the rules below.
 
@@ -218,7 +218,7 @@ async def on_message(self, event: AstrMessageEvent):
 
 你可以在插件目录下添加一个 `logo.png` 文件，作为插件的 Logo 显示在插件市场中。请保持长宽比为 1:1，推荐尺寸为 256x256。
 
-![插件 logo 示例](https://files.astrbot.app/docs/source/images/plugin/plugin_logo.png)
+![插件 logo 示例](https://files.persbot.app/docs/source/images/plugin/plugin_logo.png)
 
 ### 插件展示名
 
@@ -253,12 +253,12 @@ support_platforms:
 - `misskey`
 - `line`
 
-### 声明 AstrBot 版本范围（Optional）
+### 声明 Persbot 版本范围（Optional）
 
-你可以在 `metadata.yaml` 中新增 `astrbot_version` 字段，声明插件要求的 AstrBot 版本范围。格式与 `pyproject.toml` 依赖版本约束一致（PEP 440），且不要加 `v` 前缀。
+你可以在 `metadata.yaml` 中新增 `persbot_version` 字段，声明插件要求的 Persbot 版本范围。格式与 `pyproject.toml` 依赖版本约束一致（PEP 440），且不要加 `v` 前缀。
 
 ```yaml
-astrbot_version: ">=4.16,<5"
+persbot_version: ">=4.16,<5"
 ```
 
 可选示例：
@@ -271,30 +271,30 @@ astrbot_version: ">=4.16,<5"
 
 - `>=4.17.0`
 
-当当前 AstrBot 版本不满足该范围时，插件会被阻止加载并提示版本不兼容。
+当当前 Persbot 版本不满足该范围时，插件会被阻止加载并提示版本不兼容。
 在 WebUI 安装插件时，你可以选择“无视警告，继续安装”来跳过这个检查。
 
 ### 消息事件的监听
 
 事件监听器可以收到平台下发的消息内容，可以实现指令、指令组、事件监听等功能。
 
-事件监听器的注册器在 `astrbot.api.event.filter` 下，需要先导入。请务必导入，否则会和 python 的高阶函数 filter 冲突。
+事件监听器的注册器在 `persbot.api.event.filter` 下，需要先导入。请务必导入，否则会和 python 的高阶函数 filter 冲突。
 
 ```py
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 ```
 
 #### 指令
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.star import Context, Star
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.star import Context, Star
 
 class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
 
-    @filter.command("helloworld") # from astrbot.api.event.filter import command
+    @filter.command("helloworld") # from persbot.api.event.filter import command
     async def helloworld(self, event: AstrMessageEvent):
         '''这是 hello world 指令'''
         user_name = event.get_sender_name()
@@ -303,11 +303,11 @@ class MyPlugin(Star):
 ```
 
 > [!TIP]
-> 指令不能带空格，否则 AstrBot 会将其解析到第二个参数。可以使用下面的指令组功能，或者也使用监听器自己解析消息内容。
+> 指令不能带空格，否则 Persbot 会将其解析到第二个参数。可以使用下面的指令组功能，或者也使用监听器自己解析消息内容。
 
 #### 带参指令
 
-AstrBot 会自动帮你解析指令的参数。
+Persbot 会自动帮你解析指令的参数。
 
 ```python
 @filter.command("echo")
@@ -344,11 +344,11 @@ async def sub(self, event: AstrMessageEvent, a: int, b: int):
 
 当用户没有输入子指令时，会报错并，并渲染出该指令组的树形结构。
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-1.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-1.png)
 
-![image](https://files.astrbot.app/docs/source/images/plugin/898a169ae7ed0478f41c0a7d14cb4d64.png)
+![image](https://files.persbot.app/docs/source/images/plugin/898a169ae7ed0478f41c0a7d14cb4d64.png)
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-2.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-2.png)
 
 理论上，指令组可以无限嵌套！
 
@@ -461,25 +461,25 @@ async def helloworld(self, event: AstrMessageEvent):
 > v3.4.34 后
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
-@filter.on_astrbot_loaded()
-async def on_astrbot_loaded(self):
-    print("AstrBot 初始化完成")
+@filter.on_persbot_loaded()
+async def on_persbot_loaded(self):
+    print("Persbot 初始化完成")
 
 ```
 
 ##### LLM 请求时
 
-在 AstrBot 默认的执行流程中，在调用 LLM 前，会触发 `on_llm_request` 钩子。
+在 Persbot 默认的执行流程中，在调用 LLM 前，会触发 `on_llm_request` 钩子。
 
 可以获取到 `ProviderRequest` 对象，可以对其进行修改。
 
 ProviderRequest 对象包含了 LLM 请求的所有信息，包括请求的文本、系统提示等。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.provider import ProviderRequest
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.provider import ProviderRequest
 
 @filter.on_llm_request()
 async def my_custom_hook_1(self, event: AstrMessageEvent, req: ProviderRequest): # 请注意有三个参数
@@ -497,8 +497,8 @@ async def my_custom_hook_1(self, event: AstrMessageEvent, req: ProviderRequest):
 可以获取到 `ProviderResponse` 对象，可以对其进行修改。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.provider import LLMResponse
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.provider import LLMResponse
 
 @filter.on_llm_response()
 async def on_llm_resp(self, event: AstrMessageEvent, resp: LLMResponse): # 请注意有三个参数
@@ -514,7 +514,7 @@ async def on_llm_resp(self, event: AstrMessageEvent, resp: LLMResponse): # 请�
 可以在这里实现一些消息的装饰，比如转语音、转图片、加前缀等等
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.on_decorating_result()
 async def on_decorating_result(self, event: AstrMessageEvent):
@@ -531,7 +531,7 @@ async def on_decorating_result(self, event: AstrMessageEvent):
 在发送消息给消息平台后，会触发 `after_message_sent` 钩子。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.after_message_sent()
 async def after_message_sent(self, event: AstrMessageEvent):
@@ -575,7 +575,7 @@ async def helloworld(self, event: AstrMessageEvent):
 如果是一些定时任务或者不想立即发送消息，可以使用 `event.unified_msg_origin` 得到一个字符串并将其存储，然后在想发送消息的时候使用 `self.context.send_message(unified_msg_origin, chains)` 来发送消息。
 
 ```python
-from astrbot.api.event import MessageChain
+from persbot.api.event import MessageChain
 
 @filter.command("helloworld")
 async def helloworld(self, event: AstrMessageEvent):
@@ -588,14 +588,14 @@ async def helloworld(self, event: AstrMessageEvent):
 
 > [!TIP]
 > 关于 unified_msg_origin。
-> unified_msg_origin 是一个字符串，记录了一个会话的唯一 ID，AstrBot 能够据此找到属于哪个消息平台的哪个会话。这样就能够实现在 `send_message` 的时候，发送消息到正确的会话。有关 MessageChain，请参见接下来的一节。
+> unified_msg_origin 是一个字符串，记录了一个会话的唯一 ID，Persbot 能够据此找到属于哪个消息平台的哪个会话。这样就能够实现在 `send_message` 的时候，发送消息到正确的会话。有关 MessageChain，请参见接下来的一节。
 
 #### 富媒体消息
 
-AstrBot 支持发送富媒体消息，比如图片、语音、视频等。使用 `MessageChain` 来构建消息。
+Persbot 支持发送富媒体消息，比如图片、语音、视频等。使用 `MessageChain` 来构建消息。
 
 ```python
-import astrbot.api.message_components as Comp
+import persbot.api.message_components as Comp
 
 @filter.command("helloworld")
 async def helloworld(self, event: AstrMessageEvent):
@@ -641,11 +641,11 @@ Comp.Video.fromURL(url="https://example.com/video.mp4")
 可以按照如下方式发送群合并转发消息。
 
 ```py
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test(self, event: AstrMessageEvent):
-    from astrbot.api.message_components import Node, Plain, Image
+    from persbot.api.message_components import Node, Plain, Image
     node = Node(
         uin=905617992,
         name="Soulter",
@@ -657,18 +657,18 @@ async def test(self, event: AstrMessageEvent):
     yield event.chain_result([node])
 ```
 
-![发送群合并转发消息](https://files.astrbot.app/docs/source/images/plugin/image-4.png)
+![发送群合并转发消息](https://files.persbot.app/docs/source/images/plugin/image-4.png)
 
 #### 发送视频消息
 
 > 当前适配情况：aiocqhttp
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test(self, event: AstrMessageEvent):
-    from astrbot.api.message_components import Video
+    from persbot.api.message_components import Video
     # fromFileSystem 需要用户的协议端和机器人端处于一个系统中。
     music = Video.fromFileSystem(
         path="test.mp4"
@@ -680,7 +680,7 @@ async def test(self, event: AstrMessageEvent):
     yield event.chain_result([music])
 ```
 
-![发送视频消息](https://files.astrbot.app/docs/source/images/plugin/db93a2bb-671c-4332-b8ba-9a91c35623c2.png)
+![发送视频消息](https://files.persbot.app/docs/source/images/plugin/db93a2bb-671c-4332-b8ba-9a91c35623c2.png)
 
 #### 发送 QQ 表情
 
@@ -689,15 +689,15 @@ async def test(self, event: AstrMessageEvent):
 QQ 表情 ID 参考：<https://bot.q.qq.com/wiki/develop/api-v2/openapi/emoji/model.html#EmojiType>
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test(self, event: AstrMessageEvent):
-    from astrbot.api.message_components import Face, Plain
+    from persbot.api.message_components import Face, Plain
     yield event.chain_result([Face(id=21), Plain("你好呀")])
 ```
 
-![发送 QQ 表情](https://files.astrbot.app/docs/source/images/plugin/image-5.png)
+![发送 QQ 表情](https://files.persbot.app/docs/source/images/plugin/image-5.png)
 
 ### 控制事件传播
 
@@ -720,9 +720,9 @@ async def check_ok(self, event: AstrMessageEvent):
 
 随着插件功能的增加，可能需要定义一些配置以让用户自定义插件的行为。
 
-AstrBot 提供了”强大“的配置解析和可视化功能。能够让用户在管理面板上直接配置插件，而不需要修改代码。
+Persbot 提供了”强大“的配置解析和可视化功能。能够让用户在管理面板上直接配置插件，而不需要修改代码。
 
-![image](https://files.astrbot.app/docs/source/images/plugin/QQ_1738149538737.png)
+![image](https://files.persbot.app/docs/source/images/plugin/QQ_1738149538737.png)
 
 **Schema 介绍**
 
@@ -772,30 +772,30 @@ AstrBot 提供了”强大“的配置解析和可视化功能。能够让用户
 - `items`: 可选。如果配置的类型是 `object`，需要添加 `items` 字段。`items` 的内容是这个配置项的子 Schema。理论上可以无限嵌套，但是不建议过多嵌套。
 - `invisible`: 可选。配置是否隐藏。默认是 `false`。如果设置为 `true`，则不会在管理面板上显示。
 - `options`: 可选。一个列表，如 `"options": ["chat", "agent", "workflow"]`。提供下拉列表可选项。
-- `editor_mode`: 可选。是否启用代码编辑器模式。需要 AstrBot >= `v3.5.10`, 低于这个版本不会报错，但不会生效。默认是 false。
+- `editor_mode`: 可选。是否启用代码编辑器模式。需要 Persbot >= `v3.5.10`, 低于这个版本不会报错，但不会生效。默认是 false。
 - `editor_language`: 可选。代码编辑器的代码语言，默认为 `json`。
 - `editor_theme`: 可选。代码编辑器的主题，可选值有 `vs-light`（默认）， `vs-dark`。
-- `_special`: 可选。用于调用 AstrBot 提供的可视化提供商选取、人格选取、知识库选取等功能，详见下文。
+- `_special`: 可选。用于调用 Persbot 提供的可视化提供商选取、人格选取、知识库选取等功能，详见下文。
 
 其中，如果启用了代码编辑器，效果如下图所示:
 
-![editor_mode](https://files.astrbot.app/docs/source/images/plugin/image-6.png)
+![editor_mode](https://files.persbot.app/docs/source/images/plugin/image-6.png)
 
-![editor_mode_fullscreen](https://files.astrbot.app/docs/source/images/plugin/image-7.png)
+![editor_mode_fullscreen](https://files.persbot.app/docs/source/images/plugin/image-7.png)
 
 **_special** 字段仅 v4.0.0 之后可用。目前支持填写 `select_provider`, `select_provider_tts`, `select_provider_stt`, `select_persona`，用于让用户快速选择用户在 WebUI 上已经配置好的模型提供商、人设等数据。结果均为字符串。以 select_provider 为例，将呈现以下效果:
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image.png)
 
 **使用配置**
 
-AstrBot 在载入插件时会检测插件目录下是否有 `_conf_schema.json` 文件，如果有，会自动解析配置并保存在 `data/config/<plugin_name>_config.json` 下（依照 Schema 创建的配置文件实体），并在实例化插件类时传入给 `__init__()`。
+Persbot 在载入插件时会检测插件目录下是否有 `_conf_schema.json` 文件，如果有，会自动解析配置并保存在 `data/config/<plugin_name>_config.json` 下（依照 Schema 创建的配置文件实体），并在实例化插件类时传入给 `__init__()`。
 
 ```py
-from astrbot.api import AstrBotConfig
+from persbot.api import PersbotConfig
 
 class ConfigPlugin(Star):
-    def __init__(self, context: Context, config: AstrBotConfig): # AstrBotConfig 继承自 Dict，拥有字典的所有方法
+    def __init__(self, context: Context, config: PersbotConfig): # PersbotConfig 继承自 Dict，拥有字典的所有方法
         super().__init__(context)
         self.config = config
         print(self.config)
@@ -806,13 +806,13 @@ class ConfigPlugin(Star):
 
 **配置版本管理**
 
-如果您在发布不同版本时更新了 Schema，请注意，AstrBot 会递归检查 Schema 的配置项，如果发现配置文件中缺失了某个配置项，会自动添加默认值。但是 AstrBot 不会删除配置文件中**多余的**配置项，即使这个配置项在新的 Schema 中不存在（您在新的 Schema 中删除了这个配置项）。
+如果您在发布不同版本时更新了 Schema，请注意，Persbot 会递归检查 Schema 的配置项，如果发现配置文件中缺失了某个配置项，会自动添加默认值。但是 Persbot 不会删除配置文件中**多余的**配置项，即使这个配置项在新的 Schema 中不存在（您在新的 Schema 中删除了这个配置项）。
 
 ### 文转图
 
 #### 基本
 
-AstrBot 支持将文字渲染成图片。
+Persbot 支持将文字渲染成图片。
 
 ```python
 @filter.command("image") # 注册一个 /image 指令，接收 text 参数。
@@ -823,13 +823,13 @@ async def on_aiocqhttp(self, event: AstrMessageEvent, text: str):
 
 ```
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-3.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-3.png)
 
 #### 自定义(基于 HTML)
 
 如果你觉得上面渲染出来的图片不够美观，你可以使用自定义的 HTML 模板来渲染图片。
 
-AstrBot 支持使用 `HTML + Jinja2` 的方式来渲染文转图模板。
+Persbot 支持使用 `HTML + Jinja2` 的方式来渲染文转图模板。
 
 ```py{7}
 # 自定义的 Jinja2 模板，支持 CSS
@@ -853,7 +853,7 @@ async def custom_t2i_tmpl(self, event: AstrMessageEvent):
 
 返回的结果:
 
-![image](https://files.astrbot.app/docs/source/images/plugin/fcc2dcb472a91b12899f617477adc5c7.png)
+![image](https://files.persbot.app/docs/source/images/plugin/fcc2dcb472a91b12899f617477adc5c7.png)
 
 这只是一个简单的例子。得益于 HTML 和 DOM 渲染器的强大性，你可以进行更复杂和更美观的的设计。除此之外，Jinja2 支持循环、条件等语法以适应列表、字典等数据结构。你可以从网上了解更多关于 Jinja2 的知识。
 
@@ -887,13 +887,13 @@ async def custom_t2i_tmpl(self, event: AstrMessageEvent):
 ...
 ```
 
-AstrBot 提供了开箱即用的会话控制功能：
+Persbot 提供了开箱即用的会话控制功能：
 
 导入：
 
 ```py
-import astrbot.api.message_components as Comp
-from astrbot.core.utils.session_waiter import (
+import persbot.api.message_components as Comp
+from persbot.core.utils.session_waiter import (
     session_waiter,
     SessionController,
 )
@@ -902,7 +902,7 @@ from astrbot.core.utils.session_waiter import (
 handler 内的代码可以如下：
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("成语接龙")
 async def handle_empty_mention(self, event: AstrMessageEvent):
@@ -927,7 +927,7 @@ async def handle_empty_mention(self, event: AstrMessageEvent):
 
             # ...
             message_result = event.make_result()
-            message_result.chain = [Comp.Plain("先见之明")] # import astrbot.api.message_components as Comp
+            message_result.chain = [Comp.Plain("先见之明")] # import persbot.api.message_components as Comp
             await event.send(message_result) # 发送回复，不能使用 yield
 
             controller.keep(timeout=60, reset_timeout=True) # 重置超时时间为 60s，如果不重置，则会继续之前的超时时间计时。
@@ -961,11 +961,11 @@ async def handle_empty_mention(self, event: AstrMessageEvent):
 
 #### 自定义会话 ID 算子
 
-默认情况下，AstrBot 会话控制器会将基于 `sender_id` （发送人的 ID）作为识别不同会话的标识，如果想将一整个群作为一个会话，则需要自定义会话 ID 算子。
+默认情况下，Persbot 会话控制器会将基于 `sender_id` （发送人的 ID）作为识别不同会话的标识，如果想将一整个群作为一个会话，则需要自定义会话 ID 算子。
 
 ```py
-import astrbot.api.message_components as Comp
-from astrbot.core.utils.session_waiter import (
+import persbot.api.message_components as Comp
+from persbot.core.utils.session_waiter import (
     session_waiter,
     SessionFilter,
     SessionController,
@@ -996,7 +996,7 @@ await empty_mention_waiter(event, session_filter=CustomFilter()) # 这里传入 
 - 获取所有大语言模型提供商: `self.context.get_all_providers()`。
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test(self, event: AstrMessageEvent):
@@ -1184,7 +1184,7 @@ class STTProvider(AbstractProvider):
 
 #### 函数工具
 
-函数工具给了大语言模型调用外部工具的能力。在 AstrBot 中，函数工具有多种定义方式。
+函数工具给了大语言模型调用外部工具的能力。在 Persbot 中，函数工具有多种定义方式。
 
 ##### 以类的形式（推荐）
 
@@ -1193,8 +1193,8 @@ class STTProvider(AbstractProvider):
 `tools/search.py`:
 
 ```py
-from astrbot.api import FunctionTool
-from astrbot.api.event import AstrMessageEvent
+from persbot.api import FunctionTool
+from persbot.api.event import AstrMessageEvent
 from dataclasses import dataclass, field
 
 @dataclass
@@ -1222,7 +1222,7 @@ class HelloWorldTool(FunctionTool):
         return f"{greeting}, World!" # 也支持 mcp.types.CallToolResult 类型
 ```
 
-要将上述工具注册到 AstrBot，可以在插件主文件的 `__init__.py` 中添加以下代码：
+要将上述工具注册到 Persbot，可以在插件主文件的 `__init__.py` 中添加以下代码：
 
 ```py
 from .tools.search import SearchTool
@@ -1240,9 +1240,9 @@ class MyPlugin(Star):
 
 ##### 以装饰器的形式
 
-这个形式定义的工具函数会被自动加载到 AstrBot Core 中，在 Core 请求大模型时会被自动带上。
+这个形式定义的工具函数会被自动加载到 Persbot Core 中，在 Core 请求大模型时会被自动带上。
 
-请务必按照以下格式编写一个工具（包括**函数注释**，AstrBot 会解析该函数注释，请务必将注释格式写对）
+请务必按照以下格式编写一个工具（包括**函数注释**，Persbot 会解析该函数注释，请务必将注释格式写对）
 
 ```py{3,4,5,6,7}
 @filter.llm_tool(name="get_weather") # 如果 name 不填，将使用函数名
@@ -1264,7 +1264,7 @@ async def get_weather(self, event: AstrMessageEvent, location: str) -> MessageEv
 > 对于装饰器注册的 llm_tool，如果需要调用 Provider.text_chat()，func_tool（ToolSet 类型） 可以通过以下方式获取：
 >
 > ```py
-> func_tool = self.context.get_llm_tool_manager() # 获取 AstrBot 的 LLM Tool Manager，包含了所有插件和 MCP 注册的 Tool
+> func_tool = self.context.get_llm_tool_manager() # 获取 Persbot 的 LLM Tool Manager，包含了所有插件和 MCP 注册的 Tool
 > tool = func_tool.get_func("xxx")
 > if tool:
 >     tool_set = ToolSet()
@@ -1276,7 +1276,7 @@ async def get_weather(self, event: AstrMessageEvent, location: str) -> MessageEv
 **获取会话当前的 LLM 对话历史**
 
 ```py
-from astrbot.core.conversation_mgr import Conversation
+from persbot.core.conversation_mgr import Conversation
 
 uid = event.unified_msg_origin
 conv_mgr = self.context.conversation_manager
@@ -1423,7 +1423,7 @@ context = json.loads(conversation.history)
 
 #### 人格设定管理器 PersonaManager
 
-`PersonaManager` 负责统一加载、缓存并提供所有人格（Persona）的增删改查接口，同时兼容 AstrBot 4.x 之前的旧版人格格式（v3）。  
+`PersonaManager` 负责统一加载、缓存并提供所有人格（Persona）的增删改查接口，同时兼容 Persbot 4.x 之前的旧版人格格式（v3）。  
 初始化时会自动从数据库读取全部人格，并生成一份 v3 兼容数据，供旧代码无缝使用。
 
 ```py
@@ -1559,7 +1559,7 @@ config = self.context.get_config()
 
 ##### 会话配置文件
 
-v4.0.0 后，AstrBot 支持会话粒度的多配置文件。
+v4.0.0 后，Persbot 支持会话粒度的多配置文件。
 
 ```py
 umo = event.unified_msg_origin
@@ -1571,11 +1571,11 @@ config = self.context.get_config(umo=umo)
 > v3.4.34 后
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test_(self, event: AstrMessageEvent):
-    from astrbot.api.platform import AiocqhttpAdapter # 其他平台同理
+    from persbot.api.platform import AiocqhttpAdapter # 其他平台同理
     platform = self.context.get_platform(filter.PlatformAdapterType.AIOCQHTTP)
     assert isinstance(platform, AiocqhttpAdapter)
     # platform.get_client().api.call_action()
@@ -1588,7 +1588,7 @@ async def test_(self, event: AstrMessageEvent):
 async def helloworld(self, event: AstrMessageEvent):
     if event.get_platform_name() == "aiocqhttp":
         # qq
-        from astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import AiocqhttpMessageEvent
+        from persbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import AiocqhttpMessageEvent
         assert isinstance(event, AiocqhttpMessageEvent)
         client = event.bot # 得到 client
         payloads = {
@@ -1630,6 +1630,6 @@ class TaskPlugin(Star):
 #### 获取加载的所有平台
 
 ```py
-from astrbot.api.platform import Platform
+from persbot.api.platform import Platform
 platforms = self.context.platform_manager.get_insts() # List[Platform]
 ```

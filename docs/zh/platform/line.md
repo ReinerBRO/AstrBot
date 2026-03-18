@@ -35,11 +35,11 @@
 2. 在 `Basic settings` 获取 `Channel secret`
 3. 在 `Messaging API` 页面签发 `Channel access token`
 
-![](https://files.astrbot.app/docs/source/images/line/7ecee0a9102f191245330f8408eb0493.png)
+![](https://files.persbot.app/docs/source/images/line/7ecee0a9102f191245330f8408eb0493.png)
 
-## 配置 AstrBot
+## 配置 Persbot
 
-1. 进入 AstrBot 管理面板
+1. 进入 Persbot 管理面板
 2. 点击左侧 `机器人`
 3. 点击 `+ 创建机器人`
 4. 选择 `line`
@@ -55,7 +55,7 @@
 
 ## 配置回调地址（统一 Webhook）
 
-LINE 适配器仅支持 AstrBot 统一 Webhook 模式。
+LINE 适配器仅支持 Persbot 统一 Webhook 模式。
 
 保存后，在机器人卡片里点击「查看 Webhook 链接」，复制 URL。
 
@@ -67,7 +67,7 @@ LINE 适配器仅支持 AstrBot 统一 Webhook 模式。
 4. 打开 `Use webhook`
 
 > [!TIP]
-> 如果你的 AstrBot 不在公网，请先配置好可公网访问的域名与反向代理，确保 LINE 可以访问该 Webhook URL。
+> 如果你的 Persbot 不在公网，请先配置好可公网访问的域名与反向代理，确保 LINE 可以访问该 Webhook URL。
 
 ## 测试
 

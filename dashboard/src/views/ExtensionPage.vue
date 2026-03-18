@@ -1,5 +1,5 @@
 <script setup>
-import AstrBotConfig from "@/components/shared/AstrBotConfig.vue";
+import PersbotConfig from "@/components/shared/PersbotConfig.vue";
 import ConsoleDisplayer from "@/components/shared/ConsoleDisplayer.vue";
 import ReadmeDialog from "@/components/shared/ReadmeDialog.vue";
 import ProxySelector from "@/components/shared/ProxySelector.vue";
@@ -236,7 +236,7 @@ const {
         <v-btn
           variant="text"
           prepend-icon="mdi-book-open-variant"
-          href="https://astrbot.app/dev/plugin.html"
+          href="https://persbot.app/dev/plugin.html"
           target="_blank"
           color="primary"
           class="text-none"
@@ -253,7 +253,7 @@ const {
         <v-btn
           variant="text"
           prepend-icon="mdi-github"
-          href="https://github.com/AstrBotDevs/AstrBot_Plugins_Collection"
+          href="https://github.com/PersbotDevs/Persbot_Plugins_Collection"
           target="_blank"
           color="primary"
           class="text-none"
@@ -272,7 +272,7 @@ const {
       }}</v-card-title>
       <v-card-text>
         <div style="max-height: 60vh; overflow-y: auto; padding-right: 8px">
-          <AstrBotConfig
+          <PersbotConfig
             v-if="extension_config.metadata"
             :metadata="extension_config.metadata"
             :iterable="extension_config.config"
@@ -616,14 +616,14 @@ const {
 
               <div v-if="selectedInstallPlugin" class="mb-3">
                 <v-chip
-                  v-if="selectedInstallPlugin.astrbot_version"
+                  v-if="selectedInstallPlugin.persbot_version"
                   size="small"
                   color="secondary"
                   variant="outlined"
                   class="mr-2 mb-2"
                 >
-                  {{ tm("card.status.astrbotVersion") }}:
-                  {{ selectedInstallPlugin.astrbot_version }}
+                  {{ tm("card.status.persbotVersion") }}:
+                  {{ selectedInstallPlugin.persbot_version }}
                 </v-chip>
                 <v-chip
                   v-if="normalizePlatformList(selectedInstallPlugin.support_platforms).length"
@@ -641,7 +641,7 @@ const {
                 </v-chip>
                 <v-alert
                   v-if="
-                    selectedInstallPlugin.astrbot_version &&
+                    selectedInstallPlugin.persbot_version &&
                     installCompat.checked &&
                     !installCompat.compatible
                   "

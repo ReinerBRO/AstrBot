@@ -4,11 +4,11 @@
 
 ### Encountering 404 Error When Opening the Dashboard
 
-Download `dist.zip` from the [release](https://github.com/AstrBotDevs/AstrBot/releases) page, extract it, and move it to `AstrBot/data`. If it still doesn't work, try restarting your computer (based on community feedback).
+Download `dist.zip` from the [release](https://github.com/PersbotDevs/Persbot/releases) page, extract it, and move it to `Persbot/data`. If it still doesn't work, try restarting your computer (based on community feedback).
 
 ### Forgot Dashboard Password
 
-If you forgot your AstrBot dashboard password, you can modify the `"dashboard"` field in the `AstrBot/data/cmd_config.json` configuration file, where `"username"` is your username and `"password"` is your password encrypted with MD5.
+If you forgot your Persbot dashboard password, you can modify the `"dashboard"` field in the `Persbot/data/cmd_config.json` configuration file, where `"username"` is your username and `"password"` is your password encrypted with MD5.
 
 To modify your account credentials, follow these steps:
 
@@ -20,14 +20,14 @@ To modify your account credentials, follow these steps:
 
 ## Bot Core Related
 
-### How to Let AstrBot Control My Mac / Windows / Linux Computer?
+### How to Let Persbot Control My Mac / Windows / Linux Computer?
 
-1. In AstrBot WebUI's `Config -> General Config`, find `Use Computer Capabilities`, and select `local` for the runtime environment.
+1. In Persbot WebUI's `Config -> General Config`, find `Use Computer Capabilities`, and select `local` for the runtime environment.
 2. In `Config -> Other Config`, find `Admin ID List`, and add your user ID (you can get it through the `/sid` command).
 
 > [!TIP]
-> For security reasons, when runtime environment is set to `local`, AstrBot only allows AstrBot administrators to use computer capabilities by default.
-> You can select `sandbox` for the runtime environment, which allows all users to use computer capabilities (in an isolated sandbox). For more details, see [AstrBot Sandbox Environment](/en/use/astrbot-agent-sandbox.md)
+> For security reasons, when runtime environment is set to `local`, Persbot only allows Persbot administrators to use computer capabilities by default.
+> You can select `sandbox` for the runtime environment, which allows all users to use computer capabilities (in an isolated sandbox). For more details, see [Persbot Sandbox Environment](/en/use/persbot-agent-sandbox.md)
 
 ### Bot Cannot Chat in Group Conversations
 
@@ -39,7 +39,7 @@ To modify your account credentials, follow these steps:
 
 ### Chinese Characters Garbled When Locally Rendering Markdown Images (t2i)
 
-You can customize the font. See details -> [#957](https://github.com/AstrBotDevs/AstrBot/issues/957#issuecomment-2749981802)
+You can customize the font. See details -> [#957](https://github.com/PersbotDevs/Persbot/issues/957#issuecomment-2749981802)
 
 Recommended font: [Maple Mono](https://github.com/subframe7536/maple-font).
 
@@ -62,9 +62,9 @@ This is because the provider's API returned empty text. Try the following steps:
 
 ### Error `No module named 'xxx'` After Installing Plugin
 
-![image](https://files.astrbot.app/docs/source/images/faq/image.png)
+![image](https://files.persbot.app/docs/source/images/faq/image.png)
 
-This is because the plugin's dependencies were not installed properly. Normally, AstrBot automatically installs plugin dependencies after installing the plugin, but installation may fail in the following situations:
+This is because the plugin's dependencies were not installed properly. Normally, Persbot automatically installs plugin dependencies after installing the plugin, but installation may fail in the following situations:
 
 1. Network issues preventing dependency downloads
 2. Plugin author did not include a `requirements.txt` file
@@ -72,8 +72,8 @@ This is because the plugin's dependencies were not installed properly. Normally,
 
 Solution:
 
-Based on the error message, refer to the plugin's README to manually install dependencies. You can install dependencies in the AstrBot WebUI under `Console` -> `Install Pip Package`.
+Based on the error message, refer to the plugin's README to manually install dependencies. You can install dependencies in the Persbot WebUI under `Console` -> `Install Pip Package`.
 
-![image](https://files.astrbot.app/docs/source/images/faq/image-1.png)
+![image](https://files.persbot.app/docs/source/images/faq/image-1.png)
 
 If you find that the plugin author did not include a `requirements.txt` file, please submit an issue in the plugin repository to remind the author to add it.

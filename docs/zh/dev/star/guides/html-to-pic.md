@@ -2,11 +2,11 @@
 # 文转图
 
 > [!TIP]
-> 为了方便开发，您可以使用 [AstrBot Text2Image Playground](https://t2i-playground.astrbot.app/) 在线可视化编辑和测试 HTML 模板。
+> 为了方便开发，您可以使用 [Persbot Text2Image Playground](https://t2i-playground.persbot.app/) 在线可视化编辑和测试 HTML 模板。
 
 ## 基本
 
-AstrBot 支持将文字渲染成图片。
+Persbot 支持将文字渲染成图片。
 
 ```python
 @filter.command("image") # 注册一个 /image 指令，接收 text 参数。
@@ -17,13 +17,13 @@ async def on_aiocqhttp(self, event: AstrMessageEvent, text: str):
 
 ```
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-3.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-3.png)
 
 ## 自定义(基于 HTML)
 
 如果你觉得上面渲染出来的图片不够美观，你可以使用自定义的 HTML 模板来渲染图片。
 
-AstrBot 支持使用 `HTML + Jinja2` 的方式来渲染文转图模板。
+Persbot 支持使用 `HTML + Jinja2` 的方式来渲染文转图模板。
 
 ```py{7}
 # 自定义的 Jinja2 模板，支持 CSS
@@ -47,7 +47,7 @@ async def custom_t2i_tmpl(self, event: AstrMessageEvent):
 
 返回的结果:
 
-![image](https://files.astrbot.app/docs/source/images/plugin/fcc2dcb472a91b12899f617477adc5c7.png)
+![image](https://files.persbot.app/docs/source/images/plugin/fcc2dcb472a91b12899f617477adc5c7.png)
 
 这只是一个简单的例子。得益于 HTML 和 DOM 渲染器的强大性，你可以进行更复杂和更美观的的设计。除此之外，Jinja2 支持循环、条件等语法以适应列表、字典等数据结构。你可以从网上了解更多关于 Jinja2 的知识。
 

@@ -1,11 +1,11 @@
 [project]
-name = "AstrBot"
+name = "Persbot"
 version = "4.20.1"
 description = "Easy-to-use multi-platform LLM chatbot and development framework"
 readme = "README.md"
 requires-python = ">=3.12"
 
-keywords = ["Astrbot", "Astrbot Module", "Astrbot Plugin"]
+keywords = ["Persbot", "Persbot Module", "Persbot Plugin"]
 
 dependencies = [
   "aiocqhttp>=1.4.4",
@@ -76,10 +76,10 @@ dev = [
 ]
 
 [project.scripts]
-astrbot = "astrbot.cli.__main__:cli"
+persbot = "persbot.cli.__main__:cli"
 
 [tool.ruff]
-exclude = ["astrbot/core/utils/t2i/local_strategy.py", "astrbot/api/all.py", "tests"]
+exclude = ["persbot/core/utils/t2i/local_strategy.py", "persbot/api/all.py", "tests"]
 line-length = 88
 target-version = "py310"
 
@@ -99,8 +99,8 @@ ignore = [
   "F403",
   "F405",
   "E501",
-  "ASYNC230", # TODO: handle ASYNC230 in AstrBot
-  "ASYNC240", # TODO: handle ASYNC240 in AstrBot
+  "ASYNC230", # TODO: handle ASYNC230 in Persbot
+  "ASYNC240", # TODO: handle ASYNC240 in Persbot
 ]
 
 [tool.pyright]
@@ -108,7 +108,7 @@ typeCheckingMode = "basic"
 pythonVersion = "3.10"
 reportMissingTypeStubs = false
 reportMissingImports = false
-include = ["astrbot"]
+include = ["persbot"]
 exclude = ["dashboard", "node_modules", "dist", "data", "tests"]
 
 [tool.hatch.metadata]
@@ -116,7 +116,7 @@ allow-direct-references = true
 
 # Include bundled dashboard dist even though it is not tracked by VCS.
 [tool.hatch.build.targets.wheel]
-artifacts = ["astrbot/dashboard/dist/**"]
+artifacts = ["persbot/dashboard/dist/**"]
 
 # Custom build hook: builds the Vue dashboard and copies dist into the package.
 [tool.hatch.build.hooks.custom]

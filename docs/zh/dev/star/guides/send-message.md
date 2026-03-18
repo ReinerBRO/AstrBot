@@ -22,7 +22,7 @@ async def helloworld(self, event: AstrMessageEvent):
 如果是一些定时任务或者不想立即发送消息，可以使用 `event.unified_msg_origin` 得到一个字符串并将其存储，然后在想发送消息的时候使用 `self.context.send_message(unified_msg_origin, chains)` 来发送消息。
 
 ```python
-from astrbot.api.event import MessageChain
+from persbot.api.event import MessageChain
 
 @filter.command("helloworld")
 async def helloworld(self, event: AstrMessageEvent):
@@ -35,14 +35,14 @@ async def helloworld(self, event: AstrMessageEvent):
 
 > [!TIP]
 > 关于 unified_msg_origin。
-> unified_msg_origin 是一个字符串，记录了一个会话的唯一 ID，AstrBot 能够据此找到属于哪个消息平台的哪个会话。这样就能够实现在 `send_message` 的时候，发送消息到正确的会话。有关 MessageChain，请参见接下来的一节。
+> unified_msg_origin 是一个字符串，记录了一个会话的唯一 ID，Persbot 能够据此找到属于哪个消息平台的哪个会话。这样就能够实现在 `send_message` 的时候，发送消息到正确的会话。有关 MessageChain，请参见接下来的一节。
 
 ## 富媒体消息
 
-AstrBot 支持发送富媒体消息，比如图片、语音、视频等。使用 `MessageChain` 来构建消息。
+Persbot 支持发送富媒体消息，比如图片、语音、视频等。使用 `MessageChain` 来构建消息。
 
 ```python
-import astrbot.api.message_components as Comp
+import persbot.api.message_components as Comp
 
 @filter.command("helloworld")
 async def helloworld(self, event: AstrMessageEvent):
@@ -87,11 +87,11 @@ Comp.Video.fromURL(url="https://example.com/video.mp4")
 ## 发送视频消息
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test(self, event: AstrMessageEvent):
-    from astrbot.api.message_components import Video
+    from persbot.api.message_components import Video
     # fromFileSystem 需要用户的协议端和机器人端处于一个系统中。
     music = Video.fromFileSystem(
         path="test.mp4"
@@ -103,7 +103,7 @@ async def test(self, event: AstrMessageEvent):
     yield event.chain_result([music])
 ```
 
-![发送视频消息](https://files.astrbot.app/docs/source/images/plugin/db93a2bb-671c-4332-b8ba-9a91c35623c2.png)
+![发送视频消息](https://files.persbot.app/docs/source/images/plugin/db93a2bb-671c-4332-b8ba-9a91c35623c2.png)
 
 ## 发送群合并转发消息
 
@@ -112,11 +112,11 @@ async def test(self, event: AstrMessageEvent):
 可以按照如下方式发送群合并转发消息。
 
 ```py
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.command("test")
 async def test(self, event: AstrMessageEvent):
-    from astrbot.api.message_components import Node, Plain, Image
+    from persbot.api.message_components import Node, Plain, Image
     node = Node(
         uin=905617992,
         name="Soulter",
@@ -128,4 +128,4 @@ async def test(self, event: AstrMessageEvent):
     yield event.chain_result([node])
 ```
 
-![发送群合并转发消息](https://files.astrbot.app/docs/source/images/plugin/image-4.png)
+![发送群合并转发消息](https://files.persbot.app/docs/source/images/plugin/image-4.png)

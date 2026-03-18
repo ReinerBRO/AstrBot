@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from astrbot.core.skills.skill_manager import (
+from persbot.core.skills.skill_manager import (
     SkillInfo,
     SkillManager,
     _parse_frontmatter_description,
@@ -106,12 +106,12 @@ def test_build_skills_prompt_absolute_path_in_example():
         SkillInfo(
             name="foo",
             description="do foo",
-            path="/home/pan/AstrBot/skills/foo/SKILL.md",
+            path="/home/pan/Persbot/skills/foo/SKILL.md",
             active=True,
         ),
     ]
     prompt = build_skills_prompt(skills)
-    assert "cat /home/pan/AstrBot/skills/foo/SKILL.md" in prompt
+    assert "cat /home/pan/Persbot/skills/foo/SKILL.md" in prompt
 
 
 def test_build_skills_prompt_keeps_placeholder_example_literal():
@@ -129,23 +129,23 @@ def test_build_skills_prompt_keeps_placeholder_example_literal():
 
 
 def test_build_skills_prompt_preserves_windows_absolute_path_in_example(monkeypatch):
-    monkeypatch.setattr("astrbot.core.skills.skill_manager.os.name", "nt")
+    monkeypatch.setattr("persbot.core.skills.skill_manager.os.name", "nt")
     skills = [
         SkillInfo(
             name="foo",
             description="do foo",
-            path="C:/AstrBot/data/skills/foo/SKILL.md",
+            path="C:/Persbot/data/skills/foo/SKILL.md",
             active=True,
         ),
     ]
     prompt = build_skills_prompt(skills)
-    assert 'type "C:/AstrBot/data/skills/foo/SKILL.md"' in prompt
+    assert 'type "C:/Persbot/data/skills/foo/SKILL.md"' in prompt
 
 
 def test_build_skills_prompt_uses_windows_friendly_command_for_windows_paths(
     monkeypatch,
 ):
-    monkeypatch.setattr("astrbot.core.skills.skill_manager.os.name", "nt")
+    monkeypatch.setattr("persbot.core.skills.skill_manager.os.name", "nt")
     skills = [
         SkillInfo(
             name="foo",
@@ -160,35 +160,35 @@ def test_build_skills_prompt_uses_windows_friendly_command_for_windows_paths(
 
 
 def test_build_skills_prompt_quotes_windows_paths_with_spaces(monkeypatch):
-    monkeypatch.setattr("astrbot.core.skills.skill_manager.os.name", "nt")
+    monkeypatch.setattr("persbot.core.skills.skill_manager.os.name", "nt")
     skills = [
         SkillInfo(
             name="foo",
             description="do foo",
-            path="C:/AstrBot/My Skills/foo/SKILL.md",
+            path="C:/Persbot/My Skills/foo/SKILL.md",
             active=True,
         ),
     ]
     prompt = build_skills_prompt(skills)
-    assert 'type "C:/AstrBot/My Skills/foo/SKILL.md"' in prompt
+    assert 'type "C:/Persbot/My Skills/foo/SKILL.md"' in prompt
 
 
 def test_build_skills_prompt_normalizes_windows_backslashes_in_example(monkeypatch):
-    monkeypatch.setattr("astrbot.core.skills.skill_manager.os.name", "nt")
+    monkeypatch.setattr("persbot.core.skills.skill_manager.os.name", "nt")
     skills = [
         SkillInfo(
             name="foo",
             description="do foo",
-            path=r"C:\AstrBot\My Skills\foo\SKILL.md",
+            path=r"C:\Persbot\My Skills\foo\SKILL.md",
             active=True,
         ),
     ]
     prompt = build_skills_prompt(skills)
-    assert 'type "C:/AstrBot/My Skills/foo/SKILL.md"' in prompt
+    assert 'type "C:/Persbot/My Skills/foo/SKILL.md"' in prompt
 
 
 def test_build_skills_prompt_uses_windows_command_for_unc_paths(monkeypatch):
-    monkeypatch.setattr("astrbot.core.skills.skill_manager.os.name", "nt")
+    monkeypatch.setattr("persbot.core.skills.skill_manager.os.name", "nt")
     skills = [
         SkillInfo(
             name="foo",
@@ -202,7 +202,7 @@ def test_build_skills_prompt_uses_windows_command_for_unc_paths(monkeypatch):
 
 
 def test_build_skills_prompt_keeps_posix_double_slash_paths_on_non_windows(monkeypatch):
-    monkeypatch.setattr("astrbot.core.skills.skill_manager.os.name", "posix")
+    monkeypatch.setattr("persbot.core.skills.skill_manager.os.name", "posix")
     skills = [
         SkillInfo(
             name="foo",
@@ -219,7 +219,7 @@ def test_build_skills_prompt_keeps_posix_double_slash_paths_on_non_windows(monke
 def test_build_skills_prompt_normalizes_windows_backslashes_on_non_windows_host(
     monkeypatch,
 ):
-    monkeypatch.setattr("astrbot.core.skills.skill_manager.os.name", "posix")
+    monkeypatch.setattr("persbot.core.skills.skill_manager.os.name", "posix")
     skills = [
         SkillInfo(
             name="foo",
@@ -236,20 +236,20 @@ def test_build_skills_prompt_normalizes_windows_backslashes_on_non_windows_host(
 def test_build_skills_prompt_preserves_drive_colon_while_sanitizing_unsafe_chars(
     monkeypatch,
 ):
-    monkeypatch.setattr("astrbot.core.skills.skill_manager.os.name", "nt")
+    monkeypatch.setattr("persbot.core.skills.skill_manager.os.name", "nt")
     skills = [
         SkillInfo(
             name="foo",
             description="do foo",
-            path="C:/AstrBot/data/skills/fo`o/SKILL.md",
+            path="C:/Persbot/data/skills/fo`o/SKILL.md",
             active=True,
         ),
     ]
     prompt = build_skills_prompt(skills)
-    assert 'type "C:/AstrBot/data/skills/foo/SKILL.md"' in prompt
+    assert 'type "C:/Persbot/data/skills/foo/SKILL.md"' in prompt
 
     example_fragment = prompt.split("(e.g. `", 1)[1].split("`).", 1)[0]
-    assert example_fragment == 'type "C:/AstrBot/data/skills/foo/SKILL.md"'
+    assert example_fragment == 'type "C:/Persbot/data/skills/foo/SKILL.md"'
 
 
 def test_build_skills_prompt_strips_non_drive_colons_from_example_path():
@@ -409,11 +409,11 @@ def test_list_skills_parses_description_from_local(monkeypatch, tmp_path: Path):
     skills_root.mkdir(parents=True, exist_ok=True)
 
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_data_path",
+        "persbot.core.skills.skill_manager.get_persbot_data_path",
         lambda: str(data_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_temp_path",
+        "persbot.core.skills.skill_manager.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
 
@@ -450,11 +450,11 @@ def test_list_skills_description_from_sandbox_cache(monkeypatch, tmp_path: Path)
     skills_root.mkdir(parents=True, exist_ok=True)
 
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_data_path",
+        "persbot.core.skills.skill_manager.get_persbot_data_path",
         lambda: str(data_dir),
     )
     monkeypatch.setattr(
-        "astrbot.core.skills.skill_manager.get_astrbot_temp_path",
+        "persbot.core.skills.skill_manager.get_persbot_temp_path",
         lambda: str(temp_dir),
     )
 
@@ -465,7 +465,7 @@ def test_list_skills_description_from_sandbox_cache(monkeypatch, tmp_path: Path)
                 "name": "web-scrape",
                 "description": "Scrape web pages and extract structured data. "
                 "Use when user needs to extract content from URLs.",
-                "path": "/home/pan/AstrBot/skills/web-scrape/SKILL.md",
+                "path": "/home/pan/Persbot/skills/web-scrape/SKILL.md",
             }
         ]
     )
@@ -475,4 +475,4 @@ def test_list_skills_description_from_sandbox_cache(monkeypatch, tmp_path: Path)
     s = skills[0]
     assert "Scrape web pages" in s.description
     # Path should be the absolute path from cache
-    assert "/home/pan/AstrBot/skills/web-scrape/SKILL.md" in s.path
+    assert "/home/pan/Persbot/skills/web-scrape/SKILL.md" in s.path

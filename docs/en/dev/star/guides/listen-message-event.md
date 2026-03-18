@@ -3,29 +3,29 @@
 
 Event listeners can receive message content delivered by the platform and implement features such as commands, command groups, and event listening.
 
-Event listener decorators are located in `astrbot.api.event.filter` and must be imported first. Please make sure to import it, otherwise it will conflict with Python's built-in `filter` higher-order function.
+Event listener decorators are located in `persbot.api.event.filter` and must be imported first. Please make sure to import it, otherwise it will conflict with Python's built-in `filter` higher-order function.
 
 ```py
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 ```
 
 ## Messages and Events
 
-AstrBot receives messages delivered by messaging platforms and encapsulates them as `AstrMessageEvent` objects, which are then passed to plugins for processing.
+Persbot receives messages delivered by messaging platforms and encapsulates them as `AstrMessageEvent` objects, which are then passed to plugins for processing.
 
-![message-event](https://files.astrbot.app/docs/en/dev/star/guides/message-event.svg)
+![message-event](https://files.persbot.app/docs/en/dev/star/guides/message-event.svg)
 
 ### Message Events
 
-`AstrMessageEvent` is AstrBot's message event object, which stores information about the message sender, message content, etc.
+`AstrMessageEvent` is Persbot's message event object, which stores information about the message sender, message content, etc.
 
 ### Message Object
 
-`AstrBotMessage` is AstrBot's message object, which stores the specific content of messages delivered by the messaging platform. The `AstrMessageEvent` object contains a `message_obj` attribute to retrieve this message object.
+`PersbotMessage` is Persbot's message object, which stores the specific content of messages delivered by the messaging platform. The `AstrMessageEvent` object contains a `message_obj` attribute to retrieve this message object.
 
 ```py{11}
-class AstrBotMessage:
-    '''AstrBot's message object'''
+class PersbotMessage:
+    '''Persbot's message object'''
     type: MessageType  # Message type
     self_id: str  # Bot's identification ID
     session_id: str  # Session ID. Depends on the unique_session setting.
@@ -42,7 +42,7 @@ Here, `raw_message` is the **raw message object** from the messaging platform ad
 
 ### Message Chain
 
-![message-chain](https://files.astrbot.app/docs/en/dev/star/guides/message-chain.svg)
+![message-chain](https://files.persbot.app/docs/en/dev/star/guides/message-chain.svg)
 
 A `message chain` describes the structure of a message. It's an ordered list where each element is called a `message segment`.
 
@@ -64,21 +64,21 @@ Additionally, the OneBot v11 platform (QQ personal accounts, etc.) also supports
 - `Nodes`: Multiple nodes in a forward message
 - `Poke`: Poke message segment
 
-In AstrBot, message chains are represented as lists of type `List[BaseMessageComponent]`.
+In Persbot, message chains are represented as lists of type `List[BaseMessageComponent]`.
 
 ## Commands
 
-![message-event-simple-command](https://files.astrbot.app/docs/en/dev/star/guides/message-event-simple-command.svg)
+![message-event-simple-command](https://files.persbot.app/docs/en/dev/star/guides/message-event-simple-command.svg)
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.star import Context, Star
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.star import Context, Star
 
 class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
 
-    @filter.command("helloworld") # from astrbot.api.event.filter import command
+    @filter.command("helloworld") # from persbot.api.event.filter import command
     async def helloworld(self, event: AstrMessageEvent):
         '''This is a hello world command'''
         user_name = event.get_sender_name()
@@ -87,13 +87,13 @@ class MyPlugin(Star):
 ```
 
 > [!TIP]
-> Commands cannot contain spaces, otherwise AstrBot will parse them as a second parameter. You can use the command group feature below, or use a listener to parse the message content yourself.
+> Commands cannot contain spaces, otherwise Persbot will parse them as a second parameter. You can use the command group feature below, or use a listener to parse the message content yourself.
 
 ## Commands with Parameters
 
-![command-with-param](https://files.astrbot.app/docs/en/dev/star/guides/command-with-param.svg)
+![command-with-param](https://files.persbot.app/docs/en/dev/star/guides/command-with-param.svg)
 
-AstrBot will automatically parse command parameters for you.
+Persbot will automatically parse command parameters for you.
 
 ```python
 @filter.command("add")
@@ -126,11 +126,11 @@ The command group function doesn't need to implement any logic; just use `pass` 
 
 When a user doesn't input a subcommand, an error will be reported and the tree structure of the command group will be rendered.
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-1.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-1.png)
 
-![image](https://files.astrbot.app/docs/source/images/plugin/898a169ae7ed0478f41c0a7d14cb4d64.png)
+![image](https://files.persbot.app/docs/source/images/plugin/898a169ae7ed0478f41c0a7d14cb4d64.png)
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-2.png)
+![image](https://files.persbot.app/docs/source/images/plugin/image-2.png)
 
 Theoretically, command groups can be nested infinitely!
 
@@ -243,25 +243,25 @@ async def helloworld(self, event: AstrMessageEvent):
 > Available after v3.4.34
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
-@filter.on_astrbot_loaded()
-async def on_astrbot_loaded(self):
-    print("AstrBot initialization complete")
+@filter.on_persbot_loaded()
+async def on_persbot_loaded(self):
+    print("Persbot initialization complete")
 
 ```
 
 #### On LLM Request
 
-In AstrBot's default execution flow, the `on_llm_request` hook is triggered before calling the LLM.
+In Persbot's default execution flow, the `on_llm_request` hook is triggered before calling the LLM.
 
 You can obtain the `ProviderRequest` object and modify it.
 
 The ProviderRequest object contains all information about the LLM request, including the request text, system prompt, etc.
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.provider import ProviderRequest
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.provider import ProviderRequest
 
 @filter.on_llm_request()
 async def my_custom_hook_1(self, event: AstrMessageEvent, req: ProviderRequest): # Note there are three parameters
@@ -279,8 +279,8 @@ After the LLM request completes, the `on_llm_response` hook is triggered.
 You can obtain the `ProviderResponse` object and modify it.
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
-from astrbot.api.provider import LLMResponse
+from persbot.api.event import filter, AstrMessageEvent
+from persbot.api.provider import LLMResponse
 
 @filter.on_llm_response()
 async def on_llm_resp(self, event: AstrMessageEvent, resp: LLMResponse): # Note there are three parameters
@@ -296,7 +296,7 @@ Before sending a message, the `on_decorating_result` hook is triggered.
 You can implement some message decoration here, such as converting to voice, converting to image, adding prefixes, etc.
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.on_decorating_result()
 async def on_decorating_result(self, event: AstrMessageEvent):
@@ -313,7 +313,7 @@ async def on_decorating_result(self, event: AstrMessageEvent):
 After a message is sent to the messaging platform, the `after_message_sent` hook is triggered.
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from persbot.api.event import filter, AstrMessageEvent
 
 @filter.after_message_sent()
 async def after_message_sent(self, event: AstrMessageEvent):

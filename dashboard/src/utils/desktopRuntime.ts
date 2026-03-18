@@ -1,12 +1,12 @@
 export type DesktopRuntimeInfo = {
-  bridge: Window['astrbotDesktop'] | undefined
+  bridge: Window['persbotDesktop'] | undefined
   hasDesktopRuntimeProbe: boolean
   hasDesktopRestartCapability: boolean
   isDesktopRuntime: boolean
 }
 
 export async function getDesktopRuntimeInfo(): Promise<DesktopRuntimeInfo> {
-  const bridge = window.astrbotDesktop
+  const bridge = window.persbotDesktop
   const hasDesktopRuntimeProbe =
     !!bridge && typeof bridge.isDesktopRuntime === 'function'
   const hasDesktopRestartCapability =

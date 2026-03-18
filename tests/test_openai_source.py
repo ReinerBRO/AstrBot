@@ -2,8 +2,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from astrbot.core.provider.sources.groq_source import ProviderGroq
-from astrbot.core.provider.sources.openai_source import ProviderOpenAIOfficial
+from persbot.core.provider.sources.groq_source import ProviderGroq
+from persbot.core.provider.sources.openai_source import ProviderOpenAIOfficial
 
 
 class _ErrorWithBody(Exception):

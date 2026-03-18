@@ -1,7 +1,7 @@
 # Connect server-satori (Koishi)
 
 > [!TIP]
-> `server-satori` is a Koishi plugin that exposes Koishi as a Satori server, so AstrBot can connect to Koishi through Satori.
+> `server-satori` is a Koishi plugin that exposes Koishi as a Satori server, so Persbot can connect to Koishi through Satori.
 
 ## Preparation
 
@@ -20,11 +20,11 @@ If not, follow official docs first:
 
 After enabling, `server-satori` serves Satori API under `/satori`.
 
-![image](https://files.astrbot.app/docs/source/images/satori/2025-09-07_17-14-55.png)
+![image](https://files.persbot.app/docs/source/images/satori/2025-09-07_17-14-55.png)
 
-## Configure Satori Adapter in AstrBot
+## Configure Satori Adapter in Persbot
 
-1. Open AstrBot Dashboard.
+1. Open Persbot Dashboard.
 2. Click `Bots`.
 3. Click `+ Create Bot`.
 4. Select `satori`.
@@ -43,17 +43,17 @@ Fill in:
 > - So the full API base is `http://localhost:5140/satori/v1`.
 > - If your Koishi runs on different host/port/path, change accordingly.
 
-![image](https://files.astrbot.app/docs/source/images/satori/2025-10-10_16-16-25.png)
+![image](https://files.persbot.app/docs/source/images/satori/2025-10-10_16-16-25.png)
 
 Click `Save`.
 
 ## Done
 
-AstrBot should now be connected to Koishi via `server-satori`.
+Persbot should now be connected to Koishi via `server-satori`.
 
-Test by sending an AstrBot command (for example `/help`) in Koishi sandbox.
+Test by sending an Persbot command (for example `/help`) in Koishi sandbox.
 
-![image](https://files.astrbot.app/docs/source/images/satori/2025-09-07_17-19-04.png)
+![image](https://files.persbot.app/docs/source/images/satori/2025-09-07_17-19-04.png)
 
 ## Troubleshooting
 

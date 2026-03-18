@@ -3,7 +3,7 @@
         "name": "AI",
         "agent_runner": {
             "description": "Запуск агентов (Agent Runner)",
-            "hint": "Выберите среду для работы AI-диалогов. По умолчанию используется встроенный агент AstrBot, поддерживающий базу знаний, персонализацию и вызов технических инструментов. Не изменяйте этот раздел, если не планируете использовать сторонние платформы, такие как Dify, Coze или DeerFlow.",
+            "hint": "Выберите среду для работы AI-диалогов. По умолчанию используется встроенный агент Persbot, поддерживающий базу знаний, персонализацию и вызов технических инструментов. Не изменяйте этот раздел, если не планируете использовать сторонние платформы, такие как Dify, Coze или DeerFlow.",
             "provider_settings": {
                 "enable": {
                     "description": "Включить",
@@ -148,14 +148,14 @@
         },
         "agent_computer_use": {
             "description": "Использование компьютера (Agent Computer Use)",
-            "hint": "Позволяет AstrBot получать доступ к вашему компьютеру или песочнице для выполнения сложных задач. См. [Режим песочницы](https://docs.astrbot.app/use/astrbot-agent-sandbox.html), [Навыки](https://docs.astrbot.app/use/skills.html)",
+            "hint": "Позволяет Persbot получать доступ к вашему компьютеру или песочнице для выполнения сложных задач. См. [Режим песочницы](https://docs.persbot.app/use/persbot-agent-sandbox.html), [Навыки](https://docs.persbot.app/use/skills.html)",
             "provider_settings": {
                 "computer_use_runtime": {
                     "description": "Среда выполнения (Runtime)",
                     "hint": "'sandbox' означает запуск в изолированной среде, 'local' — локально на вашем ПК, 'none' — отключено. Если навыки загружены, выбор 'none' сделает их недоступными для агента."
                 },
                 "computer_use_require_admin": {
-                    "description": "Требовать права администратора AstrBot",
+                    "description": "Требовать права администратора Persbot",
                     "hint": "Если включено, только администраторы смогут использовать возможности управления компьютером. Добавить администраторов можно в конфиге платформы."
                 },
                 "sandbox": {
@@ -199,7 +199,7 @@
         },
         "proactive_capability": {
             "description": "Проактивный агент",
-            "hint": "AstrBot будет просыпаться, выполнять ваши задачи и сообщать о результатах. См. [Проактивный агент](https://docs.astrbot.app/en/use/proactive-agent.html)",
+            "hint": "Persbot будет просыпаться, выполнять ваши задачи и сообщать о результатах. См. [Проактивный агент](https://docs.persbot.app/en/use/proactive-agent.html)",
             "provider_settings": {
                 "proactive_capability": {
                     "add_cron_tools": {
@@ -210,7 +210,7 @@
             }
         },
         "truncate_and_compress": {
-            "hint": "[Управление контекстом](https://docs.astrbot.app/en/use/context-compress.html)",
+            "hint": "[Управление контекстом](https://docs.persbot.app/en/use/context-compress.html)",
             "description": "Стратегия управления контекстом",
             "provider_settings": {
                 "max_context_length": {
@@ -522,11 +522,11 @@
             },
             "telegram_command_auto_refresh": {
                 "description": "Автообновление команд Telegram",
-                "hint": "Если включено, AstrBot автоматически обновляет команды Telegram во время выполнения. (Одна эта настройка не имеет эффекта)"
+                "hint": "Если включено, Persbot автоматически обновляет команды Telegram во время выполнения. (Одна эта настройка не имеет эффекта)"
             },
             "telegram_command_register": {
                 "description": "Регистрация команд Telegram",
-                "hint": "Если включено, AstrBot автоматически регистрирует команды Telegram."
+                "hint": "Если включено, Persbot автоматически регистрирует команды Telegram."
             },
             "telegram_command_register_interval": {
                 "description": "Интервал автообновления команд Telegram",
@@ -541,7 +541,7 @@
             },
             "unified_webhook_mode": {
                 "description": "Единый режим Webhook",
-                "hint": "Использовать общий вход вебхуков AstrBot без открытия новых портов. URL: /api/platform/webhook/{uuid}."
+                "hint": "Использовать общий вход вебхуков Persbot без открытия новых портов. URL: /api/platform/webhook/{uuid}."
             },
             "webhook_uuid": {
                 "description": "UUID вебхука",
@@ -597,7 +597,7 @@
             },
             "ws_reverse_host": {
                 "description": "Хост реверсивного WebSocket",
-                "hint": "AstrBot выступает в роли сервера."
+                "hint": "Persbot выступает в роли сервера."
             },
             "ws_reverse_port": {
                 "description": "Порт реверсивного WebSocket"
@@ -934,7 +934,7 @@
             },
             "t2i_endpoint": {
                 "description": "Эндпоинт API сервиса текст-в-изображение",
-                "hint": "Использовать API AstrBot, если пусто"
+                "hint": "Использовать API Persbot, если пусто"
             },
             "t2i_template": {
                 "description": "Пользовательский шаблон текст-в-изображение",
@@ -954,7 +954,7 @@
             },
             "log_file_path": {
                 "description": "Путь к файлу логов",
-                "hint": "Пути относительно data/, напр. logs/astrbot.log."
+                "hint": "Пути относительно data/, напр. logs/persbot.log."
             },
             "log_file_max_mb": {
                 "description": "Макс. размер файла логов (МБ)",
@@ -970,7 +970,7 @@
             },
             "trace_log_path": {
                 "description": "Путь к файлу логов трассировки",
-                "hint": "Относительные пути определяются относительно директории данных, например, logs/astrbot.trace.log; абсолютные пути также поддерживаются."
+                "hint": "Относительные пути определяются относительно директории данных, например, logs/persbot.trace.log; абсолютные пути также поддерживаются."
             },
             "trace_log_max_mb": {
                 "description": "Макс. размер файла логов трассировки (МБ)",
@@ -1036,7 +1036,7 @@
             },
             "rerank_api_base": {
                 "description": "Base URL API модели Rerank",
-                "hint": "AstrBot добавляет /v1/rerank к URL запроса."
+                "hint": "Persbot добавляет /v1/rerank к URL запроса."
             },
             "rerank_api_key": {
                 "description": "API Key",
@@ -1511,7 +1511,7 @@
             },
             "auto_save_history": {
                 "description": "История диалогов управляется Coze",
-                "hint": "Если включено, Coze управляет историей. Локальный контекст AstrBot будет работать в режиме чтения."
+                "hint": "Если включено, Coze управляет историей. Локальный контекст Persbot будет работать в режиме чтения."
             }
         }
     },

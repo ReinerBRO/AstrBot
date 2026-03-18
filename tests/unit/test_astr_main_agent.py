@@ -5,15 +5,15 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from astrbot.core import astr_main_agent as ama
-from astrbot.core.agent.mcp_client import MCPTool
-from astrbot.core.agent.tool import FunctionTool, ToolSet
-from astrbot.core.conversation_mgr import Conversation
-from astrbot.core.message.components import File, Image, Plain, Reply
-from astrbot.core.platform.astr_message_event import AstrMessageEvent
-from astrbot.core.platform.platform_metadata import PlatformMetadata
-from astrbot.core.provider import Provider
-from astrbot.core.provider.entities import ProviderRequest
+from persbot.core import astr_main_agent as ama
+from persbot.core.agent.mcp_client import MCPTool
+from persbot.core.agent.tool import FunctionTool, ToolSet
+from persbot.core.conversation_mgr import Conversation
+from persbot.core.message.components import File, Image, Plain, Reply
+from persbot.core.platform.astr_message_event import AstrMessageEvent
+from persbot.core.platform.platform_metadata import PlatformMetadata
+from persbot.core.provider import Provider
+from persbot.core.provider.entities import ProviderRequest
 
 
 @pytest.fixture
@@ -306,7 +306,7 @@ class TestApplyKb:
         )
 
         with patch(
-            "astrbot.core.astr_main_agent.retrieve_knowledge_base",
+            "persbot.core.astr_main_agent.retrieve_knowledge_base",
             AsyncMock(return_value="KB result"),
         ):
             await module._apply_kb(mock_event, req, mock_context, config)
@@ -348,7 +348,7 @@ class TestApplyKb:
         )
 
         with patch(
-            "astrbot.core.astr_main_agent.retrieve_knowledge_base",
+            "persbot.core.astr_main_agent.retrieve_knowledge_base",
             AsyncMock(return_value=None),
         ):
             await module._apply_kb(mock_event, req, mock_context, config)
@@ -383,7 +383,7 @@ class TestApplyFileExtract:
         req = ProviderRequest(prompt="Summarize")
 
         with patch(
-            "astrbot.core.astr_main_agent.extract_file_moonshotai"
+            "persbot.core.astr_main_agent.extract_file_moonshotai"
         ) as mock_extract:
             mock_extract.return_value = "File content"
 
@@ -417,7 +417,7 @@ class TestApplyFileExtract:
         req = ProviderRequest(prompt="Summarize")
 
         with patch(
-            "astrbot.core.astr_main_agent.extract_file_moonshotai"
+            "persbot.core.astr_main_agent.extract_file_moonshotai"
         ) as mock_extract:
             mock_extract.return_value = "Reply content"
 
@@ -437,7 +437,7 @@ class TestApplyFileExtract:
         req = ProviderRequest(prompt=None)
 
         with patch(
-            "astrbot.core.astr_main_agent.extract_file_moonshotai"
+            "persbot.core.astr_main_agent.extract_file_moonshotai"
         ) as mock_extract:
             mock_extract.return_value = "Content"
 
@@ -833,7 +833,7 @@ class TestPluginToolFix:
         req = ProviderRequest(func_tool=tool_set)
         mock_event.plugins_name = ["test_plugin"]
 
-        with patch("astrbot.core.astr_main_agent.star_map") as mock_star_map:
+        with patch("persbot.core.astr_main_agent.star_map") as mock_star_map:
             mock_plugin = MagicMock()
             mock_plugin.name = "test_plugin"
             mock_plugin.reserved = False
@@ -857,7 +857,7 @@ class TestPluginToolFix:
         req = ProviderRequest(func_tool=tool_set)
         mock_event.plugins_name = ["other_plugin"]
 
-        with patch("astrbot.core.astr_main_agent.star_map"):
+        with patch("persbot.core.astr_main_agent.star_map"):
             module._plugin_tool_fix(mock_event, req)
 
         assert "mcp_tool" in req.func_tool.names()
@@ -879,7 +879,7 @@ class TestPluginToolFix:
         req = ProviderRequest(func_tool=tool_set)
         mock_event.plugins_name = ["other_plugin"]
 
-        with patch("astrbot.core.astr_main_agent.star_map"):
+        with patch("persbot.core.astr_main_agent.star_map"):
             module._plugin_tool_fix(mock_event, req)
 
         assert "transfer_to_demo_agent" in req.func_tool.names()
@@ -902,8 +902,8 @@ class TestBuildMainAgent:
         _setup_conversation_for_build(conv_mgr)
 
         with (
-            patch("astrbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
-            patch("astrbot.core.astr_main_agent.AstrAgentContext"),
+            patch("persbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
+            patch("persbot.core.astr_main_agent.AstrAgentContext"),
         ):
             mock_runner = MagicMock()
             mock_runner.reset = AsyncMock()
@@ -948,8 +948,8 @@ class TestBuildMainAgent:
         _setup_conversation_for_build(conv_mgr)
 
         with (
-            patch("astrbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
-            patch("astrbot.core.astr_main_agent.AstrAgentContext"),
+            patch("persbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
+            patch("persbot.core.astr_main_agent.AstrAgentContext"),
         ):
             mock_runner = MagicMock()
             mock_runner.reset = AsyncMock()
@@ -1003,8 +1003,8 @@ class TestBuildMainAgent:
         _setup_conversation_for_build(conv_mgr)
 
         with (
-            patch("astrbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
-            patch("astrbot.core.astr_main_agent.AstrAgentContext"),
+            patch("persbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
+            patch("persbot.core.astr_main_agent.AstrAgentContext"),
         ):
             mock_runner = MagicMock()
             mock_runner.reset = AsyncMock()
@@ -1056,8 +1056,8 @@ class TestBuildMainAgent:
         _setup_conversation_for_build(conv_mgr)
 
         with (
-            patch("astrbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
-            patch("astrbot.core.astr_main_agent.AstrAgentContext"),
+            patch("persbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
+            patch("persbot.core.astr_main_agent.AstrAgentContext"),
         ):
             mock_runner = MagicMock()
             mock_runner.reset = AsyncMock()
@@ -1087,8 +1087,8 @@ class TestBuildMainAgent:
         )
 
         with (
-            patch("astrbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
-            patch("astrbot.core.astr_main_agent.AstrAgentContext"),
+            patch("persbot.core.astr_main_agent.AgentRunner") as mock_runner_cls,
+            patch("persbot.core.astr_main_agent.AstrAgentContext"),
         ):
             mock_runner = MagicMock()
             mock_runner.reset = AsyncMock()
@@ -1124,7 +1124,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = None
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             mock_db.update_platform_session = AsyncMock()
 
@@ -1150,7 +1150,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = None
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             await module._handle_webchat(mock_event, req, prov)
 
@@ -1168,7 +1168,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = None
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             await module._handle_webchat(mock_event, req, prov)
 
@@ -1186,7 +1186,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = "Existing Title"
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
 
             await module._handle_webchat(mock_event, req, prov)
@@ -1202,7 +1202,7 @@ class TestHandleWebchat:
         req = ProviderRequest(prompt="What is AI?")
         prov = MagicMock(spec=Provider)
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=None)
 
             await module._handle_webchat(mock_event, req, prov)
@@ -1224,7 +1224,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = None
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             mock_db.update_platform_session = AsyncMock()
 
@@ -1247,7 +1247,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = None
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             mock_db.update_platform_session = AsyncMock()
 
@@ -1268,7 +1268,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = None
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             mock_db.update_platform_session = AsyncMock()
 
@@ -1291,7 +1291,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = None
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             mock_db.update_platform_session = AsyncMock()
 
@@ -1314,7 +1314,7 @@ class TestHandleWebchat:
         mock_session = MagicMock()
         mock_session.display_name = None
 
-        with patch("astrbot.core.db_helper") as mock_db:
+        with patch("persbot.core.db_helper") as mock_db:
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             mock_db.update_platform_session = AsyncMock()
 
@@ -1339,8 +1339,8 @@ class TestHandleWebchat:
         mock_session.display_name = None
 
         with (
-            patch("astrbot.core.db_helper") as mock_db,
-            patch("astrbot.core.astr_main_agent.logger") as mock_logger,
+            patch("persbot.core.db_helper") as mock_db,
+            patch("persbot.core.astr_main_agent.logger") as mock_logger,
         ):
             mock_db.get_platform_session_by_id = AsyncMock(return_value=mock_session)
             mock_db.update_platform_session = AsyncMock()
@@ -1405,7 +1405,7 @@ class TestApplyLlmSafetyMode:
         )
         req = ProviderRequest(prompt="Test", system_prompt="Original")
 
-        with patch("astrbot.core.astr_main_agent.logger") as mock_logger:
+        with patch("persbot.core.astr_main_agent.logger") as mock_logger:
             module._apply_llm_safety_mode(config, req)
 
         mock_logger.warning.assert_called_once()
@@ -1460,10 +1460,10 @@ class TestApplySandboxTools:
         module._apply_sandbox_tools(config, req, "session-123")
 
         tool_names = req.func_tool.names()
-        assert "astrbot_execute_shell" in tool_names
-        assert "astrbot_execute_ipython" in tool_names
-        assert "astrbot_upload_file" in tool_names
-        assert "astrbot_download_file" in tool_names
+        assert "persbot_execute_shell" in tool_names
+        assert "persbot_execute_ipython" in tool_names
+        assert "persbot_upload_file" in tool_names
+        assert "persbot_download_file" in tool_names
 
     def test_apply_sandbox_tools_adds_sandbox_prompt(self):
         """Test that sandbox mode prompt is added to system_prompt."""
@@ -1515,7 +1515,7 @@ class TestApplySandboxTools:
         )
         req = ProviderRequest(prompt="Test", func_tool=None)
 
-        with patch("astrbot.core.astr_main_agent.logger") as mock_logger:
+        with patch("persbot.core.astr_main_agent.logger") as mock_logger:
             module._apply_sandbox_tools(config, req, "session-123")
 
         mock_logger.error.assert_called_once()
@@ -1538,7 +1538,7 @@ class TestApplySandboxTools:
         )
         req = ProviderRequest(prompt="Test", func_tool=None)
 
-        with patch("astrbot.core.astr_main_agent.logger") as mock_logger:
+        with patch("persbot.core.astr_main_agent.logger") as mock_logger:
             module._apply_sandbox_tools(config, req, "session-123")
 
         mock_logger.error.assert_called_once()
@@ -1560,7 +1560,7 @@ class TestApplySandboxTools:
         module._apply_sandbox_tools(config, req, "session-123")
 
         assert "existing_tool" in req.func_tool.names()
-        assert "astrbot_execute_shell" in req.func_tool.names()
+        assert "persbot_execute_shell" in req.func_tool.names()
 
     def test_apply_sandbox_tools_appends_to_existing_system_prompt(self):
         """Test that sandbox prompt is appended to existing system prompt."""

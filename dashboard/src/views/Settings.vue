@@ -60,7 +60,7 @@
             </v-list-item>
 
             <v-list-item :subtitle="tm('system.restart.subtitle')" :title="tm('system.restart.title')">
-                <v-btn style="margin-top: 16px;" color="error" @click="restartAstrBot">{{ tm('system.restart.button') }}</v-btn>
+                <v-btn style="margin-top: 16px;" color="error" @click="restartPersbot">{{ tm('system.restart.button') }}</v-btn>
             </v-list-item>
 
             <v-list-subheader>{{ tm('apiKey.title') }}</v-list-subheader>
@@ -78,7 +78,7 @@
                                     variant="text"
                                     class="ml-2"
                                     :aria-label="tm('apiKey.docsLink')"
-                                    href="https://docs.astrbot.app/dev/openapi.html"
+                                    href="https://docs.persbot.app/dev/openapi.html"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -230,10 +230,10 @@ import ProxySelector from '@/components/shared/ProxySelector.vue';
 import MigrationDialog from '@/components/shared/MigrationDialog.vue';
 import SidebarCustomizer from '@/components/shared/SidebarCustomizer.vue';
 import BackupDialog from '@/components/shared/BackupDialog.vue';
-import { restartAstrBot as restartAstrBotRuntime } from '@/utils/restartAstrBot';
+import { restartPersbot as restartPersbotRuntime } from '@/utils/restartPersbot';
 import { useModuleI18n } from '@/i18n/composables';
 import { useTheme } from 'vuetify';
-import { PurpleTheme } from '@/theme/LightTheme';
+import { PersbotLightTheme } from '@/theme/LightTheme';
 import { useToastStore } from '@/stores/toast';
 
 const { tm } = useModuleI18n('features/settings');
@@ -245,8 +245,8 @@ const getStoredColor = (key, fallback) => {
     return stored || fallback;
 };
 
-const primaryColor = ref(getStoredColor('themePrimary', PurpleTheme.colors.primary));
-const secondaryColor = ref(getStoredColor('themeSecondary', PurpleTheme.colors.secondary));
+const primaryColor = ref(getStoredColor('themePrimary', PersbotLightTheme.colors.primary));
+const secondaryColor = ref(getStoredColor('themeSecondary', PersbotLightTheme.colors.secondary));
 
 const resolveThemes = () => {
     if (theme?.themes?.value) return theme.themes.value;
@@ -257,7 +257,7 @@ const resolveThemes = () => {
 const applyThemeColors = (primary, secondary) => {
     const themes = resolveThemes();
     if (!themes) return;
-    ['PurpleTheme', 'PurpleThemeDark'].forEach((name) => {
+    ['PersbotLightTheme', 'PersbotDarkTheme'].forEach((name) => {
         const themeDef = themes[name];
         if (!themeDef?.colors) return;
         if (primary) themeDef.colors.primary = primary;
@@ -447,9 +447,9 @@ const deleteApiKey = async (keyId) => {
     }
 };
 
-const restartAstrBot = async () => {
+const restartPersbot = async () => {
     try {
-        await restartAstrBotRuntime(wfr.value);
+        await restartPersbotRuntime(wfr.value);
     } catch (error) {
         console.error(error);
     }
@@ -475,8 +475,8 @@ const openBackupDialog = () => {
 }
 
 const resetThemeColors = () => {
-    primaryColor.value = PurpleTheme.colors.primary;
-    secondaryColor.value = PurpleTheme.colors.secondary;
+    primaryColor.value = PersbotLightTheme.colors.primary;
+    secondaryColor.value = PersbotLightTheme.colors.secondary;
     localStorage.removeItem('themePrimary');
     localStorage.removeItem('themeSecondary');
     applyThemeColors(primaryColor.value, secondaryColor.value);

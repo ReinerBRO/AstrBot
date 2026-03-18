@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "AstrBot Open API",
+    "title": "Persbot Open API",
     "version": "1.0.0",
-    "description": "Developer HTTP APIs for AstrBot. Use API Key authentication for /api/v1/* endpoints."
+    "description": "Developer HTTP APIs for Persbot. Use API Key authentication for /api/v1/* endpoints."
   },
   "servers": [
     {
@@ -106,7 +106,7 @@
           "Open API"
         ],
         "summary": "Send chat message (SSE)",
-        "description": "Send message to AstrBot chat pipeline and receive streaming SSE response. Reuses /api/chat/send behavior. If session_id/conversation_id is omitted, server will create a new UUID session_id.",
+        "description": "Send message to Persbot chat pipeline and receive streaming SSE response. Reuses /api/chat/send behavior. If session_id/conversation_id is omitted, server will create a new UUID session_id.",
         "security": [
           {
             "ApiKeyHeader": []
@@ -328,7 +328,7 @@
           "Open API"
         ],
         "summary": "List available chat config files",
-        "description": "Returns all available AstrBot config files that can be selected by Chat API using config_id/config_name.",
+        "description": "Returns all available Persbot config files that can be selected by Chat API using config_id/config_name.",
         "security": [
           {
             "ApiKeyHeader": []
@@ -597,11 +597,11 @@
           },
           "config_id": {
             "type": "string",
-            "description": "Optional AstrBot config file ID. If provided, the chat session will use this config file. Use \"default\" to reset to default config."
+            "description": "Optional Persbot config file ID. If provided, the chat session will use this config file. Use \"default\" to reset to default config."
           },
           "config_name": {
             "type": "string",
-            "description": "Optional AstrBot config file name. Used only when config_id is not provided."
+            "description": "Optional Persbot config file name. Used only when config_id is not provided."
           }
         }
       },

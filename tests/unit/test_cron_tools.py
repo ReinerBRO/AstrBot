@@ -1,6 +1,6 @@
 """Tests for cron tool metadata."""
 
-from astrbot.core.tools.cron_tools import CreateActiveCronTool
+from persbot.core.tools.cron_tools import CreateActiveCronTool
 
 
 def test_create_future_task_cron_description_prefers_named_weekdays():

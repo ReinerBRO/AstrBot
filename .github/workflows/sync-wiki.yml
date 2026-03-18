@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   sync:
-    if: github.repository == 'AstrBotDevs/AstrBot'
+    if: github.repository == 'PersbotDevs/Persbot'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -45,12 +45,12 @@ jobs:
       - name: Validate internal doc links
         run: python docs/scripts/sync_docs_to_wiki.py --source-root docs --check-links-only
 
-      - name: Clone AstrBot wiki
+      - name: Clone Persbot wiki
         env:
-          WIKI_TOKEN: ${{ secrets.ASTRBOT_WIKI_TOKEN }}
+          WIKI_TOKEN: ${{ secrets.PERSBOT_WIKI_TOKEN }}
         run: |
           test -n "$WIKI_TOKEN"
-          git clone "https://x-access-token:${WIKI_TOKEN}@github.com/AstrBotDevs/AstrBot.wiki.git" wiki
+          git clone "https://x-access-token:${WIKI_TOKEN}@github.com/PersbotDevs/Persbot.wiki.git" wiki
 
       - name: Generate wiki pages
         run: python docs/scripts/sync_docs_to_wiki.py --source-root docs --wiki-root wiki
@@ -65,5 +65,5 @@ jobs:
             echo "No wiki changes to push"
             exit 0
           fi
-          git commit -m "docs: sync wiki from AstrBot-1/docs"
+          git commit -m "docs: sync wiki from Persbot-1/docs"
           git push

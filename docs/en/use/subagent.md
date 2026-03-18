@@ -1,10 +1,10 @@
 # Agent Handoff and SubAgent
 
-SubAgent Orchestration is an advanced agent organization method provided by AstrBot. It allows you to decompose complex tasks into multiple specialized SubAgents, reducing the Main Agent's prompt length and improving task execution success rates.
+SubAgent Orchestration is an advanced agent organization method provided by Persbot. It allows you to decompose complex tasks into multiple specialized SubAgents, reducing the Main Agent's prompt length and improving task execution success rates.
 
 v4.14.0 introduced this feature, which is currently an **experimental feature** and not yet stable.
 
-![](https://files.astrbot.app/docs/source/images/subagent/image.png)
+![](https://files.persbot.app/docs/source/images/subagent/image.png)
 
 ## Motivation
 
@@ -22,11 +22,11 @@ With SubAgent Orchestration, the Main Agent is only responsible for user interac
 3. **SubAgent Execution**: The SubAgent receives the task, performs operations using its assigned tools, and returns the organized results to the Main Agent.
 4. **Feedback**: The Main Agent receives the results and continues the conversation with the user.
 
-![](https://files.astrbot.app/docs/source/images/subagent/1.png)
+![](https://files.persbot.app/docs/source/images/subagent/1.png)
 
 ## Configuration
 
-In the AstrBot WebUI, click **SubAgents** in the left navigation bar.
+In the Persbot WebUI, click **SubAgents** in the left navigation bar.
 
 ### 1. Enable SubAgent Mode
 

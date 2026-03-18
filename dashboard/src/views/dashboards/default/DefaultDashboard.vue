@@ -139,7 +139,7 @@ export default {
     },
     
     fetchNotice() {
-      axios.get('https://api.soulter.top/astrbot-announcement').then((res) => {
+      axios.get('https://api.soulter.top/persbot-announcement').then((res) => {
         let data = res.data.data;
         // 如果 dashboard-notice 在其中
         if (data['dashboard-notice']) {
