@@ -198,7 +198,7 @@ DEFAULT_CONFIG = {
     "dashboard": {
         "enable": True,
         "username": "persbot",
-        "password": "77b90590a8945a7d36c963981a307dc9",
+        "password": "cde11b5fa67818341034a32dee52ed9a",
         "jwt_secret": "",
         "host": "0.0.0.0",
         "port": 6185,
