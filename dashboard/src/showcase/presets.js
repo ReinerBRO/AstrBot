@@ -14,15 +14,9 @@ const currentVersion = normalizeVersion(
 const SHOWCASE_PRESETS = {
   v1: {
     code: "v1",
-    label: "V1 Base Agent",
-    summary:
-      "Keep only the core personalized agent shell, model setup, and chat workflow.",
-    highlights: [
-      "Base workspace shell",
-      "Provider setup",
-      "Core configuration",
-      "Chat interaction",
-    ],
+    label: "Persbot",
+    summary: "Personalized AI agent workspace.",
+    highlights: [],
     features: {
       providers: true,
       config: true,
@@ -45,15 +39,9 @@ const SHOWCASE_PRESETS = {
   },
   v2: {
     code: "v2",
-    label: "V2 Connected Workspace",
-    summary:
-      "Open robot/platform access and user knowledge surfaces on top of the base agent.",
-    highlights: [
-      "Robot platform access",
-      "Knowledge base",
-      "Persona management",
-      "Provider and config still available",
-    ],
+    label: "Persbot",
+    summary: "Personalized AI agent workspace.",
+    highlights: [],
     features: {
       providers: true,
       config: true,
@@ -76,15 +64,9 @@ const SHOWCASE_PRESETS = {
   },
   v3: {
     code: "v3",
-    label: "V3 Plugin Ecosystem",
-    summary:
-      "Expose the extension ecosystem so the agent becomes customizable and extensible.",
-    highlights: [
-      "Installed plugins",
-      "Plugin marketplace",
-      "Skills library",
-      "Connected workspace kept from V2",
-    ],
+    label: "Persbot",
+    summary: "Personalized AI agent workspace.",
+    highlights: [],
     features: {
       providers: true,
       config: true,
@@ -107,16 +89,9 @@ const SHOWCASE_PRESETS = {
   },
   v4: {
     code: "v4",
-    label: "V4 Operational Agent",
-    summary:
-      "Add automation and multi-session operation modules to turn the agent into a working system.",
-    highlights: [
-      "Conversation archive",
-      "Session management",
-      "Cron jobs",
-      "Subagent orchestration",
-      "Operations dashboard",
-    ],
+    label: "Persbot",
+    summary: "Personalized AI agent workspace.",
+    highlights: [],
     features: {
       providers: true,
       config: true,
@@ -139,16 +114,9 @@ const SHOWCASE_PRESETS = {
   },
   v5: {
     code: "v5",
-    label: "V5 Full Persbot",
-    summary:
-      "Unlock the full extension, MCP, and observability surfaces for the final complete system.",
-    highlights: [
-      "MCP servers",
-      "Component panel",
-      "Console",
-      "Trace",
-      "Full Persbot surface",
-    ],
+    label: "Persbot",
+    summary: "Personalized AI agent workspace.",
+    highlights: [],
     features: {
       providers: true,
       config: true,
@@ -296,4 +264,3 @@ const filterSidebarItem = (item) => {
 
 export const filterShowcaseSidebarItems = (items = []) =>
   items.map((item) => filterSidebarItem(item)).filter(Boolean);
-

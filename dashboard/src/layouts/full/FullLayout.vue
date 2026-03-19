@@ -5,16 +5,11 @@ import axios from 'axios';
 import VerticalSidebarVue from './vertical-sidebar/VerticalSidebar.vue';
 import VerticalHeaderVue from './vertical-header/VerticalHeader.vue';
 import MigrationDialog from '@/components/shared/MigrationDialog.vue';
-import ReadmeDialog from '@/components/shared/ReadmeDialog.vue';
 import Chat from '@/components/chat/Chat.vue';
 import { useCustomizerStore } from '@/stores/customizer';
 import { useRouterLoadingStore } from '@/stores/routerLoading';
-import { useI18n } from '@/i18n/composables';
-
-const FIRST_NOTICE_SEEN_KEY = 'persbot:first_notice_seen:v1';
 
 const customizer = useCustomizerStore();
-const { locale } = useI18n();
 const route = useRoute();
 const routerLoadingStore = useRouterLoadingStore();
 
@@ -31,7 +26,6 @@ const showChatPage = computed(() => {
 });
 
 const migrationDialog = ref<InstanceType<typeof MigrationDialog> | null>(null);
-const showFirstNoticeDialog = ref(false);
 
 const checkMigration = async (): Promise<boolean> => {
   try {
@@ -52,44 +46,9 @@ const checkMigration = async (): Promise<boolean> => {
   return false;
 };
 
-const maybeShowFirstNotice = async () => {
-  if (localStorage.getItem(FIRST_NOTICE_SEEN_KEY) === '1') {
-    return;
-  }
-
-  try {
-    const response = await axios.get('/api/stat/first-notice', {
-      params: { locale: locale.value },
-    });
-    if (response.data.status !== 'ok') {
-      return;
-    }
-
-    const content = response.data?.data?.content;
-    if (typeof content === 'string' && content.trim().length > 0) {
-      showFirstNoticeDialog.value = true;
-      return;
-    }
-
-    localStorage.setItem(FIRST_NOTICE_SEEN_KEY, '1');
-  } catch (error) {
-    console.error('Failed to load first notice:', error);
-  }
-};
-
-const onFirstNoticeDialogUpdate = (visible: boolean) => {
-  showFirstNoticeDialog.value = visible;
-  if (!visible) {
-    localStorage.setItem(FIRST_NOTICE_SEEN_KEY, '1');
-  }
-};
-
 onMounted(() => {
   setTimeout(async () => {
-    const migrationPending = await checkMigration();
-    if (!migrationPending) {
-      await maybeShowFirstNotice();
-    }
+    await checkMigration();
   }, 1000);
 });
 </script>
@@ -133,11 +92,6 @@ onMounted(() => {
       </v-main>
 
       <MigrationDialog ref="migrationDialog" />
-      <ReadmeDialog
-        :show="showFirstNoticeDialog"
-        mode="first-notice"
-        @update:show="onFirstNoticeDialogUpdate"
-      />
     </v-app>
   </v-locale-provider>
 </template>

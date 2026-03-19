@@ -5,7 +5,6 @@ import { useI18n } from '@/i18n/composables';
 import sidebarItems from './sidebarItem';
 import NavItem from './NavItem.vue';
 import { applySidebarCustomization } from '@/utils/sidebarCustomization';
-import ChangelogDialog from '@/components/shared/ChangelogDialog.vue';
 import { filterShowcaseSidebarItems } from '@/showcase/presets';
 
 const { t, locale } = useI18n();
@@ -78,9 +77,6 @@ onUnmounted(() => {
 
 const showIframe = ref(false);
 const starCount = ref(null);
-
-// 更新日志对话框
-const changelogDialog = ref(false);
 
 const sidebarWidth = ref(235);
 const minSidebarWidth = 200;
@@ -272,11 +268,6 @@ async function fetchStarCount() {
 
 fetchStarCount();
 
-// 打开更新日志对话框
-function openChangelogDialog() {
-  changelogDialog.value = true;
-}
-
 </script>
 
 <template>
@@ -299,10 +290,6 @@ function openChangelogDialog() {
       <div class="sidebar-footer" v-if="!customizer.mini_sidebar">
         <v-btn class="sidebar-footer-btn" size="small" variant="tonal" color="primary" to="/settings" prepend-icon="mdi-cog">
           {{ t('core.navigation.settings') }}
-        </v-btn>
-        <v-btn class="sidebar-footer-btn" size="small" variant="text" prepend-icon="mdi-note-text-outline"
-          @click="openChangelogDialog">
-          {{ t('core.navigation.changelog') }}
         </v-btn>
         <v-btn class="sidebar-footer-btn" size="small" variant="text" prepend-icon="mdi-book-open-variant"
           @click="toggleIframe">
@@ -371,8 +358,6 @@ function openChangelogDialog() {
       ></iframe>
   </div>
 
-  <!-- 更新日志对话框 -->
-  <ChangelogDialog v-model="changelogDialog" />
 </template>
 
 <style scoped>

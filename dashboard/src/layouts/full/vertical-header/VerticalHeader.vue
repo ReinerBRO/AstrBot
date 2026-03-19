@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useCustomizerStore } from '@/stores/customizer';
 import axios from 'axios';
 import Logo from '@/components/shared/Logo.vue';
 import { md5 } from 'js-md5';
 import { useAuthStore } from '@/stores/auth';
 import { useCommonStore } from '@/stores/common';
-import { MarkdownRender, enableKatex, enableMermaid } from 'markstream-vue';
-import 'markstream-vue/index.css';
-import 'katex/dist/katex.min.css';
-import 'highlight.js/styles/github.css';
 import { useI18n } from '@/i18n/composables';
 import { router } from '@/router';
 import { useRoute } from 'vue-router';
@@ -18,10 +14,6 @@ import StyledMenu from '@/components/shared/StyledMenu.vue';
 import { useLanguageSwitcher } from '@/i18n/composables';
 import type { Locale } from '@/i18n/types';
 import AboutPage from '@/views/AboutPage.vue';
-import { getDesktopRuntimeInfo } from '@/utils/desktopRuntime';
-
-enableKatex();
-enableMermaid();
 
 const customizer = useCustomizerStore();
 const theme = useTheme();
@@ -31,7 +23,6 @@ const LAST_BOT_ROUTE_KEY = 'persbot:last_bot_route';
 const authControlsEnabled = false;
 let dialog = ref(false);
 let accountWarning = ref(false)
-let updateStatusDialog = ref(false);
 let aboutDialog = ref(false);
 const username = localStorage.getItem('user');
 let password = ref('');
@@ -39,61 +30,6 @@ let newPassword = ref('');
 let confirmPassword = ref('');
 let newUsername = ref('');
 let status = ref('');
-let updateStatus = ref('')
-let releaseMessage = ref('');
-let hasNewVersion = ref(false);
-let botCurrVersion = ref('');
-let dashboardHasNewVersion = ref(false);
-let dashboardCurrentVersion = ref('');
-let version = ref('');
-let releases = ref([]);
-let updatingDashboardLoading = ref(false);
-let installLoading = ref(false);
-const isDesktopReleaseMode = ref(
-  typeof window !== 'undefined' && !!window.persbotDesktop?.isDesktop
-);
-const desktopUpdateDialog = ref(false);
-const desktopUpdateChecking = ref(false);
-const desktopUpdateInstalling = ref(false);
-const desktopUpdateHasNewVersion = ref(false);
-const desktopUpdateCurrentVersion = ref('-');
-const desktopUpdateLatestVersion = ref('-');
-const desktopUpdateStatus = ref('');
-
-const getAppUpdaterBridge = (): PersbotAppUpdaterBridge | null => {
-  if (typeof window === 'undefined') {
-    return null;
-  }
-  const bridge = window.persbotAppUpdater;
-  if (
-    bridge &&
-    typeof bridge.checkForAppUpdate === 'function' &&
-    typeof bridge.installAppUpdate === 'function'
-  ) {
-    return bridge;
-  }
-  return null;
-};
-
-const getSelectedGitHubProxy = () => {
-  if (typeof window === "undefined" || !window.localStorage) return "";
-  return localStorage.getItem("githubProxyRadioValue") === "1"
-    ? localStorage.getItem("selectedGitHubProxy") || ""
-    : "";
-};
-
-// Release Notes Modal
-let releaseNotesDialog = ref(false);
-let selectedReleaseNotes = ref('');
-let selectedReleaseTag = ref('');
-
-const releasesHeader = computed(() => [
-  { title: t('core.header.updateDialog.table.tag'), key: 'tag_name' },
-  { title: t('core.header.updateDialog.table.publishDate'), key: 'published_at' },
-  { title: t('core.header.updateDialog.table.content'), key: 'body' },
-  { title: t('core.header.updateDialog.table.sourceUrl'), key: 'zipball_url' },
-  { title: t('core.header.updateDialog.table.actions'), key: 'switch' }
-]);
 // Form validation
 const formValid = ref(true);
 const passwordRules = computed(() => [
@@ -120,102 +56,6 @@ const accountEditStatus = ref({
   error: false,
   message: ''
 });
-
-function cancelDesktopUpdate() {
-  if (desktopUpdateInstalling.value) {
-    return;
-  }
-  desktopUpdateDialog.value = false;
-}
-
-async function openDesktopUpdateDialog() {
-  desktopUpdateDialog.value = true;
-  desktopUpdateChecking.value = true;
-  desktopUpdateInstalling.value = false;
-  desktopUpdateHasNewVersion.value = false;
-  desktopUpdateCurrentVersion.value = '-';
-  desktopUpdateLatestVersion.value = '-';
-  desktopUpdateStatus.value = t('core.header.updateDialog.desktopApp.checking');
-
-  const bridge = getAppUpdaterBridge();
-  if (!bridge) {
-    desktopUpdateChecking.value = false;
-    desktopUpdateStatus.value = t('core.header.updateDialog.desktopApp.checkFailed');
-    return;
-  }
-
-  try {
-    const result = await bridge.checkForAppUpdate();
-    if (!result?.ok) {
-      desktopUpdateCurrentVersion.value = result?.currentVersion || '-';
-      desktopUpdateLatestVersion.value =
-        result?.latestVersion || result?.currentVersion || '-';
-      desktopUpdateStatus.value =
-        result?.reason || t('core.header.updateDialog.desktopApp.checkFailed');
-      return;
-    }
-
-    desktopUpdateCurrentVersion.value = result.currentVersion || '-';
-    desktopUpdateLatestVersion.value =
-      result.latestVersion || result.currentVersion || '-';
-    desktopUpdateHasNewVersion.value = !!result.hasUpdate;
-    desktopUpdateStatus.value = result.hasUpdate
-      ? t('core.header.updateDialog.desktopApp.hasNewVersion')
-      : t('core.header.updateDialog.desktopApp.isLatest');
-  } catch (error) {
-    console.error(error);
-    desktopUpdateStatus.value = t('core.header.updateDialog.desktopApp.checkFailed');
-  } finally {
-    desktopUpdateChecking.value = false;
-  }
-}
-
-async function confirmDesktopUpdate() {
-  if (!desktopUpdateHasNewVersion.value || desktopUpdateInstalling.value) {
-    return;
-  }
-
-  const bridge = getAppUpdaterBridge();
-  if (!bridge) {
-    desktopUpdateStatus.value = t('core.header.updateDialog.desktopApp.installFailed');
-    return;
-  }
-
-  desktopUpdateInstalling.value = true;
-  desktopUpdateStatus.value = t('core.header.updateDialog.desktopApp.installing');
-
-  try {
-    const result = await bridge.installAppUpdate();
-    if (result?.ok) {
-      desktopUpdateDialog.value = false;
-      return;
-    }
-    desktopUpdateStatus.value =
-      result?.reason || t('core.header.updateDialog.desktopApp.installFailed');
-  } catch (error) {
-    console.error(error);
-    desktopUpdateStatus.value = t('core.header.updateDialog.desktopApp.installFailed');
-  } finally {
-    desktopUpdateInstalling.value = false;
-  }
-}
-
-function handleUpdateClick() {
-  if (isDesktopReleaseMode.value) {
-    void openDesktopUpdateDialog();
-    return;
-  }
-  checkUpdate();
-  getReleases();
-  updateStatusDialog.value = true;
-}
-
-// 检测是否为预发布版本
-const isPreRelease = (version: string) => {
-  const preReleaseKeywords = ['alpha', 'beta', 'rc', 'pre', 'preview', 'dev'];
-  const lowerVersion = version.toLowerCase();
-  return preReleaseKeywords.some(keyword => lowerVersion.includes(keyword));
-};
 
 // 账户修改
 function accountEdit() {
@@ -263,116 +103,10 @@ function accountEdit() {
     });
 }
 
-function getVersion() {
-  axios.get('/api/stat/version')
-    .then((res) => {
-      botCurrVersion.value = "v" + res.data.data.version;
-      dashboardCurrentVersion.value = res.data.data?.dashboard_version;
-      accountWarning.value = false;
-      dialog.value = false;
-      localStorage.removeItem('change_pwd_hint');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-function checkUpdate() {
-  updateStatus.value = t('core.header.updateDialog.status.checking');
-  axios.get('/api/update/check')
-    .then((res) => {
-      hasNewVersion.value = res.data.data.has_new_version;
-
-      if (res.data.data.has_new_version) {
-        releaseMessage.value = res.data.message;
-        updateStatus.value = t('core.header.version.hasNewVersion');
-      } else {
-        updateStatus.value = res.data.message;
-      }
-      dashboardHasNewVersion.value = isDesktopReleaseMode.value
-        ? false
-        : res.data.data.dashboard_has_new_version;
-    })
-    .catch((err) => {
-      if (err.response && err.response.status == 401) {
-        console.log("401");
-        const authStore = useAuthStore();
-        authStore.logout();
-        return;
-      }
-      console.log(err);
-      updateStatus.value = err
-    });
-}
-
-function getReleases() {
-  return axios.get('/api/update/releases')
-    .then((res) => {
-      releases.value = res.data.data.map((item: any) => {
-        item.published_at = new Date(item.published_at).toLocaleString();
-        return item;
-      })
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-
-
-function switchVersion(version: string) {
-  updateStatus.value = t('core.header.updateDialog.status.switching');
-  installLoading.value = true;
-  axios.post('/api/update/do', {
-    version: version,
-    proxy: getSelectedGitHubProxy()
-  })
-    .then((res) => {
-      updateStatus.value = res.data.message;
-      if (res.data.status == 'ok') {
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      updateStatus.value = err
-    }).finally(() => {
-      installLoading.value = false;
-    });
-}
-
-function updateDashboard() {
-  updatingDashboardLoading.value = true;
-  updateStatus.value = t('core.header.updateDialog.status.updating');
-  axios.post('/api/update/dashboard')
-    .then((res) => {
-      updateStatus.value = res.data.message;
-      if (res.data.status == 'ok') {
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      updateStatus.value = err
-    }).finally(() => {
-      updatingDashboardLoading.value = false;
-    });
-}
-
 function toggleDarkMode() {
   const newTheme = customizer.uiTheme === 'PersbotDarkTheme' ? 'PersbotLightTheme' : 'PersbotDarkTheme';
   customizer.SET_UI_THEME(newTheme);
   theme.global.name.value = newTheme;
-}
-
-function openReleaseNotesDialog(body: string, tag: string) {
-  selectedReleaseNotes.value = body;
-  selectedReleaseTag.value = tag;
-  releaseNotesDialog.value = true;
 }
 
 function handleLogoClick() {
@@ -382,9 +116,6 @@ function handleLogoClick() {
     router.push('/about');
   }
 }
-
-getVersion();
-checkUpdate();
 
 const commonStore = useCommonStore();
 commonStore.createEventSource(); // log
@@ -447,14 +178,6 @@ const changeLanguage = async (langCode: string) => {
   await switchLanguage(langCode as Locale);
 };
 
-onMounted(async () => {
-  const runtimeInfo = await getDesktopRuntimeInfo();
-  isDesktopReleaseMode.value = runtimeInfo.isDesktopRuntime;
-  if (isDesktopReleaseMode.value) {
-    dashboardHasNewVersion.value = false;
-  }
-});
-
 </script>
 
 <template>
@@ -484,20 +207,9 @@ onMounted(async () => {
         <img v-if="isChristmas" src="@/assets/images/xmas-hat.png" alt="Christmas hat" class="xmas-hat" />
       </span></span>
       <span class="logo-text logo-text-light Outfit" v-if="customizer.viewMode === 'chat'">Control Deck</span>
-      <span class="version-text hidden-xs">{{ botCurrVersion }}</span>
     </div>
 
   <v-spacer />
-
-    <!-- 版本提示信息 - 在手机上隐藏 -->
-    <div class="mr-4 hidden-xs">
-      <small v-if="hasNewVersion">
-        {{ t('core.header.version.hasNewVersion') }}
-      </small>
-      <small v-else-if="dashboardHasNewVersion && !isDesktopReleaseMode">
-        {{ t('core.header.version.dashboardHasNewVersion') }}
-      </small>
-    </div>
     
     <!-- Bot/Chat 模式切换按钮 - 手机端隐藏，移入 ... 菜单 -->
     <v-btn-toggle
@@ -621,21 +333,6 @@ onMounted(async () => {
         </v-list-item-title>
       </v-list-item>
 
-      <!-- 更新按钮 -->
-      <v-list-item
-        @click="handleUpdateClick"
-        class="styled-menu-item"
-        rounded="md"
-      >
-        <template v-slot:prepend>
-          <v-icon>mdi-arrow-up-circle</v-icon>
-        </template>
-        <v-list-item-title>{{ t('core.header.updateDialog.title') }}</v-list-item-title>
-        <template v-slot:append v-if="hasNewVersion || (dashboardHasNewVersion && !isDesktopReleaseMode)">
-          <v-chip size="x-small" color="primary" variant="tonal" class="ml-2">!</v-chip>
-        </template>
-      </v-list-item>
-
       <!-- 账户按钮 -->
       <v-list-item
         v-if="authControlsEnabled"
@@ -649,174 +346,6 @@ onMounted(async () => {
         <v-list-item-title>{{ t('core.header.accountDialog.title') }}</v-list-item-title>
       </v-list-item>
     </StyledMenu>
-
-    <!-- 更新对话框 -->
-    <v-dialog v-model="updateStatusDialog" :width="$vuetify.display.smAndDown ? '100%' : '1200'"
-      :fullscreen="$vuetify.display.xs">
-      <v-card>
-        <v-card-title class="mobile-card-title">
-          <span class="text-h5">{{ t('core.header.updateDialog.title') }}</span>
-          <v-btn v-if="$vuetify.display.xs" icon @click="updateStatusDialog = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-progress-linear v-show="installLoading" class="mb-4" indeterminate color="primary"></v-progress-linear>
-
-            <div>
-              <h1 style="display:inline-block;">{{ botCurrVersion }}</h1>
-              <small style="margin-left: 4px;">{{ updateStatus }}</small>
-            </div>
-
-            <div v-if="releaseMessage"
-              style="background-color: #646cff24; padding: 16px; border-radius: 10px; font-size: 14px; max-height: 400px; overflow-y: auto;">
-              <MarkdownRender :content="releaseMessage" :typewriter="false" class="markdown-content" />
-            </div>
-
-            <div class="mb-4 mt-4">
-              <small>{{ t('core.header.updateDialog.tip') }}
-                {{ t('core.header.updateDialog.tipContinue') }}</small>
-            </div>
-
-            <!-- 发行版 -->
-            <div>
-                <div class="mb-4">
-                  <small>{{ t('core.header.updateDialog.dockerTip') }} <a
-                      href="https://containrrr.dev/watchtower/usage-overview/">{{
-                        t('core.header.updateDialog.dockerTipLink')
-                      }}</a> {{ t('core.header.updateDialog.dockerTipContinue') }}</small>
-                </div>
-
-                <v-alert v-if="releases.some((item: any) => isPreRelease(item['tag_name']))" type="warning" variant="tonal"
-                  border="start">
-                  <template v-slot:prepend>
-                    <v-icon>mdi-alert-circle-outline</v-icon>
-                  </template>
-                  <div class="text-body-2">
-                    <strong>{{ t('core.header.updateDialog.preReleaseWarning.title') }}</strong>
-                    <br>
-                    {{ t('core.header.updateDialog.preReleaseWarning.description') }}
-                    <a href="https://github.com/PersbotDevs/Persbot/issues" target="_blank" class="text-decoration-none">
-                      {{ t('core.header.updateDialog.preReleaseWarning.issueLink') }}
-                    </a>
-                  </div>
-                </v-alert>
-
-                <v-data-table :headers="releasesHeader" :items="releases" item-key="name" :items-per-page="8">
-                  <template v-slot:item.tag_name="{ item }: { item: any }">
-                    <div class="d-flex align-center">
-                      <span>{{ item.tag_name }}</span>
-                      <v-chip v-if="isPreRelease(item.tag_name)" size="x-small" color="warning" variant="tonal"
-                        class="ml-2">
-                        {{ t('core.header.updateDialog.preRelease') }}
-                      </v-chip>
-                    </div>
-                  </template>
-                  <template v-slot:item.body="{ item }: { item: { body: string; tag_name: string } }">
-                    <v-btn @click="openReleaseNotesDialog(item.body, item.tag_name)" rounded="xl" variant="tonal"
-                      color="primary" size="x-small">{{
-                        t('core.header.updateDialog.table.view') }}</v-btn>
-                  </template>
-                  <template v-slot:item.switch="{ item }: { item: { tag_name: string } }">
-                    <v-btn @click="switchVersion(item.tag_name)" rounded="xl" variant="plain" color="primary">
-                      {{ t('core.header.updateDialog.table.switch') }}
-                    </v-btn>
-                  </template>
-                </v-data-table>
-            </div>
-
-            <v-divider class="mt-4 mb-4"></v-divider>
-            <div style="margin-top: 16px;">
-              <h3 class="mb-4">{{ t('core.header.updateDialog.dashboardUpdate.title') }}</h3>
-              <div class="mb-4">
-                <small>{{ t('core.header.updateDialog.dashboardUpdate.currentVersion') }} {{ dashboardCurrentVersion
-                  }}</small>
-                <br>
-
-              </div>
-
-              <div class="mb-4">
-                <p v-if="dashboardHasNewVersion">
-                  {{ t('core.header.updateDialog.dashboardUpdate.hasNewVersion') }}
-                </p>
-                <p v-else="dashboardHasNewVersion">
-                  {{ t('core.header.updateDialog.dashboardUpdate.isLatest') }}
-                </p>
-              </div>
-
-              <v-btn color="primary" style="border-radius: 10px;" @click="updateDashboard()"
-                :disabled="!dashboardHasNewVersion" :loading="updatingDashboardLoading">
-                {{ t('core.header.updateDialog.dashboardUpdate.downloadAndUpdate') }}
-              </v-btn>
-            </div>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue-darken-1" variant="text" @click="updateStatusDialog = false">
-            {{ t('core.common.close') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <!-- Release Notes Modal -->
-    <v-dialog v-model="releaseNotesDialog" max-width="800">
-      <v-card>
-        <v-card-title class="text-h5">
-          {{ t('core.header.updateDialog.releaseNotes.title') }}: {{ selectedReleaseTag }}
-        </v-card-title>
-        <v-card-text
-          style="font-size: 14px; max-height: 400px; overflow-y: auto;">
-          <MarkdownRender :content="selectedReleaseNotes" :typewriter="false" class="markdown-content" />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue-darken-1" variant="text" @click="releaseNotesDialog = false">
-            {{ t('core.common.close') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <v-dialog v-model="desktopUpdateDialog" max-width="460">
-      <v-card>
-        <v-card-title class="text-h3 pa-4 pl-6 pb-0">
-          {{ t('core.header.updateDialog.desktopApp.title') }}
-        </v-card-title>
-        <v-card-text>
-          <div class="mb-3">
-            {{ t('core.header.updateDialog.desktopApp.message') }}
-          </div>
-          <v-alert type="info" variant="tonal" density="compact">
-            <div>
-              {{ t('core.header.updateDialog.desktopApp.currentVersion') }}
-              <strong>{{ desktopUpdateCurrentVersion }}</strong>
-            </div>
-            <div>
-              {{ t('core.header.updateDialog.desktopApp.latestVersion') }}
-              <strong v-if="!desktopUpdateChecking">{{ desktopUpdateLatestVersion }}</strong>
-              <v-progress-circular v-else indeterminate size="16" width="2" class="ml-1" />
-            </div>
-          </v-alert>
-          <div class="text-caption mt-3">
-            {{ desktopUpdateStatus }}
-          </div>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="grey" variant="text" @click="cancelDesktopUpdate" :disabled="desktopUpdateInstalling">
-            {{ t('core.common.dialog.cancelButton') }}
-          </v-btn>
-          <v-btn color="primary" variant="flat" @click="confirmDesktopUpdate"
-            :loading="desktopUpdateInstalling"
-            :disabled="desktopUpdateChecking || desktopUpdateInstalling || !desktopUpdateHasNewVersion">
-            {{ t('core.common.dialog.confirmButton') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
 
     <!-- 账户对话框 -->
     <v-dialog v-if="authControlsEnabled" v-model="dialog" persistent :max-width="$vuetify.display.xs ? '90%' : '500'">

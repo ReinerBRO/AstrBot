@@ -16,27 +16,24 @@
       <v-row class="px-4">
         <v-col cols="12">
           <v-card class="welcome-card welcome-card--showcase pa-6" elevation="0" border>
-            <div class="d-flex align-start justify-space-between flex-wrap" style="gap: 16px">
+            <div>
               <div>
-                <div class="welcome-eyebrow">Showcase Entry</div>
-                <div class="text-h3 font-weight-bold mb-2">{{ showcasePreset.label }}</div>
+                <div class="welcome-eyebrow">Persbot</div>
+                <div class="text-h3 font-weight-bold mb-2">Persbot</div>
                 <p class="text-body-1 text-medium-emphasis mb-0">
-                  {{ showcasePreset.summary }}
+                  {{ showcaseOverviewText }}
                 </p>
               </div>
-              <v-chip color="primary" variant="flat" rounded="pill" class="font-weight-bold px-4">
-                {{ showcasePreset.code.toUpperCase() }}
-              </v-chip>
             </div>
             <div class="d-flex flex-wrap mt-4" style="gap: 10px">
               <v-chip
-                v-for="highlight in showcasePreset.highlights"
-                :key="highlight"
+                v-for="capability in showcaseCapabilities"
+                :key="capability"
                 color="primary"
                 variant="tonal"
                 rounded="pill"
               >
-                {{ highlight }}
+                {{ capability }}
               </v-chip>
             </div>
           </v-card>
@@ -171,7 +168,7 @@ import ProviderConfigDialog from '@/components/chat/ProviderConfigDialog.vue';
 import { useI18n, useModuleI18n } from '@/i18n/composables';
 import { useToast } from '@/utils/toast';
 import { MarkdownRender } from 'markstream-vue';
-import { getShowcaseFeatureMap, getShowcasePreset } from '@/showcase/presets';
+import { getShowcaseFeatureMap } from '@/showcase/presets';
 import 'markstream-vue/index.css';
 import 'highlight.js/styles/github.css';
 
@@ -184,7 +181,6 @@ const { success: showSuccess, error: showError } = useToast();
 const showAddPlatformDialog = ref(false);
 const showProviderDialog = ref(false);
 const loadingPlatformDialog = ref(false);
-const showcasePreset = getShowcasePreset();
 const showcaseFeatures = getShowcaseFeatureMap();
 const onboardingStepIcons = ['mdi-numeric-1', 'mdi-numeric-2', 'mdi-numeric-3', 'mdi-numeric-4'];
 
@@ -227,6 +223,38 @@ const welcomeAnnouncement = computed(() =>
   resolveWelcomeAnnouncement(welcomeAnnouncementRaw.value, locale.value)
 );
 const showAnnouncement = computed(() => welcomeAnnouncement.value.length > 0);
+const showcaseOverviewText = computed(() =>
+  locale.value.startsWith('zh')
+    ? '个性化 AI Agent 的统一工作台，覆盖配置、知识、扩展、会话管理与自动化协作。'
+    : 'Unified workspace for a personalized AI agent, covering configuration, knowledge, extensions, conversations, and automation.'
+);
+const showcaseCapabilities = computed(() => {
+  const zh = locale.value.startsWith('zh');
+  const capabilities: string[] = [];
+  const addCapability = (enabled: boolean, zhLabel: string, enLabel: string) => {
+    if (enabled) {
+      capabilities.push(zh ? zhLabel : enLabel);
+    }
+  };
+
+  addCapability(showcaseFeatures.providers, '模型接入', 'Model Access');
+  addCapability(showcaseFeatures.config, '配置工作台', 'Configuration');
+  addCapability(showcaseFeatures.platforms, '平台接入', 'Platform Access');
+  addCapability(showcaseFeatures.knowledgeBase, '知识库', 'Knowledge Base');
+  addCapability(showcaseFeatures.persona, '人格管理', 'Persona');
+  addCapability(showcaseFeatures.extensionInstalled, '插件管理', 'Plugins');
+  addCapability(showcaseFeatures.extensionSkills, '技能库', 'Skills');
+  addCapability(showcaseFeatures.extensionComponents, '组件面板', 'Components');
+  addCapability(showcaseFeatures.extensionMcp, 'MCP 服务', 'MCP');
+  addCapability(showcaseFeatures.conversation, '会话归档', 'Conversations');
+  addCapability(showcaseFeatures.sessionManagement, '会话治理', 'Session Rules');
+  addCapability(showcaseFeatures.cron, '自动任务', 'Cron Jobs');
+  addCapability(showcaseFeatures.subagent, '子智能体', 'Subagents');
+  addCapability(showcaseFeatures.dashboard, '运营看板', 'Dashboard');
+  addCapability(showcaseFeatures.console, '控制台', 'Console');
+  addCapability(showcaseFeatures.trace, '链路追踪', 'Trace');
+  return capabilities;
+});
 const onboardingSteps = computed(() => {
   const steps = [];
 
