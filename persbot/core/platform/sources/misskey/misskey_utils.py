@@ -3,7 +3,7 @@
 from typing import Any
 
 import persbot.api.message_components as Comp
-from persbot.api.platform import PersbotMessage, MessageMember, MessageType
+from persbot.api.platform import MessageMember, MessageType, PersbotMessage
 
 
 class FileIDExtractor:

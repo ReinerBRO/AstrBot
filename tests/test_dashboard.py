@@ -59,7 +59,7 @@ def app(core_lifecycle_td: PersbotCoreLifecycle):
 
 @pytest_asyncio.fixture(scope="module")
 async def authenticated_header(app: Quart, core_lifecycle_td: PersbotCoreLifecycle):
-    """Handles login and returns an authenticated header."""
+    """Returns a legacy-compatible auth header for routes that still accept it."""
     test_client = app.test_client()
     response = await test_client.post(
         "/api/auth/login",
@@ -76,14 +76,19 @@ async def authenticated_header(app: Quart, core_lifecycle_td: PersbotCoreLifecyc
 
 @pytest.mark.asyncio
 async def test_auth_login(app: Quart, core_lifecycle_td: PersbotCoreLifecycle):
-    """Tests the login functionality with both wrong and correct credentials."""
+    """Dashboard auth is disabled but still returns a compatibility token."""
     test_client = app.test_client()
     response = await test_client.post(
         "/api/auth/login",
         json={"username": "wrong", "password": "password"},
     )
     data = await response.get_json()
-    assert data["status"] == "error"
+    assert data["status"] == "ok"
+    assert data["data"]["username"] == core_lifecycle_td.persbot_config["dashboard"][
+        "username"
+    ]
+    assert data["data"]["change_pwd_hint"] is False
+    assert "token" in data["data"]
 
     response = await test_client.post(
         "/api/auth/login",
@@ -93,14 +98,19 @@ async def test_auth_login(app: Quart, core_lifecycle_td: PersbotCoreLifecycle):
         },
     )
     data = await response.get_json()
-    assert data["status"] == "ok" and "token" in data["data"]
+    assert data["status"] == "ok"
+    assert data["data"]["username"] == core_lifecycle_td.persbot_config["dashboard"][
+        "username"
+    ]
+    assert data["data"]["change_pwd_hint"] is False
+    assert "token" in data["data"]
 
 
 @pytest.mark.asyncio
 async def test_get_stat(app: Quart, authenticated_header: dict):
     test_client = app.test_client()
     response = await test_client.get("/api/stat/get")
-    assert response.status_code == 401
+    assert response.status_code == 200
     response = await test_client.get("/api/stat/get", headers=authenticated_header)
     assert response.status_code == 200
     data = await response.get_json()
@@ -155,6 +165,7 @@ async def test_subagent_config_accepts_default_persona(
             headers=authenticated_header,
         )
 
+@pytest.mark.asyncio
 @pytest.mark.parametrize("payload", [[], "x"])
 async def test_batch_delete_sessions_rejects_non_object_payload(
     app: Quart, authenticated_header: dict, payload

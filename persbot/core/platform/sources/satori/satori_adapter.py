@@ -18,9 +18,9 @@ from persbot.api.message_components import (
     Reply,
 )
 from persbot.api.platform import (
-    PersbotMessage,
     MessageMember,
     MessageType,
+    PersbotMessage,
     Platform,
     PlatformMetadata,
     register_platform_adapter,

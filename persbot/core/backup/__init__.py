@@ -13,7 +13,7 @@ from .constants import (
 
 # 导入导出器和导入器
 from .exporter import PersbotExporter
-from .importer import PersbotImporter, ImportPreCheckResult
+from .importer import ImportPreCheckResult, PersbotImporter
 
 __all__ = [
     "PersbotExporter",

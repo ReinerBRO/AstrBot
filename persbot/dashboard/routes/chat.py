@@ -21,8 +21,8 @@ from persbot.core.platform.sources.webchat.message_parts_helper import (
 )
 from persbot.core.platform.sources.webchat.webchat_queue_mgr import webchat_queue_mgr
 from persbot.core.utils.active_event_registry import active_event_registry
-from persbot.core.utils.persbot_path import get_persbot_data_path
 from persbot.core.utils.datetime_utils import to_utc_isoformat
+from persbot.core.utils.persbot_path import get_persbot_data_path
 
 from .route import Response, Route, RouteContext
 

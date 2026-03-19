@@ -7,7 +7,7 @@ from pathlib import Path
 import click
 from filelock import FileLock, Timeout
 
-from ..utils import check_persbot_root, check_dashboard, get_persbot_root
+from ..utils import check_dashboard, check_persbot_root, get_persbot_root
 
 
 async def run_persbot(persbot_root: Path) -> None:

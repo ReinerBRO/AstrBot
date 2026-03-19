@@ -8,8 +8,8 @@ from ..utils import (
     PluginStatus,
     build_plug_list,
     check_persbot_root,
-    get_persbot_root,
     get_git_repo,
+    get_persbot_root,
     manage_plugin,
 )
 

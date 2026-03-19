@@ -6,8 +6,8 @@ import psutil
 
 from persbot.core import logger
 from persbot.core.config.default import VERSION
-from persbot.core.utils.persbot_path import get_persbot_path
 from persbot.core.utils.io import download_file
+from persbot.core.utils.persbot_path import get_persbot_path
 
 from .zip_updator import ReleaseInfo, RepoZipUpdator
 

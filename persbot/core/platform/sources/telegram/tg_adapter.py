@@ -15,9 +15,9 @@ import persbot.api.message_components as Comp
 from persbot.api import logger
 from persbot.api.event import MessageChain
 from persbot.api.platform import (
-    PersbotMessage,
     MessageMember,
     MessageType,
+    PersbotMessage,
     Platform,
     PlatformMetadata,
     register_platform_adapter,
@@ -27,9 +27,9 @@ from persbot.core.star.filter.command import CommandFilter
 from persbot.core.star.filter.command_group import CommandGroupFilter
 from persbot.core.star.star import star_map
 from persbot.core.star.star_handler import star_handlers_registry
-from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.io import download_file
 from persbot.core.utils.media_utils import convert_audio_to_wav
+from persbot.core.utils.persbot_path import get_persbot_temp_path
 
 from .tg_event import TelegramPlatformEvent
 

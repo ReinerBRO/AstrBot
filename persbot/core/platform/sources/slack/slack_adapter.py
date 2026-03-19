@@ -13,9 +13,9 @@ from persbot.api import logger
 from persbot.api.event import MessageChain
 from persbot.api.message_components import *
 from persbot.api.platform import (
-    PersbotMessage,
     MessageMember,
     MessageType,
+    PersbotMessage,
     Platform,
     PlatformMetadata,
 )

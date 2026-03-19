@@ -18,12 +18,12 @@ from asyncio import Queue
 
 from persbot.api import logger, sp
 from persbot.core import LogBroker, LogManager
-from persbot.core.persbot_config_mgr import PersbotConfigManager
 from persbot.core.config.default import VERSION
 from persbot.core.conversation_mgr import ConversationManager
 from persbot.core.cron import CronJobManager
 from persbot.core.db import BaseDatabase
 from persbot.core.knowledge_base.kb_mgr import KnowledgeBaseManager
+from persbot.core.persbot_config_mgr import PersbotConfigManager
 from persbot.core.persona_mgr import PersonaManager
 from persbot.core.pipeline.scheduler import PipelineContext, PipelineScheduler
 from persbot.core.platform.manager import PlatformManager
@@ -39,7 +39,7 @@ from persbot.core.utils.llm_metadata import update_llm_metadata
 from persbot.core.utils.migra_helper import migra
 from persbot.core.utils.temp_dir_cleaner import TempDirCleaner
 
-from . import persbot_config, html_renderer
+from . import html_renderer, persbot_config
 from .event_bus import EventBus
 
 

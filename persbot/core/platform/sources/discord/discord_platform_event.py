@@ -18,7 +18,7 @@ from persbot.api.message_components import (
     Plain,
     Reply,
 )
-from persbot.api.platform import PersbotMessage, At, PlatformMetadata
+from persbot.api.platform import At, PersbotMessage, PlatformMetadata
 
 from .client import DiscordBotClient
 from .components import DiscordEmbed, DiscordView

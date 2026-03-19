@@ -16,8 +16,8 @@ from persbot.api.message_components import (
     Record,
     Video,
 )
-from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.media_utils import get_media_duration
+from persbot.core.utils.persbot_path import get_persbot_temp_path
 
 from .line_api import LineAPIClient
 

@@ -11,9 +11,9 @@ from persbot.core import db_helper
 from persbot.core.db.po import PlatformMessageHistory
 from persbot.core.message.message_event_result import MessageChain
 from persbot.core.platform import (
-    PersbotMessage,
     MessageMember,
     MessageType,
+    PersbotMessage,
     Platform,
     PlatformMetadata,
 )

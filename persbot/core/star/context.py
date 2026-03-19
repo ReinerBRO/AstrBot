@@ -11,12 +11,12 @@ from persbot.core.agent.hooks import BaseAgentRunHooks
 from persbot.core.agent.message import Message
 from persbot.core.agent.runners.tool_loop_agent_runner import ToolLoopAgentRunner
 from persbot.core.agent.tool import ToolSet
-from persbot.core.persbot_config_mgr import PersbotConfigManager
 from persbot.core.config.persbot_config import PersbotConfig
 from persbot.core.conversation_mgr import ConversationManager
 from persbot.core.db import BaseDatabase
 from persbot.core.knowledge_base.kb_mgr import KnowledgeBaseManager
 from persbot.core.message.message_event_result import MessageChain
+from persbot.core.persbot_config_mgr import PersbotConfigManager
 from persbot.core.persona_mgr import PersonaManager
 from persbot.core.platform import Platform
 from persbot.core.platform.astr_message_event import AstrMessageEvent, MessageSesion

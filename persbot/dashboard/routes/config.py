@@ -8,8 +8,7 @@ from typing import Any
 
 from quart import request
 
-from persbot.core import persbot_config, file_token_service, logger
-from persbot.core.config.persbot_config import PersbotConfig
+from persbot.core import file_token_service, logger, persbot_config
 from persbot.core.config.default import (
     CONFIG_METADATA_2,
     CONFIG_METADATA_3,
@@ -18,15 +17,16 @@ from persbot.core.config.default import (
     DEFAULT_VALUE_MAP,
 )
 from persbot.core.config.i18n_utils import ConfigMetadataI18n
+from persbot.core.config.persbot_config import PersbotConfig
 from persbot.core.core_lifecycle import PersbotCoreLifecycle
 from persbot.core.platform.register import platform_cls_map, platform_registry
 from persbot.core.provider import Provider
 from persbot.core.provider.register import provider_registry
 from persbot.core.star.star import StarMetadata, star_registry
+from persbot.core.utils.llm_metadata import LLM_METADATAS
 from persbot.core.utils.persbot_path import (
     get_persbot_plugin_data_path,
 )
-from persbot.core.utils.llm_metadata import LLM_METADATAS
 from persbot.core.utils.webhook_utils import ensure_platform_webhook_config
 
 from .route import Response, Route, RouteContext

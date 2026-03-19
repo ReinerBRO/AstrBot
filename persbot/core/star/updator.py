@@ -3,8 +3,8 @@ import shutil
 import zipfile
 
 from persbot.core import logger
-from persbot.core.utils.persbot_path import get_persbot_plugin_path
 from persbot.core.utils.io import on_error, remove_dir
+from persbot.core.utils.persbot_path import get_persbot_plugin_path
 
 from ..star.star import StarMetadata
 from ..updator import RepoZipUpdator

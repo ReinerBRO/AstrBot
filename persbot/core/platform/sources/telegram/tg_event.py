@@ -21,7 +21,7 @@ from persbot.api.message_components import (
     Reply,
     Video,
 )
-from persbot.api.platform import PersbotMessage, MessageType, PlatformMetadata
+from persbot.api.platform import MessageType, PersbotMessage, PlatformMetadata
 from persbot.core.utils.metrics import Metric
 
 

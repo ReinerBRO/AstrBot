@@ -20,8 +20,8 @@ from persbot.api import logger
 from persbot.api.event import AstrMessageEvent, MessageChain
 from persbot.api.message_components import File, Image, Plain, Record, Video
 from persbot.api.platform import PersbotMessage, PlatformMetadata
-from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.io import download_image_by_url, file_to_base64
+from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.tencent_record_helper import wav_to_tencent_silk
 
 

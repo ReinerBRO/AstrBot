@@ -3,8 +3,8 @@ import uuid
 from typing import TypedDict, TypeVar
 
 from persbot.core import PersbotConfig, logger
-from persbot.core.config.persbot_config import PERSBOT_CONFIG_PATH
 from persbot.core.config.default import DEFAULT_CONFIG
+from persbot.core.config.persbot_config import PERSBOT_CONFIG_PATH
 from persbot.core.platform.message_session import MessageSession
 from persbot.core.umop_config_router import UmopConfigRouter
 from persbot.core.utils.persbot_path import get_persbot_config_path

@@ -1,10 +1,10 @@
 from persbot.core.message.components import *
 from persbot.core.platform import (
-    PersbotMessage,
     AstrMessageEvent,
     Group,
     MessageMember,
     MessageType,
+    PersbotMessage,
     Platform,
     PlatformMetadata,
 )

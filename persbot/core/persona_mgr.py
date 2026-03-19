@@ -1,8 +1,8 @@
 from persbot import logger
 from persbot.api import sp
-from persbot.core.persbot_config_mgr import PersbotConfigManager
 from persbot.core.db import BaseDatabase
 from persbot.core.db.po import Persona, PersonaFolder, Personality
+from persbot.core.persbot_config_mgr import PersbotConfigManager
 from persbot.core.platform.message_session import MessageSession
 from persbot.core.sentinels import NOT_GIVEN
 

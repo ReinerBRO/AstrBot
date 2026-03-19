@@ -14,8 +14,8 @@ from collections import deque
 from dataclasses import dataclass
 from urllib.parse import urlparse
 
-from persbot.core.utils.persbot_path import get_persbot_site_packages_path
 from persbot.core.utils.core_constraints import CoreConstraintsProvider
+from persbot.core.utils.persbot_path import get_persbot_site_packages_path
 from persbot.core.utils.requirements_utils import (
     canonicalize_distribution_name as _canonicalize_distribution_name,
 )

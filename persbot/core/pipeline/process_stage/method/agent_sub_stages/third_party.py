@@ -3,7 +3,7 @@ import inspect
 from collections.abc import AsyncGenerator, Awaitable, Callable
 from typing import TYPE_CHECKING
 
-from persbot.core import persbot_config, logger
+from persbot.core import logger, persbot_config
 from persbot.core.agent.runners.coze.coze_agent_runner import CozeAgentRunner
 from persbot.core.agent.runners.dashscope.dashscope_agent_runner import (
     DashscopeAgentRunner,

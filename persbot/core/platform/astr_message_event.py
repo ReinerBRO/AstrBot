@@ -26,8 +26,8 @@ from persbot.core.provider.entities import ProviderRequest
 from persbot.core.utils.metrics import Metric
 from persbot.core.utils.trace import TraceSpan
 
-from .persbot_message import PersbotMessage, Group
 from .message_session import MessageSesion, MessageSession  # noqa
+from .persbot_message import Group, PersbotMessage
 from .platform_metadata import PlatformMetadata
 
 

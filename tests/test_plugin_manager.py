@@ -35,6 +35,8 @@ def _write_local_test_plugin(plugin_path: Path, repo_url: str):
         "author": "Persbot Team",
         "desc": "Local test plugin",
     }
+    with open(plugin_path / "metadata.yaml", "w", encoding="utf-8") as f:
+        yaml.dump(metadata, f)
     with open(plugin_path / "info.yaml", "w", encoding="utf-8") as f:
         yaml.dump(metadata, f)
     with open(plugin_path / "main.py", "w", encoding="utf-8") as f:

@@ -5,9 +5,9 @@ import traceback
 from collections.abc import Callable
 from typing import Protocol, runtime_checkable
 
-from persbot.core import persbot_config, logger, sp
-from persbot.core.persbot_config_mgr import PersbotConfigManager
+from persbot.core import logger, persbot_config, sp
 from persbot.core.db import BaseDatabase
+from persbot.core.persbot_config_mgr import PersbotConfigManager
 from persbot.core.utils.error_redaction import safe_error
 
 from ..persona_mgr import PersonaManager

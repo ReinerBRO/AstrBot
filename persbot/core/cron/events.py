@@ -5,9 +5,9 @@ from typing import Any
 from persbot.core.message.components import Plain
 from persbot.core.message.message_event_result import MessageChain
 from persbot.core.platform.astr_message_event import AstrMessageEvent
-from persbot.core.platform.persbot_message import PersbotMessage, MessageMember
 from persbot.core.platform.message_session import MessageSession
 from persbot.core.platform.message_type import MessageType
+from persbot.core.platform.persbot_message import MessageMember, PersbotMessage
 from persbot.core.platform.platform_metadata import PlatformMetadata
 
 

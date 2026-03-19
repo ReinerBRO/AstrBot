@@ -13,15 +13,14 @@ from persbot import logger
 from persbot.api.event import MessageChain
 from persbot.api.message_components import At, File, Image, Plain, Record, Video
 from persbot.api.platform import (
-    PersbotMessage,
     MessageMember,
     MessageType,
+    PersbotMessage,
     Platform,
     PlatformMetadata,
 )
 from persbot.core import sp
 from persbot.core.platform.astr_message_event import MessageSesion
-from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.io import download_file
 from persbot.core.utils.media_utils import (
     convert_audio_format,
@@ -29,6 +28,7 @@ from persbot.core.utils.media_utils import (
     extract_video_cover,
     get_media_duration,
 )
+from persbot.core.utils.persbot_path import get_persbot_temp_path
 
 from ...register import register_platform_adapter
 from .dingtalk_event import DingtalkMessageEvent

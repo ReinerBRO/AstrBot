@@ -24,18 +24,18 @@ from persbot.core import (
     sp,
 )
 from persbot.core.agent.handoff import FunctionTool, HandoffTool
-from persbot.core.config.persbot_config import PersbotConfig
 from persbot.core.config.default import VERSION
+from persbot.core.config.persbot_config import PersbotConfig
 from persbot.core.platform.register import unregister_platform_adapters_by_module
 from persbot.core.provider.register import llm_tools
+from persbot.core.utils.io import remove_dir
+from persbot.core.utils.metrics import Metric
 from persbot.core.utils.persbot_path import (
     get_persbot_config_path,
     get_persbot_path,
     get_persbot_plugin_path,
     get_persbot_temp_path,
 )
-from persbot.core.utils.io import remove_dir
-from persbot.core.utils.metrics import Metric
 from persbot.core.utils.requirements_utils import (
     plan_missing_requirements_install,
 )

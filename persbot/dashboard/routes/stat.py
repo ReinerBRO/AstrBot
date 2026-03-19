@@ -15,8 +15,8 @@ from persbot.core.config import VERSION
 from persbot.core.core_lifecycle import PersbotCoreLifecycle
 from persbot.core.db import BaseDatabase
 from persbot.core.db.migration.helper import check_migration_needed_v4
-from persbot.core.utils.persbot_path import get_persbot_path
 from persbot.core.utils.io import get_dashboard_version
+from persbot.core.utils.persbot_path import get_persbot_path
 from persbot.core.utils.version_comparator import VersionComparator
 
 from .route import Response, Route, RouteContext

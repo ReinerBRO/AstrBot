@@ -30,7 +30,6 @@ from persbot import logger
 from persbot.api.event import AstrMessageEvent, MessageChain
 from persbot.api.message_components import At, File, Plain, Record, Video
 from persbot.api.message_components import Image as PersbotImage
-from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.io import download_image_by_url
 from persbot.core.utils.media_utils import (
     convert_audio_to_opus,
@@ -38,6 +37,7 @@ from persbot.core.utils.media_utils import (
     get_media_duration,
 )
 from persbot.core.utils.metrics import Metric
+from persbot.core.utils.persbot_path import get_persbot_temp_path
 
 
 class LarkMessageEvent(AstrMessageEvent):

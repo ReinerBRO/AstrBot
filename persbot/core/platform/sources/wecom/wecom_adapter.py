@@ -16,17 +16,17 @@ from wechatpy.messages import BaseMessage
 from persbot.api.event import MessageChain
 from persbot.api.message_components import Image, Plain, Record
 from persbot.api.platform import (
-    PersbotMessage,
     MessageMember,
     MessageType,
+    PersbotMessage,
     Platform,
     PlatformMetadata,
     register_platform_adapter,
 )
 from persbot.core import logger
 from persbot.core.platform.astr_message_event import MessageSesion
-from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.media_utils import convert_audio_to_wav
+from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.webhook_utils import log_webhook_info
 
 from .wecom_event import WecomPlatformEvent

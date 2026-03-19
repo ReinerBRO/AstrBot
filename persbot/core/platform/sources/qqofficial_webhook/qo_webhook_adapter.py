@@ -8,7 +8,7 @@ from botpy import Client
 
 from persbot import logger
 from persbot.api.event import MessageChain
-from persbot.api.platform import PersbotMessage, MessageType, Platform, PlatformMetadata
+from persbot.api.platform import MessageType, PersbotMessage, Platform, PlatformMetadata
 from persbot.core.platform.astr_message_event import MessageSesion
 from persbot.core.utils.webhook_utils import log_webhook_info
 

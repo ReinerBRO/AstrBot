@@ -24,7 +24,7 @@ from collections.abc import Awaitable, Callable
 from pathlib import Path
 from typing import Any, ClassVar
 
-from persbot.api.platform import PersbotMessage, MessageMember, MessageType
+from persbot.api.platform import MessageMember, MessageType, PersbotMessage
 from persbot.core.message.components import BaseMessageComponent
 from persbot.core.message.message_event_result import MessageChain
 from persbot.core.platform.astr_message_event import MessageSesion

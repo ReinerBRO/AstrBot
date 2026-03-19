@@ -11,9 +11,9 @@ from persbot import logger
 from persbot.api.event import MessageChain
 from persbot.api.message_components import File, Image, Plain
 from persbot.api.platform import (
-    PersbotMessage,
     MessageMember,
     MessageType,
+    PersbotMessage,
     Platform,
     PlatformMetadata,
     register_platform_adapter,

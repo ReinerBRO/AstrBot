@@ -34,9 +34,9 @@ if sys.version_info >= (3, 14):
 else:
     from pydantic.v1 import BaseModel
 
-from persbot.core import persbot_config, file_token_service, logger
-from persbot.core.utils.persbot_path import get_persbot_temp_path
+from persbot.core import file_token_service, logger, persbot_config
 from persbot.core.utils.io import download_file, download_image_by_url, file_to_base64
+from persbot.core.utils.persbot_path import get_persbot_temp_path
 
 
 class ComponentType(str, Enum):

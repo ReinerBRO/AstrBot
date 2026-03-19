@@ -4,8 +4,8 @@ import uuid
 from openai import NOT_GIVEN, AsyncOpenAI
 
 from persbot.core import logger
-from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.io import download_file
+from persbot.core.utils.persbot_path import get_persbot_temp_path
 from persbot.core.utils.tencent_record_helper import (
     convert_to_pcm_wav,
     tencent_silk_to_wav,

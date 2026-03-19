@@ -12,6 +12,10 @@ runtime_bootstrap.initialize_runtime_bootstrap()
 from persbot.core import LogBroker, LogManager, db_helper, logger  # noqa: E402
 from persbot.core.config.default import VERSION  # noqa: E402
 from persbot.core.initial_loader import InitialLoader  # noqa: E402
+from persbot.core.utils.io import (  # noqa: E402
+    download_dashboard,
+    get_dashboard_version,
+)
 from persbot.core.utils.persbot_path import (  # noqa: E402
     get_persbot_config_path,
     get_persbot_data_path,
@@ -20,10 +24,6 @@ from persbot.core.utils.persbot_path import (  # noqa: E402
     get_persbot_root,
     get_persbot_site_packages_path,
     get_persbot_temp_path,
-)
-from persbot.core.utils.io import (  # noqa: E402
-    download_dashboard,
-    get_dashboard_version,
 )
 
 # 将父目录添加到 sys.path

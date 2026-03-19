@@ -1,7 +1,7 @@
 import os
 import uuid
 
-from persbot.core import persbot_config, logger
+from persbot.core import logger, persbot_config
 from persbot.core.config.default import WEBHOOK_SUPPORTED_PLATFORMS
 
 
