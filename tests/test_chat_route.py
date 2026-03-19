@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from astrbot.dashboard.routes.chat import _poll_webchat_stream_result
+from persbot.dashboard.routes.chat import _poll_webchat_stream_result
 
 
 class _QueueThatRaises:

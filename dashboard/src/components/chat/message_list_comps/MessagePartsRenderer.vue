@@ -8,7 +8,7 @@
                         <v-icon size="x-small" v-if="toolCall.name.includes('web_search') || toolCall.name.includes('tavily')">
                             mdi-web
                         </v-icon>
-                        <v-icon size="x-small" v-else-if="toolCall.name === 'astrbot_execute_shell'">
+                        <v-icon size="x-small" v-else-if="toolCall.name === 'persbot_execute_shell'">
                             mdi-console-line
                         </v-icon>
                         <v-icon size="x-small" v-else>
@@ -196,7 +196,7 @@ const formatToolArgs = (args) => {
 };
 
 const isIPythonTool = (toolCall) => {
-    return toolCall.name === 'astrbot_execute_ipython' || toolCall.name === 'astrbot_execute_python';
+    return toolCall.name === 'persbot_execute_ipython' || toolCall.name === 'persbot_execute_python';
 };
 
 const getRenderParts = (messageParts) => {

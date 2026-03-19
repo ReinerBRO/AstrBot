@@ -1,25 +1,25 @@
 # 管理面板
 
-AstrBot 管理面板具有管理插件、查看日志、可视化配置、查看统计信息等功能。
+Persbot 管理面板具有管理插件、查看日志、可视化配置、查看统计信息等功能。
 
-![image](https://files.astrbot.app/docs/source/images/webui/image-4.png)
+![image](https://files.persbot.app/docs/source/images/webui/image-4.png)
 
 ## 管理面板的访问
 
-当启动 AstrBot 之后，你可以通过浏览器访问 `http://localhost:6185` 来访问管理面板。
+当启动 Persbot 之后，你可以通过浏览器访问 `http://localhost:6185` 来访问管理面板。
 
 > [!TIP]
-> - 如果你正在云服务器上部署 AstrBot，需要将 `localhost` 替换为你的服务器 IP 地址。
+> - 如果你正在云服务器上部署 Persbot，需要将 `localhost` 替换为你的服务器 IP 地址。
 
 ## 登录
 
-默认用户名和密码是 `astrbot` 和 `astrbot`。
+默认用户名和密码是 `persbot` 和 `persbot`。
 
 ## 可视化配置
 
-在管理面板中，你可以通过可视化配置来配置 AstrBot 的插件。点击左栏 `配置` 即可进入配置页面。
+在管理面板中，你可以通过可视化配置来配置 Persbot 的插件。点击左栏 `配置` 即可进入配置页面。
 
-![image](https://files.astrbot.app/docs/source/images/webui/image-3.png)
+![image](https://files.persbot.app/docs/source/images/webui/image-3.png)
 
 当修改完配置后，你需要点击右下角 `保存` 按钮才能成功保存配置。
 
@@ -27,19 +27,19 @@ AstrBot 管理面板具有管理插件、查看日志、可视化配置、查看
 
 编辑完后首先点击`应用此配置`，此时配置将应用到可视化配置中，然后再点击右下角`保存`按钮来保存配置。如果你不点击`应用此配置`，那么你的修改将不会生效。
 
-![alt text](https://files.astrbot.app/docs/source/images/webui/image-5.png)
+![alt text](https://files.persbot.app/docs/source/images/webui/image-5.png)
 
 ## 插件
 
 在管理面板中，你可以通过左栏的 `插件` 来查看已安装的插件，以及安装新插件。
 
-点击插件市场标签栏，你可以浏览由 AstrBot 官方上架的插件。
+点击插件市场标签栏，你可以浏览由 Persbot 官方上架的插件。
 
-![image](https://files.astrbot.app/docs/source/images/webui/image-1.png)
+![image](https://files.persbot.app/docs/source/images/webui/image-1.png)
 
 你也可以点击右下角 + 按钮，以 URL / 文件上传的方式手动安装插件。
 
-> 由于插件更新机制，AstrBot Team 无法完全保证插件市场中插件的安全性，请您仔细甄别。因为插件原因造成损失的，AstrBot Team 不予负责。
+> 由于插件更新机制，Persbot Team 无法完全保证插件市场中插件的安全性，请您仔细甄别。因为插件原因造成损失的，Persbot Team 不予负责。
 
 ### 插件加载失败处理
 
@@ -55,20 +55,20 @@ AstrBot 管理面板具有管理插件、查看日志、可视化配置、查看
 
 ## 追踪 (Trace)
 
-在管理面板的 `Trace` 页面中，你可以实时查看 AstrBot 的运行追踪记录。这对于调试模型调用路径、工具调用过程等非常有用。
+在管理面板的 `Trace` 页面中，你可以实时查看 Persbot 的运行追踪记录。这对于调试模型调用路径、工具调用过程等非常有用。
 
 你可以通过页面顶部的开关来启用或禁用追踪记录。
 
 > [!NOTE]
-> 当前仅记录部分 AstrBot 主 Agent 的模型调用路径，后续会不断完善。
+> 当前仅记录部分 Persbot 主 Agent 的模型调用路径，后续会不断完善。
 
 ## 更新管理面板
 
-在 AstrBot 启动时，会自动检查管理面板是否需要更新，如果需要，第一条日志（黄色）会进行提示。
+在 Persbot 启动时，会自动检查管理面板是否需要更新，如果需要，第一条日志（黄色）会进行提示。
 
 使用 `/dashboard_update` 命令可以手动更新管理面板（管理员指令）。
 
-管理面板文件在 data/dist 目录下。如果需要手动替换，请在 https://github.com/AstrBotDevs/AstrBot/releases/ 下载 `dist.zip` 然后解压到 data 目录下。
+管理面板文件在 data/dist 目录下。如果需要手动替换，请在 https://github.com/PersbotDevs/Persbot/releases/ 下载 `dist.zip` 然后解压到 data 目录下。
 
 ## 自定义 WebUI 端口
 

@@ -54,8 +54,8 @@ const supportPlatformDisplayNames = computed(() =>
   supportPlatforms.value.map((platformId) => getPlatformDisplayName(platformId)),
 );
 
-const astrbotVersionRequirement = computed(() => {
-  const versionSpec = props.extension?.astrbot_version;
+const persbotVersionRequirement = computed(() => {
+  const versionSpec = props.extension?.persbot_version;
   return typeof versionSpec === "string" && versionSpec.trim().length
     ? versionSpec.trim()
     : "";
@@ -136,13 +136,13 @@ const viewChangelog = () => {
     :style="{
       position: 'relative',
       backgroundColor:
-        useCustomizerStore().uiTheme === 'PurpleTheme'
+        useCustomizerStore().uiTheme === 'PersbotLightTheme'
           ? marketMode
             ? '#f8f0dd'
             : '#ffffff'
           : '#282833',
       color:
-        useCustomizerStore().uiTheme === 'PurpleTheme'
+        useCustomizerStore().uiTheme === 'PersbotLightTheme'
           ? '#000000dd'
           : '#ffffff',
     }"
@@ -315,13 +315,13 @@ const viewChangelog = () => {
                 </v-chip>
                 <PluginPlatformChip :platforms="supportPlatforms" />
                 <v-chip
-                  v-if="astrbotVersionRequirement"
+                  v-if="persbotVersionRequirement"
                   color="secondary"
                   variant="outlined"
                   label
                   size="small"
                 >
-                  AstrBot: {{ astrbotVersionRequirement }}
+                  Persbot: {{ persbotVersionRequirement }}
                 </v-chip>
               </div>
 

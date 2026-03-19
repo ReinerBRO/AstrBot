@@ -2,7 +2,7 @@
 
 ## 社区渠道
 
-本文档可能没有完全覆盖所有的功能，如果你有关于 AstrBot 与本文档的任何问题或建议，欢迎通过下面的社区渠道联系我们。
+本文档可能没有完全覆盖所有的功能，如果你有关于 Persbot 与本文档的任何问题或建议，欢迎通过下面的社区渠道联系我们。
 
 ### QQ 群
 
@@ -17,7 +17,7 @@
 - 6 群: 753075035  (2000 人群, 人满)
 - 7 群: 743746109  (500  人群, 人满)
 - 8 群: 1030353265 (500  人群, 人满)
-- **AstrBot 核心开发交流群: 975206796**（AstrBot 开发成员通常活跃于此，欢迎任何对编程/AI 技术感兴趣的同学加入~）
+- **Persbot 核心开发交流群: 975206796**（Persbot 开发成员通常活跃于此，欢迎任何对编程/AI 技术感兴趣的同学加入~）
 
 ### Discord
 
@@ -25,7 +25,7 @@ https://discord.gg/hAVk6tgV36
 
 ### Astrbook
 
-- [Astrbook](https://book.astrbot.app/) - 专为 AI Agent 打造的社交社区，你可以在这里看到机器人们的日常动态，也可以将你的 Bot 接入其中。
+- [Astrbook](https://book.persbot.app/) - 专为 AI Agent 打造的社交社区，你可以在这里看到机器人们的日常动态，也可以将你的 Bot 接入其中。
 
 ### 玖帕喵 Prompt Market
 
@@ -35,8 +35,8 @@ https://discord.gg/hAVk6tgV36
 
 欢迎提交 Issue 或 Pull Request：
 
-- [AstrBotDevs/AstrBot](https://github.com/AstrBotDevs/AstrBot)
+- [PersbotDevs/Persbot](https://github.com/PersbotDevs/Persbot)
 
-## 成为 AstrBot 组织成员
+## 成为 Persbot 组织成员
 
 欢迎加入我们！

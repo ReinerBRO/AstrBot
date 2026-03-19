@@ -6,6 +6,7 @@ import sidebarItems from './sidebarItem';
 import NavItem from './NavItem.vue';
 import { applySidebarCustomization } from '@/utils/sidebarCustomization';
 import ChangelogDialog from '@/components/shared/ChangelogDialog.vue';
+import { filterShowcaseSidebarItems } from '@/showcase/presets';
 
 const { t, locale } = useI18n();
 
@@ -39,7 +40,9 @@ function getInitialOpenedItems(menuItems) {
   }
 }
 
-const sidebarMenu = shallowRef(applySidebarCustomization(sidebarItems));
+const getFilteredSidebarItems = () => filterShowcaseSidebarItems(sidebarItems);
+
+const sidebarMenu = shallowRef(applySidebarCustomization(getFilteredSidebarItems()));
 
 // 侧边栏分组展开状态持久化
 const openedItems = ref(getInitialOpenedItems(sidebarMenu.value));
@@ -48,13 +51,13 @@ watch(openedItems, (val) => {
 }, { deep: true });
 
 function refreshSidebarMenu() {
-  sidebarMenu.value = applySidebarCustomization(sidebarItems);
+  sidebarMenu.value = applySidebarCustomization(getFilteredSidebarItems());
   openedItems.value = sanitizeOpenedItems(openedItems.value, sidebarMenu.value);
 }
 
 // Apply customization on mount and listen for storage changes
 const handleStorageChange = (e) => {
-  if (e.key === 'astrbot_sidebar_customization') {
+  if (e.key === 'persbot_sidebar_customization') {
     refreshSidebarMenu();
   }
 };
@@ -138,15 +141,15 @@ function toggleIframe() {
 
 function openIframeLink(url) {
   if (typeof window !== 'undefined') {
-    let url_ = url || "https://astrbot.app";
+    let url_ = url || "https://persbot.app";
     window.open(url_, "_blank");
   }
 }
 
 function openFaqLink() {
   const faqUrl = locale.value === 'en-US'
-    ? 'https://docs.astrbot.app/en/faq.html'
-    : 'https://docs.astrbot.app/faq.html';
+    ? 'https://docs.persbot.app/en/faq.html'
+    : 'https://docs.persbot.app/faq.html';
   openIframeLink(faqUrl);
 }
 
@@ -256,7 +259,7 @@ function formatNumber(num) {
 
 async function fetchStarCount() {
   try {
-    const response = await fetch('https://cloud.astrbot.app/api/v1/github/repo-info');
+    const response = await fetch('https://cloud.persbot.app/api/v1/github/repo-info');
     const data = await response.json();
     if (data.data && data.data.stargazers_count) {
       starCount.value = data.data.stargazers_count;
@@ -310,7 +313,7 @@ function openChangelogDialog() {
           {{ t('core.navigation.faq') }}
         </v-btn>
         <v-btn class="sidebar-footer-btn" size="small" variant="text" prepend-icon="mdi-github"
-          @click="openIframeLink('https://github.com/AstrBotDevs/AstrBot')">
+          @click="openIframeLink('https://github.com/PersbotDevs/Persbot')">
           {{ t('core.navigation.github') }}
            <v-chip
             v-if="starCount"
@@ -346,7 +349,7 @@ function openChangelogDialog() {
       <div style="display: flex; gap: 8px;">
         <v-btn
           icon
-          @click.stop="openIframeLink('https://astrbot.app')"
+          @click.stop="openIframeLink('https://persbot.app')"
           @mousedown.stop
           style="border-radius: 8px; border: 1px solid #ccc;"
         >
@@ -363,7 +366,7 @@ function openChangelogDialog() {
       </div>
     </div>
     <iframe
-      src="https://astrbot.app"
+      src="https://persbot.app"
       style="width: 100%; height: calc(100% - 66px); border: none; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;"
       ></iframe>
   </div>

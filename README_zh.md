@@ -1,42 +1,42 @@
-![AstrBot-Logo-Simplified](https://github.com/user-attachments/assets/ffd99b6b-3272-4682-beaa-6fe74250f7d9)
+![Persbot-Logo-Simplified](https://github.com/user-attachments/assets/ffd99b6b-3272-4682-beaa-6fe74250f7d9)
 
 <div align="center">
 
-<a href="https://github.com/AstrBotDevs/AstrBot/blob/master/README.md">English</a> ｜
-<a href="https://github.com/AstrBotDevs/AstrBot/blob/master/README_zh-TW.md">繁體中文</a> ｜
-<a href="https://github.com/AstrBotDevs/AstrBot/blob/master/README_ja.md">日本語</a> ｜
-<a href="https://github.com/AstrBotDevs/AstrBot/blob/master/README_fr.md">Français</a> ｜
-<a href="https://github.com/AstrBotDevs/AstrBot/blob/master/README_ru.md">Русский</a>
+<a href="https://github.com/PersbotDevs/Persbot/blob/master/README.md">English</a> ｜
+<a href="https://github.com/PersbotDevs/Persbot/blob/master/README_zh-TW.md">繁體中文</a> ｜
+<a href="https://github.com/PersbotDevs/Persbot/blob/master/README_ja.md">日本語</a> ｜
+<a href="https://github.com/PersbotDevs/Persbot/blob/master/README_fr.md">Français</a> ｜
+<a href="https://github.com/PersbotDevs/Persbot/blob/master/README_ru.md">Русский</a>
 
 <div>
-<a href="https://trendshift.io/repositories/12875" target="_blank"><img src="https://trendshift.io/api/badge/repositories/12875" alt="Soulter%2FAstrBot | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-<a href="https://hellogithub.com/repository/AstrBotDevs/AstrBot" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=d127d50cd5e54c5382328acc3bb25483&claim_uid=ZO9by7qCXgSd6Lp&t=2" alt="Featured｜HelloGitHub" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<a href="https://trendshift.io/repositories/12875" target="_blank"><img src="https://trendshift.io/api/badge/repositories/12875" alt="Soulter%2FPersbot | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://hellogithub.com/repository/PersbotDevs/Persbot" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=d127d50cd5e54c5382328acc3bb25483&claim_uid=ZO9by7qCXgSd6Lp&t=2" alt="Featured｜HelloGitHub" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 </div>
 
 <br>
 
 <div>
-<img src="https://img.shields.io/github/v/release/AstrBotDevs/AstrBot?color=76bad9" href="https://github.com/AstrBotDevs/AstrBot/releases/latest">
+<img src="https://img.shields.io/github/v/release/PersbotDevs/Persbot?color=76bad9" href="https://github.com/PersbotDevs/Persbot/releases/latest">
 <img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="python">
-<img src="https://deepwiki.com/badge.svg" href="https://deepwiki.com/AstrBotDevs/AstrBot">
-<a href="https://zread.ai/AstrBotDevs/AstrBot" target="_blank"><img src="https://img.shields.io/badge/Ask_Zread-_.svg?style=flat&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff" alt="zread"/></a>
-<a href="https://hub.docker.com/r/soulter/astrbot"><img alt="Docker pull" src="https://img.shields.io/docker/pulls/soulter/astrbot.svg?color=76bad9"/></a>
-<img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.soulter.top%2Fastrbot%2Fplugin-num&query=%24.result&suffix=%E4%B8%AA&label=%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA&cacheSeconds=3600">
-<img src="https://gitcode.com/Soulter/AstrBot/star/badge.svg" href="https://gitcode.com/Soulter/AstrBot">
+<img src="https://deepwiki.com/badge.svg" href="https://deepwiki.com/PersbotDevs/Persbot">
+<a href="https://zread.ai/PersbotDevs/Persbot" target="_blank"><img src="https://img.shields.io/badge/Ask_Zread-_.svg?style=flat&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff" alt="zread"/></a>
+<a href="https://hub.docker.com/r/soulter/persbot"><img alt="Docker pull" src="https://img.shields.io/docker/pulls/soulter/persbot.svg?color=76bad9"/></a>
+<img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.soulter.top%2Fpersbot%2Fplugin-num&query=%24.result&suffix=%E4%B8%AA&label=%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA&cacheSeconds=3600">
+<img src="https://gitcode.com/Soulter/Persbot/star/badge.svg" href="https://gitcode.com/Soulter/Persbot">
 </div>
 
 <br>
 
-<a href="https://astrbot.app/">主页</a> ｜
-<a href="https://astrbot.app/">文档</a> ｜
-<a href="https://blog.astrbot.app/">博客</a> ｜
-<a href="https://astrbot.featurebase.app/roadmap">路线图</a> ｜
-<a href="https://github.com/AstrBotDevs/AstrBot/issues">问题提交</a>
-<a href="mailto:community@astrbot.app">Email</a>
+<a href="https://persbot.app/">主页</a> ｜
+<a href="https://persbot.app/">文档</a> ｜
+<a href="https://blog.persbot.app/">博客</a> ｜
+<a href="https://persbot.featurebase.app/roadmap">路线图</a> ｜
+<a href="https://github.com/PersbotDevs/Persbot/issues">问题提交</a>
+<a href="mailto:community@persbot.app">Email</a>
 
 </div>
 
-AstrBot 是一个开源的一站式 Agentic 个人和群聊助手，可在 QQ、Telegram、企业微信、飞书、钉钉、Slack、等数十款主流即时通讯软件上部署，此外还内置类似 OpenWebUI 的轻量化 ChatUI，为个人、开发者和团队打造可靠、可扩展的对话式智能基础设施。无论是个人 AI 伙伴、智能客服、自动化助手，还是企业知识库，AstrBot 都能在你的即时通讯软件平台的工作流中快速构建 AI 应用。
+Persbot 是一个开源的一站式 Agentic 个人和群聊助手，可在 QQ、Telegram、企业微信、飞书、钉钉、Slack、等数十款主流即时通讯软件上部署，此外还内置类似 OpenWebUI 的轻量化 ChatUI，为个人、开发者和团队打造可靠、可扩展的对话式智能基础设施。无论是个人 AI 伙伴、智能客服、自动化助手，还是企业知识库，Persbot 都能在你的即时通讯软件平台的工作流中快速构建 AI 应用。
 
 ![landingpage](https://github.com/user-attachments/assets/45fc5699-cddf-4e21-af35-13040706f6c0)
 
@@ -47,7 +47,7 @@ AstrBot 是一个开源的一站式 Agentic 个人和群聊助手，可在 QQ、
 3. 🤖 支持接入 Dify、阿里云百炼、Coze 等智能体平台。
 4. 🌐 多平台，支持 QQ、企业微信、飞书、钉钉、微信公众号、Telegram、Slack 以及[更多](#支持的消息平台)。
 5. 📦 插件扩展，已有 1000+ 个插件可一键安装。
-6. 🛡️ [Agent Sandbox](https://docs.astrbot.app/use/astrbot-agent-sandbox.html) 隔离化环境，安全地执行任何代码、调用 Shell、会话级资源复用。
+6. 🛡️ [Agent Sandbox](https://docs.persbot.app/use/persbot-agent-sandbox.html) 隔离化环境，安全地执行任何代码、调用 Shell、会话级资源复用。
 7. 💻 WebUI 支持。
 8. 🌈 Web ChatUI 支持，ChatUI 内置代理沙盒、网页搜索等。
 9. 🌐 国际化（i18n）支持。
@@ -73,72 +73,72 @@ AstrBot 是一个开源的一站式 Agentic 个人和群聊助手，可在 QQ、
 
 ### 一键部署
 
-对于想快速体验 AstrBot、且熟悉命令行并能够自行安装 `uv` 环境的用户，我们推荐使用 `uv` 一键部署方式 ⚡️。
+对于想快速体验 Persbot、且熟悉命令行并能够自行安装 `uv` 环境的用户，我们推荐使用 `uv` 一键部署方式 ⚡️。
 
 ```bash
-uv tool install astrbot
-astrbot init # 仅首次执行此命令以初始化环境
-astrbot run
+uv tool install persbot
+persbot init # 仅首次执行此命令以初始化环境
+persbot run
 ```
 
 > 需要安装 [uv](https://docs.astral.sh/uv/)。
 
 > [!NOTE]
-> 对于 macOS 用户：由于 macOS 安全检查，首次运行 `astrbot` 命令可能需要较长时间（约 10-20 秒）。
+> 对于 macOS 用户：由于 macOS 安全检查，首次运行 `persbot` 命令可能需要较长时间（约 10-20 秒）。
 
-更新 `astrbot`：
+更新 `persbot`：
 
 ```bash
-uv tool upgrade astrbot
+uv tool upgrade persbot
 ```
 
 ### Docker 部署
 
-对于熟悉容器、希望获得更稳定且更适合生产环境部署方式的用户，我们推荐使用 Docker / Docker Compose 部署 AstrBot。
+对于熟悉容器、希望获得更稳定且更适合生产环境部署方式的用户，我们推荐使用 Docker / Docker Compose 部署 Persbot。
 
-请参考官方文档 [使用 Docker 部署 AstrBot](https://astrbot.app/deploy/astrbot/docker.html#%E4%BD%BF%E7%94%A8-docker-%E9%83%A8%E7%BD%B2-astrbot)。
+请参考官方文档 [使用 Docker 部署 Persbot](https://persbot.app/deploy/persbot/docker.html#%E4%BD%BF%E7%94%A8-docker-%E9%83%A8%E7%BD%B2-persbot)。
 
 ### 在 雨云 上部署
 
-对于希望一键部署 AstrBot 且不想自行管理服务器的用户，我们推荐使用雨云的一键云部署服务 ☁️：
+对于希望一键部署 Persbot 且不想自行管理服务器的用户，我们推荐使用雨云的一键云部署服务 ☁️：
 
 [![Deploy on RainYun](https://rainyun-apps.cn-nb1.rains3.com/materials/deploy-on-rainyun-en.svg)](https://app.rainyun.com/apps/rca/store/5994?ref=NjU1ODg0)
 
 ### 桌面客户端部署
 
-对于希望在桌面端使用 AstrBot、并以 ChatUI 为主要入口的用户，我们推荐使用 AstrBot App。
+对于希望在桌面端使用 Persbot、并以 ChatUI 为主要入口的用户，我们推荐使用 Persbot App。
 
-前往 [AstrBot-desktop](https://github.com/AstrBotDevs/AstrBot-desktop) 下载并安装；该方式面向桌面使用，不推荐服务器场景。
+前往 [Persbot-desktop](https://github.com/PersbotDevs/Persbot-desktop) 下载并安装；该方式面向桌面使用，不推荐服务器场景。
 
 ### 启动器部署
 
-同样在桌面端，希望快速部署并实现环境隔离多开的用户，我们推荐使用 AstrBot Launcher。
+同样在桌面端，希望快速部署并实现环境隔离多开的用户，我们推荐使用 Persbot Launcher。
 
-前往 [AstrBot Launcher](https://github.com/Raven95676/astrbot-launcher) 下载并安装。
+前往 [Persbot Launcher](https://github.com/Raven95676/persbot-launcher) 下载并安装。
 
 ### 在 Replit 上部署
 
 Replit 部署由社区维护，适合在线演示和轻量试用场景。
 
-[![Run on Repl.it](https://repl.it/badge/github/AstrBotDevs/AstrBot)](https://repl.it/github/AstrBotDevs/AstrBot)
+[![Run on Repl.it](https://repl.it/badge/github/PersbotDevs/Persbot)](https://repl.it/github/PersbotDevs/Persbot)
 
 ### AUR
 
-AUR 方式面向 Arch Linux 用户，适合希望通过系统包管理器安装 AstrBot 的场景。
+AUR 方式面向 Arch Linux 用户，适合希望通过系统包管理器安装 Persbot 的场景。
 
-在终端执行下方命令安装 `astrbot-git` 包，安装完成后即可启动使用。
+在终端执行下方命令安装 `persbot-git` 包，安装完成后即可启动使用。
 
 ```bash
-yay -S astrbot-git
+yay -S persbot-git
 ```
 
 **更多部署方式**
 
-若你需要面板化或更高自定义部署，可参考 [宝塔面板](https://astrbot.app/deploy/astrbot/btpanel.html)（BT Panel 应用商店安装）、[1Panel](https://astrbot.app/deploy/astrbot/1panel.html)（1Panel 应用商店安装）、[CasaOS](https://astrbot.app/deploy/astrbot/casaos.html)（NAS / 家庭服务器可视化部署）和 [手动部署](https://astrbot.app/deploy/astrbot/cli.html)（基于源码与 `uv` 的完整自定义安装）。
+若你需要面板化或更高自定义部署，可参考 [宝塔面板](https://persbot.app/deploy/persbot/btpanel.html)（BT Panel 应用商店安装）、[1Panel](https://persbot.app/deploy/persbot/1panel.html)（1Panel 应用商店安装）、[CasaOS](https://persbot.app/deploy/persbot/casaos.html)（NAS / 家庭服务器可视化部署）和 [手动部署](https://persbot.app/deploy/persbot/cli.html)（基于源码与 `uv` 的完整自定义安装）。
 
 ## 支持的消息平台
 
-将 AstrBot 连接到你常用的聊天平台。
+将 Persbot 连接到你常用的聊天平台。
 
 | 平台 | 维护方 |
 |---------|---------------|
@@ -155,9 +155,9 @@ yay -S astrbot-git
 | **Satori** | 官方维护 |
 | **Misskey** | 官方维护 |
 | **Whatsapp (将支持)** | 官方维护 |
-| [**Matrix**](https://github.com/stevessr/astrbot_plugin_matrix_adapter) | 社区维护 |
-| [**KOOK**](https://github.com/wuyan1003/astrbot_plugin_kook_adapter) | 社区维护 |
-| [**VoceChat**](https://github.com/HikariFroya/astrbot_plugin_vocechat) | 社区维护 |
+| [**Matrix**](https://github.com/stevessr/persbot_plugin_matrix_adapter) | 社区维护 |
+| [**KOOK**](https://github.com/wuyan1003/persbot_plugin_kook_adapter) | 社区维护 |
+| [**VoceChat**](https://github.com/HikariFroya/persbot_plugin_vocechat) | 社区维护 |
 
 ## 支持的模型提供商
 
@@ -173,8 +173,8 @@ yay -S astrbot-git
 | Ollama (本地部署) | LLM |
 | LM Studio (本地部署) | LLM |
 | [AIHubMix](https://aihubmix.com/?aff=4bfH) | LLM (API 网关, 支持所有模型) |
-| [优云智算](https://www.compshare.cn/?ytag=GPU_YY-gh_astrbot&referral_code=FV7DcGowN4hB5UuXKgpE74) | LLM (API 网关, 支持所有模型) |
-| [硅基流动](https://docs.siliconflow.cn/cn/usercases/use-siliconcloud-in-astrbot) | LLM (API 网关, 支持所有模型)  |
+| [优云智算](https://www.compshare.cn/?ytag=GPU_YY-gh_persbot&referral_code=FV7DcGowN4hB5UuXKgpE74) | LLM (API 网关, 支持所有模型) |
+| [硅基流动](https://docs.siliconflow.cn/cn/usercases/use-siliconcloud-in-persbot) | LLM (API 网关, 支持所有模型)  |
 | [PPIO 派欧云](https://ppio.com/user/register?invited_by=AIOONE) | LLM (API 网关, 支持所有模型) |
 | [302.AI](https://share.302.ai/rr1M3l) | LLM (API 网关, 支持所有模型)|
 | [小马算力](https://www.tokenpony.cn/3YPyf) | LLM (API 网关, 支持所有模型)|
@@ -206,10 +206,10 @@ yay -S astrbot-git
 
 ### 开发环境
 
-AstrBot 使用 `ruff` 进行代码格式化和检查。
+Persbot 使用 `ruff` 进行代码格式化和检查。
 
 ```bash
-git clone https://github.com/AstrBotDevs/AstrBot
+git clone https://github.com/PersbotDevs/Persbot
 pip install pre-commit
 pre-commit install
 ```
@@ -235,10 +235,10 @@ pre-commit install
 
 ## ❤️ Special Thanks
 
-特别感谢所有 Contributors 和插件开发者对 AstrBot 的贡献 ❤️
+特别感谢所有 Contributors 和插件开发者对 Persbot 的贡献 ❤️
 
-<a href="https://github.com/AstrBotDevs/AstrBot/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=AstrBotDevs/AstrBot&max=200&columns=14" />
+<a href="https://github.com/PersbotDevs/Persbot/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PersbotDevs/Persbot&max=200&columns=14" />
 </a>
 
 此外，本项目的诞生离不开以下开源项目的帮助：
@@ -262,7 +262,7 @@ pre-commit install
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=astrbotdevs/astrbot&type=Date)](https://star-history.com/#astrbotdevs/astrbot&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=persbotdevs/persbot&type=Date)](https://star-history.com/#persbotdevs/persbot&Date)
 
 </div>
 
@@ -272,6 +272,6 @@ _陪伴与能力从来不应该是对立面。我们希望创造的是一个既�
 
 _私は、高性能ですから!_
 
-<img src="https://files.astrbot.app/watashiwa-koseino-desukara.gif" width="100"/>
+<img src="https://files.persbot.app/watashiwa-koseino-desukara.gif" width="100"/>
 
 </div>

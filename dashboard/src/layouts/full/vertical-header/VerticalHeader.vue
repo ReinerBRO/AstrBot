@@ -27,7 +27,8 @@ const customizer = useCustomizerStore();
 const theme = useTheme();
 const { t } = useI18n();
 const route = useRoute();
-const LAST_BOT_ROUTE_KEY = 'astrbot:last_bot_route';
+const LAST_BOT_ROUTE_KEY = 'persbot:last_bot_route';
+const authControlsEnabled = false;
 let dialog = ref(false);
 let accountWarning = ref(false)
 let updateStatusDialog = ref(false);
@@ -49,7 +50,7 @@ let releases = ref([]);
 let updatingDashboardLoading = ref(false);
 let installLoading = ref(false);
 const isDesktopReleaseMode = ref(
-  typeof window !== 'undefined' && !!window.astrbotDesktop?.isDesktop
+  typeof window !== 'undefined' && !!window.persbotDesktop?.isDesktop
 );
 const desktopUpdateDialog = ref(false);
 const desktopUpdateChecking = ref(false);
@@ -59,11 +60,11 @@ const desktopUpdateCurrentVersion = ref('-');
 const desktopUpdateLatestVersion = ref('-');
 const desktopUpdateStatus = ref('');
 
-const getAppUpdaterBridge = (): AstrBotAppUpdaterBridge | null => {
+const getAppUpdaterBridge = (): PersbotAppUpdaterBridge | null => {
   if (typeof window === 'undefined') {
     return null;
   }
-  const bridge = window.astrbotAppUpdater;
+  const bridge = window.persbotAppUpdater;
   if (
     bridge &&
     typeof bridge.checkForAppUpdate === 'function' &&
@@ -267,14 +268,9 @@ function getVersion() {
     .then((res) => {
       botCurrVersion.value = "v" + res.data.data.version;
       dashboardCurrentVersion.value = res.data.data?.dashboard_version;
-      let change_pwd_hint = res.data.data?.change_pwd_hint;
-      if (change_pwd_hint) {
-        dialog.value = true;
-        accountWarning.value = true;
-        localStorage.setItem('change_pwd_hint', 'true');
-      } else {
-        localStorage.removeItem('change_pwd_hint');
-      }
+      accountWarning.value = false;
+      dialog.value = false;
+      localStorage.removeItem('change_pwd_hint');
     })
     .catch((err) => {
       console.log(err);
@@ -368,7 +364,7 @@ function updateDashboard() {
 }
 
 function toggleDarkMode() {
-  const newTheme = customizer.uiTheme === 'PurpleThemeDark' ? 'PurpleTheme' : 'PurpleThemeDark';
+  const newTheme = customizer.uiTheme === 'PersbotDarkTheme' ? 'PersbotLightTheme' : 'PersbotDarkTheme';
   customizer.SET_UI_THEME(newTheme);
   theme.global.name.value = newTheme;
 }
@@ -484,10 +480,10 @@ onMounted(async () => {
     </v-btn>
 
     <div class="logo-container" :class="{ 'mobile-logo': $vuetify.display.xs, 'chat-mode-logo': customizer.viewMode === 'chat' }" @click="handleLogoClick">
-      <span class="logo-text Outfit">Astr<span class="logo-text bot-text-wrapper">Bot
+      <span class="logo-text Outfit">Pers<span class="logo-text bot-text-wrapper">bot
         <img v-if="isChristmas" src="@/assets/images/xmas-hat.png" alt="Christmas hat" class="xmas-hat" />
       </span></span>
-      <span class="logo-text logo-text-light Outfit" style="color: grey;" v-if="customizer.viewMode === 'chat'">ChatUI</span>
+      <span class="logo-text logo-text-light Outfit" v-if="customizer.viewMode === 'chat'">Control Deck</span>
       <span class="version-text hidden-xs">{{ botCurrVersion }}</span>
     </div>
 
@@ -617,11 +613,11 @@ onMounted(async () => {
       >
         <template v-slot:prepend>
           <v-icon>
-            {{ useCustomizerStore().uiTheme === 'PurpleThemeDark' ? 'mdi-weather-night' : 'mdi-white-balance-sunny' }}
+            {{ useCustomizerStore().uiTheme === 'PersbotDarkTheme' ? 'mdi-weather-night' : 'mdi-white-balance-sunny' }}
           </v-icon>
         </template>
         <v-list-item-title>
-          {{ useCustomizerStore().uiTheme === 'PurpleThemeDark' ? t('core.header.buttons.theme.light') : t('core.header.buttons.theme.dark') }}
+          {{ useCustomizerStore().uiTheme === 'PersbotDarkTheme' ? t('core.header.buttons.theme.light') : t('core.header.buttons.theme.dark') }}
         </v-list-item-title>
       </v-list-item>
 
@@ -642,6 +638,7 @@ onMounted(async () => {
 
       <!-- 账户按钮 -->
       <v-list-item
+        v-if="authControlsEnabled"
         @click="dialog = true"
         class="styled-menu-item"
         rounded="md"
@@ -700,7 +697,7 @@ onMounted(async () => {
                     <strong>{{ t('core.header.updateDialog.preReleaseWarning.title') }}</strong>
                     <br>
                     {{ t('core.header.updateDialog.preReleaseWarning.description') }}
-                    <a href="https://github.com/AstrBotDevs/AstrBot/issues" target="_blank" class="text-decoration-none">
+                    <a href="https://github.com/PersbotDevs/Persbot/issues" target="_blank" class="text-decoration-none">
                       {{ t('core.header.updateDialog.preReleaseWarning.issueLink') }}
                     </a>
                   </div>
@@ -822,7 +819,7 @@ onMounted(async () => {
     </v-dialog>
 
     <!-- 账户对话框 -->
-    <v-dialog v-model="dialog" persistent :max-width="$vuetify.display.xs ? '90%' : '500'">
+    <v-dialog v-if="authControlsEnabled" v-model="dialog" persistent :max-width="$vuetify.display.xs ? '90%' : '500'">
       <v-card class="account-dialog">
         <v-card-text class="py-6">
           <div class="d-flex flex-column align-center mb-6">
@@ -944,13 +941,20 @@ onMounted(async () => {
   margin-left: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 18px;
+  border: 1px solid var(--persbot-stroke-soft);
+  background: var(--persbot-panel-strong);
+  box-shadow: var(--persbot-shadow-soft);
+  backdrop-filter: blur(16px);
 }
 
 .mobile-logo {
   margin-left: 8px;
   gap: 4px;
+  padding: 7px 10px;
 }
 
 .chat-mode-logo {
@@ -962,17 +966,25 @@ onMounted(async () => {
 }
 
 .logo-text {
+  color: rgb(var(--v-theme-primaryText));
   font-size: 24px;
-  font-weight: 1000;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
 }
 
 .logo-text-light {
-  font-weight: normal;
+  color: rgba(var(--v-theme-primaryText), 0.62);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .bot-text-wrapper {
   position: relative;
   display: inline-block;
+  color: rgb(var(--v-theme-primary));
 }
 
 .xmas-hat {
@@ -985,9 +997,13 @@ onMounted(async () => {
 }
 
 .version-text {
-  font-size: 12px;
-  color: gray;
-  margin-left: 4px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(var(--v-theme-primary), 0.1);
+  color: rgb(var(--v-theme-primary));
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 2px;
 }
 
 .action-btn {

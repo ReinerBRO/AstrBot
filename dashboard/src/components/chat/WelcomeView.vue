@@ -13,7 +13,7 @@
                 <div class="welcome-title">
                     <span class="bot-name-container">
                         <span class="bot-name-text">
-                            Hello, I'm <span class="highlight-name">AstrBot</span>
+                            Hello, I'm <span class="highlight-name">Persbot</span>
                         </span>
                         <span class="bot-name-star">⭐</span>
                     </span>

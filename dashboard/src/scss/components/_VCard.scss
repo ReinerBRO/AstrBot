@@ -1,8 +1,8 @@
 // Outline Card
 .v-card--variant-outlined {
-  border-color: rgba(var(--v-theme-borderLight), 0.36);
+  border-color: var(--persbot-stroke-soft);
   .v-divider {
-    border-color: rgba(var(--v-theme-borderLight), 0.36);
+    border-color: var(--persbot-stroke-soft);
   }
 }
 
@@ -13,6 +13,11 @@
 .v-card {
   width: 100%;
   overflow: visible;
+  background: var(--persbot-panel-bg);
+  border: 1px solid var(--persbot-stroke-soft);
+  box-shadow: var(--persbot-shadow-soft);
+  backdrop-filter: blur(18px);
+
   &.withbg {
     background-color: rgb(var(--v-theme-background));
   }

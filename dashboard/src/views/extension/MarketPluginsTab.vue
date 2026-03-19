@@ -246,7 +246,7 @@ const marketSortItems = computed(() => [
                 <button
                   v-bind="props"
                   type="button"
-                  class="v-btn v-btn--elevated v-btn--icon v-theme--PurpleThemeDark bg-darkprimary v-btn--density-default v-btn--size-x-large v-btn--variant-elevated fab-button"
+                  class="v-btn v-btn--elevated v-btn--icon bg-darkprimary v-btn--density-default v-btn--size-x-large v-btn--variant-elevated fab-button"
                   style="
                     position: fixed;
                     right: 52px;
@@ -260,7 +260,7 @@ const marketSortItems = computed(() => [
                   <span class="v-btn__underlay"></span>
                   <span class="v-btn__content" data-no-activator="">
                     <i
-                      class="mdi-plus mdi v-icon notranslate v-theme--PurpleThemeDark v-icon--size-default"
+                      class="mdi-plus mdi v-icon notranslate v-icon--size-default"
                       aria-hidden="true"
                       style="font-size: 32px"
                     ></i>

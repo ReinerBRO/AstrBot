@@ -17,6 +17,10 @@ import {
 import { ref, computed, onMounted, onUnmounted, reactive, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
+import {
+  getShowcaseAvailableExtensionTabs,
+  getShowcaseDefaultExtensionTab,
+} from "@/showcase/presets";
 
 const useRandomPluginsDisplay = ({ activeTab, marketSearch, currentPage }) => {
   const showRandomPlugins = ref(true);
@@ -100,12 +104,14 @@ export const useExtensionPage = () => {
     }
   };
   const handleConflictConfirm = () => {
-    activeTab.value = "commands";
+    activeTab.value =
+      validTabs.includes("components") ? "components" : validTabs[0];
   };
   
   const fileInput = ref(null);
-  const activeTab = ref("installed");
-  const validTabs = ["installed", "market", "mcp", "skills", "components"];
+  const validTabs = getShowcaseAvailableExtensionTabs();
+  const defaultTab = getShowcaseDefaultExtensionTab() || "installed";
+  const activeTab = ref(defaultTab);
   const isValidTab = (tab) => validTabs.includes(tab);
   const getLocationHash = () => route.hash || "";
   const extractTabFromHash = (hash) => getValidHashTab(hash, validTabs);
@@ -203,7 +209,7 @@ export const useExtensionPage = () => {
     message: "",
   });
   
-  // AstrBot 版本范围不兼容警告对话框
+  // Persbot 版本范围不兼容警告对话框
   const versionCompatibilityDialog = reactive({
     show: false,
     message: "",
@@ -1176,9 +1182,9 @@ export const useExtensionPage = () => {
     pluginMarketData.value.forEach((plugin) => {
       if (plugin.name) {
         let name = plugin.name.trim().toLowerCase();
-        if (name.startsWith("astrbot_plugin_")) {
+        if (name.startsWith("persbot_plugin_")) {
           plugin.trimmedName = name.substring(15);
-        } else if (name.startsWith("astrbot_") || name.startsWith("astrbot-")) {
+        } else if (name.startsWith("persbot_") || name.startsWith("persbot-")) {
           plugin.trimmedName = name.substring(8);
         } else plugin.trimmedName = plugin.name;
       }
@@ -1211,8 +1217,8 @@ export const useExtensionPage = () => {
         ) {
           plugin.support_platforms = matchedInstalled.support_platforms;
         }
-        if (!plugin.astrbot_version && matchedInstalled.astrbot_version) {
-          plugin.astrbot_version = matchedInstalled.astrbot_version;
+        if (!plugin.persbot_version && matchedInstalled.persbot_version) {
+          plugin.persbot_version = matchedInstalled.persbot_version;
         }
       }
   
@@ -1258,7 +1264,7 @@ export const useExtensionPage = () => {
   const handleInstallResponse = async (resData, { toastStatus = false } = {}) => {
     if (
       resData.status === "warning" &&
-      resData.data?.warning_type === "astrbot_version_incompatible"
+      resData.data?.warning_type === "persbot_version_incompatible"
     ) {
       onLoadingDialogResult(2, resData.message, -1);
       showVersionCompatibilityWarning(resData.message);
@@ -1390,13 +1396,13 @@ export const useExtensionPage = () => {
     installCompat.message = "";
   
     const plugin = selectedInstallPlugin.value;
-    if (!plugin?.astrbot_version || uploadTab.value !== "url") {
+    if (!plugin?.persbot_version || uploadTab.value !== "url") {
       return;
     }
   
     try {
       const res = await axios.post("/api/plugin/check-compat", {
-        astrbot_version: plugin.astrbot_version,
+        persbot_version: plugin.persbot_version,
       });
       if (res.data.status === "ok") {
         installCompat.checked = true;
@@ -1434,6 +1440,11 @@ export const useExtensionPage = () => {
   
   // 生命周期
   onMounted(async () => {
+    if (!validTabs.length) {
+      await router.replace("/welcome");
+      return;
+    }
+
     if (!syncTabFromHash(getLocationHash())) {
       await replaceTabRoute(router, route, activeTab.value);
     }
@@ -1475,11 +1486,11 @@ export const useExtensionPage = () => {
   };
   
   // 监听语言切换事件
-  window.addEventListener("astrbot-locale-changed", handleLocaleChange);
+  window.addEventListener("persbot-locale-changed", handleLocaleChange);
   
   // 清理事件监听器
   onUnmounted(() => {
-    window.removeEventListener("astrbot-locale-changed", handleLocaleChange);
+    window.removeEventListener("persbot-locale-changed", handleLocaleChange);
   });
   
   // 搜索防抖处理

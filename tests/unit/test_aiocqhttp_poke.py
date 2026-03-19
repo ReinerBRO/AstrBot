@@ -2,10 +2,10 @@ from unittest.mock import AsyncMock
 
 import pytest
 
-import astrbot.core.message.components as Comp
-from astrbot.core.message.message_event_result import MessageChain
-from astrbot.core.pipeline.respond.stage import RespondStage
-from astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import (
+import persbot.core.message.components as Comp
+from persbot.core.message.message_event_result import MessageChain
+from persbot.core.pipeline.respond.stage import RespondStage
+from persbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import (
     AiocqhttpMessageEvent,
 )
 

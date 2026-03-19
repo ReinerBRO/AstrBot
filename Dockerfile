@@ -1,7 +1,7 @@
 FROM python:3.12-slim
-WORKDIR /AstrBot
+WORKDIR /Persbot
 
-COPY . /AstrBot/
+COPY . /Persbot/
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \

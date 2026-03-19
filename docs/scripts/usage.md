@@ -1,8 +1,8 @@
 ```bash
 bash scripts/upload-doc-images-to-r2.sh \
-    --remote astrbot-docs-s3 \
-    --bucket astrbot \
+    --remote persbot-docs-s3 \
+    --bucket persbot \
     --prefix docs \
     --rewrite-markdown \
-    --public-base-url https://files.astrbot.app
+    --public-base-url https://files.persbot.app
 ```

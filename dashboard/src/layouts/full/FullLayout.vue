@@ -11,7 +11,7 @@ import { useCustomizerStore } from '@/stores/customizer';
 import { useRouterLoadingStore } from '@/stores/routerLoading';
 import { useI18n } from '@/i18n/composables';
 
-const FIRST_NOTICE_SEEN_KEY = 'astrbot:first_notice_seen:v1';
+const FIRST_NOTICE_SEEN_KEY = 'persbot:first_notice_seen:v1';
 
 const customizer = useCustomizerStore();
 const { locale } = useI18n();
@@ -97,7 +97,7 @@ onMounted(() => {
 <template>
   <v-locale-provider>
     <v-app :theme="useCustomizerStore().uiTheme"
-      :class="[customizer.fontTheme, customizer.mini_sidebar ? 'mini-sidebar' : '', customizer.inputBg ? 'inputWithbg' : '']"
+      :class="['persbot-app-shell', customizer.fontTheme, customizer.mini_sidebar ? 'mini-sidebar' : '', customizer.inputBg ? 'inputWithbg' : '']"
     >
       <v-progress-linear
         v-if="routerLoadingStore.isLoading"

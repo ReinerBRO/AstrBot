@@ -28,7 +28,7 @@ body:
 
   - type: textarea
     attributes:
-      label: AstrBot version, deployment method (e.g., Windows Docker Desktop deployment), provider used, and messaging platform used. / AstrBot 版本、部署方式（如 Windows Docker Desktop 部署）、使用的提供商、使用的消息平台适配器
+      label: Persbot version, deployment method (e.g., Windows Docker Desktop deployment), provider used, and messaging platform used. / Persbot 版本、部署方式（如 Windows Docker Desktop 部署）、使用的提供商、使用的消息平台适配器
       placeholder: >
         Example: 4.5.7 Docker, 3.1.7 Windows Launcher
     validations:

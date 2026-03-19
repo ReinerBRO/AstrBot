@@ -1,4 +1,4 @@
-"""Tests for astrbot.core.star.base module."""
+"""Tests for persbot.core.star.base module."""
 
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
@@ -9,13 +9,13 @@ class TestStarBase:
 
     def test_star_class_exists(self):
         """Test that Star class can be imported."""
-        from astrbot.core.star import Star
+        from persbot.core.star import Star
 
         assert Star is not None
 
     def test_star_init_with_context(self):
         """Test Star initialization with a context-like object."""
-        from astrbot.core.star import Star
+        from persbot.core.star import Star
 
         # Create a mock context with get_config method
         mock_context = MagicMock()
@@ -33,7 +33,7 @@ class TestStarBase:
     @pytest.mark.asyncio
     async def test_text_to_image_with_config(self):
         """Test text_to_image method with valid config."""
-        from astrbot.core.star import Star
+        from persbot.core.star import Star
 
         mock_context = MagicMock()
         mock_config = MagicMock()
@@ -47,7 +47,7 @@ class TestStarBase:
         star = TestStar(context=mock_context)
 
         with patch(
-            "astrbot.core.star.base.html_renderer.render_t2i",
+            "persbot.core.star.base.html_renderer.render_t2i",
             new_callable=AsyncMock,
         ) as mock_render:
             mock_render.return_value = "http://example.com/image.png"
@@ -63,7 +63,7 @@ class TestStarBase:
     @pytest.mark.asyncio
     async def test_text_to_image_without_config(self):
         """Test text_to_image method when get_config returns None."""
-        from astrbot.core.star import Star
+        from persbot.core.star import Star
 
         mock_context = MagicMock()
         mock_context.get_config.return_value = None
@@ -75,7 +75,7 @@ class TestStarBase:
         star = TestStar(context=mock_context)
 
         with patch(
-            "astrbot.core.star.base.html_renderer.render_t2i",
+            "persbot.core.star.base.html_renderer.render_t2i",
             new_callable=AsyncMock,
         ) as mock_render:
             mock_render.return_value = "http://example.com/image.png"
@@ -91,7 +91,7 @@ class TestStarBase:
     @pytest.mark.asyncio
     async def test_html_render(self):
         """Test html_render method."""
-        from astrbot.core.star import Star
+        from persbot.core.star import Star
 
         mock_context = MagicMock()
 
@@ -102,7 +102,7 @@ class TestStarBase:
         star = TestStar(context=mock_context)
 
         with patch(
-            "astrbot.core.star.base.html_renderer.render_custom_template",
+            "persbot.core.star.base.html_renderer.render_custom_template",
             new_callable=AsyncMock,
         ) as mock_render:
             mock_render.return_value = "http://example.com/rendered.png"
@@ -123,7 +123,7 @@ class TestStarBase:
     @pytest.mark.asyncio
     async def test_initialize_and_terminate(self):
         """Test that initialize and terminate methods can be overridden."""
-        from astrbot.core.star import Star
+        from persbot.core.star import Star
 
         class TestStar(Star):
             name = "test_star"
@@ -146,8 +146,8 @@ class TestStarBase:
 
     def test_star_metadata_registration(self):
         """Test that Star subclass is automatically registered."""
-        from astrbot.core.star import star_map, star_registry
-        from astrbot.core.star.star import StarMetadata
+        from persbot.core.star import star_map, star_registry
+        from persbot.core.star.star import StarMetadata
 
         # Clear any previous registration for this test module
         module_path = __name__
@@ -169,23 +169,23 @@ class TestNoCircularImports:
 
     def test_import_star_module(self):
         """Test that star module can be imported without circular import errors."""
-        import astrbot.core.star
+        import persbot.core.star
 
-        assert astrbot.core.star is not None
+        assert persbot.core.star is not None
 
     def test_import_pipeline_module(self):
         """Test that pipeline module can be imported without circular import errors."""
-        import astrbot.core.pipeline
+        import persbot.core.pipeline
 
-        assert astrbot.core.pipeline is not None
+        assert persbot.core.pipeline is not None
 
     def test_import_both_modules(self):
         """Test that both modules can be imported together."""
-        import astrbot.core.pipeline
-        import astrbot.core.star
+        import persbot.core.pipeline
+        import persbot.core.star
 
         # Verify key exports are available
-        from astrbot.core.star import Context, Star, PluginManager
+        from persbot.core.star import Context, Star, PluginManager
 
         assert Context is not None
         assert Star is not None
@@ -193,6 +193,6 @@ class TestNoCircularImports:
 
     def test_import_pipeline_context(self):
         """Test that PipelineContext can be imported."""
-        from astrbot.core.pipeline.context import PipelineContext
+        from persbot.core.pipeline.context import PipelineContext
 
         assert PipelineContext is not None

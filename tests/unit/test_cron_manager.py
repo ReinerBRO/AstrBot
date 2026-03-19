@@ -5,8 +5,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from astrbot.core.cron.manager import CronJobManager
-from astrbot.core.db.po import CronJob
+from persbot.core.cron.manager import CronJobManager
+from persbot.core.db.po import CronJob
 
 
 @pytest.fixture
@@ -321,7 +321,7 @@ class TestSyncFromDb:
         """Test that sync warns for basic jobs without handlers."""
         mock_db.list_cron_jobs.return_value = [sample_cron_job]
 
-        with patch("astrbot.core.cron.manager.logger") as mock_logger:
+        with patch("persbot.core.cron.manager.logger") as mock_logger:
             await cron_manager.sync_from_db()
 
         mock_logger.warning.assert_called()
@@ -392,7 +392,7 @@ class TestScheduleJob:
         mock_db.list_cron_jobs = AsyncMock(return_value=[])
         mock_db.update_cron_job = AsyncMock()
 
-        with patch("astrbot.core.cron.manager.logger") as mock_logger:
+        with patch("persbot.core.cron.manager.logger") as mock_logger:
             await cron_manager.start(mock_context)
             cron_manager._schedule_job(sample_cron_job)
 

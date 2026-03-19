@@ -13,6 +13,20 @@ import { loader } from '@guolao/vue-monaco-editor'
 import axios from 'axios';
 import { waitForRouterReadyInBackground } from './utils/routerReadiness.mjs';
 
+const SHOWCASE_USER = 'persbot';
+const SHOWCASE_TOKEN = 'persbot-showcase-token';
+
+function ensureShowcaseSession() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  localStorage.setItem('user', localStorage.getItem('user') || SHOWCASE_USER);
+  localStorage.setItem('token', localStorage.getItem('token') || SHOWCASE_TOKEN);
+  localStorage.removeItem('change_pwd_hint');
+}
+
+ensureShowcaseSession();
+
 // 初始化新的i18n系统，等待完成后再挂载应用
 setupI18n().then(async () => {
   console.log('🌍 新i18n系统初始化完成');
@@ -36,7 +50,7 @@ setupI18n().then(async () => {
     const storedSecondary = localStorage.getItem('themeSecondary');
     if (storedPrimary || storedSecondary) {
       const themes = vuetify.theme.themes.value;
-      ['PurpleTheme', 'PurpleThemeDark'].forEach((name) => {
+      ['PersbotLightTheme', 'PersbotDarkTheme'].forEach((name) => {
         const theme = themes[name];
         if (!theme?.colors) return;
         if (storedPrimary) theme.colors.primary = storedPrimary;
@@ -69,7 +83,7 @@ setupI18n().then(async () => {
     const storedSecondary = localStorage.getItem('themeSecondary');
     if (storedPrimary || storedSecondary) {
       const themes = vuetify.theme.themes.value;
-      ['PurpleTheme', 'PurpleThemeDark'].forEach((name) => {
+      ['PersbotLightTheme', 'PersbotDarkTheme'].forEach((name) => {
         const theme = themes[name];
         if (!theme?.colors) return;
         if (storedPrimary) theme.colors.primary = storedPrimary;
@@ -87,7 +101,7 @@ axios.interceptors.request.use((config) => {
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;
   }
-  const locale = localStorage.getItem('astrbot-locale');
+  const locale = localStorage.getItem('persbot-locale');
   if (locale) {
     config.headers['Accept-Language'] = locale;
   }
@@ -99,13 +113,11 @@ axios.interceptors.request.use((config) => {
 const _origFetch = window.fetch.bind(window);
 window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
   const token = localStorage.getItem('token');
-  if (!token) return _origFetch(input, init);
-
   const headers = new Headers(init?.headers || (typeof input !== 'string' && 'headers' in input ? (input as Request).headers : undefined));
-  if (!headers.has('Authorization')) {
+  if (token && !headers.has('Authorization')) {
     headers.set('Authorization', `Bearer ${token}`);
   }
-  const locale = localStorage.getItem('astrbot-locale');
+  const locale = localStorage.getItem('persbot-locale');
   if (locale && !headers.has('Accept-Language')) {
     headers.set('Accept-Language', locale);
   }

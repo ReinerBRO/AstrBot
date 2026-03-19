@@ -10,9 +10,9 @@ API 格式完全兼容 OpenAI，只需修改 API Base 和 Key 即可接入。**�
 2. 登录后在控制台 → API Keys 页面创建一个新的 Key
 ![获取 API Key](https://github.com/user-attachments/assets/d717f21b-2805-4aff-ac90-f5c98f17cb79)
 
-## 在 AstrBot 中配置
+## 在 Persbot 中配置
 
-进入 AstrBot 管理面板，点击左栏 **服务提供商 → 新增提供商 → OpenAI**。
+进入 Persbot 管理面板，点击左栏 **服务提供商 → 新增提供商 → OpenAI**。
 
 填写以下信息：
 
@@ -22,7 +22,7 @@ API 格式完全兼容 OpenAI，只需修改 API Base 和 Key 即可接入。**�
 | API Key | 你在 AIHubMix 获取的 Key |
 
 保存后，点击该 provider 卡片，添加你需要的模型。
-![在 AstrBot 中配置](https://github.com/user-attachments/assets/ee2fb8ba-652c-4e97-a781-42a9082ad7eb)
+![在 Persbot 中配置](https://github.com/user-attachments/assets/ee2fb8ba-652c-4e97-a781-42a9082ad7eb)
 
 ## 推荐模型
 
@@ -52,9 +52,9 @@ API 格式完全兼容 OpenAI，只需修改 API Base 和 Key 即可接入。**�
 
 ## 不只是聊天模型
 
-AIHubMix 同时支持以下能力，均可在 AstrBot 中配置：
+AIHubMix 同时支持以下能力，均可在 Persbot 中配置：
 
-| 能力 | AstrBot 配置位置 |
+| 能力 | Persbot 配置位置 |
 |------|-----------------|
 | 语音转文字 (STT) | 服务提供商 → 语音转文字 |
 | 文字转语音 (TTS) | 服务提供商 → 文字转语音 |

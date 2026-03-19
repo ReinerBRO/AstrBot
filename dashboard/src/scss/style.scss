@@ -16,6 +16,114 @@
 
 @import './pages/dashboards';
 
-html, body {
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+html,
+body {
   overscroll-behavior-y: none;
+}
+
+body {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(19, 93, 102, 0.18), transparent 28%),
+    radial-gradient(circle at 88% 12%, rgba(191, 107, 63, 0.16), transparent 24%),
+    linear-gradient(180deg, #f8f3ea 0%, #efe7da 100%);
+  color: rgb(var(--v-theme-primaryText));
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(var(--v-theme-primary), 0.18);
+  color: rgb(var(--v-theme-primaryText));
+}
+
+.v-theme--PersbotLightTheme {
+  --persbot-panel-bg: rgba(255, 252, 247, 0.74);
+  --persbot-panel-strong: rgba(255, 250, 244, 0.92);
+  --persbot-panel-soft: rgba(252, 246, 238, 0.72);
+  --persbot-shell-gradient:
+    radial-gradient(circle at 12% 10%, rgba(var(--v-theme-primary), 0.16), transparent 24%),
+    radial-gradient(circle at 88% 14%, rgba(var(--v-theme-secondary), 0.15), transparent 22%),
+    linear-gradient(180deg, rgba(249, 243, 235, 0.98) 0%, rgba(240, 232, 220, 0.98) 100%);
+  --persbot-shell-mesh:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.46) 0%, rgba(255, 255, 255, 0.06) 100%);
+  --persbot-stroke-soft: rgba(28, 43, 47, 0.08);
+  --persbot-stroke-strong: rgba(var(--v-theme-primary), 0.16);
+  --persbot-shadow-soft: 0 20px 44px rgba(24, 40, 44, 0.1);
+  --persbot-shadow-strong: 0 28px 60px rgba(24, 40, 44, 0.14);
+}
+
+.v-theme--PersbotDarkTheme {
+  --persbot-panel-bg: rgba(17, 32, 37, 0.78);
+  --persbot-panel-strong: rgba(18, 33, 38, 0.92);
+  --persbot-panel-soft: rgba(14, 26, 30, 0.78);
+  --persbot-shell-gradient:
+    radial-gradient(circle at 10% 8%, rgba(var(--v-theme-primary), 0.16), transparent 26%),
+    radial-gradient(circle at 88% 12%, rgba(var(--v-theme-secondary), 0.14), transparent 24%),
+    linear-gradient(180deg, rgba(8, 15, 18, 0.98) 0%, rgba(14, 24, 28, 0.98) 100%);
+  --persbot-shell-mesh:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --persbot-stroke-soft: rgba(224, 239, 235, 0.08);
+  --persbot-stroke-strong: rgba(var(--v-theme-primary), 0.22);
+  --persbot-shadow-soft: 0 24px 54px rgba(0, 0, 0, 0.34);
+  --persbot-shadow-strong: 0 32px 70px rgba(0, 0, 0, 0.42);
+}
+
+.persbot-app-shell {
+  position: relative;
+  isolation: isolate;
+  background: var(--persbot-shell-gradient);
+}
+
+.persbot-app-shell::before,
+.persbot-app-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.persbot-app-shell::before {
+  background: var(--persbot-shell-mesh);
+  opacity: 0.72;
+  z-index: -2;
+}
+
+.persbot-app-shell::after {
+  background-image:
+    linear-gradient(rgba(var(--v-theme-primary), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--v-theme-primary), 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.32), transparent 70%);
+  z-index: -1;
+}
+
+.v-application {
+  color: rgb(var(--v-theme-primaryText));
+}
+
+.v-overlay__scrim {
+  backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--v-theme-primary), 0.22);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }

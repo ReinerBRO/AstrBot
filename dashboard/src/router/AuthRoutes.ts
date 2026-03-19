@@ -8,7 +8,7 @@ const AuthRoutes = {
     {
       name: 'Login',
       path: '/auth/login',
-      component: () => import('@/views/authentication/auth/LoginPage.vue')
+      redirect: '/'
     }
   ]
 };

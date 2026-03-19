@@ -159,13 +159,12 @@ export function useMessages(
 
     function buildWebSocketUrl(): string {
         const token = localStorage.getItem('token');
-        if (!token) {
-            throw new Error('Missing authentication token');
-        }
         const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
         const wsUrl = new URL('/api/unified_chat/ws', window.location.href);
         wsUrl.protocol = protocol;
-        wsUrl.searchParams.set('token', token);
+        if (token) {
+            wsUrl.searchParams.set('token', token);
+        }
         return wsUrl.toString();
     }
 

@@ -1,8 +1,9 @@
 <template>
   <div class="welcome-page">
     <v-container fluid class="pa-0">
-      <v-row class="px-4 py-3 pb-6">
+      <v-row class="px-4 py-3 pb-6 welcome-hero-row">
         <v-col cols="12">
+          <div class="welcome-eyebrow">Persbot Workspace</div>
           <h1 class="text-h1 font-weight-bold mb-2 d-flex align-center">
             {{ greetingText }} {{ greetingEmoji }}
           </h1>
@@ -14,43 +15,66 @@
 
       <v-row class="px-4">
         <v-col cols="12">
-          <v-card class="welcome-card pa-6" elevation="0" border>
+          <v-card class="welcome-card welcome-card--showcase pa-6" elevation="0" border>
+            <div class="d-flex align-start justify-space-between flex-wrap" style="gap: 16px">
+              <div>
+                <div class="welcome-eyebrow">Showcase Entry</div>
+                <div class="text-h3 font-weight-bold mb-2">{{ showcasePreset.label }}</div>
+                <p class="text-body-1 text-medium-emphasis mb-0">
+                  {{ showcasePreset.summary }}
+                </p>
+              </div>
+              <v-chip color="primary" variant="flat" rounded="pill" class="font-weight-bold px-4">
+                {{ showcasePreset.code.toUpperCase() }}
+              </v-chip>
+            </div>
+            <div class="d-flex flex-wrap mt-4" style="gap: 10px">
+              <v-chip
+                v-for="highlight in showcasePreset.highlights"
+                :key="highlight"
+                color="primary"
+                variant="tonal"
+                rounded="pill"
+              >
+                {{ highlight }}
+              </v-chip>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+
+      <v-row class="px-4">
+        <v-col cols="12">
+          <v-card class="welcome-card welcome-card--onboard pa-6" elevation="0" border>
             <div class="mb-4 text-h3 font-weight-bold">
               {{ tm('onboard.title') }}
             </div>
 
             <v-timeline align="start" side="end" density="compact" class="welcome-timeline" truncate-line="both">
-              <v-timeline-item :dot-color="platformStepState === 'completed' ? 'success' : 'primary'"
-                :icon="platformStepState === 'completed' ? 'mdi-check' : 'mdi-numeric-1'" fill-dot size="small">
+              <v-timeline-item
+                v-for="(step, index) in onboardingSteps"
+                :key="step.key"
+                :dot-color="step.state === 'completed' ? 'success' : 'primary'"
+                :icon="step.state === 'completed' ? 'mdi-check' : onboardingStepIcons[index] || 'mdi-circle-medium'"
+                fill-dot
+                size="small"
+              >
                 <div class="pl-2">
-                  <div class="text-h6 font-weight-bold mb-1">{{ tm('onboard.step1Title') }}</div>
-                  <p class="text-body-2 text-medium-emphasis mb-3">{{ tm('onboard.step1Desc') }}</p>
+                  <div class="text-h6 font-weight-bold mb-1">{{ step.title }}</div>
+                  <p class="text-body-2 text-medium-emphasis mb-3">{{ step.description }}</p>
                   <div class="d-flex align-center">
-                    <v-btn color="primary" variant="flat" rounded="pill" class="px-6" :loading="loadingPlatformDialog"
-                      @click="openPlatformDialog">
+                    <v-btn
+                      color="primary"
+                      variant="flat"
+                      rounded="pill"
+                      class="px-6"
+                      :loading="step.loading"
+                      @click="step.action"
+                    >
                       {{ tm('onboard.configure') }}
                     </v-btn>
-                    <div v-if="platformStepState === 'completed'"
-                      class="text-success d-flex align-center text-body-2 font-weight-medium ml-3">
-                      {{ tm('onboard.completed') }}
-                    </div>
-                  </div>
-                </div>
-              </v-timeline-item>
-
-              <v-timeline-item :dot-color="providerStepState === 'completed' ? 'success' : 'primary'"
-                :icon="providerStepState === 'completed' ? 'mdi-check' : 'mdi-numeric-2'" fill-dot size="small">
-                <div class="pl-2">
-                  <div class="text-h6 font-weight-bold mb-1"
-                    :class="{ 'text-medium-emphasis': platformStepState !== 'completed' }">{{ tm('onboard.step2Title')
-                    }}
-                  </div>
-                  <p class="text-body-2 text-medium-emphasis mb-3">{{ tm('onboard.step2Desc') }}</p>
-                  <div class="d-flex align-center">
-                    <v-btn color="primary" variant="flat" rounded="pill" class="px-6" @click="openProviderDialog">
-                      {{ tm('onboard.configure') }}
-                    </v-btn>
-                    <div v-if="providerStepState === 'completed'"
+                    <div
+                      v-if="step.state === 'completed'"
                       class="text-success d-flex align-center text-body-2 font-weight-medium ml-3">
                       {{ tm('onboard.completed') }}
                     </div>
@@ -72,8 +96,8 @@
             <v-row>
               <v-col cols="12" sm="4">
                 <!-- GitHub Card -->
-                <v-card variant="outlined" class="h-100 pa-4 d-flex flex-column"
-                  href="https://github.com/AstrBotDevs/AstrBot/" target="_blank">
+                <v-card variant="outlined" class="resource-link-card h-100 pa-4 d-flex flex-column"
+                  href="https://github.com/PersbotDevs/Persbot/" target="_blank">
                   <div class="d-flex align-center mb-3">
                     <v-icon size="32" class="mr-3">mdi-github</v-icon>
                     <span class="text-h6 font-weight-bold">GitHub</span>
@@ -86,7 +110,7 @@
 
               <v-col cols="12" sm="4">
                 <!-- Docs Card -->
-                <v-card variant="outlined" class="h-100 pa-4 d-flex flex-column" href="https://docs.astrbot.app"
+                <v-card variant="outlined" class="resource-link-card h-100 pa-4 d-flex flex-column" href="https://docs.persbot.app"
                   target="_blank">
                   <div class="d-flex align-center mb-3">
                     <v-icon size="32" class="mr-3">mdi-book-open-variant</v-icon>
@@ -100,8 +124,8 @@
 
               <v-col cols="12" sm="4">
                 <!-- Afdian Card -->
-                <v-card variant="outlined" class="h-100 pa-4 d-flex flex-column"
-                  href="https://afdian.com/a/astrbot_team" target="_blank">
+                <v-card variant="outlined" class="resource-link-card h-100 pa-4 d-flex flex-column"
+                  href="https://afdian.com/a/persbot_team" target="_blank">
                   <div class="d-flex align-center mb-3">
                     <v-icon size="32" class="mr-3">mdi-hand-heart</v-icon>
                     <span class="text-h6 font-weight-bold">{{ tm('resources.afdianTitle') }}</span>
@@ -147,6 +171,7 @@ import ProviderConfigDialog from '@/components/chat/ProviderConfigDialog.vue';
 import { useI18n, useModuleI18n } from '@/i18n/composables';
 import { useToast } from '@/utils/toast';
 import { MarkdownRender } from 'markstream-vue';
+import { getShowcaseFeatureMap, getShowcasePreset } from '@/showcase/presets';
 import 'markstream-vue/index.css';
 import 'highlight.js/styles/github.css';
 
@@ -159,6 +184,9 @@ const { success: showSuccess, error: showError } = useToast();
 const showAddPlatformDialog = ref(false);
 const showProviderDialog = ref(false);
 const loadingPlatformDialog = ref(false);
+const showcasePreset = getShowcasePreset();
+const showcaseFeatures = getShowcaseFeatureMap();
+const onboardingStepIcons = ['mdi-numeric-1', 'mdi-numeric-2', 'mdi-numeric-3', 'mdi-numeric-4'];
 
 const platformMetadata = ref<Record<string, any>>({});
 const platformConfigData = ref<Record<string, any>>({});
@@ -199,6 +227,33 @@ const welcomeAnnouncement = computed(() =>
   resolveWelcomeAnnouncement(welcomeAnnouncementRaw.value, locale.value)
 );
 const showAnnouncement = computed(() => welcomeAnnouncement.value.length > 0);
+const onboardingSteps = computed(() => {
+  const steps = [];
+
+  if (showcaseFeatures.platforms) {
+    steps.push({
+      key: 'platforms',
+      title: tm('onboard.step1Title'),
+      description: tm('onboard.step1Desc'),
+      state: platformStepState.value,
+      loading: loadingPlatformDialog.value,
+      action: openPlatformDialog,
+    });
+  }
+
+  if (showcaseFeatures.providers) {
+    steps.push({
+      key: 'providers',
+      title: tm('onboard.step2Title'),
+      description: tm('onboard.step2Desc'),
+      state: providerStepState.value,
+      loading: false,
+      action: openProviderDialog,
+    });
+  }
+
+  return steps;
+});
 
 const springFestivalDates: Record<number, string> = {
   2025: '01-29',
@@ -325,7 +380,7 @@ async function syncDefaultConfigProviderIfNeeded() {
 
   configData.provider_settings.default_provider_id = targetProviderId;
 
-  const updateRes = await axios.post('/api/config/astrbot/update', {
+  const updateRes = await axios.post('/api/config/persbot/update', {
     conf_id: 'default',
     config: configData
   });
@@ -338,7 +393,7 @@ async function syncDefaultConfigProviderIfNeeded() {
 
 async function loadWelcomeAnnouncement() {
   try {
-    const res = await axios.get('https://cloud.astrbot.app/api/v1/announcement');
+    const res = await axios.get('https://cloud.persbot.app/api/v1/announcement');
     welcomeAnnouncementRaw.value = res?.data?.data?.notice?.welcome_page ?? null;
   } catch (e) {
     welcomeAnnouncementRaw.value = null;
@@ -423,11 +478,60 @@ watch(showProviderDialog, async (visible, wasVisible) => {
   height: 100%;
 }
 
+.welcome-hero-row {
+  position: relative;
+}
+
+.welcome-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(var(--v-theme-primary), 0.1);
+  color: rgb(var(--v-theme-primary));
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .welcome-card {
-  border-radius: 16px;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.welcome-card--onboard {
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-card--onboard::after {
+  content: '';
+  position: absolute;
+  inset: auto -30px -60px auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--v-theme-secondary), 0.16) 0%, transparent 68%);
+  pointer-events: none;
 }
 
 .welcome-announcement-markdown {
   line-height: 1.7;
+}
+
+.resource-link-card {
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.resource-link-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--v-theme-primary), 0.16) !important;
+  box-shadow: var(--persbot-shadow-soft);
 }
 </style>
