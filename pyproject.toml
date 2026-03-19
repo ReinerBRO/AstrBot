@@ -79,7 +79,12 @@ dev = [
 persbot = "persbot.cli.__main__:cli"
 
 [tool.ruff]
-exclude = ["persbot/core/utils/t2i/local_strategy.py", "persbot/api/all.py", "tests"]
+exclude = [
+  "persbot/core/utils/t2i/local_strategy.py",
+  "persbot/api/all.py",
+  "tests",
+  "watcher",
+]
 line-length = 88
 target-version = "py310"
 

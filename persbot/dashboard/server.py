@@ -138,6 +138,7 @@ class PersbotDashboard:
         self.platform_route = PlatformRoute(self.context, core_lifecycle)
         self.backup_route = BackupRoute(self.context, db, core_lifecycle)
         self.live_chat_route = LiveChatRoute(self.context, db, core_lifecycle)
+        self.watcher_route = WatcherRoute(self.context)
 
         self.app.add_url_rule(
             "/api/plug/<path:subpath>",

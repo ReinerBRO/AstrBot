@@ -77,6 +77,7 @@ onUnmounted(() => {
 
 const showIframe = ref(false);
 const starCount = ref(null);
+const watcherLaunching = ref(false);
 
 const sidebarWidth = ref(235);
 const minSidebarWidth = 200;
@@ -139,6 +140,44 @@ function openIframeLink(url) {
   if (typeof window !== 'undefined') {
     let url_ = url || "https://persbot.app";
     window.open(url_, "_blank");
+  }
+}
+
+async function openWatcher() {
+  if (watcherLaunching.value || typeof window === 'undefined') {
+    return;
+  }
+
+  const pendingWindow = window.open('', '_blank', 'noopener');
+  watcherLaunching.value = true;
+
+  try {
+    const response = await fetch('/api/watcher/ensure', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const payload = await response.json();
+    const targetUrl = payload?.data?.url;
+
+    if (!response.ok || payload?.status !== 'ok' || !targetUrl) {
+      throw new Error(payload?.message || 'Failed to open Watcher.');
+    }
+
+    if (pendingWindow) {
+      pendingWindow.location.href = targetUrl;
+    } else {
+      window.open(targetUrl, '_blank', 'noopener');
+    }
+  } catch (error) {
+    if (pendingWindow) {
+      pendingWindow.close();
+    }
+    const message = error instanceof Error ? error.message : 'Failed to open Watcher.';
+    window.alert(message);
+  } finally {
+    watcherLaunching.value = false;
   }
 }
 
@@ -291,24 +330,10 @@ fetchStarCount();
         <v-btn class="sidebar-footer-btn" size="small" variant="tonal" color="primary" to="/settings" prepend-icon="mdi-cog">
           {{ t('core.navigation.settings') }}
         </v-btn>
-        <v-btn class="sidebar-footer-btn" size="small" variant="text" prepend-icon="mdi-book-open-variant"
-          @click="toggleIframe">
-          {{ t('core.navigation.documentation') }}
-        </v-btn>
-        <v-btn class="sidebar-footer-btn" size="small" variant="text" prepend-icon="mdi-frequently-asked-questions"
-          @click="openFaqLink">
-          {{ t('core.navigation.faq') }}
-        </v-btn>
-        <v-btn class="sidebar-footer-btn" size="small" variant="text" prepend-icon="mdi-github"
-          @click="openIframeLink('https://github.com/PersbotDevs/Persbot')">
-          {{ t('core.navigation.github') }}
-           <v-chip
-            v-if="starCount"
-            size="x-small"
-            variant="outlined"
-            class="ml-2"
-            style="font-weight: normal;"
-          >{{ formatNumber(starCount) }}</v-chip>
+        <v-btn class="sidebar-footer-btn" size="small" variant="text" prepend-icon="mdi-eye-outline"
+          :loading="watcherLaunching"
+          @click="openWatcher">
+          Watcher
         </v-btn>
       </div>
     </div>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Plus+Jakarta+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg?v=20260211-layout-agenta-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260212-flow-readability-a1" />
+    <link rel="stylesheet" href="/static/flow-style.css?v=20260212-flow-readability-a1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <div class="atmo atmo-a"></div>
+    <div class="atmo atmo-b"></div>
+    <div class="grain"></div>
+
+    <main id="mainContent" class="page">
+      <header class="top-bar">
+        <div class="top-brand">
+          <span class="brand-mark" aria-hidden="true">🌳</span>
+          <div class="brand-copy">
+            <p class="eyebrow">Daily Activity Intelligence</p>
+            <h1>Watcher</h1>
+          </div>
+        </div>
+        <section id="viewSwitcherMount" class="view-switcher-mount" aria-label="View Switcher"></section>
+        <div class="top-meta">
+          <span id="statusBadge" class="badge stopped" aria-live="polite">Stopped</span>
+          <button
+            id="settingsToggleBtn"
+            class="btn btn-ghost settings-toggle"
+            type="button"
+            aria-haspopup="dialog"
+            aria-controls="settingsDrawer"
+            aria-expanded="false"
+          >
+            Settings
+          </button>
+          <button id="themeToggleBtn" class="btn btn-ghost theme-toggle" type="button">
+            Light Theme
+          </button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <section class="card tree-card">
+          <div class="tree-toolbar">
+            <div class="toolbar-group toolbar-group-left">
+              <label class="inline-field compact-field">
+                Date
+                <div id="dateDropdown" class="date-dropdown">
+                  <button
+                    id="dateDropdownBtn"
+                    class="date-trigger"
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                  >
+                    Select Date
+                  </button>
+                  <div
+                    id="dateDropdownMenu"
+                    class="date-menu hidden"
+                    role="listbox"
+                    aria-label="History date options"
+                  ></div>
+                </div>
+              </label>
+              <label class="inline-field compact-field">
+                Tree
+                <select id="treeSelect" name="tree_id"></select>
+              </label>
+              <div class="tree-actions">
+                <button id="newTreeBtn" class="btn btn-ghost" type="button">New Tree</button>
+                <button id="deleteTreeBtn" class="btn btn-ghost" type="button">Delete Tree</button>
+                <button id="reloadHistoryBtn" class="btn btn-ghost" type="button">Reload</button>
+              </div>
+            </div>
+            <div class="toolbar-group toolbar-group-middle">
+              <span class="small-muted toolbar-title">Trim Branches</span>
+              <div id="branchFilters" class="branch-filters"></div>
+            </div>
+            <div class="toolbar-group toolbar-group-right">
+              <span id="treeDate" class="small-muted toolbar-date"></span>
+              <button id="zoomOutBtn" class="btn btn-ghost" type="button" aria-label="Zoom out timeline">-</button>
+              <button id="zoomInBtn" class="btn btn-ghost" type="button" aria-label="Zoom in timeline">+</button>
+              <button id="resetViewBtn" class="btn btn-ghost reset-btn" type="button">Today</button>
+            </div>
+          </div>
+          <p id="treeHint" class="sr-only">
+            Hover fruits for details. Wheel to zoom, drag to pan, Arrow keys to navigate.
+          </p>
+          <div class="tree-canvas-shell">
+            <canvas
+              id="treeCanvas"
+              tabindex="0"
+              role="img"
+              aria-label="Growth tree visualization of activities"
+              aria-describedby="treeHint"
+            ></canvas>
+            <div id="treeEmptyOverlay" class="tree-empty-overlay hidden" aria-live="polite"></div>
+            <span id="treeCanvasVignette" class="canvas-vignette" aria-hidden="true"></span>
+          </div>
+          <div class="sr-only" aria-live="polite">
+            <ul id="treeList"></ul>
+          </div>
+        </section>
+      </section>
+
+      <section id="cardsViewSection" class="card cards-board hidden" aria-live="polite"></section>
+
+      <section id="logsViewSection" class="card log-card hidden">
+        <div class="tree-head">
+          <h2>Logs</h2>
+          <span class="small-muted">live stream</span>
+        </div>
+        <pre id="logsPanel"></pre>
+      </section>
+
+      <section id="flowViewSection" class="card flow-card hidden" aria-live="polite">
+        <div class="flow-toolbar">
+          <span class="small-muted">Activity Flow</span>
+          <div class="flow-controls">
+            <button id="flowZoomOutBtn" class="btn btn-ghost" type="button">-</button>
+            <button id="flowZoomInBtn" class="btn btn-ghost" type="button">+</button>
+            <button id="flowResetBtn" class="btn btn-ghost reset-btn" type="button">Reset</button>
+          </div>
+        </div>
+        <div class="flow-canvas-shell">
+          <canvas
+            id="flowCanvas"
+            tabindex="0"
+            role="img"
+            aria-label="Activity flow visualization"
+          ></canvas>
+          <div id="flowEmptyOverlay" class="flow-empty hidden" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="summaryViewSection" class="card summary-view-card hidden" aria-live="polite">
+        <div class="summary-view-header">
+          <h3>日报总结</h3>
+          <div class="summary-view-actions">
+            <button id="summaryGenerateBtn" class="btn btn-primary" type="button">生成日报</button>
+            <button id="summaryRegenerateBtn" class="btn btn-ghost" type="button">重新生成</button>
+            <button id="summaryCopyBtn" class="btn btn-ghost" type="button">复制</button>
+          </div>
+        </div>
+        <div id="summaryViewMeta" class="summary-view-meta small-muted"></div>
+        <div id="summaryStreamArea" class="summary-stream-area">
+          <div id="summaryPhaseIndicator" class="summary-phase hidden"></div>
+          <article id="summaryAiBlock" class="summary-ai-block hidden">
+            <header><h4>AI 总结</h4></header>
+            <p id="summaryAiText" class="summary-ai-text"></p>
+            <span id="summaryAiCursor" class="summary-cursor hidden" aria-hidden="true"></span>
+          </article>
+          <article id="summaryHighlightsBlock" class="summary-highlights-block hidden">
+            <header><h4>亮点</h4></header>
+            <ul id="summaryHighlightsList" class="summary-highlights-list"></ul>
+          </article>
+          <article id="summaryTimelineBlock" class="summary-timeline-block hidden">
+            <header><h4>时间线</h4></header>
+            <div id="summaryTimelineList" class="summary-timeline-list"></div>
+          </article>
+        </div>
+        <div id="summaryViewEmpty" class="summary-view-empty hidden"></div>
+        <div id="summaryViewError" class="summary-view-error hidden"></div>
+      </section>
+
+      <section class="bottom-bar">
+        <div class="bottom-actions">
+          <button id="startBtn" class="btn btn-primary" type="button">Start</button>
+          <button id="manualBtn" class="btn" type="button">Manual Snapshot</button>
+          <button id="stopBtn" class="btn btn-danger" type="button">Stop</button>
+        </div>
+        <span id="rangeLabel" class="small-muted range-pill">--:-- - --:--</span>
+      </section>
+    </main>
+
+    <div id="settingsOverlay" class="settings-overlay hidden" aria-hidden="true"></div>
+    <aside id="settingsDrawer" class="settings-drawer" role="dialog" aria-hidden="true" aria-labelledby="settingsDrawerTitle">
+      <div class="settings-drawer-head">
+        <h2 id="settingsDrawerTitle">Control Deck</h2>
+        <button id="settingsCloseBtn" class="btn btn-ghost settings-close" type="button" aria-label="Close settings">
+          Close
+        </button>
+      </div>
+      <p class="small-muted">Window, frequency and model categories.</p>
+
+      <label>
+        Start
+        <input
+          id="startTime"
+          name="start_time"
+          type="time"
+          value="09:00"
+          autocomplete="off"
+        />
+      </label>
+
+      <label>
+        End
+        <input
+          id="endTime"
+          name="end_time"
+          type="time"
+          value="18:00"
+          autocomplete="off"
+        />
+      </label>
+
+      <label>
+        Observe Every (seconds)
+        <input
+          id="intervalInput"
+          name="interval_s"
+          type="number"
+          min="5"
+          max="3600"
+          step="5"
+          value="30"
+        />
+      </label>
+
+      <label>
+        Monitor
+        <select id="monitorSelect" name="monitor_index">
+          <option value="1">Display 1</option>
+        </select>
+      </label>
+      <div id="monitorPreview" class="monitor-preview hidden"></div>
+
+      <label>
+        Categories (comma separated)
+        <input
+          id="categoriesInput"
+          name="categories"
+          type="text"
+          value="写代码,研究,娱乐"
+          autocomplete="off"
+        />
+      </label>
+
+      <div class="actions compact-actions">
+        <button id="applyCategoriesBtn" class="btn btn-ghost" type="button">
+          Apply Categories
+        </button>
+      </div>
+
+      <div id="categoryLegend" class="legend" aria-live="polite">
+        <span><i class="dot code"></i>写代码</span>
+        <span><i class="dot research"></i>研究</span>
+        <span><i class="dot fun"></i>娱乐</span>
+      </div>
+    </aside>
+
+    <div id="tooltip" class="tooltip hidden"></div>
+    <script src="/static/ViewSwitcher.js?v=20260213-summary-v2-b1"></script>
+    <script src="/static/Card.js?v=20260211-cards-agentb"></script>
+    <script src="/static/FilterBar.js?v=20260211-cards-agentb"></script>
+    <script src="/static/StatsPanel.js?v=20260211-cards-agentb"></script>
+    <script src="/static/Pagination.js?v=20260211-cards-agentb"></script>
+    <script src="/static/CardView.js?v=20260211-cards-agentb"></script>
+    <script src="/static/FlowView.js?v=20260212-flow-readability-a1"></script>
+    <script src="/static/app.js?v=20260213-summary-v2-b1"></script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+.flow-card {
+  padding: 1rem;
+  display: grid;
+  gap: 0.7rem;
+  min-height: min(76dvh, 760px);
+  background:
+    linear-gradient(152deg, var(--card-grad-a), var(--card-grad-b)),
+    radial-gradient(120% 120% at 0% 0%, rgba(123, 176, 255, 0.11), transparent 58%),
+    radial-gradient(120% 120% at 100% 100%, rgba(121, 217, 184, 0.09), transparent 56%);
+}
+
+.flow-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.flow-toolbar .small-muted {
+  font: 700 0.74rem/1 "IBM Plex Mono", monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.flow-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.flow-controls .btn {
+  height: 2rem;
+  min-width: 2rem;
+  padding: 0 0.52rem;
+}
+
+.flow-canvas-shell {
+  position: relative;
+  border-radius: 1rem;
+  border: 1px solid var(--tree-shell-border);
+  overflow: hidden;
+  height: clamp(360px, 56dvh, 720px);
+  background:
+    radial-gradient(120% 120% at 0% 100%, rgba(121, 217, 184, 0.08), transparent 62%),
+    radial-gradient(120% 120% at 100% 0%, rgba(241, 187, 99, 0.09), transparent 58%),
+    linear-gradient(180deg, #111d2c 0%, #0e1824 100%);
+  box-shadow: var(--tree-shell-shadow);
+}
+
+#flowCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: transparent;
+  cursor: grab;
+}
+
+#flowCanvas.is-panning {
+  cursor: grabbing;
+}
+
+.flow-empty {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  min-width: min(360px, calc(100% - 2rem));
+  max-width: min(640px, calc(100% - 2rem));
+  border-radius: 0.82rem;
+  border: 1px solid var(--tooltip-border);
+  background: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  box-shadow: var(--tooltip-shadow);
+  padding: 0.65rem 0.8rem;
+  text-align: center;
+  font: 700 0.86rem/1.35 "Plus Jakarta Sans", sans-serif;
+  pointer-events: none;
+}
+
+.flow-empty.hidden {
+  display: none;
+}
+
+:root[data-theme="light"] .flow-canvas-shell {
+  border-color: rgba(116, 152, 190, 0.44);
+  background:
+    radial-gradient(120% 120% at 0% 100%, rgba(83, 159, 232, 0.1), transparent 62%),
+    radial-gradient(120% 120% at 100% 0%, rgba(55, 176, 146, 0.08), transparent 58%),
+    linear-gradient(180deg, #f8fbff 0%, #edf4fc 100%);
+}
+
+:root[data-theme="light"] .flow-toolbar .small-muted {
+  color: #1f3f61;
+}
+
+@media (max-width: 1024px) {
+  .flow-toolbar {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .flow-canvas-shell {
+    height: clamp(320px, 50dvh, 620px);
+  }
+
+  .flow-controls {
+    width: 100%;
+  }
+
+  .flow-controls .btn {
+    flex: 1 1 0;
+  }
+}
