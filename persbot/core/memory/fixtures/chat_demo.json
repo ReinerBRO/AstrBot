@@ -1,0 +1,1815 @@
+{
+  "source_scope": "locomo:conv-26:Caroline",
+  "provenance": {
+    "source": "https://github.com/snap-research/locomo",
+    "license": "CC-BY-NC-4.0",
+    "license_url": "https://github.com/snap-research/locomo/blob/main/LICENSE.txt",
+    "authors": "Adyasha Maharana, Dong-Ho Lee, Sergey Tulyakov, Mohit Bansal, Francesco Barbieri, Yuwei Fang",
+    "sample": "conv-26 / Caroline / sessions 1–3",
+    "notes": "User turns from LoCoMo; assistant replies and summaries generated with gpt-4o-mini during Persbot initialization. Export excludes personal chats, retrieval traces, QA answers, credentials and local account identifiers."
+  },
+  "nodes": {
+    "75aca66625f4": {
+      "id": "75aca66625f4",
+      "content": "User: Hey Mel! Good to see you! How have you been?\nAssistant: 嗨，Caroline！我很好，谢谢你！你呢？",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601151.550115,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:1",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "Hey Mel! Good to see you! How have you been?",
+        "session_number": 1,
+        "turn_index": 1,
+        "topic": "第 1 次会话",
+        "title": "久违的问候",
+        "model": "gpt-4o-mini",
+        "model_reply": "嗨，Caroline！我很好，谢谢你！你呢？",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "9e7ab7882477": {
+      "id": "9e7ab7882477",
+      "content": "User: I went to a LGBTQ support group yesterday and it was so powerful.\nAssistant: 听起来很棒！这样的支持团体真的很重要。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601324.6559958,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:3",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "I went to a LGBTQ support group yesterday and it was so powerful.",
+        "session_number": 1,
+        "turn_index": 2,
+        "topic": "第 1 次会话",
+        "title": "支持团体体验",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来很棒！这样的支持团体真的很重要。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "d4159debe3ec": {
+      "id": "d4159debe3ec",
+      "content": "User: The transgender stories were so inspiring! I was so happy and thankful for all the support.\nAssistant: 听起来很感人！能听到这样的故事真是太好了。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601326.3540502,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:5",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "The transgender stories were so inspiring! I was so happy and thankful for all the support.",
+        "session_number": 1,
+        "turn_index": 3,
+        "topic": "第 1 次会话",
+        "title": "感人的故事",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来很感人！能听到这样的故事真是太好了。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "000dde40ca2e": {
+      "id": "000dde40ca2e",
+      "content": "User: The support group has made me feel accepted and given me courage to embrace myself.\nAssistant: 听起来很棒！接受自己真的很重要。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601329.234241,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:7",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "The support group has made me feel accepted and given me courage to embrace myself.",
+        "session_number": 1,
+        "turn_index": 4,
+        "topic": "第 1 次会话",
+        "title": "勇敢做自己",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来很棒！接受自己真的很重要。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "23dc7649739f": {
+      "id": "23dc7649739f",
+      "content": "User: Gonna continue my edu and check out career options, which is pretty exciting!\nAssistant: 听起来很不错！继续教育和探索职业选择是个好主意！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601330.96468,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:9",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "Gonna continue my edu and check out career options, which is pretty exciting!",
+        "session_number": 1,
+        "turn_index": 5,
+        "topic": "第 1 次会话",
+        "title": "继续教育计划",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来很不错！继续教育和探索职业选择是个好主意！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "fbb7201a5e75": {
+      "id": "fbb7201a5e75",
+      "content": "User: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nAssistant: 听起来很有意义！帮助他人是个很好的选择。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601333.482924,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:11",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "I'm keen on counseling or working in mental health - I'd love to support those with similar issues.",
+        "session_number": 1,
+        "turn_index": 6,
+        "topic": "第 1 次会话",
+        "title": "职业选择",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来很有意义！帮助他人是个很好的选择。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "3d6d791dff64": {
+      "id": "3d6d791dff64",
+      "content": "User: Thanks, Melanie! That's really sweet. Is this your own painting?\nAssistant: 谢谢，Melanie！这真的很贴心。这是你自己的画吗？",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601336.199005,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:13",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "Thanks, Melanie! That's really sweet. Is this your own painting?",
+        "session_number": 1,
+        "turn_index": 7,
+        "topic": "第 1 次会话",
+        "title": "赞美与询问",
+        "model": "gpt-4o-mini",
+        "model_reply": "谢谢，Melanie！这真的很贴心。这是你自己的画吗？",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "e7a7da3e5930": {
+      "id": "e7a7da3e5930",
+      "content": "User: Wow, Melanie! The colors really blend nicely. Painting looks like a great outlet for expressing yourself.\nAssistant: 哇，Melanie！颜色搭配得真好。绘画确实是表达自己的好方式。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601338.666948,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:15",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "Wow, Melanie! The colors really blend nicely. Painting looks like a great outlet for expressing yourself.",
+        "session_number": 1,
+        "turn_index": 8,
+        "topic": "第 1 次会话",
+        "title": "画作赞美",
+        "model": "gpt-4o-mini",
+        "model_reply": "哇，Melanie！颜色搭配得真好。绘画确实是表达自己的好方式。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "21d718dbf57d": {
+      "id": "21d718dbf57d",
+      "content": "User: Totally agree, Mel. Relaxing and expressing ourselves is key. Well, I'm off to go do some research.\nAssistant: 完全同意，Mel。放松和表达自己是关键。好吧，我要去做一些研究了。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601341.376705,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D1:17",
+        "source_date": "1:56 pm on 8 May, 2023",
+        "source_text": "Totally agree, Mel. Relaxing and expressing ourselves is key. Well, I'm off to go do some research.",
+        "session_number": 1,
+        "turn_index": 9,
+        "topic": "第 1 次会话",
+        "title": "放松与表达",
+        "model": "gpt-4o-mini",
+        "model_reply": "完全同意，Mel。放松和表达自己是关键。好吧，我要去做一些研究了。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "2f7c110467fa": {
+      "id": "2f7c110467fa",
+      "content": "On 8 May 2023, Caroline expressed to Mel that she attended an LGBTQ support group the previous day, describing it as powerful and sharing that the transgender stories were inspiring. She felt accepted and gained courage to embrace herself through the group. Caroline also mentioned her plans to continue her education and explore career options, which she found exciting. Mel responded positively to Caroline's experiences and plans.",
+      "kind": "semantic",
+      "source_ids": [
+        "75aca66625f4",
+        "9e7ab7882477",
+        "d4159debe3ec",
+        "000dde40ca2e",
+        "23dc7649739f"
+      ],
+      "created_at": 1791601344.462419,
+      "origin": {
+        "method": "llm",
+        "dataset": "LoCoMo",
+        "topic": "第 1 次会话",
+        "title": "会话 1 · 归纳 1",
+        "model": "gpt-4o-mini"
+      }
+    },
+    "7d3ac8e6b871": {
+      "id": "7d3ac8e6b871",
+      "content": "On 8 May 2023, Caroline expressed her interest in counseling or working in mental health to support others with similar issues. She also complimented Melanie on her painting, asking if it was her own work and noting the nice color blending, which she felt was a great outlet for self-expression. Caroline agreed with Melanie that relaxation and self-expression are important, and mentioned she was going to do some research.",
+      "kind": "semantic",
+      "source_ids": [
+        "fbb7201a5e75",
+        "3d6d791dff64",
+        "e7a7da3e5930",
+        "21d718dbf57d"
+      ],
+      "created_at": 1791601347.116318,
+      "origin": {
+        "method": "llm",
+        "dataset": "LoCoMo",
+        "topic": "第 1 次会话",
+        "title": "会话 1 · 归纳 2",
+        "model": "gpt-4o-mini"
+      }
+    },
+    "6377a21784de": {
+      "id": "6377a21784de",
+      "content": "User: That charity race sounds great, Mel! Making a difference & raising awareness for mental health is super rewarding - I'm really proud of you for taking part!\nAssistant: 谢谢，Mel！参加这样的活动真的很有意义，能为心理健康做出贡献真让人自豪！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601349.929251,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D2:2",
+        "source_date": "1:14 pm on 25 May, 2023",
+        "source_text": "That charity race sounds great, Mel! Making a difference & raising awareness for mental health is super rewarding - I'm really proud of you for taking part!",
+        "session_number": 2,
+        "turn_index": 1,
+        "topic": "第 2 次会话",
+        "title": "为心理健康助力",
+        "model": "gpt-4o-mini",
+        "model_reply": "谢谢，Mel！参加这样的活动真的很有意义，能为心理健康做出贡献真让人自豪！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "f0447351316b": {
+      "id": "f0447351316b",
+      "content": "User: I totally agree, Melanie. Taking care of ourselves is so important - even if it's not always easy. Great that you're prioritizing self-care.\nAssistant: 我完全同意，Melanie。照顾自己真的很重要，虽然有时并不容易。很高兴你把自我照顾放在首位。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601352.218813,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D2:4",
+        "source_date": "1:14 pm on 25 May, 2023",
+        "source_text": "I totally agree, Melanie. Taking care of ourselves is so important - even if it's not always easy. Great that you're prioritizing self-care.",
+        "session_number": 2,
+        "turn_index": 2,
+        "topic": "第 2 次会话",
+        "title": "自我照顾的重要性",
+        "model": "gpt-4o-mini",
+        "model_reply": "我完全同意，Melanie。照顾自己真的很重要，虽然有时并不容易。很高兴你把自我照顾放在首位。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "3c5d4743eff3": {
+      "id": "3c5d4743eff3",
+      "content": "User: That's great, Mel! Taking time for yourself is so important. You're doing an awesome job looking after yourself and your family!\nAssistant: 太好了，Mel！为自己留出时间真的很重要。你在照顾自己和家人方面做得很棒！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601355.156682,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D2:6",
+        "source_date": "1:14 pm on 25 May, 2023",
+        "source_text": "That's great, Mel! Taking time for yourself is so important. You're doing an awesome job looking after yourself and your family!",
+        "session_number": 2,
+        "turn_index": 3,
+        "topic": "第 2 次会话",
+        "title": "自我照顾的重要性",
+        "model": "gpt-4o-mini",
+        "model_reply": "太好了，Mel！为自己留出时间真的很重要。你在照顾自己和家人方面做得很棒！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "bc3b11dbcce9": {
+      "id": "bc3b11dbcce9",
+      "content": "User: Researching adoption agencies — it's been a dream to have a family and give a loving home to kids who need it.\nAssistant: 听起来很美好，Caroline！给孩子们一个温暖的家是多么重要的事情。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601358.993672,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D2:8",
+        "source_date": "1:14 pm on 25 May, 2023",
+        "source_text": "Researching adoption agencies — it's been a dream to have a family and give a loving home to kids who need it.",
+        "session_number": 2,
+        "turn_index": 4,
+        "topic": "第 2 次会话",
+        "title": "关于收养的梦想",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来很美好，Caroline！给孩子们一个温暖的家是多么重要的事情。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "fe323fa5c17e": {
+      "id": "fe323fa5c17e",
+      "content": "User: Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic.\nAssistant: 听起来你已经做好了准备，Caroline！有这样的支持和希望，梦想一定能实现。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601361.8432891,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D2:10",
+        "source_date": "1:14 pm on 25 May, 2023",
+        "source_text": "Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic.",
+        "session_number": 2,
+        "turn_index": 5,
+        "topic": "第 2 次会话",
+        "title": "实现梦想的希望",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来你已经做好了准备，Caroline！有这样的支持和希望，梦想一定能实现。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "a0c8d89b0250": {
+      "id": "a0c8d89b0250",
+      "content": "User: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nAssistant: 这真是个很好的选择，Caroline！支持LGBTQ+群体的机构非常重要。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601363.942239,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D2:12",
+        "source_date": "1:14 pm on 25 May, 2023",
+        "source_text": "I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.",
+        "session_number": 2,
+        "turn_index": 6,
+        "topic": "第 2 次会话",
+        "title": "选择的原因",
+        "model": "gpt-4o-mini",
+        "model_reply": "这真是个很好的选择，Caroline！支持LGBTQ+群体的机构非常重要。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "3f98c7f30f8f": {
+      "id": "3f98c7f30f8f",
+      "content": "User: I'm thrilled to make a family for kids who need one. It'll be tough as a single parent, but I'm up for the challenge!\nAssistant: 听起来你充满激情，Caroline！作为单亲家长虽然有挑战，但你一定能应对！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601366.78763,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D2:14",
+        "source_date": "1:14 pm on 25 May, 2023",
+        "source_text": "I'm thrilled to make a family for kids who need one. It'll be tough as a single parent, but I'm up for the challenge!",
+        "session_number": 2,
+        "turn_index": 7,
+        "topic": "第 2 次会话",
+        "title": "单亲家庭的挑战",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来你充满激情，Caroline！作为单亲家长虽然有挑战，但你一定能应对！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "39a6a43c5398": {
+      "id": "39a6a43c5398",
+      "content": "User: Thanks, Melanie! Your kind words really mean a lot. I'll do my best to make sure these kids have a safe and loving home.\nAssistant: 不客气，Caroline！你的努力会让这些孩子感受到温暖和安全。加油！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601369.6391811,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D2:16",
+        "source_date": "1:14 pm on 25 May, 2023",
+        "source_text": "Thanks, Melanie! Your kind words really mean a lot. I'll do my best to make sure these kids have a safe and loving home.",
+        "session_number": 2,
+        "turn_index": 8,
+        "topic": "第 2 次会话",
+        "title": "温暖的家",
+        "model": "gpt-4o-mini",
+        "model_reply": "不客气，Caroline！你的努力会让这些孩子感受到温暖和安全。加油！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "bb043e758f99": {
+      "id": "bb043e758f99",
+      "content": "On May 25, 2023, Caroline expressed her pride in Melanie for participating in a charity race focused on mental health awareness. She emphasized the importance of self-care and commended Melanie for prioritizing it. Caroline shared her aspiration to adopt children and provide them with a loving home, expressing gratitude for the support from friends and mentors. She mentioned researching adoption agencies, particularly one that supports LGBTQ+ individuals, which resonated with her values. Caroline acknowledged the challenges of being a single parent but felt optimistic about her journey. Throughout the conversation, Melanie offered encouragement and support for Caroline's goals.",
+      "kind": "semantic",
+      "source_ids": [
+        "6377a21784de",
+        "f0447351316b",
+        "3c5d4743eff3",
+        "bc3b11dbcce9",
+        "fe323fa5c17e",
+        "a0c8d89b0250",
+        "3f98c7f30f8f",
+        "39a6a43c5398"
+      ],
+      "created_at": 1791601373.222253,
+      "origin": {
+        "method": "llm",
+        "dataset": "LoCoMo",
+        "topic": "第 2 次会话",
+        "title": "会话 2 · 归纳 1",
+        "model": "gpt-4o-mini"
+      }
+    },
+    "5c39aad54e5a": {
+      "id": "5c39aad54e5a",
+      "content": "User: Hey Melanie! How's it going? I wanted to tell you about my school event last week. It was awesome! I talked about my transgender journey and encouraged students to get involved in the LGBTQ community. It was great to see their reactions. It made me reflect on how far I've come since I started transitioning three years ago.\nAssistant: 听起来真棒，Caroline！分享你的经历一定会激励很多人。你为自己和他人做的事情都很重要！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601376.08022,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:1",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Hey Melanie! How's it going? I wanted to tell you about my school event last week. It was awesome! I talked about my transgender journey and encouraged students to get involved in the LGBTQ community. It was great to see their reactions. It made me reflect on how far I've come since I started transitioning three years ago.",
+        "session_number": 3,
+        "turn_index": 1,
+        "topic": "第 3 次会话",
+        "title": "分享经历",
+        "model": "gpt-4o-mini",
+        "model_reply": "听起来真棒，Caroline！分享你的经历一定会激励很多人。你为自己和他人做的事情都很重要！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "c0540c65326b": {
+      "id": "c0540c65326b",
+      "content": "User: Thanks, Mel! Your backing really means a lot. I felt super powerful giving my talk. I shared my own journey, the struggles I had and how much I've developed since coming out. It was wonderful to see how the audience related to what I said and how it inspired them to be better allies. Conversations about gender identity and inclusion are so necessary and I'm thankful for being able to give a voice to the trans community.\nAssistant: 你真是太棒了，Caroline！能够激励他人并推动对性别认同和包容的对话，真的很重要。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601377.890817,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:3",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Thanks, Mel! Your backing really means a lot. I felt super powerful giving my talk. I shared my own journey, the struggles I had and how much I've developed since coming out. It was wonderful to see how the audience related to what I said and how it inspired them to be better allies. Conversations about gender identity and inclusion are so necessary and I'm thankful for being able to give a voice to the trans community.",
+        "session_number": 3,
+        "turn_index": 2,
+        "topic": "第 3 次会话",
+        "title": "分享力量",
+        "model": "gpt-4o-mini",
+        "model_reply": "你真是太棒了，Caroline！能够激励他人并推动对性别认同和包容的对话，真的很重要。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "daa62006116d": {
+      "id": "daa62006116d",
+      "content": "User: Thanks Mel! Your kind words mean a lot. Sharing our experiences isn't always easy, but I feel it's important to help promote understanding and acceptance. I've been blessed with loads of love and support throughout this journey, and I want to pass it on to others. By sharing our stories, we can build a strong, supportive community of hope.\nAssistant: 你说得太对了，Caroline！分享经历确实能促进理解和接纳，继续传递这份爱与支持吧！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601380.781794,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:5",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Thanks Mel! Your kind words mean a lot. Sharing our experiences isn't always easy, but I feel it's important to help promote understanding and acceptance. I've been blessed with loads of love and support throughout this journey, and I want to pass it on to others. By sharing our stories, we can build a strong, supportive community of hope.",
+        "session_number": 3,
+        "turn_index": 3,
+        "topic": "第 3 次会话",
+        "title": "传递爱与支持",
+        "model": "gpt-4o-mini",
+        "model_reply": "你说得太对了，Caroline！分享经历确实能促进理解和接纳，继续传递这份爱与支持吧！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "65d65ed62f07": {
+      "id": "65d65ed62f07",
+      "content": "User: Your words mean a lot to me. I'm grateful for the chance to share my story and give others hope. We all have unique paths, and by working together we can build a more inclusive and understanding world. I'm going to keep using my voice to make a change and lift others up. And you're part of that!\nAssistant: 你真是太有力量了，Caroline！继续用你的声音去影响他人，创造一个更包容的世界！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601383.711282,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:7",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Your words mean a lot to me. I'm grateful for the chance to share my story and give others hope. We all have unique paths, and by working together we can build a more inclusive and understanding world. I'm going to keep using my voice to make a change and lift others up. And you're part of that!",
+        "session_number": 3,
+        "turn_index": 4,
+        "topic": "第 3 次会话",
+        "title": "继续发声",
+        "model": "gpt-4o-mini",
+        "model_reply": "你真是太有力量了，Caroline！继续用你的声音去影响他人，创造一个更包容的世界！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "d5bcb7e94c9c": {
+      "id": "d5bcb7e94c9c",
+      "content": "User: Yeah Mel, let's spread love and understanding! Thanks for the support and encouragement. We can tackle life's challenges together! We got this!\nAssistant: 没错，Caroline！一起传播爱与理解，我们一定能克服生活中的挑战！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601385.885834,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:9",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Yeah Mel, let's spread love and understanding! Thanks for the support and encouragement. We can tackle life's challenges together! We got this!",
+        "session_number": 3,
+        "turn_index": 5,
+        "topic": "第 3 次会话",
+        "title": "一起加油！",
+        "model": "gpt-4o-mini",
+        "model_reply": "没错，Caroline！一起传播爱与理解，我们一定能克服生活中的挑战！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "8d7be65ce819": {
+      "id": "8d7be65ce819",
+      "content": "User: Thanks, Mel! My friends, family and mentors are my rocks – they motivate me and give me the strength to push on. Here's a pic from when we met up last week!\nAssistant: 朋友、家人和导师的支持真的很重要！期待看到你们的合影！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601388.7256699,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:11",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Thanks, Mel! My friends, family and mentors are my rocks – they motivate me and give me the strength to push on. Here's a pic from when we met up last week!",
+        "session_number": 3,
+        "turn_index": 6,
+        "topic": "第 3 次会话",
+        "title": "支持的力量",
+        "model": "gpt-4o-mini",
+        "model_reply": "朋友、家人和导师的支持真的很重要！期待看到你们的合影！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "fc70e5f3a382": {
+      "id": "fc70e5f3a382",
+      "content": "User: Yeah, I'm really lucky to have them. They've been there through everything, I've known these friends for 4 years, since I moved from my home country. Their love and help have been so important especially after that tough breakup. I'm super thankful. Who supports you, Mel?\nAssistant: 我也很感激有朋友和家人的支持，他们在我需要的时候总是陪伴着我！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601390.4147048,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:13",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Yeah, I'm really lucky to have them. They've been there through everything, I've known these friends for 4 years, since I moved from my home country. Their love and help have been so important especially after that tough breakup. I'm super thankful. Who supports you, Mel?",
+        "session_number": 3,
+        "turn_index": 7,
+        "topic": "第 3 次会话",
+        "title": "支持的力量",
+        "model": "gpt-4o-mini",
+        "model_reply": "我也很感激有朋友和家人的支持，他们在我需要的时候总是陪伴着我！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "8dff0d8ed5db": {
+      "id": "8dff0d8ed5db",
+      "content": "User: Wow, what an amazing family pic! How long have you been married?\nAssistant: 谢谢，Caroline！我和我丈夫已经结婚五年了！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601393.318516,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:15",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Wow, what an amazing family pic! How long have you been married?",
+        "session_number": 3,
+        "turn_index": 8,
+        "topic": "第 3 次会话",
+        "title": "我的家庭",
+        "model": "gpt-4o-mini",
+        "model_reply": "谢谢，Caroline！我和我丈夫已经结婚五年了！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "1b0ee46d0c7a": {
+      "id": "1b0ee46d0c7a",
+      "content": "User: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nAssistant: 谢谢，Caroline！你的祝福让我很开心！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601395.115493,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:17",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!",
+        "session_number": 3,
+        "turn_index": 9,
+        "topic": "第 3 次会话",
+        "title": "婚礼祝福",
+        "model": "gpt-4o-mini",
+        "model_reply": "谢谢，Caroline！你的祝福让我很开心！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "957d38c5e5e3": {
+      "id": "957d38c5e5e3",
+      "content": "User: Looks like you had a great day! How was it? You all look so happy!\nAssistant: 谢谢，Caroline！那天真的很特别，我们都很开心！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601398.019549,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:19",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Looks like you had a great day! How was it? You all look so happy!",
+        "session_number": 3,
+        "turn_index": 10,
+        "topic": "第 3 次会话",
+        "title": "婚礼的快乐",
+        "model": "gpt-4o-mini",
+        "model_reply": "谢谢，Caroline！那天真的很特别，我们都很开心！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "51bedc57ce2d": {
+      "id": "51bedc57ce2d",
+      "content": "User: Sounds great, Mel! Glad you had a great time. Cherish the moments - they're the best!\nAssistant: 谢谢，Caroline！我会好好珍惜这些美好的时光！",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601400.623331,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:21",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "Sounds great, Mel! Glad you had a great time. Cherish the moments - they're the best!",
+        "session_number": 3,
+        "turn_index": 11,
+        "topic": "第 3 次会话",
+        "title": "珍惜美好时光",
+        "model": "gpt-4o-mini",
+        "model_reply": "谢谢，Caroline！我会好好珍惜这些美好的时光！",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "6709d90ce2f5": {
+      "id": "6709d90ce2f5",
+      "content": "User: I 100% agree, Mel. Hanging with loved ones is amazing and brings so much happiness. Those moments really make me thankful. Family is everything.\nAssistant: 我完全同意，Caroline！和家人在一起的时光真的很珍贵，带来很多快乐。",
+      "kind": "episodic",
+      "source_ids": [],
+      "created_at": 1791601402.426125,
+      "origin": {
+        "method": "locomo_replay",
+        "dataset": "LoCoMo",
+        "sample_id": "conv-26",
+        "speaker": "Caroline",
+        "dia_id": "D3:23",
+        "source_date": "7:55 pm on 9 June, 2023",
+        "source_text": "I 100% agree, Mel. Hanging with loved ones is amazing and brings so much happiness. Those moments really make me thankful. Family is everything.",
+        "session_number": 3,
+        "turn_index": 12,
+        "topic": "第 3 次会话",
+        "title": "珍惜家庭时光",
+        "model": "gpt-4o-mini",
+        "model_reply": "我完全同意，Caroline！和家人在一起的时光真的很珍贵，带来很多快乐。",
+        "source_url": "https://github.com/snap-research/locomo"
+      }
+    },
+    "2515138b14ec": {
+      "id": "2515138b14ec",
+      "content": "On June 9, 2023, Caroline shared her experience of speaking at a school event where she discussed her transgender journey and encouraged students to engage with the LGBTQ community. She reflected on her growth since starting her transition three years ago and expressed gratitude for the support she has received from friends, family, and mentors. Caroline emphasized the importance of sharing experiences to promote understanding and acceptance, and she felt empowered by the positive reactions from her audience. She aims to continue using her voice to inspire change and foster a supportive community. The assistant, Melanie, consistently offered encouragement and acknowledged the significance of Caroline's efforts in promoting dialogue about gender identity and inclusion.",
+      "kind": "semantic",
+      "source_ids": [
+        "5c39aad54e5a",
+        "c0540c65326b",
+        "daa62006116d",
+        "65d65ed62f07",
+        "d5bcb7e94c9c",
+        "8d7be65ce819"
+      ],
+      "created_at": 1791601406.722859,
+      "origin": {
+        "method": "llm",
+        "dataset": "LoCoMo",
+        "topic": "第 3 次会话",
+        "title": "会话 3 · 归纳 1",
+        "model": "gpt-4o-mini"
+      }
+    },
+    "149478bad7ea": {
+      "id": "149478bad7ea",
+      "content": "On June 9, 2023, Caroline expressed gratitude for her friends who have supported her through a tough breakup, mentioning she has known them for four years since moving from her home country. She inquired about the assistant's support system. The assistant responded in Chinese, expressing appreciation for the support of friends and family.\n\nCaroline also complimented the assistant, Melanie, on a family picture and asked how long she had been married. Melanie replied that she has been married for five years. Caroline congratulated her and wished her many happy years together, to which Melanie expressed happiness at the blessing.\n\nCaroline continued to ask about Melanie's wedding day, noting how happy they looked, and Melanie confirmed it was a special day. Caroline encouraged cherishing those moments, emphasizing the importance of family and loved ones, to which the assistant agreed, highlighting the preciousness of time spent with family.",
+      "kind": "semantic",
+      "source_ids": [
+        "fc70e5f3a382",
+        "8dff0d8ed5db",
+        "1b0ee46d0c7a",
+        "957d38c5e5e3",
+        "51bedc57ce2d",
+        "6709d90ce2f5"
+      ],
+      "created_at": 1791601410.634662,
+      "origin": {
+        "method": "llm",
+        "dataset": "LoCoMo",
+        "topic": "第 3 次会话",
+        "title": "会话 3 · 归纳 2",
+        "model": "gpt-4o-mini"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "75aca66625f4",
+      "target": "9e7ab7882477",
+      "weight": 0.4866551816106823,
+      "reason": "temporal",
+      "reinforcements": 7
+    },
+    {
+      "source": "9e7ab7882477",
+      "target": "d4159debe3ec",
+      "weight": 0.49832434777354545,
+      "reason": "temporal",
+      "reinforcements": 8
+    },
+    {
+      "source": "75aca66625f4",
+      "target": "d4159debe3ec",
+      "weight": 0.05223623321450548,
+      "reason": "co_retrieval",
+      "reinforcements": 5
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "d4159debe3ec",
+      "weight": 0.491647812225302,
+      "reason": "temporal",
+      "reinforcements": 7
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "9e7ab7882477",
+      "weight": 0.05272151530770044,
+      "reason": "co_retrieval",
+      "reinforcements": 5
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "75aca66625f4",
+      "weight": 0.04367541050495425,
+      "reason": "co_retrieval",
+      "reinforcements": 4
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "23dc7649739f",
+      "weight": 0.47700525992873927,
+      "reason": "temporal",
+      "reinforcements": 5
+    },
+    {
+      "source": "23dc7649739f",
+      "target": "9e7ab7882477",
+      "weight": 0.02611569867846851,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "23dc7649739f",
+      "target": "75aca66625f4",
+      "weight": 0.02611569867846851,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "23dc7649739f",
+      "target": "d4159debe3ec",
+      "weight": 0.034849899638722384,
+      "reason": "co_retrieval",
+      "reinforcements": 3
+    },
+    {
+      "source": "23dc7649739f",
+      "target": "fbb7201a5e75",
+      "weight": 0.45306219373913387,
+      "reason": "temporal",
+      "reinforcements": 2
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "fbb7201a5e75",
+      "weight": 0.45426645140243527,
+      "reason": "temporal",
+      "reinforcements": 2
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "d4159debe3ec",
+      "weight": 0.008734200960253869,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "3d6d791dff64",
+      "weight": 0.008734200960253869,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "23dc7649739f",
+      "target": "3d6d791dff64",
+      "weight": 0.008734200960253869,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "d4159debe3ec",
+      "target": "fbb7201a5e75",
+      "weight": 0.008734200960253869,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "fbb7201a5e75",
+      "weight": 0.01853569596650387,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "e7a7da3e5930",
+      "weight": 0.4655043989593319,
+      "reason": "temporal",
+      "reinforcements": 3
+    },
+    {
+      "source": "21d718dbf57d",
+      "target": "e7a7da3e5930",
+      "weight": 0.45879885900890166,
+      "reason": "temporal",
+      "reinforcements": 2
+    },
+    {
+      "source": "2f7c110467fa",
+      "target": "75aca66625f4",
+      "weight": 0.4500659913817394,
+      "reason": "consolidation",
+      "reinforcements": 1
+    },
+    {
+      "source": "2f7c110467fa",
+      "target": "9e7ab7882477",
+      "weight": 0.46811297046321787,
+      "reason": "consolidation",
+      "reinforcements": 3
+    },
+    {
+      "source": "2f7c110467fa",
+      "target": "d4159debe3ec",
+      "weight": 0.47720453307904354,
+      "reason": "consolidation",
+      "reinforcements": 4
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "2f7c110467fa",
+      "weight": 0.46829526086802914,
+      "reason": "consolidation",
+      "reinforcements": 3
+    },
+    {
+      "source": "23dc7649739f",
+      "target": "2f7c110467fa",
+      "weight": 0.44111012147440065,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "fbb7201a5e75",
+      "weight": 0.4499323239038886,
+      "reason": "consolidation",
+      "reinforcements": 1
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "7d3ac8e6b871",
+      "weight": 0.4768471984268295,
+      "reason": "consolidation",
+      "reinforcements": 4
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "e7a7da3e5930",
+      "weight": 0.46770994956670364,
+      "reason": "consolidation",
+      "reinforcements": 3
+    },
+    {
+      "source": "21d718dbf57d",
+      "target": "7d3ac8e6b871",
+      "weight": 0.45879885900890166,
+      "reason": "consolidation",
+      "reinforcements": 2
+    },
+    {
+      "source": "e7a7da3e5930",
+      "target": "fbb7201a5e75",
+      "weight": 0.008822202429488012,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "21d718dbf57d",
+      "target": "3d6d791dff64",
+      "weight": 0.017688737534501096,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "21d718dbf57d",
+      "target": "fbb7201a5e75",
+      "weight": 0.018623697435738017,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "6377a21784de",
+      "target": "7d3ac8e6b871",
+      "weight": 0.017777625662815173,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "21d718dbf57d",
+      "target": "6377a21784de",
+      "weight": 0.008866535105013078,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "6377a21784de",
+      "target": "e7a7da3e5930",
+      "weight": 0.017777625662815173,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "6377a21784de",
+      "weight": 0.017777625662815173,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "6377a21784de",
+      "target": "f0447351316b",
+      "weight": 0.46412082491600126,
+      "reason": "temporal",
+      "reinforcements": 2
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "f0447351316b",
+      "weight": 0.018518020993556462,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "e7a7da3e5930",
+      "target": "f0447351316b",
+      "weight": 0.00891109055780209,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "f0447351316b",
+      "weight": 0.00891109055780209,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "f0447351316b",
+      "weight": 0.4765186989232672,
+      "reason": "temporal",
+      "reinforcements": 3
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "bc3b11dbcce9",
+      "weight": 0.4595548152412799,
+      "reason": "temporal",
+      "reinforcements": 1
+    },
+    {
+      "source": "bc3b11dbcce9",
+      "target": "d4159debe3ec",
+      "weight": 0.018092436894557744,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "bc3b11dbcce9",
+      "weight": 0.027229685754683684,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "9e7ab7882477",
+      "target": "bc3b11dbcce9",
+      "weight": 0.009000874278732446,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "2f7c110467fa",
+      "target": "bc3b11dbcce9",
+      "weight": 0.018092436894557744,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "d4159debe3ec",
+      "weight": 0.02713854169730392,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "9e7ab7882477",
+      "weight": 0.018046979081478627,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "2f7c110467fa",
+      "target": "7d3ac8e6b871",
+      "weight": 0.03632170638084758,
+      "reason": "co_retrieval",
+      "reinforcements": 3
+    },
+    {
+      "source": "bc3b11dbcce9",
+      "target": "fe323fa5c17e",
+      "weight": 0.47999759741139436,
+      "reason": "temporal",
+      "reinforcements": 3
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "7d3ac8e6b871",
+      "weight": 0.018229269486289834,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "a0c8d89b0250",
+      "target": "fe323fa5c17e",
+      "weight": 0.4731789254495253,
+      "reason": "temporal",
+      "reinforcements": 2
+    },
+    {
+      "source": "2f7c110467fa",
+      "target": "fe323fa5c17e",
+      "weight": 0.018274727299368947,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "fe323fa5c17e",
+      "weight": 0.045963588593391294,
+      "reason": "co_retrieval",
+      "reinforcements": 4
+    },
+    {
+      "source": "d4159debe3ec",
+      "target": "fe323fa5c17e",
+      "weight": 0.009091562615825303,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "3f98c7f30f8f",
+      "target": "a0c8d89b0250",
+      "weight": 0.4568624430062966,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "fe323fa5c17e",
+      "weight": 0.009137248860125933,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "bc3b11dbcce9",
+      "weight": 0.009137248860125933,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "a0c8d89b0250",
+      "target": "bc3b11dbcce9",
+      "weight": 0.018600794658260363,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "3d6d791dff64",
+      "target": "a0c8d89b0250",
+      "weight": 0.009137248860125933,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "a0c8d89b0250",
+      "weight": 0.009137248860125933,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "39a6a43c5398",
+      "target": "3f98c7f30f8f",
+      "weight": 0.4591582341771825,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "6377a21784de",
+      "target": "bb043e758f99",
+      "weight": 0.47856592817649607,
+      "reason": "consolidation",
+      "reinforcements": 2
+    },
+    {
+      "source": "bb043e758f99",
+      "target": "f0447351316b",
+      "weight": 0.4688134406452773,
+      "reason": "consolidation",
+      "reinforcements": 1
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "bb043e758f99",
+      "weight": 0.4688134406452773,
+      "reason": "consolidation",
+      "reinforcements": 1
+    },
+    {
+      "source": "bb043e758f99",
+      "target": "bc3b11dbcce9",
+      "weight": 0.468621779975317,
+      "reason": "consolidation",
+      "reinforcements": 1
+    },
+    {
+      "source": "bb043e758f99",
+      "target": "fe323fa5c17e",
+      "weight": 0.5056790925155844,
+      "reason": "consolidation",
+      "reinforcements": 5
+    },
+    {
+      "source": "a0c8d89b0250",
+      "target": "bb043e758f99",
+      "weight": 0.4783742675065357,
+      "reason": "consolidation",
+      "reinforcements": 2
+    },
+    {
+      "source": "3f98c7f30f8f",
+      "target": "bb043e758f99",
+      "weight": 0.4591582341771825,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "39a6a43c5398",
+      "target": "bb043e758f99",
+      "weight": 0.47766323510510805,
+      "reason": "consolidation",
+      "reinforcements": 2
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "bb043e758f99",
+      "weight": 0.018412475923286018,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "2f7c110467fa",
+      "target": "bb043e758f99",
+      "weight": 0.009183164683543651,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "bb043e758f99",
+      "weight": 0.009183164683543651,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "fe323fa5c17e",
+      "weight": 0.009183164683543651,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "5c39aad54e5a",
+      "target": "fe323fa5c17e",
+      "weight": 0.027921228997069402,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "5c39aad54e5a",
+      "target": "bb043e758f99",
+      "weight": 0.018505000927925647,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "39a6a43c5398",
+      "target": "5c39aad54e5a",
+      "weight": 0.018505000927925647,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "5c39aad54e5a",
+      "target": "7d3ac8e6b871",
+      "weight": 0.018836241675496725,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "39a6a43c5398",
+      "target": "fe323fa5c17e",
+      "weight": 0.02782730212207969,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "39a6a43c5398",
+      "target": "7d3ac8e6b871",
+      "weight": 0.018551612433896407,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "5c39aad54e5a",
+      "target": "c0540c65326b",
+      "weight": 0.501642228385821,
+      "reason": "temporal",
+      "reinforcements": 4
+    },
+    {
+      "source": "bb043e758f99",
+      "target": "c0540c65326b",
+      "weight": 0.0378608699463345,
+      "reason": "co_retrieval",
+      "reinforcements": 3
+    },
+    {
+      "source": "39a6a43c5398",
+      "target": "c0540c65326b",
+      "weight": 0.018597990882337333,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "c0540c65326b",
+      "target": "fe323fa5c17e",
+      "weight": 0.04684691167841356,
+      "reason": "co_retrieval",
+      "reinforcements": 4
+    },
+    {
+      "source": "c0540c65326b",
+      "target": "daa62006116d",
+      "weight": 0.5039752234310168,
+      "reason": "temporal",
+      "reinforcements": 4
+    },
+    {
+      "source": "39a6a43c5398",
+      "target": "daa62006116d",
+      "weight": 0.00932230119415405,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "daa62006116d",
+      "weight": 0.00932230119415405,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "daa62006116d",
+      "target": "fe323fa5c17e",
+      "weight": 0.028107676192095848,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "7d3ac8e6b871",
+      "target": "c0540c65326b",
+      "weight": 0.018929231629908415,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "65d65ed62f07",
+      "target": "daa62006116d",
+      "weight": 0.48724272143784364,
+      "reason": "temporal",
+      "reinforcements": 2
+    },
+    {
+      "source": "bb043e758f99",
+      "target": "daa62006116d",
+      "weight": 0.019121634460016784,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "65d65ed62f07",
+      "target": "bb043e758f99",
+      "weight": 0.01902435339689288,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "65d65ed62f07",
+      "target": "fe323fa5c17e",
+      "weight": 0.018785374997941803,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "65d65ed62f07",
+      "target": "c0540c65326b",
+      "weight": 0.028344270781517397,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "65d65ed62f07",
+      "target": "d5bcb7e94c9c",
+      "weight": 0.47081140345718786,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "5c39aad54e5a",
+      "target": "65d65ed62f07",
+      "weight": 0.01897512385271936,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "5c39aad54e5a",
+      "target": "daa62006116d",
+      "weight": 0.009416228069143759,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "8d7be65ce819",
+      "target": "d5bcb7e94c9c",
+      "weight": 0.4731772899067215,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "a0c8d89b0250",
+      "target": "c0540c65326b",
+      "weight": 0.028919758422915835,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "bc3b11dbcce9",
+      "target": "c0540c65326b",
+      "weight": 0.018974647102792154,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "8d7be65ce819",
+      "target": "fc70e5f3a382",
+      "weight": 0.48525879032644864,
+      "reason": "temporal",
+      "reinforcements": 1
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "75aca66625f4",
+      "weight": 0.009511101304657718,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "75aca66625f4",
+      "target": "bc3b11dbcce9",
+      "weight": 0.009511101304657718,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "75aca66625f4",
+      "target": "f0447351316b",
+      "weight": 0.009511101304657718,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "75aca66625f4",
+      "target": "c0540c65326b",
+      "weight": 0.009511101304657718,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "c0540c65326b",
+      "weight": 0.028773722181795976,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "bc3b11dbcce9",
+      "target": "f0447351316b",
+      "weight": 0.009511101304657718,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "c0540c65326b",
+      "target": "f0447351316b",
+      "weight": 0.028676927523987688,
+      "reason": "co_retrieval",
+      "reinforcements": 2
+    },
+    {
+      "source": "8dff0d8ed5db",
+      "target": "fc70e5f3a382",
+      "weight": 0.47794478917877986,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "5c39aad54e5a",
+      "target": "f0447351316b",
+      "weight": 0.01916582621932997,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "5c39aad54e5a",
+      "weight": 0.009558895783575596,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "65d65ed62f07",
+      "target": "f0447351316b",
+      "weight": 0.019214102251670438,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "65d65ed62f07",
+      "weight": 0.019214102251670438,
+      "reason": "co_retrieval",
+      "reinforcements": 1
+    },
+    {
+      "source": "1b0ee46d0c7a",
+      "target": "8dff0d8ed5db",
+      "weight": 0.4803465217877185,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "1b0ee46d0c7a",
+      "target": "5c39aad54e5a",
+      "weight": 0.009606930435754368,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "1b0ee46d0c7a",
+      "target": "c0540c65326b",
+      "weight": 0.009606930435754368,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "1b0ee46d0c7a",
+      "target": "f0447351316b",
+      "weight": 0.009606930435754368,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "1b0ee46d0c7a",
+      "target": "7d3ac8e6b871",
+      "weight": 0.009606930435754368,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "1b0ee46d0c7a",
+      "target": "957d38c5e5e3",
+      "weight": 0.4827603234047422,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "6377a21784de",
+      "weight": 0.009655206468094842,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "6377a21784de",
+      "target": "65d65ed62f07",
+      "weight": 0.009655206468094842,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "51bedc57ce2d",
+      "target": "957d38c5e5e3",
+      "weight": 0.48518625467813287,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "fc70e5f3a382",
+      "weight": 0.009703725093562656,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "a0c8d89b0250",
+      "weight": 0.009703725093562656,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "3c5d4743eff3",
+      "target": "8d7be65ce819",
+      "weight": 0.009703725093562656,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "a0c8d89b0250",
+      "target": "fc70e5f3a382",
+      "weight": 0.009703725093562656,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "c0540c65326b",
+      "target": "fc70e5f3a382",
+      "weight": 0.009703725093562656,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "8d7be65ce819",
+      "target": "a0c8d89b0250",
+      "weight": 0.009703725093562656,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "8d7be65ce819",
+      "target": "c0540c65326b",
+      "weight": 0.009703725093562656,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "51bedc57ce2d",
+      "target": "6709d90ce2f5",
+      "weight": 0.48762437656093754,
+      "reason": "temporal",
+      "reinforcements": 0
+    },
+    {
+      "source": "2515138b14ec",
+      "target": "5c39aad54e5a",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "2515138b14ec",
+      "target": "c0540c65326b",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "2515138b14ec",
+      "target": "daa62006116d",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "2515138b14ec",
+      "target": "65d65ed62f07",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "2515138b14ec",
+      "target": "d5bcb7e94c9c",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "2515138b14ec",
+      "target": "8d7be65ce819",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "149478bad7ea",
+      "target": "fc70e5f3a382",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "149478bad7ea",
+      "target": "8dff0d8ed5db",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "149478bad7ea",
+      "target": "1b0ee46d0c7a",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "149478bad7ea",
+      "target": "957d38c5e5e3",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "149478bad7ea",
+      "target": "51bedc57ce2d",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "149478bad7ea",
+      "target": "6709d90ce2f5",
+      "weight": 0.48762437656093754,
+      "reason": "consolidation",
+      "reinforcements": 0
+    },
+    {
+      "source": "6377a21784de",
+      "target": "daa62006116d",
+      "weight": 0.00975248753121875,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "a0c8d89b0250",
+      "target": "daa62006116d",
+      "weight": 0.00975248753121875,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "6377a21784de",
+      "target": "a0c8d89b0250",
+      "weight": 0.00975248753121875,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "6377a21784de",
+      "target": "c0540c65326b",
+      "weight": 0.00975248753121875,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "21d718dbf57d",
+      "target": "23dc7649739f",
+      "weight": 0.00980149500625,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    },
+    {
+      "source": "000dde40ca2e",
+      "target": "21d718dbf57d",
+      "weight": 0.00980149500625,
+      "reason": "co_retrieval",
+      "reinforcements": 0
+    }
+  ]
+}

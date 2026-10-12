@@ -174,10 +174,10 @@ async def initialize_chat(service, db, owner, source_scope):
                 user_text=old["source_text"], assistant_text=old["model_reply"]
             )
             node["event_key"] = "history:webchat:" + ":".join(message_ids[node["id"]])
-            node["content"] = (
-                f"User: {old['source_text']}\nAssistant: {old['model_reply']}"
-            )
-            node["embedding"] = await service._embed(node["content"], source["encoder"])
+            content = f"User: {old['source_text']}\nAssistant: {old['model_reply']}"
+            if node["content"] != content:
+                node["embedding"] = await service._embed(content, source["encoder"])
+                node["content"] = content
 
     result = {
         "scope": target_scope,

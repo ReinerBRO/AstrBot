@@ -6,6 +6,7 @@ from quart import g, request
 
 from persbot.core import logger
 from persbot.core.memory.history import ConversationMemoryImporter, live_scope
+from persbot.core.memory.initialize_demo import initialize_demo
 from persbot.core.memory.initialize_showcase import initialize_showcase
 
 from .route import Response, Route, RouteContext
@@ -46,6 +47,7 @@ class MemoryRoute(Route):
             "/memory/answer-cases": ("GET", self.answer_cases),
             "/memory/answer-validation": ("POST", self.answer_validation),
             "/memory/initialize-showcase": ("POST", self.initialize_showcase),
+            "/memory/initialize-demo": ("POST", self.initialize_demo),
             "/memory/consolidate": ("POST", self.consolidate),
             "/memory/conversations": ("GET", self.conversations),
             "/memory/import-conversation": ("POST", self.import_conversation),
@@ -165,6 +167,13 @@ class MemoryRoute(Route):
             data.get("query"),
             top_k=data.get("top_k", 1),
             budget=data.get("budget", 6000),
+        )
+
+    @memory_endpoint
+    async def initialize_demo(self):
+        self.scope(await self.body())
+        return await initialize_demo(
+            self.service, self.core.star_context.get_db(), g.get("username", "guest")
         )
 
     @memory_endpoint
