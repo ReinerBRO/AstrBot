@@ -47,6 +47,7 @@ logger = logging.getLogger("persbot")
 
 if TYPE_CHECKING:
     from persbot.core.cron.manager import CronJobManager
+    from persbot.core.memory.service import HeLaMemoryService
 
 
 class PlatformManagerProtocol(Protocol):
@@ -57,6 +58,7 @@ class Context:
     """暴露给插件的接口上下文。"""
 
     registered_web_apis: list = []
+    memory_service: HeLaMemoryService | None = None
 
     # 向后兼容的变量
     _register_tasks: list[Awaitable] = []

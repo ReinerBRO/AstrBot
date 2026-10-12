@@ -26,6 +26,7 @@ from .routes import *
 from .routes.api_key import ALL_OPEN_API_SCOPES
 from .routes.backup import BackupRoute
 from .routes.live_chat import LiveChatRoute
+from .routes.memory import MemoryRoute
 from .routes.platform import PlatformRoute
 from .routes.route import Response, RouteContext
 from .routes.session_management import SessionManagementRoute
@@ -138,6 +139,7 @@ class PersbotDashboard:
         self.platform_route = PlatformRoute(self.context, core_lifecycle)
         self.backup_route = BackupRoute(self.context, db, core_lifecycle)
         self.live_chat_route = LiveChatRoute(self.context, db, core_lifecycle)
+        self.memory_route = MemoryRoute(self.context, core_lifecycle)
         self.watcher_route = WatcherRoute(self.context)
 
         self.app.add_url_rule(

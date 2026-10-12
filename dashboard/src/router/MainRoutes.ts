@@ -9,6 +9,11 @@ const MainRoutes = {
   component: () => import('@/layouts/full/FullLayout.vue'),
   children: [
     {
+      name: 'Memory',
+      path: '/memory',
+      component: () => import('@/views/MemoryPage.vue')
+    },
+    {
       name: 'MainPage',
       path: '/',
       component: () => import('@/views/WelcomePage.vue')

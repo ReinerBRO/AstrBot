@@ -40,7 +40,8 @@ export function useSessions(chatboxMode: boolean = false) {
                 const session = sessions.value.find(s => s.session_id === pendingSessionId.value);
                 if (session) {
                     selectedSessions.value = [pendingSessionId.value];
-                    pendingSessionId.value = null;
+                    // Chat.vue consumes this after loading the requested history.
+                    // Clearing it here makes a deep link fall back to the first chat.
                 }
             } else if (currSessionId.value) {
                 // 如果当前有选中的会话，确保它在列表中并被选中

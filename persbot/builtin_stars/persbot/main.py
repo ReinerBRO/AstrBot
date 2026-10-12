@@ -5,6 +5,7 @@ from persbot.api.event import AstrMessageEvent, filter
 from persbot.api.message_components import Image, Plain
 from persbot.api.provider import LLMResponse, ProviderRequest
 from persbot.core import logger
+from persbot.core.memory.service import MemoryConversationHooks
 
 from .long_term_memory import LongTermMemory
 
@@ -12,6 +13,11 @@ from .long_term_memory import LongTermMemory
 class Main(star.Star):
     def __init__(self, context: star.Context) -> None:
         self.context = context
+        self.memory_hooks = (
+            MemoryConversationHooks(context.memory_service)
+            if getattr(context, "memory_service", None)
+            else None
+        )
         self.ltm = None
         try:
             self.ltm = LongTermMemory(self.context.persbot_config_mgr, self.context)
@@ -89,6 +95,11 @@ class Main(star.Star):
         self, event: AstrMessageEvent, req: ProviderRequest
     ) -> None:
         """在请求 LLM 前注入人格信息、Identifier、时间、回复内容等 System Prompt"""
+        if self.memory_hooks:
+            try:
+                await self.memory_hooks.before(event, req)
+            except Exception:
+                logger.exception("HeLa-Mem recall failed; continuing without memory")
         if self.ltm and self.ltm_enabled(event):
             try:
                 await self.ltm.on_req_llm(event, req)
@@ -100,6 +111,11 @@ class Main(star.Star):
         self, event: AstrMessageEvent, resp: LLMResponse
     ) -> None:
         """在 LLM 响应后记录对话"""
+        if self.memory_hooks:
+            try:
+                await self.memory_hooks.after(event, resp)
+            except Exception:
+                logger.exception("HeLa-Mem could not persist this completed turn")
         if self.ltm and self.ltm_enabled(event):
             try:
                 await self.ltm.after_req_llm(event, resp)

@@ -15,6 +15,7 @@ import threading
 import time
 import traceback
 from asyncio import Queue
+from pathlib import Path
 
 from persbot.api import logger, sp
 from persbot.core import LogBroker, LogManager
@@ -23,6 +24,7 @@ from persbot.core.conversation_mgr import ConversationManager
 from persbot.core.cron import CronJobManager
 from persbot.core.db import BaseDatabase
 from persbot.core.knowledge_base.kb_mgr import KnowledgeBaseManager
+from persbot.core.memory.service import HeLaMemoryService
 from persbot.core.persbot_config_mgr import PersbotConfigManager
 from persbot.core.persona_mgr import PersonaManager
 from persbot.core.pipeline.scheduler import PipelineContext, PipelineScheduler
@@ -37,6 +39,7 @@ from persbot.core.umop_config_router import UmopConfigRouter
 from persbot.core.updator import PersbotUpdator
 from persbot.core.utils.llm_metadata import update_llm_metadata
 from persbot.core.utils.migra_helper import migra
+from persbot.core.utils.persbot_path import get_persbot_data_path
 from persbot.core.utils.temp_dir_cleaner import TempDirCleaner
 
 from . import html_renderer, persbot_config
@@ -192,6 +195,11 @@ class PersbotCoreLifecycle:
             self.kb_manager,
             self.cron_manager,
             self.subagent_orchestrator,
+        )
+
+        self.star_context.memory_service = HeLaMemoryService(
+            Path(get_persbot_data_path()) / "memory" / "helamem.sqlite3",
+            self.star_context,
         )
 
         # 初始化插件管理器
